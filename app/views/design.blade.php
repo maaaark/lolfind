@@ -29,9 +29,7 @@
 				<div class="width">
 					<div class="navi_element nav_el">Teams</div>
 					<div class="navi_element nav_el">Startseite</div>
-					<div class="navi_element logo">
-						LoL-Find
-					</div>
+					<a href="/"><div class="navi_element logo"></div></a>
 				</div>
 			</div>
 		</div>

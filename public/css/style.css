@@ -97,6 +97,22 @@ a.no_effect:hover, a.noEffect:hover {
 }
 
 .main_navi .width .navi_element.logo {
+    padding: 0px;
+    background: url(../img/lolfind_logo_invertiert_small.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: auto 50px;
+    width: 135px;
+}
+
+.scrolled .main_navi .width .navi_element.logo {
+    background-size: auto 40px;
+}
+
+@media(max-width: 1100px){
+    .main_navi .width .navi_element.logo {
+        margin-left: 20px;
+    }
 }
 
 .main_navi .width .navi_element.nav_el {
