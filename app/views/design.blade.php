@@ -58,7 +58,30 @@
 			});
 
 			$(document).ready(function(){
+				var login_box = $("#nw_login_box");
 				scrollNavigation();
+
+				$("#nw_login_btn").click(function(){
+					pos = $(this).offset();
+					pos = $(document).width() - parseInt(pos["left"]);
+					pos = pos - $(this).outerWidth(true);
+					login_box.css("right", pos);
+
+					if(login_box.hasClass("open")){
+						login_box.removeClass("open");
+						$(this).removeClass("active");
+					} else {
+						$(this).addClass("active");
+						login_box.addClass("open");
+					}
+				});
+
+				$("#content").click(function(){
+					if(login_box.hasClass("open")){
+						login_box.removeClass("open");
+						$("#nw_login_btn").removeClass("active");
+					}
+				});
 			});
 		</script>
 	</body>
