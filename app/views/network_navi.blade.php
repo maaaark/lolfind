@@ -23,8 +23,8 @@
 						</td>
 					</tr>
 				</table>
-				<div style="float: right;">
-					<button>{{ Lang::get('users.login') }}</button>
+				<div style="float: right;padding-top: 3px;">
+					<button class="small">{{ Lang::get('users.login') }}</button>
 				</div>
 				<div style="padding-top: 8px;"><a href="#">{{ Lang::get('users.forgot_pw') }}</a></div>
 			</div>

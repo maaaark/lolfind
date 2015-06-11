@@ -1,6 +1,6 @@
 @extends('design_left_sidebar')
 @section('title', "Neuer User - Schritt 1")
-@section('content_site')
+@section('content_page')
     {{ Form::open(array('action' => 'UsersController@step1_save')) }}
 
 
