@@ -15,12 +15,14 @@
 			<div class="col-md-6">
 				<div class="form_box">
 					<h2 style="margin-top: 0px;">Search for team or player</h2>
-					<div>
-						<input type="radio" name="player_or_team" value="player" checked> Player
-						<input type="radio" name="player_or_team" value="team"> Team
-					</div>
-
 					<table class="index_form_table">
+                        <tr>
+                            <td></td>
+                            <td>
+                                <span><label><input type="radio" name="player_or_team" value="player" checked> Player</label></span>
+                                <span style="padding-left: 20px;"><label><input type="radio" name="player_or_team" value="team"> Team</label></span>
+                            </td>
+                        </tr>
 						<tr>
 							<td>Region:</td>
 							<td><span id="region_sel"></span></td>

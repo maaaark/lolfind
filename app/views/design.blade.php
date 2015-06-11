@@ -16,10 +16,12 @@
 		<link rel="stylesheet" href="/css/flashignite_lightbox.css">
 		<link rel="stylesheet" href="/css/style.css">
 		<link rel="stylesheet" href="/css/network.css">
+		<link rel="stylesheet" href="/js/icheck/orange.css">
 		@yield('css_addition')
 
 		<script src="/js/jquery.min.js"></script>
 		<script src="/js/jquery.flashignite_dropdown.js"></script>
+		<script src="/js/icheck/icheck.min.js"></script>
 	</head>
 
 	<body>
@@ -93,6 +95,11 @@
 						$("#nw_login_btn").removeClass("active");
 					}
 				});
+				
+				  $('input').iCheck({
+                    checkboxClass: 'icheckbox_flat-orange',
+                    radioClass: 'iradio_flat-orange'
+                  });
 			});
 		</script>
 	</body>
