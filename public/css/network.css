@@ -5,9 +5,58 @@
 }
 
 .network_navi .network_logo {
-	color: rgba(255,255,255,0.6);
+	color: rgba(255,255,255,0.9);
+	font-size: 16px;
+	background-image: url('http://flashignite.com/img/flashignite_logo.png');
+	background-size: auto 32px;
+	background-position: left center;
+	background-repeat: no-repeat;
+	margin-left: 20px;
+	height: 100%;
+	width: 250px;
+	box-sizing: border-box;
+	font-family: 'Fjalla One';
+	padding-top: 7px;
+	padding-left: 26px;
+}
+
+.scrolled .network_navi .network_logo {
+	background-size: auto 28px;
+	padding-top: 5px;
 }
 
 .scrolled .network_navi {
 	height: 30px;
+}
+
+.network_navi .nw_navi_el {
+	display: inline-block;
+	height: 100%;
+	box-sizing: border-box;
+	padding-top: 8px;
+	padding-right: 10px;
+	padding-left: 10px;
+	transition: all 120ms;
+}
+
+.scrolled .network_navi .nw_navi_el {
+	padding-top: 6px;
+}
+
+.network_navi .nw_navi_el.hovered {
+	cursor: pointer;
+}
+
+.network_navi .nw_navi_el.hovered:hover {
+	background: rgba(255,255,255,0.1);
+}
+
+.network_navi .account_part {
+	float: right;
+	margin-right: 20px;
+	height: 100%;
+}
+
+.network_navi .account_part .login_btn {
+	color: rgba(255,255,255,0.8);
 }
