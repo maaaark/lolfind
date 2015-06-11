@@ -51,6 +51,7 @@ $.fn.makeSelect = function(name, data){
     	if(select_object.hasClass("opened")){
     		select_object.removeClass("opened");
     	} else {
+    		$(".select_box").removeClass("opened");
     		select_object.addClass("opened");
     	}
     });
