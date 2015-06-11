@@ -25,8 +25,8 @@
 			@include('network_navi')
 			<div class="main_navi">
 				<div class="width">
-					<div class="navi_element nav_el">Startseite</div>
 					<div class="navi_element nav_el">Teams</div>
+					<div class="navi_element nav_el">Startseite</div>
 					<div class="navi_element logo">
 						LoL-Find
 					</div>
