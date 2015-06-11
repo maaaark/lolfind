@@ -21,7 +21,7 @@ $.fn.makeSelect = function(name, data){
 
 		temp = '<div class="select_option'+class_addition+'" data-id="'+temp_id+'" data-value="'+val+'">';
 		if(typeof value["image"] != "undefined"){
-			temp += '<div class="image"><img class="sel_img" src="'+value["description"]+'"></div>';
+			temp += '<div class="image"><img class="sel_img" src="'+value["image"]+'"></div>';
 		}
 		temp += value["title"];
 		if(typeof value["description"] != "undefined"){
