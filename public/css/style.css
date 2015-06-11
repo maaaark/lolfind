@@ -73,12 +73,21 @@ html, body {
 	background-image: url(../img/dropdown_arrow.png);
 	background-position: right 12px center;
 	background-repeat: no-repeat;
+	border: 1px solid rgba(0,0,0,0.6);
 }
 
 .select_box .select_row {
 	position: absolute;
 	background: #fff;
 	width: 100%;
+	border: 1px solid rgba(0,0,0,0.6);
+	border-top: none;
+	z-index: 5;
+}
+
+.select_box.opened .select_row {
+	z-index: 7;
+	margin-left: -1px;
 }
 
 .select_box .select_option {
@@ -91,7 +100,7 @@ html, body {
 }
 
 .select_box .select_row .select_option.selected {
-	opacity: 0.8;
+	/*opacity: 0.8;*/
 }
 
 .select_box .select_option .description {
@@ -101,4 +110,12 @@ html, body {
 
 .select_box .selected_object .select_option {
 	display: block;
+}
+
+.select_box.opened .select_row .select_option {
+	cursor: pointer;
+}
+
+.select_box.opened .select_row .select_option:hover {
+	background: rgba(0,0,0,0.1);
 }

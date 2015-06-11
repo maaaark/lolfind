@@ -38,6 +38,7 @@ $.fn.makeSelect = function(name, data){
 	html += '</div>';
 	html = html_start + html_selected + html + '</div>';
     object.html(object.html() + html);
+	object.find(".select_row").css("width", object.find(".select_option").first().outerWidth());
 
 	$("#"+temp_id+".select_box").find(".select_row .select_option").click(function(){
 		$("#"+$(this).attr("data-id")).find(".selected_object").html($(this).get(0).outerHTML);

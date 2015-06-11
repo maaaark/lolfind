@@ -1,0 +1,8 @@
+.index_form_table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.index_form_table td {
+	padding-top: 8px;
+}

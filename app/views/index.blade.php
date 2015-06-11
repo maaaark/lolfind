@@ -1,5 +1,8 @@
 @extends('design')
 @section('title', "Startseite")
+@section('css_addition')
+	<link rel="stylesheet" type="text/css" href="/css/index.css">
+@stop
 @section('content')
 	<div style="min-height: 300px;background: red;background-image: url(http://summoner.flashignite.com/img/stats/index_search_layer_bg.png);background-position: center center;">
 		<div class="row" style="margin: auto;max-width: 1100px;">
@@ -17,77 +20,119 @@
 						<input type="radio" name="player_or_team" value="team"> Team
 					</div>
 
-					<div>
-					Region:
-						<div id="region_sel"></div>
+					<table class="index_form_table">
+						<tr>
+							<td>Region:</td>
+							<td><span id="region_sel"></span></td>
+						</tr>
+						<tr>
+							<td>Liga</td>
+							<td><span id="leagues_sel"></span></td>
+						</tr>
 
-						Liga
-						<select>
-							<option>Bronze+</option>
-							<option>Silver+</option>
-							<option selected>Gold+</option>
-							<option>Platinum+</option>
-							<option>Master+</option>
-							<option>Challenger</option>
-						</select>
-					</div>
-
-					<div>
-						Primary role
-						<div id="primary_role"></div>
-
-						Secundary role
-						<select>
-							<option>Top</option>
-							<option>Mid</option>
-							<option>Jungle</option>
-							<option>ADC</option>
-							<option>Support</option>
-						</select>
-					</div>
+						<tr>
+							<td>Primary role</td>
+							<td><span id="primary_role"></span></td>
+						</tr>
+						<tr>
+							<td>Secundary role</td>
+							<td><span id="secundary_role"></span></td>
+						</tr>
 					
-					<div>
-						Language:
-						<select>
-							<option>English</option>
-							<option>German</option>
-						</select>
-
-						Optional Language:
-						<select>
-							<option>None</option>
-							<option>English</option>
-							<option>German</option>
-						</select>
-					</div>
-
+						<tr>
+							<td>Language:</td>
+							<td><span id="main_language"></span></td>
+						</tr>
+						<tr>
+							<td>Optional Language:</td>
+							<td><span id="optional_language"></span></td>
+						</tr>
+					</table>
 					<button>Show suggestions</button>
 				</div>
 			</div>
 		</div>
 	</div>
 	<script>
-		$('#region_sel').makeSelect("regions", [
+		$('#region_sel').makeSelect("region", [
 		{
 			title: 'EUW',
-			description: 'Europe West',
+			value: 'euw',
+			selected: true,
 		},
 		{
 			title: 'NA',
-			description: 'North America',
-			selected: true,
+			value: 'na',
 		},
 		]);
 
-		$('#primary_role').makeSelect("primary_role", [
+		summoner_roles = [
+			{
+				title: 'ADC',
+				value: 'adc',
+				selected: true,
+			},
+			{
+				title: 'Support',
+				value: 'support',
+			},
+			{
+				title: 'Top',
+				value: 'top',
+			},
+			{
+				title: 'Mid',
+				value: 'mid',
+			},
+			{
+				title: 'Jungle',
+				value: 'jungle',
+			},
+		];
+		$('#primary_role').makeSelect("primary_role", summoner_roles);
+		$('#secundary_role').makeSelect("secundary_role", summoner_roles);
+
+		$('#leagues_sel').makeSelect("league", [
 		{
-			title: 'ADC',
+			title: 'Bronze',
+			value: 'bronze',
 			selected: true,
 		},
 		{
-			title: 'Support',
+			title: 'Silver',
+			value: 'silver',
+		},
+		{
+			title: 'Gold',
+			value: 'gold',
+		},
+		{
+			title: 'Platinum',
+			value: 'platinum',
+		},
+		{
+			title: 'Master',
+			value: 'master',
+		},
+		{
+			title: 'Challenger',
+			value: 'challenger',
 		},
 		]);
+
+		languages_sel = [
+		{
+			title: "English",
+			value: "english",
+			selected: true,
+		},
+		{
+			title: "German",
+			value: "german",
+		},
+		]
+		$('#main_language').makeSelect("main_language", languages_sel);
+		$('#optional_language').makeSelect("optional_language", languages_sel);
 	</script>
 	<div class="content">
 		<h1>Startseite</h1>

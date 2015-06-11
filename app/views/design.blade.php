@@ -16,6 +16,7 @@
 		<link rel="stylesheet" href="/css/flashignite_lightbox.css">
 		<link rel="stylesheet" href="/css/style.css">
 		<link rel="stylesheet" href="/css/network.css">
+		@yield('css_addition')
 
 		<script src="/js/jquery.min.js"></script>
 		<script src="/js/jquery.flashignite_dropdown.js"></script>
