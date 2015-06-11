@@ -35,6 +35,7 @@
 		</div>
 
 		<div class="page_content" id="content">
+            @include('layouts.errors')
 			@yield('content')
 		</div>
 
