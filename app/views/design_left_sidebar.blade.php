@@ -1,7 +1,7 @@
 @extends('design')
 @section('content')
 	<div class="col-md-3">
-		@yield('sidebar');
+		@yield('sidebar')
 	</div>
 	<div class="col-md-9">
 		@yield('content_page')

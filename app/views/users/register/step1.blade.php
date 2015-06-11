@@ -1,6 +1,6 @@
-@extends('design')
+@extends('design_left_sidebar')
 @section('title', "Neuer User - Schritt 1")
-@section('content')
+@section('content_site')
     {{ Form::open(array('action' => 'UsersController@step1_save')) }}
 
 
@@ -34,4 +34,7 @@
 
     {{ Form::submit("Summoner prüfen", array('class' => 'btn btn-primary')) }}
     {{ Form::close() }}
+@stop
+@section('siebar')
+    @include('layouts.sidebar')
 @stop

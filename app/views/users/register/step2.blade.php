@@ -1,6 +1,6 @@
-@extends('design')
+@extends('design_left_sidebar')
 @section('title', "Neuer User - Schritt 2")
-@section('content')
+@section('content_page')
 
 
     <h2 class="headline">Fortschritt</h2>
@@ -29,4 +29,7 @@
     Nach dem speichern, verifiziere deinen Summoner mit einem klick auf den Button.<br/>
     <br/>
     <a href="/verify_summoner" class="btn btn-primary">Summoner verifizieren</a>
+@stop
+@section('sidebar')
+    @include('layouts.sidebar')
 @stop

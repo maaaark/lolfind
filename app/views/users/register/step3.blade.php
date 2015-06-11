@@ -1,6 +1,6 @@
-@extends('layouts.small_header')
+@extends('design_left_sidebar')
 @section('title', "Neuer User - Schritt 3")
-@section('content')
+@section('content_site')
     {{ Form::open(array('action' => 'UsersController@step3_save')) }}
 
 
@@ -45,4 +45,7 @@
     <br/>
     {{ Form::submit("Account anlegen", array('class' => 'btn btn-primary')) }}
     {{ Form::close() }}
+@stop
+@section('siebar')
+    @include('layouts.sidebar')
 @stop
