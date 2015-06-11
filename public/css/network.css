@@ -1,0 +1,13 @@
+.network_navi {
+	height: 35px;
+	background: #3D3D3D;
+	transition: all 200ms;
+}
+
+.network_navi .network_logo {
+	color: rgba(255,255,255,0.6);
+}
+
+.scrolled .network_navi {
+	height: 30px;
+}
