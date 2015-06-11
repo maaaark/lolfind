@@ -18,6 +18,7 @@
 		<link rel="stylesheet" href="/css/network.css">
 
 		<script src="/js/jquery.min.js"></script>
+		<script src="/js/jquery.flashignite_dropdown.js"></script>
 	</head>
 
 	<body>

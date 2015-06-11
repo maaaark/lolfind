@@ -64,3 +64,41 @@ html, body {
 	width: 100%;
 	max-width: 1100px;
 }
+
+/* Select Dropdowns */
+.select_box {
+	display: inline-block;
+	background: #fff;
+	width: 250px;
+	background-image: url(../img/dropdown_arrow.png);
+	background-position: right 12px center;
+	background-repeat: no-repeat;
+}
+
+.select_box .select_row {
+	position: absolute;
+	background: #fff;
+	width: 100%;
+}
+
+.select_box .select_option {
+	display: none;
+	padding: 5px;
+}
+
+.select_box.opened .select_option {
+	display: block;
+}
+
+.select_box .select_row .select_option.selected {
+	opacity: 0.8;
+}
+
+.select_box .select_option .description {
+	color: rgba(0,0,0,0.5);
+	font-size: 12px;
+}
+
+.select_box .selected_object .select_option {
+	display: block;
+}

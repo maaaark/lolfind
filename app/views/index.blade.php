@@ -19,10 +19,7 @@
 
 					<div>
 					Region:
-						<select>
-							<option>EUW</option>
-							<option>NA</option>
-						</select>
+						<div id="region_sel"></div>
 
 						Liga
 						<select>
@@ -37,13 +34,7 @@
 
 					<div>
 						Primary role
-						<select>
-							<option>Top</option>
-							<option>Mid</option>
-							<option>Jungle</option>
-							<option>ADC</option>
-							<option>Support</option>
-						</select>
+						<div id="primary_role"></div>
 
 						Secundary role
 						<select>
@@ -75,6 +66,29 @@
 			</div>
 		</div>
 	</div>
+	<script>
+		$('#region_sel').makeSelect("regions", [
+		{
+			title: 'EUW',
+			description: 'Europe West',
+		},
+		{
+			title: 'NA',
+			description: 'North America',
+			selected: true,
+		},
+		]);
+
+		$('#primary_role').makeSelect("primary_role", [
+		{
+			title: 'ADC',
+			selected: true,
+		},
+		{
+			title: 'Support',
+		},
+		]);
+	</script>
 	<div class="content">
 		<h1>Startseite</h1>
 
