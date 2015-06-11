@@ -4,16 +4,16 @@
 	<link rel="stylesheet" type="text/css" href="/css/index.css">
 @stop
 @section('content')
-	<div style="min-height: 300px;background: red;background-image: url(http://summoner.flashignite.com/img/stats/index_search_layer_bg.png);background-position: center center;">
+	<div class="index_opener">
 		<div class="row" style="margin: auto;max-width: 1100px;">
 			<div class="col-md-6">
-				<div style="text-align: center;padding:30px;padding-top: 100px;color:#fff;text-shadow: 0 0 6px #000;">
-					<div style="font-size: 22px;padding-bottom: 10px;">Easily find new team members or new teams</div>
-					<div style="font-size: 16px;color:rgba(255,255,255,0.6);">Log in with your Flashignite-Network Account and start looking for teammates or teams!</div>
+				<div class="text_opener">
+					<div class="big_text">Easily find new team members or new teams</div>
+					<div class="medium_text">Log in with your Flashignite-Network Account and start looking for teammates or teams!</div>
 				</div>
 			</div>
 			<div class="col-md-6">
-				<div style="background: rgba(255,255,255,0.4);box-sizing: border-box;padding: 25px;margin-top: 40px;">
+				<div class="form_box">
 					<h2 style="margin-top: 0px;">Search for team or player</h2>
 					<div>
 						<input type="radio" name="player_or_team" value="player" checked> Player
@@ -35,20 +35,14 @@
 							<td><span id="primary_role"></span></td>
 						</tr>
 						<tr>
-							<td>Secundary role</td>
-							<td><span id="secundary_role"></span></td>
-						</tr>
-					
-						<tr>
 							<td>Language:</td>
 							<td><span id="main_language"></span></td>
 						</tr>
 						<tr>
-							<td>Optional Language:</td>
-							<td><span id="optional_language"></span></td>
+							<td></td>
+							<td><button>Show suggestions</button></td>
 						</tr>
 					</table>
-					<button>Show suggestions</button>
 				</div>
 			</div>
 		</div>
@@ -90,7 +84,6 @@
 			},
 		];
 		$('#primary_role').makeSelect("primary_role", summoner_roles);
-		$('#secundary_role').makeSelect("secundary_role", summoner_roles);
 
 		$('#leagues_sel').makeSelect("league", [
 		{
@@ -132,13 +125,16 @@
 		},
 		]
 		$('#main_language').makeSelect("main_language", languages_sel);
-		$('#optional_language').makeSelect("optional_language", languages_sel);
 	</script>
 	<div class="content">
-		<h1>Startseite</h1>
-
-		<div style="height: 1200px;">
-			Bitte srollen
+		<div class="row">
+			<div class="col-md-6">
+				<h1>Startseite</h1>
+				Inhalt der Startseite wird in den nächsten Tagen folgen.<br/>
+				<br/>
+				- Neueste Teams<br/>
+				- Neueste Spieler<br/>
+			</div>
 		</div>
 	</div>
 @stop

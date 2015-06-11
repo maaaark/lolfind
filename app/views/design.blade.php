@@ -41,6 +41,16 @@
 			@yield('content')
 		</div>
 
+		<div class="footer">
+			<div style="width: 100%;max-width: 1100px;margin: auto;">
+				<div class="fi_network_tag">
+					<img src="http://flashignite.com/img/flashignite_logo.png"> FLASHIGNITE Network
+				</div>
+				Powered by <a href="http://flashignite.com">Flashignite.com</a>
+				<div style="color: rgba(255,255,255,0.4);">&copy; 2015 Flashignite</div>
+			</div>
+		</div>
+
 		<script>
 			function scrollNavigation(){
 				navi 	= $("#navigations");
