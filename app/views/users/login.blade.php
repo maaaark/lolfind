@@ -1,6 +1,6 @@
-@extends('layouts.small_header')
+@extends('design_left_sidebar')
 @section('title', "User Login")
-@section('content')
+@section('content_page')
     <p>
         {{ $errors->first('email') }}
         {{ $errors->first('password') }}
@@ -12,7 +12,7 @@
                 <h2 class="headline">User Login</h2>
                 Logge dich mit deinem Flashignite Netzwerk Account ein.<br/>
                 <br/>
-                {{ Form::open(array('url' => '/login')) }}
+                {{ Form::open(array('url' => '/dologin')) }}
                 <div class="input-group">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
                     {{ Form::text('email', Input::old('email'), array('placeholder' => 'example@lolquest.net', 'class' => 'form-control')) }}

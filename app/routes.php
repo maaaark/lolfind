@@ -16,15 +16,13 @@ Route::get('/', 'IndexController@index');
 // User
 Route::post('/dologin', 'UsersController@doLogin');
 Route::get('/account/edit', 'UsersController@edit');
-Route::get('/user/{username}', 'UsersController@show');
+Route::get('/summoner/{region}/{name}', 'UsersController@show');
 Route::get('/user', 'UsersController@index');
 Route::get('/login', 'UsersController@login');
 Route::get('/register', 'UsersController@create');
 Route::get('/register/step1', 'UsersController@step1');
 Route::get('/register/step2', 'UsersController@step2');
 Route::get('/register/step3', 'UsersController@step3');
-//Route::get('/einstellungen', 'UsersController@settings');
-//Route::get('/einstellungen/save', 'UsersController@save_settings');
 Route::get('/verify_summoner', 'UsersController@verify_summoner');
 Route::post('/register/save', 'UsersController@save');
 Route::post('/register/save1', 'UsersController@step1_save');

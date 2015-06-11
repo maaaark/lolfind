@@ -8,9 +8,10 @@ class UsersController extends \BaseController {
      * @param  int  $id
      * @return Response
      */
-    public function show($nickname)
+    public function show($region, $name)
     {
-        $user = User::where("username", "=", $nickname)->first();
+        $summoner = Summoner::where("region", "=", $region)->where("name", "=", $name)->first();
+        $user = $summoner->user;
         return View::make('users.show', compact('user'));
     }
 

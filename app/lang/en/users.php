@@ -18,5 +18,5 @@ return array(
 	"forgot_pw" => "Forgot the password?",
 	"placeholder_email" => "Your email adress here",
 	"placeholder_password" => "Your password here",
-
+    "logout" => "Logout",
 );
