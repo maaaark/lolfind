@@ -127,10 +127,14 @@
 		$('#main_language').makeSelect("main_language", languages_sel);
 	</script>
 	<div class="content">
-		<h1>Startseite</h1>
-
-		<div style="height: 1200px;">
-			Bitte srollen
+		<div class="row">
+			<div class="col-md-6">
+				<h1>Startseite</h1>
+				Inhalt der Startseite wird in den nächsten Tagen folgen.<br/>
+				<br/>
+				- Neueste Teams<br/>
+				- Neueste Spieler<br/>
+			</div>
 		</div>
 	</div>
 @stop

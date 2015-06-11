@@ -1,8 +1,47 @@
-.index_form_table {
+.index_opener {
+	background-image: url(http://summoner.flashignite.com/img/stats/index_search_layer_bg.png);
+	background-position: center center;
+	background-size: auto 100%;
+	padding-top: 40px;
+	padding-bottom: 40px;
+}
+
+.index_opener .text_opener {
+	text-align: center;
+	padding:30px;
+	padding-top: 100px;
+	color:#fff;
+	text-shadow: 0 0 6px #000;
+}
+
+@media(max-width: 995px){
+	.index_opener .text_opener {
+		padding-top: 30px;
+		padding-bottom: 30px;
+	}
+}
+
+.index_opener .text_opener .big_text {
+	font-size: 22px;
+	padding-bottom: 10px;
+}
+
+.index_opener .text_opener .medium_text {
+	font-size: 16px;
+	color:rgba(255,255,255,0.8);
+}
+
+.index_opener .form_box {
+	background: rgba(255,255,255,0.4);
+	box-sizing: border-box;
+	padding: 25px;
+}
+
+.index_opener .form_box .index_form_table {
 	width: 100%;
 	border-collapse: collapse;
 }
 
-.index_form_table td {
+.index_opener .form_box .index_form_table td {
 	padding-top: 8px;
 }

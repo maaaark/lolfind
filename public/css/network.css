@@ -18,6 +18,7 @@
 	font-family: 'Fjalla One';
 	padding-top: 7px;
 	padding-left: 26px;
+	cursor: default;
 }
 
 .scrolled .network_navi .network_logo {
