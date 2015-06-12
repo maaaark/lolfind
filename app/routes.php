@@ -31,5 +31,6 @@ Route::post('/register/save3', 'UsersController@step3_save');
 Route::post('/account/update', 'UsersController@updateAccount');
 
 // Teams
+Route::get("/teams", "TeamsController@index");
 Route::get("/teams/add", "TeamsController@add");
 Route::post("/teams/add/rankedTeams", "TeamsController@getLoggedRankedTeams");

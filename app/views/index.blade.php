@@ -16,6 +16,7 @@
 				<div class="form_box">
 					<h2 style="margin-top: 0px;">Search for team or player</h2>
 					<table class="index_form_table">
+                        <tbody>
                         <tr>
                             <td></td>
                             <td>
@@ -44,11 +45,23 @@
 							<td></td>
 							<td><button>Show suggestions</button></td>
 						</tr>
-					</table>
+					</tbody></table>
 				</div>
 			</div>
 		</div>
 	</div>
+	<div class="content">
+		<div class="row">
+			<div class="col-md-6">
+				<h1>Startseite</h1>
+				Inhalt der Startseite wird in den nächsten Tagen folgen.<br/>
+				<br/>
+				- Neueste Teams<br/>
+				- Neueste Spieler<br/>
+			</div>
+		</div>
+	</div>
+	
 	<script>
 		$('#region_sel').makeSelect("region", [
 		{
@@ -128,15 +141,4 @@
 		]
 		$('#main_language').makeSelect("main_language", languages_sel);
 	</script>
-	<div class="content">
-		<div class="row">
-			<div class="col-md-6">
-				<h1>Startseite</h1>
-				Inhalt der Startseite wird in den nächsten Tagen folgen.<br/>
-				<br/>
-				- Neueste Teams<br/>
-				- Neueste Spieler<br/>
-			</div>
-		</div>
-	</div>
 @stop

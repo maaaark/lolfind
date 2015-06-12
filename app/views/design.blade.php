@@ -29,8 +29,8 @@
 			@include('network_navi')
 			<div class="main_navi">
 				<div class="width">
-					<div class="navi_element nav_el">Teams</div>
-					<div class="navi_element nav_el">Startseite</div>
+					<a href="/teams"><div class="navi_element nav_el">Teams</div></a>
+					<a href="/"><div class="navi_element nav_el">Startseite</div></a>
 					<a href="/"><div class="navi_element logo"></div></a>
 				</div>
 			</div>

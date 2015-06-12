@@ -1,6 +1,10 @@
 <?php
 
 class TeamsController extends \BaseController {
+    public function index(){
+        return View::make("teams.index");
+    }
+    
 	public function add(){
 		return View::make("teams.add");
 	}

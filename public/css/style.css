@@ -147,11 +147,13 @@ a.no_effect:hover, a.noEffect:hover {
 .select_box {
 	display: inline-block;
 	background: #fff;
-	width: 250px;
+	max-width: 250px;
+	width: 100%;
 	background-image: url(../img/dropdown_arrow.png);
 	background-position: right 12px center;
 	background-repeat: no-repeat;
 	border: 1px solid rgba(0,0,0,0.6);
+	cursor: pointer;
 }
 
 .select_box .select_row {
