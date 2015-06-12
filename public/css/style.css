@@ -29,6 +29,11 @@ button:active {
 	background: #D03C0B;
 }
 
+button:disabled {
+   background: #AEAEAE;
+   cursor: default;
+}
+
 a {
 	text-decoration: none;
 	color: #f25825;

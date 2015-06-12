@@ -1,0 +1,33 @@
+.team_add_description {
+   margin-bottom: 20px;
+}
+
+.team_add_box {
+   border: 1px solid rgba(0,0,0,0.2);
+}
+
+.team_add_box .team_add_title {
+   font-weight: bold;
+   background: #555;
+   padding: 8px;
+   color: #fff;
+}
+
+.team_add_box .team_add_content {
+   padding: 15px;
+}
+
+.team_add_box .team_add_continue_flat {
+   background: rgba(237, 237, 237, 1);
+   padding: 10px;
+}
+
+.team_add_box .team_add_continue_flat button {
+   float: right;
+}
+
+.team_add_box .team_add_continue_flat:after {
+   content: '';
+   display: block;
+   clear: both;
+}
