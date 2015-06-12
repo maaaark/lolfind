@@ -31,3 +31,46 @@
    display: block;
    clear: both;
 }
+
+.team_add_box .team_list_el {
+   padding: 3px;
+   padding-left: 6px;
+   border-radius: 3px;
+   background: rgba(0,0,0,0.1);
+   border: 1px solid rgba(0,0,0,0.1);
+   margin-bottom: 5px;
+   margin-top: 5px;
+   opacity: 0.5;
+   cursor: default;
+}
+
+.team_add_box .team_list_el.is_lead {
+    opacity: 1;
+    color: #f25825;
+    cursor: pointer;
+}
+
+.team_add_box .team_list_el.is_lead:hover {
+    background: rgba(0,0,0,0.2);
+}
+
+.team_add_box .team_list_el.is_lead.active {
+    border: 1px solid #f25825;
+}
+
+.team_add_box .team_list_el .tag {
+    padding-right: 5px;
+    color: rgba(0,0,0,0.35);
+}
+
+.team_add_box .team_list_el .name {
+    font-weight: bold;
+}
+
+.team_add_content .wins {
+    color: green;
+}
+
+.team_add_content .losses {
+    color: red;
+}

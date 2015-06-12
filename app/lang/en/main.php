@@ -5,5 +5,8 @@
  * Sektionen der Seite auftauchen (können).
  */
 return array(
-   "continue" => "Continue"
+   "continue"       => "Continue",
+   
+   "wins"           => "Wins",
+   "losses"         => "Losses",
 );
