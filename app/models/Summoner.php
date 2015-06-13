@@ -550,4 +550,92 @@ class Summoner extends \Eloquent {
             return false;
         }
     }
+    
+    public static function update_summoner($summoner_id, $region){
+        $allowed_regions   = Config::get('api.allowed_regions');
+        $api_key 		   = Config::get('api.key');
+        $current_season    = Config::get('api.current_season');
+        $summoner_data     = $allowed_regions[$region]["api_endpoint"]."/api/lol/".$region."/v1.4/summoner/".$summoner_id."?api_key=".$api_key;
+        $json = @file_get_contents($summoner_data);
+        if($json === FALSE) {
+            return false;
+        } else {
+            $obj = json_decode($json, true);
+            $summoner = Summoner::where("summoner_id","=",$summoner_id)->where("region","=",$region)->first();
+            if(!$summoner) {
+                $summoner = new Summoner;
+            }
+            $summoner->summoner_id = $obj[$summoner_id]["id"];
+            $summoner->name = $obj[$summoner_id]["name"];
+            $summoner->profileIconId = $obj[$summoner_id]["profileIconId"];
+            $summoner->summonerLevel = $obj[$summoner_id]["summonerLevel"];
+            $summoner->revisionDate = $obj[$summoner_id]["revisionDate"];
+            $summoner->region = $region;
+            $summoner->last_update_maindata = date('Y-m-d H:i:s');
+            $summoner_stats = $allowed_regions[$region]["api_endpoint"]."/api/lol/".$region."/v1.3/stats/by-summoner/".$summoner->summoner_id."/summary?season=".$current_season."&api_key=".$api_key;
+            $json2 = @file_get_contents($summoner_stats);
+            if($json2 === FALSE) {
+                return View::make('searches.show_result', compact('searchString', 'news', 'champs', 'players', 'teams', 'summoner'));
+            } else {
+                $obj2 = json_decode($json2, true);
+                if(isset($obj2["playerStatSummaries"])){
+                    foreach($obj2["playerStatSummaries"] as $gamemode){
+                        if($gamemode["playerStatSummaryType"] == 'RankedSolo5x5'){
+                            $summoner->ranked_wins   = $gamemode['wins'];
+                            $summoner->ranked_losses = $gamemode['losses'];
+                            $summoner->ranked_data   = json_encode($gamemode);
+                        }
+                        if($gamemode["playerStatSummaryType"] == 'Unranked'){
+                            $summoner->unranked_wins = $gamemode['wins'];
+                            $summoner->unranked_data = json_encode($gamemode);
+                        }
+                        if($gamemode["playerStatSummaryType"] == 'RankedTeam5x5'){
+                            $summoner->teamranked_wins   = $gamemode['wins'];
+                            $summoner->teamranked_losses = $gamemode['losses'];
+                            $summoner->teamranked_data   = json_encode($gamemode);
+                        }
+                    }
+                }
+                $summoner = Summoner::updateRankedData($summoner, $summoner->summoner_id, $region);
+                $summoner->save();
+            }
+            return $summoner;
+        }
+    }
+    
+    public static function updateRankedData($summoner, $summonerId, $region){
+		$api_key         = Config::get('api.key');
+		$allowed_regions = Config::get('api.allowed_regions');
+		$content         = @file_get_contents($allowed_regions[$region]["api_endpoint"]."/api/lol/".$region."/v2.5/league/by-summoner/".$summonerId."/entry?api_key=".$api_key);
+		if($content === FALSE) {
+			return $summoner;
+		} else {
+			$json = json_decode($content, true);
+			if(isset($json[$summonerId])){
+				$ranked_data = array();
+				foreach($json[$summonerId] as $entry){
+					$array = array();
+					$array["name"] 			= str_replace("'", "&lsquo;", $entry["name"]);
+					$array["tier"] 			= $entry["tier"];
+					$array["division"] 		= $entry["entries"][0]["division"];
+					$array["league_points"] = $entry["entries"][0]["leaguePoints"];
+					$array["wins"] 			= $entry["entries"][0]["wins"];
+					$array["losses"] 		= $entry["entries"][0]["losses"];
+					$array["isHotStreak"]   = $entry["entries"][0]["isHotStreak"];
+					$array["isVeteran"] 	= $entry["entries"][0]["isVeteran"];
+					$array["isFreshBlood"]  = $entry["entries"][0]["isFreshBlood"];
+					$array["isInactive"]    = $entry["entries"][0]["isInactive"];
+					$array["queue"] 		= $entry["queue"];
+					$ranked_data[$array["queue"]] = $array;
+
+					$summoner->solo_division = $entry["entries"][0]["division"];
+					$summoner->solo_tier	 = $entry["tier"];
+					$summoner->solo_name	 = str_replace("'", "&lsquo;", $entry["name"]);
+				}
+				$json_encode = json_encode($ranked_data);
+				$summoner->ranked_summary = $json_encode;
+			}
+		}
+		return $summoner;
+	}
 }

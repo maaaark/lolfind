@@ -6,6 +6,7 @@
  */
 return array(
    "continue"       => "Continue",
+   "unknown_error"  => "Unknown error",
    
    "wins"           => "Wins",
    "losses"         => "Losses",

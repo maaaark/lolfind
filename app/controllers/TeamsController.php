@@ -34,9 +34,24 @@ class TeamsController extends \BaseController {
                         $ranked_team->leader_summoner_id = $team["roster"]["ownerId"];
                         $ranked_team->save();
                         
-                        /*
-                         *  Hier noch die Spieler speichern
-                         */
+                        // Spieler des Ranked-Teams Speichern
+                        foreach($team["roster"]["memberList"] as $player){
+                            if(isset($player["playerId"])){
+                                $summoner_temp = Summoner::update_summoner($player["playerId"], $region);
+                                if($summoner_temp && $summoner_temp->summoner_id > 0){
+                                    $check = RankedTeamPlayer::where("summoner_id", "=", $summoner_temp->summoner_id)->where("team", "=", $ranked_team->id)->first();
+                                    
+                                    if(isset($check) && $check && isset($check["id"]) && $check["id"] > 0){
+                                        // Aus irgendeinem Grund gibt es in der DB wohl schon die Kombination aus Summoner-ID und diesem Team -> also nichts machen
+                                    } else {
+                                        $ranked_team_player = new RankedTeamPlayer;
+                                        $ranked_team_player->team = $ranked_team->id;
+                                        $ranked_team_player->summoner_id = $summoner_temp->summoner_id;
+                                        $ranked_team_player->save();
+                                    }
+                                }
+                            }
+                        }
                         
                         echo json_encode(array("status" => "success", "data" => $ranked_team->id));
                     } else {
@@ -87,8 +102,15 @@ class TeamsController extends \BaseController {
                             }
                             $array[$type] = array("wins" => $stats["wins"], "losses" => $stats["losses"], "average_games_played" => $stats["averageGamesPlayed"]);
                         }
+                        
+                        $check = true;
+                        $ranked_team_check = RankedTeam::where("team_id", "=", $team["fullId"])->first();
+                        if(isset($ranked_team_check) && isset($ranked_team_check["id"]) && $ranked_team_check["id"] > 0){
+                            $check = false;
+                        }
+                        
                         $array["is_lead"] = false;
-                        if(isset($team["roster"]) && isset($team["roster"]["ownerId"]) && $team["roster"]["ownerId"] == $summoner_id){
+                        if(isset($team["roster"]) && isset($team["roster"]["ownerId"]) && $team["roster"]["ownerId"] == $summoner_id && $check){
                             $array["is_lead"] = true;
                         }
                         $return_arr[$team["fullId"]] = $array;
