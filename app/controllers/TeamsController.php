@@ -9,6 +9,50 @@ class TeamsController extends \BaseController {
 		return View::make("teams.add");
 	}
 	
+	public function add_post(){
+        if(Auth::check()){
+            if(Input::get("ranked_team_id") && trim(Input::get("ranked_team_id")) != ""){
+                $api_key = Config::get('api.key');
+                $region  = Auth::user()->summoner->region;
+                $content = @file_get_contents("https://".trim($region).".api.pvp.net/api/lol/".trim($region)."/v2.4/team/".trim(Input::get("ranked_team_id"))."?api_key=".trim($api_key));
+                $json    = json_decode($content, true);
+                
+                if(isset($json[trim(Input::get("ranked_team_id"))]) && isset($json[trim(Input::get("ranked_team_id"))]["fullId"])){
+                    $team         = $json[trim(Input::get("ranked_team_id"))];
+                    $check        = true;
+                    $check_object = RankedTeam::where("team_id", "=", $team["fullId"])->where("region", "=", $region)->first();
+                    if(isset($check_object["id"]) && $check_object["id"] > 0){
+                        $check = false;
+                    }
+                    if($check){
+                        $ranked_team                     = new RankedTeam();
+                        $ranked_team->region             = $region;
+                        $ranked_team->team_id            = $team["fullId"];
+                        $ranked_team->name               = $team["name"];
+                        $ranked_team->tag                = $team["tag"];
+                        $ranked_team->adder_summoner_id  = Auth::user()->summoner->summoner_id;
+                        $ranked_team->leader_summoner_id = $team["roster"]["ownerId"];
+                        $ranked_team->save();
+                        
+                        /*
+                         *  Hier noch die Spieler speichern
+                         */
+                        
+                        echo json_encode(array("status" => "success", "data" => $ranked_team->id));
+                    } else {
+                        echo "already_added";
+                    }
+                } else {
+                    echo "error";
+                }
+            } else {
+                echo "error";
+            }
+        } else {
+            echo "error";
+        }
+	}
+	
 	public function getLoggedRankedTeams(){
         if(Auth::check()){
             $api_key     = Config::get('api.key');

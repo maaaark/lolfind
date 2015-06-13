@@ -34,6 +34,7 @@
                      </div>
                   </div>
                   <div class="team_add_continue_flat">
+                     <span id="team_add_status"></span>
                      <button id="team_add_btn" class="small" disabled>{{ Lang::get("main.continue") }}</button>
                   </div>
                </div>
@@ -70,7 +71,10 @@
                     }
                 }
                 
+                var click_temp_bug = false;
                 $("#team_list_holder .team_list_el.is_lead").click(function(){
+                    click_temp_bug = false;
+                    $("#team_add_status").html('');
                     $("#team_add_btn").prop("disabled", false);
                     $("#team_list_holder .active").removeClass("active");
                     $(this).addClass("active");
@@ -92,8 +96,33 @@
                         html += '</div>';
                         
                         $("#team_list_continue").html(html);
+                        
+                        $("#team_add_btn").click(function(){
+                            if(click_temp_bug == false){
+                                click_temp_bug = true;
+                                $.post("/teams/add/post_action", {"ranked_team_id": team_id}).done(function(data){
+                                    if(data.trim() == "error" || data.trim() == "already_added"){
+                                        $("#team_add_btn").prop("disabled", true);
+                                        
+                                        if(data.trim() == "already_added"){
+                                            $("#team_add_status").html("{{ Lang::get('teams.add.already_added_status') }}");
+                                        } else {
+                                            $("#team_add_status").html("{{ Lang::get('main.unknown_error') }}");
+                                        }
+                                    } else {
+                                        json = JSON.parse(data);
+                                        if(typeof json["status"] != "undefined" && typeof json["data"] != "undefined" && json["status"] == "success" && json["data"] > 0){
+                                            self.location.href = '/teams/add/success/'+json["data"];
+                                        } else {
+                                            $("#team_add_btn").prop("disabled", true);
+                                            $("#team_add_status").html("{{ Lang::get('main.unknown_error') }}");
+                                        }
+                                    }
+                                });
+                            }
+                        });
                     } else {
-                        $("#team_list_continue").html("Unknown error");
+                        $("#team_list_continue").html("{{ Lang::get('main.unknown_error') }}");
                     }
                 });
             });

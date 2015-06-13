@@ -34,3 +34,4 @@ Route::post('/account/update', 'UsersController@updateAccount');
 Route::get("/teams", "TeamsController@index");
 Route::get("/teams/add", "TeamsController@add");
 Route::post("/teams/add/rankedTeams", "TeamsController@getLoggedRankedTeams");
+Route::post("/teams/add/post_action", "TeamsController@add_post");
