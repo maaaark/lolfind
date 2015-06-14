@@ -28,14 +28,17 @@
             <div class="col-md-8">
                <div class="team_add_box">
                   <div class="team_add_title">Add your team</div>
-                  <div class="team_add_content" id="team_list_continue">
-                     <div style="color: rgba(0,0,0,0.4);">
-                        {{ Lang::get("teams.add.wait_for_team_sel") }}
-                     </div>
-                  </div>
-                  <div class="team_add_continue_flat">
-                     <span id="team_add_status"></span>
-                     <button id="team_add_btn" class="small" disabled>{{ Lang::get("main.continue") }}</button>
+                  <div>
+                      <div id="team_list_continue_loading"></div>
+                      <div class="team_add_content" id="team_list_continue">
+                         <div style="color: rgba(0,0,0,0.4);">
+                            {{ Lang::get("teams.add.wait_for_team_sel") }}
+                         </div>
+                      </div>
+                      <div class="team_add_continue_flat">
+                         <span id="team_add_status"></span>
+                         <button id="team_add_btn" class="small" disabled>{{ Lang::get("main.continue") }}</button>
+                      </div>
                   </div>
                </div>
             </div>
@@ -99,7 +102,14 @@
                         
                         $("#team_add_btn").click(function(){
                             if(click_temp_bug == false){
-                                click_temp_bug = true;
+                                click_temp_bug  = true;
+                                loading_container = $("#team_list_continue_loading");
+                                loading_screen  = '<div id="team_add_loading_screen" style="background: rgba(255,255,255,0.8);color: #000;padding: 35px;box-sizing: border-box;text-align: center;position: absolute;z-index: 10;width: '+loading_container.parent().width()+'px;height: '+loading_container.parent().height()+'px;">';
+                                loading_screen += '<div><img src="/img/ajax-loader.gif" style="height: 40px;"></div>';
+                                loading_screen += '<div style="margin-top: 8px;color: rgba(0,0,0,0.8);">{{ Lang::get("teams.add.loading_screen") }}</div>';
+                                loading_screen += '</div>';
+                                loading_container.prepend(loading_screen);
+                                
                                 $.post("/teams/add/post_action", {"ranked_team_id": team_id}).done(function(data){
                                     if(data.trim() == "error" || data.trim() == "already_added"){
                                         $("#team_add_btn").prop("disabled", true);
@@ -109,6 +119,7 @@
                                         } else {
                                             $("#team_add_status").html("{{ Lang::get('main.unknown_error') }}");
                                         }
+                                        $("#team_add_loading_screen").remove();
                                     } else {
                                         json = JSON.parse(data);
                                         if(typeof json["status"] != "undefined" && typeof json["data"] != "undefined" && json["status"] == "success" && json["data"] > 0){
@@ -116,6 +127,7 @@
                                         } else {
                                             $("#team_add_btn").prop("disabled", true);
                                             $("#team_add_status").html("{{ Lang::get('main.unknown_error') }}");
+                                            $("#team_add_loading_screen").remove();
                                         }
                                     }
                                 });

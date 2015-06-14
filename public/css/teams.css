@@ -1,3 +1,35 @@
+.own_team_element_holder {
+    float: left;
+    padding: 10px;
+    box-sizing: border-box;
+    width: 33.33333%
+}
+
+.own_team_element_holder .own_team_element {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    background: #f1f1f1;
+    padding: 15px;
+    width: 100%;
+}
+
+.own_team_element_holder .own_team_element .tag {
+    float: right;
+    color: rgba(0,0,0,0.4);
+    cursor: default;
+}
+
+.own_team_element_holder .own_team_element .button_div {
+    float: right;
+    margin-top: 8px;
+}
+
+@media(max-width: 750px){
+    .own_team_element_holder {
+        width: 100%;
+    }
+}
+
+/* Team add */
 .team_add_description {
    margin-bottom: 20px;
 }
