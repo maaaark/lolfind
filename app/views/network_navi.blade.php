@@ -4,8 +4,8 @@
             <a href="/summoner/{{ Auth::user()->summoner->region }}/{{ Auth::user()->summoner->name }}"><div class="login_btn nw_navi_el hovered" id="nw_login_btn">{{ Auth::user()->summoner->name }}</div></a>
             <a href="/logout"><div class="login_btn nw_navi_el hovered" id="nw_login_btn">{{ Lang::get('users.logout') }}</div></a>
         @else
-            <div class="login_btn nw_navi_el hovered" id="nw_login_btn"><i class="fa fa-sign-in"></i> {{ Lang::get('users.login') }}</div>
-            <div class="login_btn nw_navi_el hovered"><i class="fa fa-user"></i> {{ Lang::get('users.register') }}</div>
+            <a href="/login"><div class="login_btn nw_navi_el hovered" id="nw_login_btn"><i class="fa fa-sign-in"></i> {{ Lang::get('users.login') }}</div></a>
+            <a href="/register"><div class="login_btn nw_navi_el hovered"><i class="fa fa-user"></i> {{ Lang::get('users.register') }}</div></a>
             <div class="nw_login_box" id="nw_login_box">
                 <div class="title">{{ Lang::get('users.login') }}</div>
                 <div class="box">

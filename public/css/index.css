@@ -1,5 +1,5 @@
 .index_opener {
-	background-image: url(http://summoner.flashignite.com/img/stats/index_search_layer_bg.png);
+	background-image: url('/img/start_background.jpg');
 	background-position: center center;
 	background-size: auto 100%;
 	padding-top: 40px;
@@ -44,4 +44,10 @@
 
 .index_opener .form_box .index_form_table td {
 	padding-top: 8px;
+}
+.form_box h2 {
+    font-family: "Fjalla One";
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
 }
