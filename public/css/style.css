@@ -3,7 +3,7 @@ html, body {
 	margin: 0pxM;
 }
 
-button {
+button, input[type=submit] {
 	color: #fff;
 	background: #f25825;
 	border: none;
@@ -16,20 +16,20 @@ button {
 	cursor: pointer;
 }
 
-button.small {
+button.smal, input[type=submit].small {
 	padding-top: 6px;
 	padding-bottom: 6px;
 }
 
-button:hover {
+button:hover, input[type=submit]:hover {
 	background: #EC693E;
 }
 
-button:active {
+button:active, input[type=submit]:active {
 	background: #D03C0B;
 }
 
-button:disabled {
+button:disabled, input[type=submit]:disabled {
    background: #AEAEAE;
    cursor: default;
 }

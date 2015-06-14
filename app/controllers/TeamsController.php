@@ -2,7 +2,31 @@
 
 class TeamsController extends \BaseController {
     public function index(){
-        return View::make("teams.index");
+        $own_teams    = array();
+        if(Auth::check()){
+            $teams_player = RankedTeamPlayer::where("summoner_id", "=", Auth::user()->summoner->summoner_id)->get();
+            foreach($teams_player as $player){
+                $ranked_team_temp = RankedTeam::where("id", "=", $player->team)->first();
+                if(isset($ranked_team_temp) && $ranked_team_temp && $ranked_team_temp->id > 0){
+                    $own_teams[] = $ranked_team_temp;
+                }
+            }
+        }
+        return View::make("teams.index", array(
+            "own_teams" => $own_teams
+        ));
+    }
+    
+    public function detail($region, $tag){
+        $region = trim($region);
+        $tag    = trim($tag);
+        $ranked_team = RankedTeam::where("region", "=", $region)->where("tag", "=", $tag)->first();
+        if(isset($ranked_team["id"]) && $ranked_team["id"] > 0){
+            return View::make("teams.detail", array(
+                "ranked_team" => $ranked_team,
+            ));
+        }
+        return View::make("teams.not_found");
     }
     
 	public function add(){

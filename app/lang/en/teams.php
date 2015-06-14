@@ -1,6 +1,7 @@
 <?php
 
 return array(
+   "btn_show"                => "Show team",
    
    // Team hinzufügen
 	"add" => array(

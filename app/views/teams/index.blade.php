@@ -33,6 +33,22 @@
         <div style="float: right;"><button class="small" onclick="self.location.href = '/teams/add'">Add a team</div>
         <h1 class="heading">Teams</h1>
         
+        @if(isset($own_teams) AND count($own_teams) > 0)
+            @foreach($own_teams as $team)
+                <div class="own_team_element_holder">
+                    <div class="own_team_element">
+                        <div class="tag">{{ $team->tag }}</div>
+                        <div class="name">{{ $team->name }}</div>
+                        <div class="button_div">
+                            <button class="small" onclick="self.location.href = '/teams/{{ trim($team->region) }}/{{ trim($team->tag) }}'">{{ Lang::get('teams.btn_show') }}</button>
+                        </div>
+                        <div style="clear: both;"></div>
+                    </div>
+                </div>
+            @endforeach
+            <div style="clear: both;"></div>
+        @endif
+        
         <div style="margin-top: 60px;">
             [TEAM_LIST]<br/>
             Hier erscheint standardm&auml;&szlig;ig eine Liste an Vorschl&auml;gen (suggestions) f&uuml;r Teams (anhand von eingestellten Daten in den eigenen Teams)
