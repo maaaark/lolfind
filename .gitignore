@@ -7,4 +7,5 @@ composer.lock
 .DS_Store
 Thumbs.db
 app/config/database.php
-
+/public/.htaccess
+/public/.htpasswd
