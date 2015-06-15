@@ -27,7 +27,7 @@
 			<!-- FI-Network Server -->
 			<link rel="stylesheet" href="/css/chat.css">
 			<script>
-				var fi_server_host = "ws://127.0.0.1:9000/";
+				var fi_server_host = "ws://{{ trim($_SERVER['SERVER_ADDR']) }}:9000/";
 				var fi_server_user = {{ Auth::user()->id }};
 			</script>
 			<script src="/js/fi_network_server.js"></script>
