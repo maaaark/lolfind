@@ -22,6 +22,19 @@
 		<script src="/js/jquery.min.js"></script>
 		<script src="/js/jquery.flashignite_dropdown.js"></script>
 		<script src="/js/icheck/icheck.min.js"></script>
+
+		@if(Auth::check())
+			<!-- FI-Network Server -->
+			<link rel="stylesheet" href="/css/chat.css">
+			<script>
+				var fi_server_host = "ws://127.0.0.1:9000/";
+				var fi_server_user = {{ Auth::user()->id }};
+			</script>
+			<script src="/js/fi_network_server.js"></script>
+			<script>
+				fi_server_init();
+			</script>
+		@endif
 	</head>
 
 	<body>
@@ -35,6 +48,10 @@
 				</div>
 			</div>
 		</div>
+
+		@if(Auth::check())
+			<div id="chat_holder" class="chat_holder"></div>
+		@endif
 
 		<div class="page_content" id="content">
             @include('layouts.errors')

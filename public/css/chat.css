@@ -1,0 +1,31 @@
+.chat_holder {
+	position: fixed;
+	left: 0px;
+	bottom: 0px;
+	z-index: 5;
+}
+
+.chat_holder .chat_window {
+	background: #fff;
+	float: left;
+	width: 300px;
+	margin-left: 15px;
+}
+
+.chat_holder .chat_window .title_bar {
+	background: #555;
+	color: #fff;
+	font-weight: bold;
+	padding: 3px;
+	font-size: 16px;
+}
+
+.chat_holder .chat_window .chat_content {
+	padding: 5px;
+	height: 200px;
+}
+.chat_holder .chat_window .chat_value_input {
+	box-sizing: border-box;
+	width: 100%;
+	padding: 5px;
+}

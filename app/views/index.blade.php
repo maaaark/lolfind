@@ -58,6 +58,9 @@
 				<br/>
 				- Neueste Teams<br/>
 				- Neueste Spieler<br/>
+
+				<button onclick="fi_server_open_chat({{ Auth::user()->id }}, 'TorrnexT')">Chat mit TorrnexT</button>
+				<button onclick="fi_server_open_chat(2, 'heyitsmark')">Chat mit heyitsmark</button>
 			</div>
 		</div>
 	</div>
