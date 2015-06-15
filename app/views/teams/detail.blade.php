@@ -4,7 +4,7 @@
    <link rel="stylesheet" href="/css/teams.css">
 @stop
 @section('content')
-	@include("teams.team_header");
+	@include("teams.team_header")
 	<script>$("#team_navi_link_main").addClass("active");</script>
 
 	<div class="content">
