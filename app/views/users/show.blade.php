@@ -3,14 +3,31 @@
     <div class="row profile">
         <div class="col-md-3 text-center">
             <h3>{{ Lang::get('profile.fav_role') }}</h3>
-            <img width="120" src="/img/roles/fighter.png" />
+            <table style="width: 100%;">
+                <tr>
+                    <td><img width="100" src="/img/roles/marksman.jpg" class="img-circle"/></td>
+                    <td>
+                        <img width="45" src="/img/roles/fighter.jpg" class="img-circle"/><br/>
+                        <img width="45" src="/img/roles/tank.jpg" class="img-circle"/>
+                    </td>
+                </tr>
+            </table>
+
         </div>
         <div class="col-md-3 text-center">
             <h3>{{ Lang::get('profile.fav_champion') }}</h3>
-            <img src="http://ddragon.leagueoflegends.com/cdn/{{ Config::get('settings.patch') }}/img/champion/Jinx.png" class="img-circle" width="100" />
+            <table style="width: 100%;">
+                <tr>
+                    <td><img src="http://ddragon.leagueoflegends.com/cdn/{{ Config::get('settings.patch') }}/img/champion/Jinx.png" class="img-circle" width="100" /></td>
+                    <td>
+                        <img src="http://ddragon.leagueoflegends.com/cdn/{{ Config::get('settings.patch') }}/img/champion/Sivir.png" class="img-circle" width="45" /><br/>
+                        <img src="http://ddragon.leagueoflegends.com/cdn/{{ Config::get('settings.patch') }}/img/champion/Caitlyn.png" class="img-circle" width="45" />
+                    </td>
+                </tr>
+            </table>
         </div>
         <div class="col-md-3 text-center">
-            <h3>{{ Lang::get('profile.solo_queue') }}</h3>
+            <h3 style="margin-bottom: 5px;">{{ Lang::get('profile.solo_queue') }}</h3>
             <img width="120" src="http://summoner.flashignite.com/img/stats/tiers/{{ $user->summoner->solo_tier }}_I.png" alt="">
         </div>
         <div class="col-md-3 text-center">

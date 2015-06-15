@@ -9,3 +9,4 @@ Thumbs.db
 app/config/database.php
 /public/.htaccess
 /public/.htpasswd
+idea/workspace.xml
