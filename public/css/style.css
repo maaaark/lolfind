@@ -3,7 +3,7 @@ html, body {
 	margin: 0pxM;
 }
 
-button {
+button, input[type=submit] {
 	color: #fff;
 	background: #f25825;
 	border: none;
@@ -16,17 +16,22 @@ button {
 	cursor: pointer;
 }
 
-button.small {
+button.smal, input[type=submit].small {
 	padding-top: 6px;
 	padding-bottom: 6px;
 }
 
-button:hover {
+button:hover, input[type=submit]:hover {
 	background: #EC693E;
 }
 
-button:active {
+button:active, input[type=submit]:active {
 	background: #D03C0B;
+}
+
+button:disabled, input[type=submit]:disabled {
+   background: #AEAEAE;
+   cursor: default;
 }
 
 a {
@@ -97,11 +102,29 @@ a.no_effect:hover, a.noEffect:hover {
 }
 
 .main_navi .width .navi_element.logo {
+    padding: 0px;
+    background: url(../img/lolfind_logo_invertiert_small.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: auto 50px;
+    width: 170px;
+}
+
+.scrolled .main_navi .width .navi_element.logo {
+    background-size: auto 40px;
+}
+
+@media(max-width: 1100px){
+    .main_navi .width .navi_element.logo {
+        margin-left: 20px;
+    }
 }
 
 .main_navi .width .navi_element.nav_el {
 	float: right;
 	transitio: all 200ms;
+    font-family: "Fjalla One";
+    text-transform: uppercase;
 }
 
 .main_navi .width .navi_element.nav_el:hover {
@@ -126,11 +149,13 @@ a.no_effect:hover, a.noEffect:hover {
 .select_box {
 	display: inline-block;
 	background: #fff;
-	width: 250px;
+	max-width: 250px;
+	width: 100%;
 	background-image: url(../img/dropdown_arrow.png);
 	background-position: right 12px center;
 	background-repeat: no-repeat;
 	border: 1px solid rgba(0,0,0,0.6);
+	cursor: pointer;
 }
 
 .select_box .select_row {
@@ -203,4 +228,15 @@ a.no_effect:hover, a.noEffect:hover {
 		padding-right: 20px;
 		padding-left: 20px;
 	}
+}
+
+
+.navigation ul li a {
+    display: block;
+    color: #fff;
+}
+.navigation ul li a {
+    padding-left: 15px;
+    padding-right: 15px;
+    text-decoration: none;
 }

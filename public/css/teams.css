@@ -1,0 +1,108 @@
+.own_team_element_holder {
+    float: left;
+    padding: 10px;
+    box-sizing: border-box;
+    width: 33.33333%
+}
+
+.own_team_element_holder .own_team_element {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    background: #f1f1f1;
+    padding: 15px;
+    width: 100%;
+}
+
+.own_team_element_holder .own_team_element .tag {
+    float: right;
+    color: rgba(0,0,0,0.4);
+    cursor: default;
+}
+
+.own_team_element_holder .own_team_element .button_div {
+    float: right;
+    margin-top: 8px;
+}
+
+@media(max-width: 750px){
+    .own_team_element_holder {
+        width: 100%;
+    }
+}
+
+/* Team add */
+.team_add_description {
+   margin-bottom: 20px;
+}
+
+.team_add_box {
+   border: 1px solid rgba(0,0,0,0.2);
+}
+
+.team_add_box .team_add_title {
+   font-weight: bold;
+   background: #555;
+   padding: 8px;
+   color: #fff;
+}
+
+.team_add_box .team_add_content {
+   padding: 15px;
+}
+
+.team_add_box .team_add_continue_flat {
+   background: rgba(237, 237, 237, 1);
+   padding: 10px;
+}
+
+.team_add_box .team_add_continue_flat button {
+   float: right;
+}
+
+.team_add_box .team_add_continue_flat:after {
+   content: '';
+   display: block;
+   clear: both;
+}
+
+.team_add_box .team_list_el {
+   padding: 3px;
+   padding-left: 6px;
+   border-radius: 3px;
+   background: rgba(0,0,0,0.1);
+   border: 1px solid rgba(0,0,0,0.1);
+   margin-bottom: 5px;
+   margin-top: 5px;
+   opacity: 0.5;
+   cursor: default;
+}
+
+.team_add_box .team_list_el.is_lead {
+    opacity: 1;
+    color: #f25825;
+    cursor: pointer;
+}
+
+.team_add_box .team_list_el.is_lead:hover {
+    background: rgba(0,0,0,0.2);
+}
+
+.team_add_box .team_list_el.is_lead.active {
+    border: 1px solid #f25825;
+}
+
+.team_add_box .team_list_el .tag {
+    padding-right: 5px;
+    color: rgba(0,0,0,0.35);
+}
+
+.team_add_box .team_list_el .name {
+    font-weight: bold;
+}
+
+.team_add_content .wins {
+    color: green;
+}
+
+.team_add_content .losses {
+    color: red;
+}
