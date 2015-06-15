@@ -28,6 +28,92 @@ class TeamsController extends \BaseController {
         }
         return View::make("teams.not_found");
     }
+
+    public function settings($region, $tag){
+        $region = trim($region);
+        $tag    = trim($tag);
+        $ranked_team = RankedTeam::where("region", "=", $region)->where("tag", "=", $tag)->first();
+        if(isset($ranked_team["id"]) && $ranked_team["id"] > 0 && Auth::check() && $ranked_team["leader_summoner_id"] == Auth::user()->summoner->summoner_id){
+            return View::make("teams.settings", array(
+                "ranked_team" => $ranked_team,
+            ));
+        }
+        return View::make("teams.not_found");
+    }
+
+    public function settings_post(){
+        $ranked_team = RankedTeam::where("id", "=", Input::get("id"))->first();
+        if(isset($ranked_team["id"]) && $ranked_team["id"] > 0 && Auth::check() && $ranked_team["leader_summoner_id"] == Auth::user()->summoner->summoner_id){
+            if(Input::get('looking_for') && Input::get('looking_for') == "true"){
+                $ranked_team->looking_for_players = 1;
+            } else {
+                $ranked_team->looking_for_players = 0;
+            }
+
+            if(Input::get('looking_in_league')){
+                $ranked_team->looking_in_league = trim(Input::get('looking_in_league'));
+            }
+            if(Input::get('looking_in_league_sec')){
+                $ranked_team->looking_in_league_second = trim(Input::get('looking_in_league_sec'));
+            }
+
+            if(Input::get('looking_adc') && Input::get('looking_adc') == "true"){
+                $ranked_team->looking_for_adc = 1;
+            } else {
+                $ranked_team->looking_for_adc = 0;
+            }
+            if(Input::get("looking_adc_info")){
+                $ranked_team->looking_for_adc_desc = trim(Input::get("looking_adc_info"));
+            }
+
+            if(Input::get('looking_support') && Input::get('looking_support') == "true"){
+                $ranked_team->looking_for_support = 1;
+            } else {
+                $ranked_team->looking_for_support = 0;
+            }
+            if(Input::get("looking_support_info")){
+                $ranked_team->looking_for_support_desc = trim(Input::get("looking_support_info"));
+            }
+
+            if(Input::get('looking_jungle') && Input::get('looking_jungle') == "true"){
+                $ranked_team->looking_for_jungle = 1;
+            } else {
+                $ranked_team->looking_for_jungle = 0;
+            }
+            if(Input::get("looking_jungle_info")){
+                $ranked_team->looking_for_jungle_desc = trim(Input::get("looking_jungle_info"));
+            }
+
+            if(Input::get('looking_top') && Input::get('looking_top') == "true"){
+                $ranked_team->looking_for_top = 1;
+            } else {
+                $ranked_team->looking_for_top = 0;
+            }
+            if(Input::get("looking_top_info")){
+                $ranked_team->looking_for_top_desc = trim(Input::get("looking_top_info"));
+            }
+
+            if(Input::get('looking_mid') && Input::get('looking_mid') == "true"){
+                $ranked_team->looking_for_mid = 1;
+            } else {
+                $ranked_team->looking_for_mid = 0;
+            }
+            if(Input::get("looking_mid_info")){
+                $ranked_team->looking_for_mid_desc = trim(Input::get("looking_mid_info"));
+            }
+
+            if(Input::get("looking_language")){
+                $ranked_team->looking_for_lang = trim(Input::get("looking_language"));
+            }
+            if(Input::get("looking_language_sec")){
+                $ranked_team->looking_for_lang_second = trim(Input::get("looking_language_sec"));
+            }
+            $ranked_team->save();
+
+            return Redirect::to('/teams/'.$ranked_team->region."/".$ranked_team->tag."/settings");
+        }
+        return View::make("teams.not_found");
+    }
     
 	public function add(){
 		return View::make("teams.add");
