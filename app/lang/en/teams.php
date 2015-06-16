@@ -16,5 +16,21 @@ return array(
       "already_added_status" => "This team was already added",
       "loading_screen"       => "Your ranked team data is loading ... This process can take one or two minutes",
 	),
+
+   "search" => array(
+      "title"                => "Search for teams",
+      "select_sec"           => "Customize the filters below to find the perfect summoner for your team:",
+      "region"               => "Region:",
+      "league"               => "Solo Q League:",
+      "primary_lang"         => "Primary language:",
+      "scundary_lang"        => "Alternative language:",
+      "primary_role"         => "Main role",
+      "secundary_role"       => "Alternative role",
+      "update_btn"           => "Update list",
+      "none"                 => "None",
+
+      "team_suggestions"     => "Team suggestions",
+      "need_update_list"     => "You need to update the list: You can do this by customizing the filters on the left side and click the button 'Update List'"
+   ),
 	
 );

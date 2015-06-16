@@ -12,8 +12,82 @@ class TeamsController extends \BaseController {
                 }
             }
         }
+
         return View::make("teams.index", array(
             "own_teams" => $own_teams
+        ));
+    }
+
+    public function list_suggestions(){
+        $region = "euw";
+        if(Input::get("region")){
+            $region = trim(Input::get("region"));
+        }
+
+        $league = "gold";
+        if(Input::get("league")){
+            $league = trim(Input::get("league"));
+        }
+
+        $main_lang = "english";
+        if(Input::get("main_lang")){
+            $main_lang = trim(Input::get("main_lang"));
+        }
+
+        $sec_lang      = "english";
+        if(Input::get("sec_lang")){
+            $sec_lang = trim(Input::get("sec_lang"));
+        }
+
+        $prime_role = "adc";
+        if(Input::get("prime_role")){
+            $prime_role = trim(Input::get("prime_role"));
+        }
+
+        $sec_role = "support";
+        if(Input::get("sec_role")){
+            $sec_role = trim(Input::get("sec_role"));
+        }
+        
+        // Aktuelle Liga muss noch hinzugefügt werden
+        // SQL-Generieren
+        $sql = "SELECT * FROM ranked_team WHERE";
+        $sql_arr = array();
+
+        $sql .= ' region = :region';
+        $sql_arr["region"] = "euw";
+
+        if($sec_lang == "no_value" || $sec_lang == $main_lang){
+            $sql                 .= " AND looking_for_lang = :main_lang";
+            $sql_arr["main_lang"] = $main_lang;
+        } else {
+            $sql                 .= " AND looking_for_lang IN (:main_lang, :sec_lang)";
+            $sql_arr["main_lang"] = $main_lang;
+            $sql_arr["sec_lang"]  = $sec_lang;
+        }
+
+        if($sec_role == "no_value" || $sec_role == $prime_role){
+            $sql                 .= " AND looking_for_".$prime_role." = 1";
+        } else {
+            $sql                 .= " AND looking_for_".$prime_role." = 1";
+
+            $sql                 .= " OR looking_for_".$sec_role." = 1";
+            $sql                 .= ' AND region = :region2';
+            $sql_arr["region2"] = "euw";
+
+            if($sec_lang == "no_value" || $sec_lang == $main_lang){
+                $sql                 .= " AND looking_for_lang = :main_lang2";
+                $sql_arr["main_lang2"] = $main_lang;
+            } else {
+                $sql                 .= " AND looking_for_lang IN (:main_lang2, :sec_lang2)";
+                $sql_arr["main_lang2"] = $main_lang;
+                $sql_arr["sec_lang2"]  = $sec_lang;
+            }
+        }
+        $ranked_teams = DB::select(DB::raw($sql), $sql_arr);
+
+        return View::make("teams.suggestion_list", array(
+            "ranked_teams" => $ranked_teams
         ));
     }
     
@@ -105,9 +179,9 @@ class TeamsController extends \BaseController {
             if(Input::get("looking_language")){
                 $ranked_team->looking_for_lang = trim(Input::get("looking_language"));
             }
-            if(Input::get("looking_language_sec")){
+            /*if(Input::get("looking_language_sec")){ // Zweite Sprache deaktiviert
                 $ranked_team->looking_for_lang_second = trim(Input::get("looking_language_sec"));
-            }
+            }*/
             $ranked_team->save();
 
             return Redirect::to('/teams/'.$ranked_team->region."/".$ranked_team->tag."/settings");

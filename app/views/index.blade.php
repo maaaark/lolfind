@@ -68,82 +68,10 @@
 	</div>
 	
 	<script>
-		$('#region_sel').makeSelect("region", [
-		{
-			title: 'EUW',
-			value: 'euw',
-			selected: true,
-		},
-		{
-			title: 'NA',
-			value: 'na',
-		},
-		]);
+		$('#region_sel').makeSelect("region", dropdown_region_arr('euw'));
+		$('#primary_role').makeSelect("primary_role", dropdown_roles_arr('adc'));
 
-		summoner_roles = [
-			{
-				title: 'ADC',
-				value: 'adc',
-				selected: true,
-			},
-			{
-				title: 'Support',
-				value: 'support',
-			},
-			{
-				title: 'Top',
-				value: 'top',
-			},
-			{
-				title: 'Mid',
-				value: 'mid',
-			},
-			{
-				title: 'Jungle',
-				value: 'jungle',
-			},
-		];
-		$('#primary_role').makeSelect("primary_role", summoner_roles);
-
-		$('#leagues_sel').makeSelect("league", [
-		{
-			title: 'Bronze',
-			value: 'bronze',
-			selected: true,
-		},
-		{
-			title: 'Silver',
-			value: 'silver',
-		},
-		{
-			title: 'Gold',
-			value: 'gold',
-		},
-		{
-			title: 'Platinum',
-			value: 'platinum',
-		},
-		{
-			title: 'Master',
-			value: 'master',
-		},
-		{
-			title: 'Challenger',
-			value: 'challenger',
-		},
-		]);
-
-		languages_sel = [
-		{
-			title: "English",
-			value: "english",
-			selected: true,
-		},
-		{
-			title: "German",
-			value: "german",
-		},
-		]
-		$('#main_language').makeSelect("main_language", languages_sel);
+		$('#leagues_sel').makeSelect("league", dropdown_leagues_arr('silver'));
+		$('#main_language').makeSelect("main_language", dropdown_languages_arr('english'));
 	</script>
 @stop

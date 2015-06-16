@@ -5,6 +5,6 @@ class RankedTeam extends \Eloquent {
     
     public function player()
     {
-        //return $this->hasMany('RankedTeamPlayer', 'team_id', "team_internal_id");
+        return $this->hasMany('RankedTeamPlayer', 'team_id', "team_internal_id");
     }
 }

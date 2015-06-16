@@ -40,107 +40,11 @@
 			</tr>
 			<tr>
 				<td>{{ Lang::get('teams.settings.looking_in_league') }}</td>
-				<td>
-					<script>
-						leagues_arr = [
-						{
-							title: 'Bronze',
-							value: 'bronze',
-							@if($ranked_team->looking_in_league == "bronze")
-							selected: true,
-							@endif
-						},
-						{
-							title: 'Silver',
-							value: 'silver',
-							@if($ranked_team->looking_in_league == "silver")
-							selected: true,
-							@endif
-						},
-						{
-							title: 'Gold',
-							value: 'gold',
-							@if($ranked_team->looking_in_league == "gold")
-							selected: true,
-							@endif
-						},
-						{
-							title: 'Platinum',
-							value: 'platinum',
-							@if($ranked_team->looking_in_league == "platinum")
-							selected: true,
-							@endif
-						},
-						{
-							title: 'Master',
-							value: 'master',
-							@if($ranked_team->looking_in_league == "master")
-							selected: true,
-							@endif
-						},
-						{
-							title: 'Challenger',
-							value: 'challenger',
-							@if($ranked_team->looking_in_league == "challenger")
-							selected: true,
-							@endif
-						},
-						];
-					</script>
-					<div id="looking_in_league_sel"></div>
-				</td>
+				<td><div id="looking_in_league_sel"></div></td>
 			</tr>
 			<tr>
 				<td>{{ Lang::get('teams.settings.looking_in_league_sec') }}</td>
-				<td>
-					<script>
-						leagues_arr_sec = [
-						{
-							title: 'Bronze',
-							value: 'bronze',
-							@if($ranked_team->looking_in_league_second == "bronze")
-							selected: true,
-							@endif
-						},
-						{
-							title: 'Silver',
-							value: 'silver',
-							@if($ranked_team->looking_in_league_second == "silver")
-							selected: true,
-							@endif
-						},
-						{
-							title: 'Gold',
-							value: 'gold',
-							@if($ranked_team->looking_in_league_second == "gold")
-							selected: true,
-							@endif
-						},
-						{
-							title: 'Platinum',
-							value: 'platinum',
-							@if($ranked_team->looking_in_league_second == "platinum")
-							selected: true,
-							@endif
-						},
-						{
-							title: 'Master',
-							value: 'master',
-							@if($ranked_team->looking_in_league_second == "master")
-							selected: true,
-							@endif
-						},
-						{
-							title: 'Challenger',
-							value: 'challenger',
-							@if($ranked_team->looking_in_league_second == "challenger")
-							selected: true,
-							@endif
-						},
-						];
-					</script>
-					<div id="looking_in_league_sec_sel"></div>
-				</td>
+				<td><div id="looking_in_league_sec_sel"></div></td>
 			</tr>
 		</table>
 
@@ -174,10 +78,6 @@
 				<td><div id="looking_language"></div></td>
 			</tr>
 			<tr>
-				<td>{{ Lang::get('teams.settings.looking_lang_sec') }}</td>
-				<td><div id="looking_language_sec"></div></td>
-			</tr>
-			<tr>
 				<td><input type="hidden" name="id" value="{{ $ranked_team->id }}"></td>
 				<td>{{ Form::submit(Lang::get("teams.settings.save"), array('class' => 'small')) }}</td>
 			</tr>
@@ -195,44 +95,11 @@
 			$("#"+$(this).attr("name")+"_box").hide();
 		});
 
-		$("#looking_in_league_sel").makeSelect("looking_in_league", leagues_arr);
-		$("#looking_in_league_sec_sel").makeSelect("looking_in_league_sec", leagues_arr_sec);
-
-		languages_sel = [
-		{
-			title: "English",
-			value: "english",
-			@if($ranked_team->looking_for_lang == "english")
-			selected: true,
-			@endif
-		},
-		{
-			title: "German",
-			value: "german",
-			@if($ranked_team->looking_for_lang == "german")
-			selected: true,
-			@endif
-		},
-		]
-
-		languages_sel_sec = [
-		{
-			title: "English",
-			value: "english",
-			@if($ranked_team->looking_for_lang_second == "english")
-			selected: true,
-			@endif
-		},
-		{
-			title: "German",
-			value: "german",
-			@if($ranked_team->looking_for_lang_second == "german")
-			selected: true,
-			@endif
-		},
-		]
-		$('#looking_language').makeSelect("looking_language", languages_sel);
-		$('#looking_language_sec').makeSelect("looking_language_sec", languages_sel_sec);
+		console.log('{{ $ranked_team->looking_for_lang }}');
+		$("#looking_in_league_sel").makeSelect("looking_in_league", dropdown_leagues_arr('{{ $ranked_team->looking_in_league }}'));
+		$("#looking_in_league_sec_sel").makeSelect("looking_in_league_sec", dropdown_leagues_arr('{{ $ranked_team->looking_in_league_second }}'));
+		$('#looking_language').makeSelect("looking_language", dropdown_languages_arr('{{ $ranked_team->looking_for_lang }}'));
+		//$('#looking_language_sec').makeSelect("looking_language_sec", dropdown_languages_arr('{{ $ranked_team->looking_for_lang_second }}'));
 	});
 	</script>
 @stop
