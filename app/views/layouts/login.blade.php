@@ -12,22 +12,25 @@
             <div class="row">
                 <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
                     <div id="login">
-
-                        <form>
+                        <p>
+                            {{ $errors->first('email') }}
+                            {{ $errors->first('password') }}
+                        </p>
+                        {{ Form::open(array('url' => '/dologin')) }}
                             <div class="form-group">
                                 <label>E-Mail</label>
-                                <input type="text" class=" form-control " placeholder="E-Mail">
+                                {{ Form::text('email', Input::old('email'), array('placeholder' => 'example@lolquest.net', 'class' => 'form-control')) }}
                             </div>
                             <div class="form-group">
                                 <label>Password</label>
-                                <input type="password" class=" form-control" placeholder="Password">
+                                {{ Form::password('password', array('class' => 'form-control')) }}
                             </div>
                             <p class="small">
                                 <a href="#">Forgot Password?</a>
                             </p>
-                            <a href="/login" class="btn_full">Sign in</a>
+                            {{ Form::submit('Einloggen', array('class' => 'btn_full')) }}
                             <a href="/register" class="btn_full_outline">Register</a>
-                        </form>
+                        {{ Form::close() }}
                     </div>
                 </div>
             </div>
