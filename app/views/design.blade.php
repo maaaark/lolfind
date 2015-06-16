@@ -17,24 +17,24 @@
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 
     <!-- BASE CSS -->
-    <link href="css/base.css" rel="stylesheet">
+    <link href="/css/base.css" rel="stylesheet">
 
     <!-- Google web fonts -->
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Gochi+Hand' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
 
-    <link href="rs-plugin/css/settings.css" rel="stylesheet">
-    <link href="css/extralayers.css" rel="stylesheet">
+    <link href="/rs-plugin/css/settings.css" rel="stylesheet">
+    <link href="/css/extralayers.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/network.css">
     <link rel="stylesheet" href="/css/flashignite_dropdowns.css">
 
     <!--[if lt IE 9]>
-    <script src="js/html5shiv.min.js"></script>
-    <script src="js/respond.min.js"></script>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
     <![endif]-->
 
-    <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="/js/jquery-1.11.2.min.js"></script>
     <script src="/js/jquery.flashignite_dropdown.js"></script>
     <script src="/js/icheck/icheck.min.js"></script>
     <script src="/js/team_search_dropdowns.js"></script>
@@ -196,13 +196,13 @@
 </script>
 
 <!-- Common scripts -->
-<script src="js/common_scripts_min.js"></script>
-<script src="js/functions.js"></script>
+<script src="/js/common_scripts_min.js"></script>
+<script src="/js/functions.js"></script>
 
 <!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
-<script src="rs-plugin/js/jquery.themepunch.tools.min.js"></script>
-<script src="rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
-<script src="js/revolution_func.js"></script>
+<script src="/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+<script src="/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+<script src="/js/revolution_func.js"></script>
 
 
 </body>
