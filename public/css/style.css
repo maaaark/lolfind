@@ -1716,7 +1716,7 @@ ul#contact-info {
 	display:block;
 	text-transform:none;
 	font-size:12px;
-	background:url(../img/bg_login.jpg) no-repeat center center;
+	background:url(../img/login_background.jpg) no-repeat center center;
 	background-size:cover;
 }
 #login {
@@ -2278,6 +2278,10 @@ ul.list_order li span {
 .parallax-content-1 div h1{
 	margin-bottom:0;
 	padding-top:40px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 1);
+}
+.text-shadow {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 1);
 }
 .parallax-content-1 div h1:before,.parallax-content-1 div h1:after {
 	display: inline-block;
@@ -2430,13 +2434,15 @@ ul.list_order li span {
 .ribbon{
 	position: absolute;
 	top: 0;
-	left: -1px;
 	width: 78px;
 	height: 78px;
 	z-index: 1;
 }
 .ribbon.popular{
-	background:url(../img/ribbon_popular.png) no-repeat 0 0;
+     background:url(../img/ribbon_popular.png) no-repeat 0 0;
+}
+.ribbon.unranked{
+    background:url(../img/ribbon_unranked.png) no-repeat 0 0;
 }
 .ribbon.top_rated{
 	background:url(../img/ribbon_top_rated.png) no-repeat 0 0;

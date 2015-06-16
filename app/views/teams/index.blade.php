@@ -69,28 +69,22 @@
                                 </div>
                                 <div class="center">
                                     <div style="text-align: center">
-                                        <a href="#"><img src="img/leagues/gold_2.png" width="120" alt=""></a><br/>
+                                        <div class="ribbon unranked" ></div><a href="#"><img src="img/leagues/gold_2.png" width="120" alt=""></a><br/>
                                         Gold 1<br/>
                                         <br/>
                                     </div>
                                 </div>
                             </div>
                             <div class="clearfix visible-xs-block"></div>
-                            <div class="col-lg-7 col-md-7 col-sm-7">
+                            <div class="col-lg-10 col-md-10 col-sm-10">
                                 <div class="">
-                                    <h3><strong>Summoner</strong></h3>
-                                    <p>Lorem ipsum dolor sit amet, quem convenire interesset ut vix, ad dicat sanctus detracto vis. Eos modus dolorum... <a href="">more</a></p>
+                                    <h3><strong>Teamname</strong></h3>
+                                    <p>Lorem ipsum dolor sit amet, quem convenire interesset ut vix, ad dicat sanctus detracto vis. Lorem ipsum dolor sit amet, quem convenire interesset ut vix, ad dicat sanctus detracto vis ... <a href="">more</a></p>
                                     <div class="row">
                                         <div class="skill_profile col-lg-4 col-md-4 col-sm-4">
-                                            <h5>Main Roles:</h5>
+                                            <h5>Open Roles:</h5>
                                             <img src="http://teamranked.com/img/roles/marksman.jpg" class="img-circle" width="35" />
                                             <img src="http://teamranked.com/img/roles/support.jpg" class="img-circle" width="35" />
-                                        </div>
-                                        <div class="skill_profile col-lg-4 col-md-4 col-sm-4">
-                                            <h5>Championpool:</h5>
-                                            <img src="http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/Jinx.png" class="img-circle" width="35" />
-                                            <img src="http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/Sivir.png" class="img-circle" width="35" />
-                                            <img src="http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/Leona.png" class="img-circle" width="35" />
                                         </div>
                                         <div class="skill_profile col-lg-4 col-md-4 col-sm-4">
                                             <h5>Languages:</h5>
@@ -98,12 +92,6 @@
                                         </div>
                                     </div>
 
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-sm-3">
-                                <div class="">
-                                    <br/><br/>
-                                    <p><a href="#" class="btn_1">Contact Player</a></p>
                                 </div>
                             </div>
                         </div>

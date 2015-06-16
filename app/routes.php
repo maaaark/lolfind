@@ -40,3 +40,7 @@ Route::get("/teams/{region}/{tag}", "TeamsController@detail");
 Route::get("/teams/{region}/{tag}/members", "TeamsController@detail");
 Route::get("/teams/{region}/{tag}/settings", "TeamsController@settings");
 Route::post("/teams/settings/post", "TeamsController@settings_post");
+
+
+// Players
+Route::get("/players", "PlayersController@index");
