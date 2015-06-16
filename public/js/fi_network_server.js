@@ -36,6 +36,7 @@ function fi_server_send(object){
 }
 
 function fi_server_chat_handle_incoming(json){
+	console.log("incoming");
 	element = $("#chat_holder #chat_window_"+json["sender"]);
 	if(typeof element != "undefiend" && element && element.html() && element.html().trim() != ""){
 		// Fenster bereits offen -> muss nichts mehr gemacht werden
@@ -51,12 +52,18 @@ function fi_server_open_chat(userid, name){
 		// Chat Fenster bereits offen -> focus darauf legen
 	} else {
 		html  = '<div id="chat_window_'+userid+'" class="chat_window">';
-		html += '<div class="title_bar">'+name+'</div>';
-		html += '<div class="chat_content"></div>';
-		html += '<div class="chat_bar"><input type="text" id="chat_value_input_'+userid+'" class="chat_value_input" data-uId="'+userid+'"></div>';
+		html += '<div class="minimized_view">'+name+'</div>';
+		html += '<div class="maximized_view">';
+			html += '<div class="title_bar">';
+			html += '<div class="options"><span class="chat_window_option minimize">-</span><span class="chat_window_option close_chat">x</span></div>';
+			html += name+'</div>';
+			html += '<div class="chat_content"></div>';
+			html += '<div class="chat_bar"><input type="text" id="chat_value_input_'+userid+'" class="chat_value_input" data-uId="'+userid+'"></div>';
+		html += '</div>';
 		html += '</div>';
 		$("#chat_holder").append(html);
 		fi_server_bind_chat_sends();
+		fi_server_bind_window_options();
 	}
 }
 
@@ -65,9 +72,22 @@ function fi_server_bind_chat_sends(){
 		if(e.which == 13){ // Enter
 			if($(this).val().trim() != ""){
 				fi_server_send({"type": "chat", "message": { "message": $(this).val().trim(), "receiver": $(this).attr("data-uId")}});
+				fi_server_chat_add_text($(this).attr("data-uId"), $(this).val().trim());
 			}
-			fi_server_chat_add_text($(this).attr("data-uId"), $(this).val().trim());
 			$(this).val('');
+		}
+	});
+}
+
+function fi_server_bind_window_options(){
+	$(".chat_window .options .chat_window_option").click(function(){
+		if($(this).hasClass("close_chat")){
+			$(this).parent().parent().parent().parent().remove();
+		} else {
+			$(this).parent().parent().parent().parent().addClass("minimized");
+			$("#chat_holder .chat_window.minimized .minimized_view").click(function(){
+				$(this).parent().removeClass("minimized");
+			});
 		}
 	});
 }
