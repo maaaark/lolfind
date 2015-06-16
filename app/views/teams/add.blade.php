@@ -4,6 +4,7 @@
    <link rel="stylesheet" href="/css/teams.css">
 @stop
 @section('content')
+   <div class="container margin_30">
    <div class="content">
       <h1>{{ Lang::get("teams.add.site_title") }}</h1>
       <div class="team_add_description">
@@ -144,5 +145,6 @@
             {{ Lang::get("teams.add.login_needed") }}
          </div>
       @endif
+   </div>
    </div>
 @stop
