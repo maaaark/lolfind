@@ -219,7 +219,7 @@ class UsersController extends \BaseController {
         if(Auth::check()) {
             return Redirect::to('/users');
         } else {
-            return View::make("users.login")->with("error", "Fehler beim einloggen. Username/Passwort falsch.");
+            return View::make("layouts.login")->with("error", "Fehler beim einloggen. Username/Passwort falsch.");
         }
     }
 

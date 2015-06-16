@@ -3,75 +3,87 @@
 @section('css_addition')
 	<link rel="stylesheet" type="text/css" href="/css/index.css">
 @stop
+@section('header')
+    <!-- Slider -->
+    <div class="tp-banner-container">
+        <div class="tp-banner">
+            <ul>
+                <!-- SLIDE  -->
+                <li data-transition="fade" data-slotamount="7" data-masterspeed="500" data-saveperformance="on" data-title="Intro Slide">
+                    <!-- MAIN IMAGE -->
+                    <img src="img/cover.jpg" alt="slidebg1" data-lazyload="img/cover.jpg" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+                    <!-- LAYER NR. 1 -->
+                    <div class="tp-caption white_heavy_40 customin customout text-center text-uppercase" data-x="center" data-y="center" data-hoffset="0" data-voffset="-20" data-customin="x:0;y:0;z:0;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;" data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;" data-speed="1000" data-start="1700" data-easing="Back.easeInOut" data-endspeed="300" style="z-index: 5; max-width: auto; max-height: auto; white-space: nowrap;">League is more fun with friends!
+                    </div>
+                    <!-- LAYER NR. 2 -->
+                    <div class="tp-caption customin tp-resizeme rs-parallaxlevel-0 text-center" data-x="center" data-y="center" data-hoffset="0" data-voffset="15" data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;" data-speed="500" data-start="2600" data-easing="Power3.easeInOut" data-splitin="none" data-splitout="none" data-elementdelay="0.05" data-endelementdelay="0.1" style="z-index: 9; max-width: auto; max-height: auto; white-space: nowrap;">
+                        <div style="color:#ffffff; font-size:16px; text-transform:uppercase">
+                            Find new players or teams matching your skills</div>
+                    </div>
+                    <!-- LAYER NR. 3 -->
+                    <div class="tp-caption customin tp-resizeme rs-parallaxlevel-0" data-x="center" data-y="center" data-hoffset="0" data-voffset="70" data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;" data-speed="500" data-start="2900" data-easing="Power3.easeInOut" data-splitin="none" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" data-linktoslide="next" style="z-index: 12;"><a href='#' class="button_intro">Find player</a> <a href='#' class=" button_intro outline">Find teams</a>
+                    </div>
+                </li>
+            </ul>
+            <div class="tp-bannertimer tp-bottom"></div>
+        </div>
+    </div>
+    <!-- End Slider -->
+@stop
 @section('content')
-	<div class="index_opener">
-		<div class="row" style="margin: auto;max-width: 1100px;">
-			<div class="col-md-6">
-				<div class="text_opener">
-					<div class="big_text">Easily find new team members or new teams</div>
-					<div class="medium_text">Log in with your Flashignite-Network Account and start looking for teammates or teams!</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="form_box">
-					<h2 style="margin-top: 0px;">Search for team or player</h2>
-					<table class="index_form_table">
-                        <tbody>
-                        <tr>
-                            <td></td>
-                            <td>
-                                <span><label><input type="radio" name="player_or_team" value="player" checked> Player</label></span>
-                                <span style="padding-left: 20px;"><label><input type="radio" name="player_or_team" value="team"> Team</label></span>
-                            </td>
-                        </tr>
-						<tr>
-							<td>Region:</td>
-							<td><span id="region_sel"></span></td>
-						</tr>
-						<tr>
-							<td>Liga</td>
-							<td><span id="leagues_sel"></span></td>
-						</tr>
+    <div class="row">
 
-						<tr>
-							<td>Primary role</td>
-							<td><span id="primary_role"></span></td>
-						</tr>
-						<tr>
-							<td>Language:</td>
-							<td><span id="main_language"></span></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><button>Show suggestions</button></td>
-						</tr>
-					</tbody></table>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="content">
-		<div class="row">
-			<div class="col-md-6">
-				<h1>Startseite</h1>
-				Inhalt der Startseite wird in den nächsten Tagen folgen.<br/>
-				<br/>
-				- Neueste Teams<br/>
-				- Neueste Spieler<br/>
+        <div class="col-md-4 wow zoomIn" data-wow-delay="0.2s">
+            <div class="feature_home">
+                <h3><span>120+</span> Teams looking for player</h3>
+                <p>
+                    Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus efficiantur in. Nec id tempor imperdiet deterruisset.
+                </p>
+                <a href="#" class="btn_1 outline">Search your team</a>
+            </div>
+        </div>
 
-				@if(Auth::check())
-				<button onclick="fi_server_open_chat(24, 'TorrnexT')">Chat mit TorrnexT</button>
-				<button onclick="fi_server_open_chat(2, 'heyitsmark')">Chat mit heyitsmark</button>
-				@endif
-			</div>
-		</div>
-	</div>
-	
-	<script>
-		$('#region_sel').makeSelect("region", dropdown_region_arr('euw'));
-		$('#primary_role').makeSelect("primary_role", dropdown_roles_arr('adc'));
+        <div class="col-md-4 wow zoomIn" data-wow-delay="0.4s">
+            <div class="feature_home">
+                <h3><span>1000+</span> Players searching</h3>
+                <p>
+                    Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus efficiantur in. Nec id tempor imperdiet deterruisset.
+                </p>
+                <a href="#" class="btn_1 outline">Find a new player</a>
+            </div>
+        </div>
 
-		$('#leagues_sel').makeSelect("league", dropdown_leagues_arr('silver'));
-		$('#main_language').makeSelect("main_language", dropdown_languages_arr('english'));
-	</script>
+        <div class="col-md-4 wow zoomIn" data-wow-delay="0.6s">
+            <div class="feature_home">
+                <h3><span>Join</span> the community</h3>
+                <p>
+                    Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus efficiantur in. Nec id tempor imperdiet deterruisset.
+                </p>
+                <a href="#" class="btn_1 outline">Register for free</a>
+            </div>
+        </div>
+
+    </div><!--End row -->
+
+    <hr>
+
+    <div class="row" style="background: url('img/network.png');">
+        <div class="col-md-2 col-sm-2 hidden-xs">
+            <img src="img/fi_logo.png" height="250" alt="Laptop" class="">
+        </div>
+        <div class="col-md-10 col-sm-10">
+            <h3>Register your <span>free account</span> now</h3>
+            <p>
+                Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus efficiantur in. Nec id tempor imperdiet deterruisset.
+            </p>
+            <ul class="list_order">
+                <li><span>1</span>Insert your summoner name</li>
+                <li><span>2</span>Verify your name</li>
+                <li><span>3</span>Search for teams and player</li>
+            </ul>
+            <a href="#" class="btn_1">Register now</a>
+            <br/><br/>
+        </div>
+    </div><!-- End row -->
+
 @stop

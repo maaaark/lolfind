@@ -1,0 +1,93 @@
+/*Typography and buttons*/
+
+h2 span, h3 span, h4 span, h5 span, h6 span{color:#f25825;}
+
+a.button_intro, .button_intro  {background: #f25825;}
+
+a.button_intro:hover, .button_intro:hover {color:#f25825 !important;}
+
+a.button_intro:hover, .button_intro:hover {color:#f25825;}
+
+a.button_drop, .button_drop  {color:#f25825 !important;}
+a.button_drop.outilne, .button_drop.outline  {color:#f25825;}
+
+a.btn_1, .btn_1{background: #f25825;}
+a.btn_1.white, .btn_1.white  {color:#f25825;}
+
+a.btn_1.outline:hover,.btn_1.outiline:hover, input .btn_1.outiline:hover{background:#f25825;border:2px solid #f25825;}
+a.btn_1:hover, .btn_1:hover {background: #333;}
+
+a.btn_map{background: #f25825;}
+
+a {color: #f25825;}
+
+#search .btn_1.green{background: #f25825;}
+
+/* Header */
+header#colored.sticky{background-color:#f25825; border-bottom:2px solid #f25825}
+
+.dropdown-cart .dropdown-menu, .dropdown-access .dropdown-menu, .dropdown-search .dropdown-menu {border-top: 2px solid #f25825;}
+.dropdown-cart .dropdown-menu:before, .dropdown-access .dropdown-menu:before, .dropdown-search .dropdown-menu:before {border-bottom-color: #f25825;}
+
+ul#cart_items li strong > a:hover{color:#f25825;}
+
+/* Content and common */
+#search .nav-tabs > li.active > a,
+#search .nav-tabs > li.active > a:hover,
+#search .nav-tabs > li.active > a:focus {
+  background-color: #f25825;
+ } 
+ 
+.cbp_tmtimeline:before {
+	background: #f25825 !important;
+}
+.cbp_tmtimeline > li .cbp_tmicon {
+	color: #f25825 !important;
+	box-shadow: 0 0 0 3px #f25825 !important;
+}
+
+.input-group button:hover, .input-group button:focus {background-color:#f25825; border-color:#f25825}
+
+.other_tours ul li a:hover{color:#f25825;}
+
+.bs-wizard > .bs-wizard-step > .bs-wizard-dot:after {background: #f25825;} 
+.form_title h3 strong{background-color:#f25825;}
+.features-content {background-color: #f25825;}
+#Img_carousel .sp-selected-thumbnail {border-bottom: 2px solid #f25825;}
+
+
+#directions { background-color:#f25825; }
+
+ul.list_ok li:before {color:#f25825;}
+ul.list_order li span {background-color:#f25825;}
+
+.tooltip-back {background: #f25825;}
+.tooltip-content-flip .tooltip-front::after, .tooltip-content-flip .tooltip-back::after {
+	border-top: 10px solid #f25825;
+}
+
+.banner h4{color:#f25825;}
+.banner.colored{background:#f25825 url(../img/banner_bg_colored.png) no-repeat center bottom;}
+
+/* Menu */
+/*First level styles */					
+.main-menu > ul > li:hover > a {color: #f25825;}
+.main-menu ul ul:before{border-bottom-color: #f25825;}
+
+/* Submenu */
+.main-menu ul ul,
+.main-menu ul .menu-wrapper {border-top: 2px solid #f25825;}
+.main-menu ul ul li:hover > a {color:#f25825;}
+
+@media only screen and (max-width: 991px) {
+/* Menu */
+.main-menu ul li a:hover,
+a.show-submenu:hover,
+a.show-submenu:focus,
+a.show-submenu-mega:hover,
+a.show-submenu-mega:focus{color:#f25825 !important;}	
+
+.main-menu ul ul,
+.main-menu ul .menu-wrapper {border-top: none;}
+
+}
