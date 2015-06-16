@@ -1,0 +1,73 @@
+/* Select Dropdowns */
+.select_box {
+    display: inline-block;
+    padding: 7px 5px 5px 15px;
+    border: 0;
+    border-radius: 0;
+    height: 37px;
+    margin: 0;
+    font-weight: 400;
+    -moz-appearance: window;
+    -webkit-appearance: none;
+    cursor: pointer;
+    color: #999;
+    width: 100%;
+    overflow: hidden;
+    height: 40px;
+    background: #eeeeee url(../img/down_arrow_select.png) no-repeat right center;
+    border: none;
+    margin-bottom: 15px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.select_box .select_row {
+	position: absolute;
+	background: #DDDDDD;
+	width: 100%;
+	border: none;
+	z-index: 5;
+	display: none;
+	width: 100%;
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+	overflow: hidden;
+}
+
+.select_box.opened .select_row {
+	z-index: 7;
+	margin-left: -1px;
+	display: block;
+}
+
+.select_box .select_option {
+	display: none;
+	padding: 5px;
+	border-bottom: 1px solid #eee;
+}
+
+.select_box.opened .select_option {
+	display: block;
+}
+
+.select_box .select_row .select_option.selected {
+	/*opacity: 0.8;*/
+}
+
+.select_box .select_option .description {
+	color: rgba(0,0,0,0.5);
+	font-size: 12px;
+}
+
+.select_box .selected_object .select_option {
+	display: block;
+}
+
+.select_box.opened .select_row .select_option {
+	cursor: pointer;
+}
+
+.select_box.opened .select_row .select_option:hover {
+	background: rgba(0,0,0,0.1);
+}

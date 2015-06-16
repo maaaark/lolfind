@@ -27,12 +27,14 @@
     <link href="rs-plugin/css/settings.css" rel="stylesheet">
     <link href="css/extralayers.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/network.css">
+    <link rel="stylesheet" href="/css/flashignite_dropdowns.css">
 
     <!--[if lt IE 9]>
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>
     <![endif]-->
 
+    <script src="js/jquery-1.11.2.min.js"></script>
     <script src="/js/jquery.flashignite_dropdown.js"></script>
     <script src="/js/icheck/icheck.min.js"></script>
     <script src="/js/team_search_dropdowns.js"></script>
@@ -194,7 +196,6 @@
 </script>
 
 <!-- Common scripts -->
-<script src="js/jquery-1.11.2.min.js"></script>
 <script src="js/common_scripts_min.js"></script>
 <script src="js/functions.js"></script>
 

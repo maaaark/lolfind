@@ -23,7 +23,7 @@
     </div><!-- Position -->
 @stop
 @section('sidebar')
-	@include('layouts.filter_sidebar')
+	@include('teams.filter_sidebar')
 @stop
 @section('content_page')
 
@@ -57,46 +57,6 @@
                 </div>
             </div>
         </div><!--/tools -->
-
-
-                    <div class="strip_all_tour_list player_searchbox wow fadeIn" data-wow-delay="0.1s">
-                        <div class="row">
-                            <div class="col-lg-2 col-md-2 col-sm-2">
-                                <div class="wishlist">
-                                    <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">
-                                        +<span class="tooltip-content-flip"><span class="tooltip-back">Add to favorites</span></span>
-                                    </a>
-                                </div>
-                                <div class="center">
-                                    <div style="text-align: center">
-                                        <div class="ribbon unranked" ></div><a href="#"><img src="img/leagues/gold_2.png" width="120" alt=""></a><br/>
-                                        Gold 1<br/>
-                                        <br/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="clearfix visible-xs-block"></div>
-                            <div class="col-lg-10 col-md-10 col-sm-10">
-                                <div class="">
-                                    <h3><strong>Teamname</strong></h3>
-                                    <p>Lorem ipsum dolor sit amet, quem convenire interesset ut vix, ad dicat sanctus detracto vis. Lorem ipsum dolor sit amet, quem convenire interesset ut vix, ad dicat sanctus detracto vis ... <a href="">more</a></p>
-                                    <div class="row">
-                                        <div class="skill_profile col-lg-4 col-md-4 col-sm-4">
-                                            <h5>Open Roles:</h5>
-                                            <img src="http://teamranked.com/img/roles/marksman.jpg" class="img-circle" width="35" />
-                                            <img src="http://teamranked.com/img/roles/support.jpg" class="img-circle" width="35" />
-                                        </div>
-                                        <div class="skill_profile col-lg-4 col-md-4 col-sm-4">
-                                            <h5>Languages:</h5>
-                                            <img src="http://teamranked.com/img/roles/marksman.jpg" class="img-circle" width="35" />
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div><!--End strip -->
-
         
         <div>
             <h2>{{ Lang::get("teams.search.team_suggestions") }}</h2>
@@ -121,15 +81,6 @@
     </div>
     
     <script>
-		$('#region_sel').makeSelect("region", dropdown_region_arr('euw'));
-		$('#leagues_sel').makeSelect("league", dropdown_leagues_arr('silver'));
-
-		$('#prime_lang_sel').makeSelect("main_language", dropdown_languages_arr('english'));
-		$('#sec_lang_sel').makeSelect("sec_language", dropdown_languages_arr('no_value', ["{{ Lang::get('teams.search.none') }}", "no_value"]));
-		
-		$('#prime_role_sel').makeSelect("primary_role", dropdown_roles_arr('adc'));
-		$('#sec_role_sel').makeSelect("secundary_role", dropdown_roles_arr('no_value', ["{{ Lang::get('teams.search.none') }}", "no_value"]));
-
 		// Update List
 		can_update = true;
 		function update_team_list_suggestions(){
@@ -145,7 +96,6 @@
 			}).done(function(data){
 				$("#team_list_update_btn").prop("disabled", false);
 				can_update = true;
-				//console.log(data);
 				$("#team_list_suggestions").html(data);
 			});
 		}
