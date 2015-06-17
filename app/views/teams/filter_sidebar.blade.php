@@ -4,28 +4,28 @@
         <div class="collapse" id="collapseFilters">
 
             <div class="filter_type">
-                <h6>Region</h6>
+                <h6>{{ Lang::get('teams.search.region') }}</h6>
                 <div id="region_sel"></div>
             </div>
 
             <div class="filter_type">
-                <h6>League</h6>
+                <h6>{{ Lang::get('teams.search.league') }}</h6>
                 <div id="leagues_sel"></div>
             </div>
 
             <div class="filter_type">
-                <h6>Main language</h6>
+                <h6>{{ Lang::get('teams.search.primary_lang') }}</h6>
                 <div id="prime_lang_sel"></div>
                 
-                <h6 style="margin-top: 0px;border-top: none;padding-top: 0px;">Alternative language</h6>
+                <h6 style="margin-top: 0px;border-top: none;padding-top: 0px;">{{ Lang::get('teams.search.secundary_lang') }}</h6>
                 <div id="sec_lang_sel"></div>
             </div>
 
             <div class="filter_type">
-                <h6>Main role</h6>
+                <h6>{{ Lang::get('teams.search.primary_role') }}</h6>
                 <div id="prime_role_sel"></div>
                 
-                <h6 style="margin-top: 0px;border-top: none;padding-top: 0px;">Alternative role</h6>
+                <h6 style="margin-top: 0px;border-top: none;padding-top: 0px;">{{ Lang::get('teams.search.secundary_role') }}</h6>
                 <div id="sec_role_sel"></div>
             </div>
 
@@ -44,5 +44,5 @@
     $('#sec_lang_sel').makeSelect("sec_language", dropdown_languages_arr('no_value', ["{{ Lang::get('teams.search.none') }}", "no_value"]));
 		
     $('#prime_role_sel').makeSelect("primary_role", dropdown_roles_arr('adc'));
-    $('#sec_role_sel').makeSelect("secundary_role", dropdown_roles_arr('no_value', ["{{ Lang::get('teams.search.none') }}", "no_value"]));
+    $('#sec_role_sel').makeSelect("secundary_role", dropdown_roles_arr('no_value', ["{{ Lang::get('teams.search.any') }}", "no_value"]));
 </script>

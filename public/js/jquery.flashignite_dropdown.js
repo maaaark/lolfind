@@ -19,17 +19,29 @@ $.fn.makeSelect = function(name, data){
 			val = value["value"];
 		}
 
-		temp = '<div class="select_option'+class_addition+'" data-id="'+temp_id+'" data-value="'+val+'">';
 		
+		img_html = '';
 		if(typeof value["image"] != "undefined" && value["image"] != false){
 			console.log(typeof value["image"]);
 			if(typeof value["image"] == "object"){
-            temp += '<div class="image"><img class="sel_img '+value["image"][1].trim()+'" src="'+value["image"][0].trim()+'"></div>';
+            img_html += '<div class="image"><img class="sel_img '+value["image"][1].trim()+'" src="'+value["image"][0].trim()+'"></div>';
 			} else {
-            temp += '<div class="image"><img class="sel_img" src="'+value["image"]+'"></div>';
+            img_html += '<div class="image"><img class="sel_img" src="'+value["image"]+'"></div>';
          }
 			object.addClass("hasImage");
 		}
+		
+		if(img_html.trim() != ""){
+         temp  = '<div class="select_option'+class_addition+' optionImage" data-id="'+temp_id+'" data-value="'+val+'">';
+         temp += img_html;
+		} else {
+         if(object.hasClass("hasImage")){
+            temp  = '<div class="select_option'+class_addition+' optionHasNoImage" data-id="'+temp_id+'" data-value="'+val+'">';
+         } else {
+            temp  = '<div class="select_option'+class_addition+'" data-id="'+temp_id+'" data-value="'+val+'">';
+         }
+		}
+		
 		temp += '<div class="title">'+value["title"]+'</div>';
 		if(typeof value["description"] != "undefined"){
 			temp += '<div class="description">'+value["description"]+'</div>';

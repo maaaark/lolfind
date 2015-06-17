@@ -99,6 +99,8 @@ class TeamsController extends \BaseController {
 
         $sql .= ' region = :region';
         $sql_arr["region"] = "euw";
+        
+        $sql .= ' AND looking_for_players = 1';
 
         if($sec_lang == "no_value" || $sec_lang == $main_lang){
             $sql                 .= " AND looking_for_lang = :main_lang";
@@ -117,7 +119,9 @@ class TeamsController extends \BaseController {
             $sql                 .= " OR looking_for_".$sec_role." = 1";
             $sql                 .= ' AND region = :region2';
             $sql_arr["region2"] = "euw";
-
+            
+            $sql .= ' AND looking_for_players = 1';
+            
             if($sec_lang == "no_value" || $sec_lang == $main_lang){
                 $sql                 .= " AND looking_for_lang = :main_lang2";
                 $sql_arr["main_lang2"] = $main_lang;

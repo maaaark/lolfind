@@ -108,3 +108,7 @@
 .select_box.opened .select_row .select_option:hover {
 	background: rgba(0,0,0,0.1);
 }
+
+.hasImage .select_box .select_option.optionHasNoImage div.title {
+   padding-left: 15px;
+}

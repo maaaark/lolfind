@@ -19,6 +19,7 @@ Route::get('/account/edit', 'UsersController@edit');
 Route::get('/summoner/{region}/{name}', 'UsersController@show');
 Route::get('/user', 'UsersController@index');
 Route::get('/login', 'UsersController@login');
+Route::get('/logout', 'UsersController@logout');
 Route::get('/register', 'UsersController@create');
 Route::get('/register/step1', 'UsersController@step1');
 Route::get('/register/step2', 'UsersController@step2');
