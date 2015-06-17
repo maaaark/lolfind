@@ -27,7 +27,11 @@ function dropdown_leagues_arr(selected_value){
 }
 
 function dropdown_roles_arr(selected_value, addition){
-	temp = [["ADC", "adc"], ["Mid", "mid"], ["Support", "support"], ["Top", "top"], ["Jungle", "jungle"]];
+	temp = [["ADC", "adc", ["/img/roles/marksman.jpg", "rounded smaller"]],
+	        ["Mid", "mid", ["/img/roles/mage.jpg", "rounded smaller"]],
+	        ["Support", "support", ["/img/roles/support.jpg", "rounded smaller"]],
+	        ["Top", "top", ["/img/roles/tank.jpg", "rounded smaller"]],
+	        ["Jungle", "jungle", ["/img/roles/fighter.jpg", "rounded smaller"]]];
 	if(addition){
 		temp.push(addition);
 	}

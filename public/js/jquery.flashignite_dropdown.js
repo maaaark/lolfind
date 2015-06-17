@@ -20,8 +20,14 @@ $.fn.makeSelect = function(name, data){
 		}
 
 		temp = '<div class="select_option'+class_addition+'" data-id="'+temp_id+'" data-value="'+val+'">';
+		
 		if(typeof value["image"] != "undefined" && value["image"] != false){
-			temp += '<div class="image"><img class="sel_img" src="'+value["image"]+'"></div>';
+			console.log(typeof value["image"]);
+			if(typeof value["image"] == "object"){
+            temp += '<div class="image"><img class="sel_img '+value["image"][1].trim()+'" src="'+value["image"][0].trim()+'"></div>';
+			} else {
+            temp += '<div class="image"><img class="sel_img" src="'+value["image"]+'"></div>';
+         }
 			object.addClass("hasImage");
 		}
 		temp += '<div class="title">'+value["title"]+'</div>';

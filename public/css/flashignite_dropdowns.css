@@ -62,6 +62,15 @@
    margin-right: 10px;
 }
 
+.select_box .select_option .image img.sel_img.smaller {
+   height: 28px;
+   margin-top: 5px;
+}
+
+.select_box .select_option .image img.sel_img.rounded {
+   border-radius: 50%;
+}
+
 .select_box.opened .select_option {
 	display: block;
 }
