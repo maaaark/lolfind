@@ -16,8 +16,7 @@
         <div class="container">
             <ul>
                 <li><a href="#">Teamranked.com</a></li>
-                <li><a href="#">Find a player</a></li>
-                <li>Show players</li>
+                <li>Teams</li>
             </ul>
         </div>
     </div><!-- Position -->

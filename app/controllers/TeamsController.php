@@ -1,7 +1,7 @@
 <?php
 
 class TeamsController extends \BaseController {
-    public function index(){
+    public function index($league1 = false, $league2 = false){
         $own_teams    = array();
         if(Auth::check()){
             $teams_player = RankedTeamPlayer::where("summoner_id", "=", Auth::user()->summoner->summoner_id)->get();
@@ -11,6 +11,10 @@ class TeamsController extends \BaseController {
                     $own_teams[] = $ranked_team_temp;
                 }
             }
+        }
+        
+        if($league1 && $league2){
+            
         }
 
         return View::make("teams.index", array(
@@ -209,6 +213,11 @@ class TeamsController extends \BaseController {
                         $check = false;
                     }
                     if($check){
+                        $league_5       = "bronze";
+                        $league_content = @file_get_contents("https://".trim($region).".api.pvp.net/api/lol/".trim($region)."/v2.5/league/by-team/".trim($team["fullId"])."/entry?api_key=".trim($api_key));
+                        $league_json    = json_decode($league_content, true);
+                        echo "<pre>",print_r($league_json),"</pre>";die();
+                        
                         $ranked_team                     = new RankedTeam();
                         $ranked_team->region             = $region;
                         $ranked_team->team_id            = $team["fullId"];
