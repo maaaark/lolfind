@@ -87,6 +87,11 @@ class TeamsController extends \BaseController {
             $sec_role = trim(Input::get("sec_role"));
         }
         
+        $league = "gold";
+        if(Input::get("league")){
+            $league = trim(Input::get("league"));
+        }
+        
         // Aktuelle Liga muss noch hinzugefügt werden
         // SQL-Generieren
         $sql = "SELECT * FROM ranked_team WHERE";

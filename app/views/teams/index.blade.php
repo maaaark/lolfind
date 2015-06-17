@@ -25,9 +25,19 @@
 	@include('teams.filter_sidebar')
 @stop
 @section('content_page')
-
     <div class="content">
-
+        @if(isset($own_teams) AND count($own_teams) > 0 AND is_array($own_teams))
+            <h2>Own teams</h2>
+            <div class="own_teams">
+                 @foreach($own_teams as $team)
+                    <div class="own_team_el">
+                        {{ $team->name }}
+                        <a href="/teams/{{ $team->region }}/{{ $team->tag }}" class="btn_1">Ansehen</a>
+                    </div>
+                 @endforeach
+            </div>
+        @endif
+        
         <div id="tools">
             <div class="row">
                 <div class="col-md-3 col-sm-3 col-xs-6">

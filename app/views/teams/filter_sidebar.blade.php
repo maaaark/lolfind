@@ -9,7 +9,7 @@
             </div>
 
             <div class="filter_type">
-                <h6>Main Role</h6>
+                <h6>League</h6>
                 <div id="leagues_sel"></div>
             </div>
 

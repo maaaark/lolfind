@@ -47,6 +47,21 @@
 	border-bottom: 1px solid #eee;
 }
 
+.select_box .select_option .image {
+   float: left;
+}
+
+.select_box .select_option:after {
+   content: '';
+   display: block;
+   clear: both;
+}
+
+.select_box .select_option .image img.sel_img {
+   height: 35px;
+   margin-right: 10px;
+}
+
 .select_box.opened .select_option {
 	display: block;
 }
@@ -62,6 +77,19 @@
 
 .select_box .selected_object .select_option {
 	display: block;
+}
+
+.hasImage .select_box {
+   padding-top: 0px;
+   padding-left: 5px;
+}
+
+.hasImage .select_box .selected_object .select_option {
+   padding: 0px;
+}
+
+.hasImage .select_box .select_option div.title {
+   padding-top: 10px;
 }
 
 .select_box.opened .select_row .select_option {
