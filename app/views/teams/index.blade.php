@@ -60,8 +60,12 @@
         <div>
             <h2>{{ Lang::get("teams.search.team_suggestions") }}</h2>
             <div id="team_list_suggestions">
-            	<div style="color: rgba(0,0,0,0.6);text-align: center;padding: 35px;">{{ Lang::get("teams.search.need_update_list") }}</div>
-        	</div>
+               @if(isset($team_list) AND $team_list)
+                  {{ $team_list }}
+               @else
+                  <div style="color: rgba(0,0,0,0.6);text-align: center;padding: 35px;">{{ Lang::get("teams.search.need_update_list") }}</div>
+               @endif
+            </div>
         </div>
 
         <hr>

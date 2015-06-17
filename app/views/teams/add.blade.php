@@ -25,7 +25,7 @@
 @section('content')
    <div class="container margin_30">
    <div class="content">
-      <h1>{{ Lang::get("teams.add.site_title") }}</h1>
+      <h2>{{ Lang::get("teams.add.site_title") }}</h2>
       <div class="team_add_description">
          {{ Lang::get("teams.add.add_description") }}
       </div>
@@ -57,7 +57,7 @@
                       </div>
                       <div class="team_add_continue_flat">
                          <span id="team_add_status"></span>
-                         <button id="team_add_btn" class="small" disabled>{{ Lang::get("main.continue") }}</button>
+                         <button id="team_add_btn" class="btn_1" disabled>{{ Lang::get("main.continue") }}</button>
                       </div>
                   </div>
                </div>
@@ -131,6 +131,7 @@
                                 loading_container.prepend(loading_screen);
                                 
                                 $.post("/teams/add/post_action", {"ranked_team_id": team_id}).done(function(data){
+                                    console.log(data);
                                     if(data.trim() == "error" || data.trim() == "already_added"){
                                         $("#team_add_btn").prop("disabled", true);
                                         

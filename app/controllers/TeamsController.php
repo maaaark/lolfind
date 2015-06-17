@@ -1,6 +1,8 @@
 <?php
 
 class TeamsController extends \BaseController {
+    private $list_suggestion_limit = 30;
+    
     public function index($league1 = false, $league2 = false){
         $own_teams    = array();
         if(Auth::check()){
@@ -13,12 +15,44 @@ class TeamsController extends \BaseController {
             }
         }
         
+        $team_list_view = false;
         if($league1 && $league2){
-            
+            $team_list = RankedTeam::where("ranked_league_5", "LIKE", "%".trim($league1)."%")
+                                   ->where("looking_for_players", "=", 1)
+                                   ->orWhere("ranked_league_5", "LIKE", "%".trim($league2)."%")
+                                   ->where("looking_for_players", "=", 1)
+                                   ->take($this->list_suggestion_limit)
+                                   ->get();
+            $team_list_view = View::make("teams.suggestion_list", array(
+               "ranked_teams" => $team_list
+            ));
+        } elseif($league1){
+            if(strtolower(trim($league1)) == "diamond+"){
+               $team_list = RankedTeam::where("ranked_league_5", "LIKE", "%diamond%")
+                                   ->where("looking_for_players", "=", 1)
+                                   ->orWhere("ranked_league_5", "LIKE", "%master%")
+                                   ->where("looking_for_players", "=", 1)
+                                   ->orWhere("ranked_league_5", "LIKE", "%challenger%")
+                                   ->where("looking_for_players", "=", 1)
+                                   ->take($this->list_suggestion_limit)
+                                   ->get();
+               $team_list_view = View::make("teams.suggestion_list", array(
+                  "ranked_teams" => $team_list
+               ));
+            } else {
+               $team_list = RankedTeam::where("ranked_league_5", "LIKE", "%".trim($league1)."%")
+                                   ->where("looking_for_players", "=", 1)
+                                   ->take($this->list_suggestion_limit)
+                                   ->get();
+               $team_list_view = View::make("teams.suggestion_list", array(
+                  "ranked_teams" => $team_list
+               ));
+            }
         }
 
         return View::make("teams.index", array(
-            "own_teams" => $own_teams
+            "own_teams" => $own_teams,
+            "team_list" => $team_list_view,
         ));
     }
 
@@ -88,6 +122,7 @@ class TeamsController extends \BaseController {
                 $sql_arr["sec_lang2"]  = $sec_lang;
             }
         }
+        $sql .= ' LIMIT '.intval($this->list_suggestion_limit);
         $ranked_teams = DB::select(DB::raw($sql), $sql_arr);
 
         return View::make("teams.suggestion_list", array(
@@ -213,11 +248,6 @@ class TeamsController extends \BaseController {
                         $check = false;
                     }
                     if($check){
-                        $league_5       = "bronze";
-                        $league_content = @file_get_contents("https://".trim($region).".api.pvp.net/api/lol/".trim($region)."/v2.5/league/by-team/".trim($team["fullId"])."/entry?api_key=".trim($api_key));
-                        $league_json    = json_decode($league_content, true);
-                        echo "<pre>",print_r($league_json),"</pre>";die();
-                        
                         $ranked_team                     = new RankedTeam();
                         $ranked_team->region             = $region;
                         $ranked_team->team_id            = $team["fullId"];
@@ -225,6 +255,30 @@ class TeamsController extends \BaseController {
                         $ranked_team->tag                = $team["tag"];
                         $ranked_team->adder_summoner_id  = Auth::user()->summoner->summoner_id;
                         $ranked_team->leader_summoner_id = $team["roster"]["ownerId"];
+                        
+                        // Liga-Platzierung laden
+                        $league_5       = "bronze";
+                        $league_content = @file_get_contents("https://".trim($region).".api.pvp.net/api/lol/".trim($region)."/v2.5/league/by-team/".trim($team["fullId"])."/entry?api_key=".trim($api_key));
+                        $league_json    = json_decode($league_content, true);
+                        if(isset($league_json[$team["fullId"]]) && isset($league_json[$team["fullId"]][0]) && is_array($league_json[$team["fullId"]])){
+                           foreach($league_json[$team["fullId"]] as $entry){
+                              if(isset($entry["queue"]) && isset($entry["tier"]) && isset($entry["entries"]) && is_array($entry["entries"]) && isset($entry["entries"][0])){
+                                 if(trim($entry["queue"]) == "RANKED_TEAM_5x5"){
+                                    $ranked_team->ranked_league_5 = strtolower(trim($entry["tier"]))."_".$entry["entries"][0]["division"];
+                                    $ranked_team->ranked_league_5_wins = $entry["entries"][0]["wins"];
+                                    $ranked_team->ranked_league_5_losses = $entry["entries"][0]["losses"];
+                                    $ranked_team->ranked_league_5_league_points = $entry["entries"][0]["leaguePoints"];
+                                 }
+                                 elseif(trim($entry["queue"]) == "RANKED_TEAM_3x3"){
+                                    $ranked_team->ranked_league_3 = strtolower(trim($entry["tier"]))."_".$entry["entries"][0]["division"];
+                                    $ranked_team->ranked_league_3_wins = $entry["entries"][0]["wins"];
+                                    $ranked_team->ranked_league_3_losses = $entry["entries"][0]["losses"];
+                                    $ranked_team->ranked_league_3_league_points = $entry["entries"][0]["leaguePoints"];
+                                 }
+                              }
+                           }
+                        }
+                        
                         $ranked_team->save();
                         
                         // Spieler des Ranked-Teams Speichern

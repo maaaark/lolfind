@@ -28,7 +28,8 @@
     <link href="/css/extralayers.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/network.css">
     <link rel="stylesheet" href="/css/flashignite_dropdowns.css">
-
+    @yield('css_addition')
+    
     <!--[if lt IE 9]>
     <script src="/js/html5shiv.min.js"></script>
     <script src="/js/respond.min.js"></script>
