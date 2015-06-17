@@ -4,7 +4,9 @@ class TeamsController extends \BaseController {
     private $list_suggestion_limit = 30;
     
     public function index($league1 = false, $league2 = false){
-        $own_teams    = array();
+
+
+        $own_teams = array();
         if(Auth::check()){
             $teams_player = RankedTeamPlayer::where("summoner_id", "=", Auth::user()->summoner->summoner_id)->get();
             foreach($teams_player as $player){
@@ -14,7 +16,8 @@ class TeamsController extends \BaseController {
                 }
             }
         }
-        
+
+        /*
         $team_list_view = false;
         if($league1 && $league2){
             $team_list = RankedTeam::where("ranked_league_5", "LIKE", "%".trim($league1)."%")
@@ -50,13 +53,23 @@ class TeamsController extends \BaseController {
             }
         }
 
+
         return View::make("teams.index", array(
             "own_teams" => $own_teams,
             "team_list" => $team_list_view,
         ));
+
+        */
+        $team_list = RankedTeam::all();
+
+        return View::make('teams.index', compact('team_list'));
     }
 
     public function list_suggestions(){
+
+        //print_r(Input::all());
+
+        /*
         $region = "euw";
         if(Input::get("region")){
             $region = trim(Input::get("region"));
@@ -132,7 +145,44 @@ class TeamsController extends \BaseController {
             }
         }
         $sql .= ' LIMIT '.intval($this->list_suggestion_limit);
-        $ranked_teams = DB::select(DB::raw($sql), $sql_arr);
+
+        */
+        //$ranked_teams = DB::select(DB::raw($sql), $sql_arr);
+        $ranked_teams = RankedTeam::where("name","!=", "");
+        $ranked_teams->where('looking_for_players',"=",1);
+
+        if(Input::get("league") != "any") {
+            $ranked_teams->where('ranked_league_5',"=",Input::get("league").'_I');
+        }
+
+        if(Input::get("region") != "any") {
+            $ranked_teams->where('region',"=",Input::get("region"));
+        }
+
+        if(Input::get("main_lang") != "any") {
+            $ranked_teams->where('looking_for_lang',"=",Input::get("main_lang"));
+            //$ranked_teams->where('looking_for_lang_second',"=",Input::get("main_lang"));
+        }
+
+        if(Input::get("prime_role") != "any") {
+            if(Input::get("prime_role") == "adc") {
+                $ranked_teams->where('looking_for_adc',"=",1);
+            }
+            if(Input::get("prime_role") == "support") {
+                $ranked_teams->where('looking_for_support',"=",1);
+            }
+            if(Input::get("prime_role") == "jungle") {
+                $ranked_teams->where('looking_for_jungle',"=",1);
+            }
+            if(Input::get("prime_role") == "top") {
+                $ranked_teams->where('looking_for_top',"=",1);
+            }
+            if(Input::get("prime_role") == "mid") {
+                $ranked_teams->where('looking_for_mid',"=",1);
+            }
+        }
+
+        $ranked_teams = $ranked_teams->get();
 
         return View::make("teams.suggestion_list", array(
             "ranked_teams" => $ranked_teams

@@ -7,4 +7,9 @@ class RankedTeam extends \Eloquent {
     {
         return $this->hasMany('RankedTeamPlayer', 'team_id', "team_internal_id");
     }
+
+    public function players()
+    {
+        return $this->hasMany('RankedTeamPlayer', 'team_id', "team_internal_id");
+    }
 }

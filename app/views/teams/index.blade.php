@@ -60,18 +60,20 @@
                 </div>
 
                 <div class="text-right">
-                    <a href="#" class="bt_filters"><i class="icon-th"></i></a>
-                    <a href="#" class="bt_filters"><i class=" icon-list"></i></a>
-                    <a href="/teams/add" class="bt_filters"><i class=" icon-plus"></i> Add new team</a>
+                    <a href="/teams/add" class="bt_filters button_intro"><i class="icon-plus"></i> Add new team</a>
                 </div>
             </div>
         </div><!--/tools -->
         
         <div>
-            <h2>{{ Lang::get("teams.search.team_suggestions") }}</h2>
+            <!-- <h2>{{ Lang::get("teams.search.team_suggestions") }}</h2> -->
             <div id="team_list_suggestions">
-               @if(isset($team_list) AND $team_list)
-                  {{ $team_list }}
+               @if(isset($team_list))
+                    INSERT TEMPLATE<br/>
+                <br/>
+                  @foreach($team_list as $team)
+                    {{ $team->name }}<br/>
+                  @endforeach
                @else
                   <div style="color: rgba(0,0,0,0.6);text-align: center;padding: 35px;">{{ Lang::get("teams.search.need_update_list") }}</div>
                @endif

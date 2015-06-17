@@ -2315,8 +2315,9 @@ ul.list_order li span {
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 1);
 }
 .text-shadow {
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 1);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 1);
 }
+
 .parallax-content-1 div h1:before,.parallax-content-1 div h1:after {
 	display: inline-block;
     width: 50px;
