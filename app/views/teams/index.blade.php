@@ -4,8 +4,8 @@
    <link rel="stylesheet" href="/css/teams.css">
 @stop
 @section('header')
-    <section class="parallax-window" data-parallax="scroll" data-image-src="img/player_background.jpg" data-natural-width="1400" data-natural-height="470">
-        <div class="parallax-content-1">
+    <section class="small-parallax-window" data-parallax="scroll" data-image-src="/img/player_background.jpg" data-natural-width="1400" data-natural-height="200">
+        <div class="small-parallax-content">
             <div class="animated fadeInDown">
                 <h1>Find a new team</h1>
                 <p>Ridiculus sociosqu cursus neque cursus curae ante scelerisque vehicula.</p>
