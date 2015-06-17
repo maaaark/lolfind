@@ -81,8 +81,7 @@
 <!-- Mobile menu overlay mask -->
 
 <!-- Header================================================== -->
-<header>
-
+<header class="page_navigation">
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-sm-3 col-xs-3">
@@ -119,28 +118,26 @@
         </div>
     </div><!-- container -->
 </header><!-- End Header -->
-
-@yield('header')
-
-    @include('layouts.errors')
-    @yield('content')
-
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div id="social_footer">
-                    <ul>
-                        <li><a href="#"><i class="icon-facebook"></i></a></li>
-                        <li><a href="#"><i class="icon-twitter"></i></a></li>
-                    </ul>
-                    <p>© Teamranked.com &amp; Flashignite.com 2015</p>
-                </div>
-            </div>
-        </div><!-- End row -->
-    </div><!-- End container -->
-</footer><!-- End footer -->
-
+<div id="page_container">
+   @yield('header')
+   @include('layouts.errors')
+   @yield('content')
+   <footer>
+       <div class="container">
+           <div class="row">
+               <div class="col-md-12">
+                   <div id="social_footer">
+                       <ul>
+                           <li><a href="#"><i class="icon-facebook"></i></a></li>
+                           <li><a href="#"><i class="icon-twitter"></i></a></li>
+                       </ul>
+                       <p>© Teamranked.com &amp; Flashignite.com 2015</p>
+                   </div>
+               </div>
+           </div><!-- End row -->
+       </div><!-- End container -->
+   </footer><!-- End footer -->
+</div>
 <div id="toTop"></div><!-- Back to top button -->
 
 <script>
@@ -181,7 +178,7 @@
             }
         });
 
-        $("#content").click(function(){
+        $("#page_container").click(function(){
             if(login_box.hasClass("open")){
                 login_box.removeClass("open");
                 $("#nw_login_btn").removeClass("active");

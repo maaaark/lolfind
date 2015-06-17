@@ -23,7 +23,7 @@
     </div><!-- Position -->
 @stop
 @section('sidebar')
-    @include('layouts.filter_sidebar')
+    @include('players.filter_sidebar')
 @stop
 @section('content_page')
 
