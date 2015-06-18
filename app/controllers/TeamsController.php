@@ -195,8 +195,8 @@ class TeamsController extends \BaseController {
         ));
     }
     
-    public function detail($id){
-        $ranked_team = RankedTeam::find($id)->first();
+    public function detail($region, $tag){
+        $ranked_team = RankedTeam::where("region", "=", $region)->where("tag", "=", $tag)->first();
         if(isset($ranked_team["id"]) && $ranked_team["id"] > 0){
             return View::make("teams.detail", array(
                 "ranked_team" => $ranked_team,
