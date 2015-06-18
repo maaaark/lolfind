@@ -150,7 +150,7 @@ class TeamsController extends \BaseController {
         $ranked_teams->where('looking_for_players',"=",1);
 
         if(Input::get("league") != "any") {
-            $ranked_teams->where('ranked_league_5',"=",Input::get("league").'_I');
+            $ranked_teams->where('ranked_league_5',"LIKE", '%'.Input::get("league").'%');
         }
 
         if(Input::get("region") != "any") {

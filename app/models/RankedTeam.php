@@ -5,12 +5,12 @@ class RankedTeam extends \Eloquent {
     
     public function player()
     {
-        return $this->hasMany('RankedTeamPlayer', 'team_id', "team_internal_id");
+        return RankedTeamPlayer::where("team", "=", $this->id);
     }
 
     public function players()
     {
-        return $this->hasMany('RankedTeamPlayer', 'team_id', "team_internal_id");
+        return $this->hasMany('RankedTeamPlayer', 'team', "team_internal_id");
     }
 
     public static function update_team($full_team_id, $region){

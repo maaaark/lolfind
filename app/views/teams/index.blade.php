@@ -27,12 +27,19 @@
 @section('content_page')
     <div class="content">
         @if(isset($own_teams) AND count($own_teams) > 0 AND is_array($own_teams))
-            <h2>Own teams</h2>
-            <div class="own_teams" style="padding: 8px;border: 1px solid rgba(0,0,0,0.5);">
+            <h2>Your teams</h2>
+            <div class="row own_teams" style="margin-bottom: 25px;">
                  @foreach($own_teams as $team)
-                    <div class="own_team_el">
-                        {{ $team->name }}
-                        <a href="/teams/{{ $team->region }}/{{ $team->tag }}" class="btn_1">Ansehen</a>
+                    <div class="col-md-4">
+                        <div class="own_team_el" style="box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);background: #fff;">
+                            <div style="font-size: 18px;padding: 10px;border-bottom: 1px solid rgba(0,0,0,0.075);">{{ $team->name }}</div>
+                            <div style="padding: 10px;">
+                                <div style="margin-top: 6px;text-align: right;">
+                                    <div style="float: left;color: rgba(0,0,0,0.5);padding-top: 5px;">{{ strtoupper($team->tag) }}</div>
+                                    <a href="/teams/{{ $team->region }}/{{ $team->tag }}" class="btn_1">Ansehen</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                  @endforeach
             </div>
@@ -69,13 +76,9 @@
             <!-- <h2>{{ Lang::get("teams.search.team_suggestions") }}</h2> -->
             <div id="team_list_suggestions">
                @if(isset($team_list))
-                    INSERT TEMPLATE<br/>
-                <br/>
-                  @foreach($team_list as $team)
-                    {{ $team->name }}<br/>
-                  @endforeach
+                    @include("teams.suggestion_list", array("ranked_teams" => $team_list))
                @else
-                  <div style="color: rgba(0,0,0,0.6);text-align: center;padding: 35px;">{{ Lang::get("teams.search.need_update_list") }}</div>
+                    <div style="color: rgba(0,0,0,0.6);text-align: center;padding: 35px;">{{ Lang::get("teams.search.need_update_list") }}</div>
                @endif
             </div>
         </div>
