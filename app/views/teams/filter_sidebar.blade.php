@@ -16,6 +16,9 @@
             <div class="filter_type">
                 <h6>{{ Lang::get('teams.search.league') }}</h6>
                 <div id="leagues_sel"></div>
+                <ul>
+                    <li><label><input type="checkbox" name="search_unranked" checked> Search also unranked teams</label></li>
+                </ul>
             </div>
 
             <div class="filter_type">

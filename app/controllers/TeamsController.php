@@ -65,7 +65,7 @@ class TeamsController extends \BaseController {
 
     public function list_suggestions(){
 
-        //print_r(Input::all());
+
 
         /*
         $region = "euw";
@@ -145,6 +145,10 @@ class TeamsController extends \BaseController {
         $sql .= ' LIMIT '.intval($this->list_suggestion_limit);
 
         */
+
+        print_r(Input::all());
+
+
         //$ranked_teams = DB::select(DB::raw($sql), $sql_arr);
         $ranked_teams = RankedTeam::where("name","!=", "");
         $ranked_teams->where('looking_for_players',"=",1);
@@ -155,6 +159,11 @@ class TeamsController extends \BaseController {
 
         if(Input::get("region") != "any") {
             $ranked_teams->where('region',"=",Input::get("region"));
+        }
+
+        if(Input::get("search_unranked") != null) {
+            // 1 = bronze
+            $ranked_teams->where('league_prediction',"=",1);
         }
 
         if(Input::get("main_lang") != "any") {
