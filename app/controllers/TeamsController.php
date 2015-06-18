@@ -62,7 +62,7 @@ class TeamsController extends \BaseController {
         */
         $team_list = RankedTeam::all();
 
-        return View::make('teams.index', compact('team_list'));
+        return View::make('teams.index', compact('team_list', 'own_teams'));
     }
 
     public function list_suggestions(){

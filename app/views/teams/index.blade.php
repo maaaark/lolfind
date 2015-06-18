@@ -28,7 +28,7 @@
     <div class="content">
         @if(isset($own_teams) AND count($own_teams) > 0 AND is_array($own_teams))
             <h2>Own teams</h2>
-            <div class="own_teams">
+            <div class="own_teams" style="padding: 8px;border: 1px solid rgba(0,0,0,0.5);">
                  @foreach($own_teams as $team)
                     <div class="own_team_el">
                         {{ $team->name }}

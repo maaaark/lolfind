@@ -4,6 +4,7 @@
    <link rel="stylesheet" href="/css/teams.css">
 @stop
 @section('content')
+	<div class="container margin_30">
 	@include("teams.team_header")
 	<script>$("#team_navi_link_settings").addClass("active");</script>
 
@@ -83,6 +84,7 @@
 			</tr>
 		</table>
 		{{ Form::close() }}
+	</div>
 	</div>
 
 	<script>

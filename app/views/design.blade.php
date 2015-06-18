@@ -23,11 +23,13 @@
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Gochi+Hand' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
-
+    <link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+    
     <link href="/rs-plugin/css/settings.css" rel="stylesheet">
     <link href="/css/extralayers.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/network.css">
     <link rel="stylesheet" href="/css/flashignite_dropdowns.css">
+    <link rel="stylesheet" href="/js/icheck/orange.css">
     @yield('css_addition')
     
     <!--[if lt IE 9]>
