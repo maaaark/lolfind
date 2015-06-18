@@ -78,8 +78,53 @@ class RankedTeam extends \Eloquent {
                     }
                 }
             }
+
+            $ranked_team->league_prediction = RankedTeam::updateLeaguePrediction($ranked_team->id);
+            $ranked_team->save();
             
             return $ranked_team;
+        } else {
+            return false;
+        }
+    }
+
+    public static function updateLeaguePrediction($team_id){
+        $league_bewertung = array(
+            "unranked"   => 0,
+            "bronze"     => 1,
+            "silver"     => 2,
+            "gold"       => 3,
+            "platinum"   => 4,
+            "diamond"    => 5,
+            "master"     => 6,
+            "challenger" => 7
+        );
+
+        $team = RankedTeam::where("id", "=", $team_id)->first();
+        if(isset($team["id"]) && $team["id"] > 0){
+            $player_count = 0;
+            $team_points  = 0;
+            $team_player  = RankedTeamPlayer::where("team", "=", $team["id"])->get();
+            foreach($team_player as $player){
+                $summoner = Summoner::where("summoner_id", "=", $player->summoner_id)->where("region", "=", $team->region)->first();
+                if($summoner->id && $summoner->id > 0){
+                    $bewertung = 0;
+                    if($summoner->solo_tier && trim($summoner->solo_tier) != "" && trim(strtolower($summoner->solo_tier)) != "none"){
+                        $bewertung = $league_bewertung[trim(strtolower($summoner->solo_tier))];
+                    }
+                    $team_points = $team_points + $bewertung;
+                    $player_count++;
+                }
+            }
+
+            $return = "silver";
+            $rating = round($team_points / $player_count);
+            foreach($league_bewertung as $name => $val){
+                if($rating == $val && $val > 0){
+                    $return = $name;
+                }
+            }
+            return $return;
         } else {
             return false;
         }

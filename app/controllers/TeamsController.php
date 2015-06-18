@@ -4,8 +4,6 @@ class TeamsController extends \BaseController {
     private $list_suggestion_limit = 30;
     
     public function index($league1 = false, $league2 = false){
-
-
         $own_teams = array();
         if(Auth::check()){
             $teams_player = RankedTeamPlayer::where("summoner_id", "=", Auth::user()->summoner->summoner_id)->get();

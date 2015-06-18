@@ -551,7 +551,7 @@ class Summoner extends \Eloquent {
         }
     }
     
-    public static function update_summoner($summoner_id, $region){
+    public static function update_summoner($summoner_id, $region, $update_ranked_data = true){
         $allowed_regions   = Config::get('api.allowed_regions');
         $api_key 		   = Config::get('api.key');
         $current_season    = Config::get('api.current_season');
@@ -596,7 +596,10 @@ class Summoner extends \Eloquent {
                         }
                     }
                 }
-                $summoner = Summoner::updateRankedData($summoner, $summoner->summoner_id, $region);
+
+                if($update_ranked_data){
+                    $summoner = Summoner::updateRankedData($summoner, $summoner->summoner_id, $region);
+                }
                 $summoner->save();
             }
             return $summoner;
@@ -628,9 +631,11 @@ class Summoner extends \Eloquent {
 					$array["queue"] 		= $entry["queue"];
 					$ranked_data[$array["queue"]] = $array;
 
-					$summoner->solo_division = $entry["entries"][0]["division"];
-					$summoner->solo_tier	 = $entry["tier"];
-					$summoner->solo_name	 = str_replace("'", "&lsquo;", $entry["name"]);
+                    if(trim($array["queue"]) == "RANKED_SOLO_5x5"){
+    					$summoner->solo_division = $entry["entries"][0]["division"];
+    					$summoner->solo_tier	 = $entry["tier"];
+    					$summoner->solo_name	 = str_replace("'", "&lsquo;", $entry["name"]);
+                    }
 				}
 				$json_encode = json_encode($ranked_data);
 				$summoner->ranked_summary = $json_encode;
