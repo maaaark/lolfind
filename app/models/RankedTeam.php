@@ -61,6 +61,7 @@ class RankedTeam extends \Eloquent {
             $ranked_team->save();
             
             // Spieler des Ranked-Teams Speichern
+            $ranked_team_players_old = RankedTeamPlayer::where("team", "=", $ranked_team->id)->get();
             foreach($team["roster"]["memberList"] as $player){
                 if(isset($player["playerId"])){
                     $summoner_temp = Summoner::update_summoner($player["playerId"], $region);
@@ -79,9 +80,24 @@ class RankedTeam extends \Eloquent {
                 }
             }
 
+            // Spieler löschen die das Team verlassen haben
+            foreach($ranked_team_players_old as $old_player){
+                $need_delete = true;
+                foreach($team["roster"]["memberList"] as $player){
+                    if($player["playerId"] == $old_player->summoner_id){
+                        $need_delete = false;
+                        break;
+                    }
+                }
+
+                if($need_delete){
+                    $old_player->delete();
+                }
+            }
+
             $ranked_team->league_prediction = RankedTeam::updateLeaguePrediction($ranked_team->id);
             $ranked_team->save();
-            
+
             return $ranked_team;
         } else {
             return false;
