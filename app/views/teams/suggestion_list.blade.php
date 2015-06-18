@@ -26,7 +26,7 @@
                                 }
                             ?>
 
-                            <a href="/teams/{{ $team->id }}"><img src="/img/leagues/{{ trim($league_logo) }}.png" width="120" alt=""></a>
+                            <a href="/teams/{{ $team->region }}/{{ $team->tag }}"><img src="/img/leagues/{{ trim($league_logo) }}.png" width="120" alt=""></a>
 
                             <div style="text-align: center;">
                                 @if(isset($division) AND $league_logo != "0_5")
@@ -42,7 +42,7 @@
                 <div class="col-lg-10 col-md-10 col-sm-10">
                     <div class="">
                         <h3>
-                            <a href="/teams/{{ $team->id }}">
+                            <a href="/teams/{{ $team->region }}/{{ $team->tag }}">
                             @if(Auth::check())
                                 <strong>{{ $team->name }}</strong>
                             @else
@@ -52,7 +52,7 @@
                         </h3>
                         @if(Auth::check())
                             @if($team->description != "")
-                                <p>{{ $team->description }} <a href="">more</a></p>
+                                <p>{{ $team->description }} <a href="/teams/{{ $team->region }}/{{ $team->tag }}">more</a></p>
                             @else
                                 <p>No description</p>
                             @endif
