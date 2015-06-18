@@ -415,4 +415,16 @@ class TeamsController extends \BaseController {
             echo "error";
         }
 	}
+	
+	public function apply_lightbox(){
+        if(Input::get("team")){
+            $ranked_team = RankedTeam::where("id", "=", Input::get("team"))->first();
+            if($ranked_team && $ranked_team->id > 0){
+                return View::make("teams.apply.lightbox_start", array(
+                    "ranked_team" => $ranked_team
+                ));
+            }
+        }
+        echo "error";
+    }
 }

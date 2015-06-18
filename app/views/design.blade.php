@@ -29,6 +29,7 @@
     <link href="/css/extralayers.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/network.css">
     <link rel="stylesheet" href="/css/flashignite_dropdowns.css">
+    <link rel="stylesheet" href="/css/flashignite_lightbox.css">
     <link rel="stylesheet" href="/js/icheck/orange.css">
     @yield('css_addition')
     
@@ -39,6 +40,7 @@
 
     <script src="/js/jquery-1.11.2.min.js"></script>
     <script src="/js/jquery.flashignite_dropdown.js"></script>
+    <script src="/js/flashignite_lightbox.js"></script>
     <script src="/js/icheck/icheck.min.js"></script>
     <script src="/js/team_search_dropdowns.js"></script>
     <script src="/js/tabs.js"></script>

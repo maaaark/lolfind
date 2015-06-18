@@ -86,7 +86,7 @@
         		{{ $ranked_team->name }}
         		@if(Auth::check())
                     @if(RankedTeam::checkSummonerIsInTeam(Auth::user()->summoner->summoner_id, $ranked_team->id) == false)
-                        <button class="button_intro outline" style="float: right;margin-left: 15px;margin-top: -5px;">Apply the team</button>
+                        <button class="button_intro outline apply_team_btn" style="float: right;margin-left: 15px;margin-top: -5px;">Apply the team</button>
                     @endif
                 @endif
         		<div class="small_team_info">{{ trim(strtoupper($ranked_team->region)) }} | {{ trim(strtoupper($ranked_team->tag)) }}</div>
@@ -110,3 +110,22 @@
     		</div>
         </div>
     </div>
+    
+    @if(Auth::check())
+        @if(RankedTeam::checkSummonerIsInTeam(Auth::user()->summoner->summoner_id, $ranked_team->id) == false)
+            <script>
+            $(document).ready(function(){
+                $(".apply_team_btn").click(function(){
+                    html  = "<div style='text-align: center;padding: 40px;'><img src='/img/ajax-loader.gif' style='height: 50px;'>";
+                    html += "<div style='padding-top: 10px;'>Content is loading ...</div>";
+                    html += '</div>';
+                    showLightbox(html, function(lightbox_content){
+                        $.post("/teams/apply/start", {"team": {{ $ranked_team->id }} }).done(function(data){
+                            lightbox_content.html(data);
+                        });
+                    });
+                });
+            });
+            </script>
+        @endif
+    @endif
