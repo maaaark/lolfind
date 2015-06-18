@@ -58,7 +58,7 @@ class TeamsController extends \BaseController {
         ));
 
         */
-        $team_list = RankedTeam::all();
+        $team_list = RankedTeam::where("looking_for_players", "=", 1)->paginate(10);
 
         return View::make('teams.index', compact('team_list', 'own_teams'));
     }
@@ -146,7 +146,7 @@ class TeamsController extends \BaseController {
 
         */
 
-        print_r(Input::all());
+        //print_r(Input::all());
 
 
         //$ranked_teams = DB::select(DB::raw($sql), $sql_arr);
@@ -161,8 +161,9 @@ class TeamsController extends \BaseController {
             $ranked_teams->where('region',"=",Input::get("region"));
         }
 
-        if(Input::get("search_unranked") != null) {
+        if(Input::get("unranked_search") == false) {
             // 1 = bronze
+
             $ranked_teams->where('league_prediction',"=",1);
         }
 
@@ -189,17 +190,15 @@ class TeamsController extends \BaseController {
             }
         }
 
-        $ranked_teams = $ranked_teams->get();
+        $ranked_teams = $ranked_teams->paginate(10);
 
         return View::make("teams.suggestion_list", array(
             "ranked_teams" => $ranked_teams
         ));
     }
     
-    public function detail($region, $tag){
-        $region = trim($region);
-        $tag    = trim($tag);
-        $ranked_team = RankedTeam::where("region", "=", $region)->where("tag", "=", $tag)->first();
+    public function detail($id){
+        $ranked_team = RankedTeam::find($id)->first();
         if(isset($ranked_team["id"]) && $ranked_team["id"] > 0){
             return View::make("teams.detail", array(
                 "ranked_team" => $ranked_team,

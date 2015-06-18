@@ -66,7 +66,7 @@
                     </div>
                 </div>
 
-                <div class="text-right">
+                <div class="text-right" style="margin-right: 15px;">
                     <a href="/teams/add" class="bt_filters button_intro"><i class="icon-plus"></i> Add new team</a>
                 </div>
             </div>
@@ -85,16 +85,9 @@
 
         <hr>
 
+
         <div class="text-center">
-            <ul class="pagination">
-                <li><a href="#">Prev</a></li>
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">Next</a></li>
-            </ul>
+            {{ $team_list->links() }}
         </div><!-- end pagination-->
     </div>
     
@@ -111,6 +104,7 @@
 				sec_lang: $('#sec_lang_sel input').val(),
 				prime_role: $('#prime_role_sel input').val(),
 				sec_role: $('#sec_role_sel input').val(),
+                unranked_search: $('#search_unranked').prop('checked')
 			}).done(function(data){
 				$("#team_list_update_btn").prop("disabled", false);
 				can_update = true;

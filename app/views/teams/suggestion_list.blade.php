@@ -25,7 +25,8 @@
                                     $league_logo = trim(substr($team->ranked_league_5, 0, strpos($team->ranked_league_5, "_")))."_".trim($division);
                                 }
                             ?>
-                            <a href="#"><img src="/img/leagues/{{ trim($league_logo) }}.png" width="120" alt=""></a>
+
+                            <a href="/teams/{{ $team->id }}"><img src="/img/leagues/{{ trim($league_logo) }}.png" width="120" alt=""></a>
 
                             <div style="text-align: center;">
                                 @if(isset($division) AND $league_logo != "0_5")
@@ -41,11 +42,13 @@
                 <div class="col-lg-10 col-md-10 col-sm-10">
                     <div class="">
                         <h3>
+                            <a href="/teams/{{ $team->id }}">
                             @if(Auth::check())
                                 <strong>{{ $team->name }}</strong>
                             @else
                                 <strong>Teamname</strong>
                             @endif
+                            </a>
                         </h3>
                         @if(Auth::check())
                             @if($team->description != "")
