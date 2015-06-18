@@ -145,4 +145,12 @@ class RankedTeam extends \Eloquent {
             return false;
         }
     }
+    
+    public static function checkSummonerIsInTeam($summoner_id, $team){
+        $ranked_team_player = RankedTeamPlayer::where("team", "=", $team)->where("summoner_id", "=", $summoner_id)->first();
+        if($ranked_team_player && $ranked_team_player->id && $ranked_team_player->id > 0){
+            return true;
+        }
+        return false;
+    }
 }

@@ -145,7 +145,14 @@
                 <div class="strip_all_tour_list" style="padding: 10px;">
                     <h4>Information</h4>
                     @if($ranked_team->looking_for_players == 1)
-                        <div style="text-align: center;padding: 15px;color: rgb(0, 126, 0);">Is looking for players.</div>
+                        <div style="text-align: center;padding: 15px;color: rgb(0, 126, 0);">
+                            Is looking for players.
+                            @if(Auth::check())
+                                @if(RankedTeam::checkSummonerIsInTeam(Auth::user()->summoner->summoner_id, $ranked_team->id) == false)
+                                    <button class="button_intro outline" style="float: right;margin-left: 15px;margin-top: -5px;">Apply the team</button>
+                                @endif
+                            @endif
+                        </div>
                     @else
                         <div style="text-align: center;padding: 15px;">Not looking for players at the moment.</div>
                     @endif
