@@ -1,7 +1,6 @@
 <style>
 	.team_header {
 		height: 300px;
-		background: #000;
 		position: relative;
 	}
 
@@ -12,28 +11,32 @@
 		border: 2px solid #fff;
 		border-radius: 5px;
 		position: absolute;
-		bottom: 35px;
+		bottom: 0px;
 		margin-left: 35px;
 	}
 
 	.team_header .team_title {
 		position: absolute;
 		color: #fff;
-		font-size: 30px;
+		font-size: 36px;
 		margin-left: 200px;
-		bottom: 95px;
+		font-weight: bold;
+		bottom: 70px;
 	}
 
-	.team_header .team_title .short_info {
-		color: rgba(255,255,255,0.5);
+	.team_header .team_title .small_team_info {
+		color: rgba(255,255,255,0.7);
 		font-size: 14px;
+		margin-top: 10px;
+		text-align: left;
 	}
 
 	.team_header .team_navigation {
 		position: absolute;
-		bottom: 38px;
+		bottom: 3px;
 		height: 35px;
 		margin-left: 200px;
+		font-size: 12px;
 	}
 
 	.team_header .team_title .team_navigation:after {
@@ -65,9 +68,9 @@
     <div class="content">
     	<div class="team_header">
     		<div class="team_icon"></div>
-        	<div class="team_title">
+        	<div class="team_title text-shadow">
         		{{ $ranked_team->name }}
-        		<div class="short_info">{{ trim(strtoupper($ranked_team->region)) }} | {{ trim(strtoupper($ranked_team->tag)) }}</div>
+        		<div class="small_team_info">{{ trim(strtoupper($ranked_team->region)) }} | {{ trim(strtoupper($ranked_team->tag)) }}</div>
     		</div>
 
     		<div class="team_navigation">
