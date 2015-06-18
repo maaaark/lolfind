@@ -29,6 +29,10 @@
         <div class="col-md-3 text-center">
             <h3 style="margin-bottom: 5px;">{{ Lang::get('profile.solo_queue') }}</h3>
             <img width="120" src="http://summoner.flashignite.com/img/stats/tiers/{{ $user->summoner->solo_tier }}_I.png" alt="">
+            
+            @if($user_object AND $user_object->id AND $user_object->id > 0)
+                <button onclick="fi_server_open_chat({{ $user_object->id }}, '{{ $user->summoner->name }}')">Chat &ouml;ffnen</button>
+            @endif
         </div>
         <div class="col-md-3 text-center">
             <h3>{{ Lang::get('profile.languages') }}</h3>
