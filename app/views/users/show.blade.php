@@ -47,6 +47,8 @@
     <div>
     @if($user_object AND $user_object->id AND $user_object->id > 0)
         <button onclick="fi_server_open_chat({{ $user_object->id }}, '{{ $user->summoner->name }}')">Chat &ouml;ffnen</button>
+    @else
+        Kann chat nicht öffnen ...
     @endif
     </div>
 @stop
