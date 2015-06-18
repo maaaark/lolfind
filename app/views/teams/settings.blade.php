@@ -39,14 +39,6 @@
 					@endif
 				</td>
 			</tr>
-			<tr>
-				<td>{{ Lang::get('teams.settings.looking_in_league') }}</td>
-				<td><div id="looking_in_league_sel"></div></td>
-			</tr>
-			<tr>
-				<td>{{ Lang::get('teams.settings.looking_in_league_sec') }}</td>
-				<td><div id="looking_in_league_sec_sel"></div></td>
-			</tr>
 		</table>
 
 		<h3>{{ Lang::get("teams.settings.roles") }}</h3>
@@ -97,9 +89,8 @@
 			$("#"+$(this).attr("name")+"_box").hide();
 		});
 
-		console.log('{{ $ranked_team->looking_for_lang }}');
-		$("#looking_in_league_sel").makeSelect("looking_in_league", dropdown_leagues_arr('{{ $ranked_team->looking_in_league }}'));
-		$("#looking_in_league_sec_sel").makeSelect("looking_in_league_sec", dropdown_leagues_arr('{{ $ranked_team->looking_in_league_second }}'));
+		//$("#looking_in_league_sel").makeSelect("looking_in_league", dropdown_leagues_arr('{{ $ranked_team->looking_in_league }}'));
+		//$("#looking_in_league_sec_sel").makeSelect("looking_in_league_sec", dropdown_leagues_arr('{{ $ranked_team->looking_in_league_second }}'));
 		$('#looking_language').makeSelect("looking_language", dropdown_languages_arr('{{ $ranked_team->looking_for_lang }}'));
 		//$('#looking_language_sec').makeSelect("looking_language_sec", dropdown_languages_arr('{{ $ranked_team->looking_for_lang_second }}'));
 	});
