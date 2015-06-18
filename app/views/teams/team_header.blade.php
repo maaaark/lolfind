@@ -64,9 +64,23 @@
 		border-bottom: 2px solid orange;
 	}
 
+	.team_updater_progress {
+		position: absolute;
+		right: 0px;
+		bottom: 2px;
+		display: none;
+	}
+
+	.team_updater_progress .progress_animation {
+		height: 35px;
+	}
 	</style>
     <div class="content">
     	<div class="team_header">
+    		<div class="team_updater_progress text-shadow" id="team_updater_progress">
+    			<img src="/img/ajax-loader.gif" class="progress_animation">
+    			We refresh the team data ...
+    		</div>
     		<div class="team_icon"></div>
         	<div class="team_title text-shadow">
         		{{ $ranked_team->name }}
@@ -77,8 +91,8 @@
     			<a href="/teams/{{ trim($ranked_team->region) }}/{{ trim($ranked_team->tag) }}/">
     				<div class="team_navi_el" id="team_navi_link_main">{{ Lang::get("teams.navi.main") }}</div>
 				</a>
-    			<a href="/teams/{{ trim($ranked_team->region) }}/{{ trim($ranked_team->tag) }}/members">
-    				<div class="team_navi_el" id="team_navi_link_members">{{ Lang::get("teams.navi.members") }}</div>
+    			<a href="/teams/{{ trim($ranked_team->region) }}/{{ trim($ranked_team->tag) }}/matchhistory">
+    				<div class="team_navi_el" id="team_navi_link_members">{{ Lang::get("teams.navi.matchhistory") }}</div>
 				</a>
 
     			@if(Auth::check())

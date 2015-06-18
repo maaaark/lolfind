@@ -8,6 +8,8 @@
 @import url("fontello/css/fontello.css");			/* Icon pack */
 @import url("magnific-popup.css");					/* Lightbox & dialog script */
 
+@import url("tabs.css");					/* Tabs */
+
 /*
 How to change colors
 1) uncomment one of the color variation below

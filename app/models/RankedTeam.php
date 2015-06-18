@@ -5,7 +5,7 @@ class RankedTeam extends \Eloquent {
     
     public function player()
     {
-        return RankedTeamPlayer::where("team", "=", $this->id);
+        return RankedTeamPlayer::where("team", "=", $this->id)->get();
     }
 
     public function players()
