@@ -15,7 +15,7 @@ class UsersController extends \BaseController {
         
         $user_object = false;
         $user_check  = User::where("summoner_id", "=", $user->summoner_id)->first();
-        if($user_check->id && $user_check->id > 0){
+        if(isset($user_check["id"]) && $user_check["id"] > 0){
             $user_object = $user_check;
         }
         return View::make('users.show', compact('user', "user_object"));
