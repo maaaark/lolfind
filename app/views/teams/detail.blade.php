@@ -149,7 +149,7 @@
                             Is looking for players.
                             @if(Auth::check())
                                 @if(RankedTeam::checkSummonerIsInTeam(Auth::user()->summoner->summoner_id, $ranked_team->id) == false)
-                                    <button class="button_intro outline" style="float: right;margin-left: 15px;margin-top: -5px;">Apply the team</button>
+                                    <div><button class="btn_1 outline" style="float: right;margin-left: 15px;margin-top: -5px;">Apply the team</button></div>
                                 @endif
                             @endif
                         </div>
