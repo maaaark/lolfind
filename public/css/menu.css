@@ -22,6 +22,9 @@ header#plain .main-menu > ul > li > a {color: #333;}
 /*First level styles header colored */		
 header#colored.sticky .main-menu > ul > li > a {color: #fff;}
 
+.sticky .main-menu .text-shadow {
+  text-shadow: none;
+}
 
 /* Opacity mask when left open */
 .layer {display: none; position: fixed; top: 0; left: 0; width: 100%; min-width: 100%; z-index: 100; min-height: 100%; background-color: #000; opacity: 0; z-index:9999;}
