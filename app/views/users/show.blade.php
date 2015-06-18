@@ -1,4 +1,11 @@
 @extends('design_left_sidebar')
+@section('sidebar')
+    <div class="text-center">
+        <h3>{{ $user->summoner->name }}</h3>
+        <img height="120" src="http://ddragon.leagueoflegends.com/cdn/{{ Config::get('settings.patch') }}/img/profileicon/{{ $user->summoner->profileIconId }}.png" class="img-circle" alt="{{ $user->summoner->name }}" /><br/>
+        {{ $user->summoner->solo_tier }} {{ $user->summoner->solo_division }}
+    </div>
+@stop
 @section('content_page')
     <div class="row profile">
         <div class="col-md-3 text-center">
@@ -30,9 +37,6 @@
             <h3 style="margin-bottom: 5px;">{{ Lang::get('profile.solo_queue') }}</h3>
             <img width="120" src="http://summoner.flashignite.com/img/stats/tiers/{{ $user->summoner->solo_tier }}_I.png" alt="">
             
-            @if($user_object AND $user_object->id AND $user_object->id > 0)
-                <button onclick="fi_server_open_chat({{ $user_object->id }}, '{{ $user->summoner->name }}')">Chat &ouml;ffnen</button>
-            @endif
         </div>
         <div class="col-md-3 text-center">
             <h3>{{ Lang::get('profile.languages') }}</h3>
@@ -40,11 +44,9 @@
             Englisch
         </div>
     </div>
-@stop
-@section('sidebar')
-    <div class="text-center">
-        <h3>{{ $user->summoner->name }}</h3>
-        <img height="120" src="http://ddragon.leagueoflegends.com/cdn/{{ Config::get('settings.patch') }}/img/profileicon/{{ $user->summoner->profileIconId }}.png" class="img-circle" alt="{{ $user->summoner->name }}" /><br/>
-        {{ $user->summoner->solo_tier }} {{ $user->summoner->solo_division }}
+    <div>
+    @if($user_object AND $user_object->id AND $user_object->id > 0)
+        <button onclick="fi_server_open_chat({{ $user_object->id }}, '{{ $user->summoner->name }}')">Chat &ouml;ffnen</button>
+    @endif
     </div>
 @stop
