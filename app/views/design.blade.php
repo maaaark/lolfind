@@ -41,6 +41,7 @@
     <script src="/js/jquery.flashignite_dropdown.js"></script>
     <script src="/js/icheck/icheck.min.js"></script>
     <script src="/js/team_search_dropdowns.js"></script>
+    <script src="/js/tabs.js"></script>
 
     @if(Auth::check())
         <!-- FI-Network Server -->

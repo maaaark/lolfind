@@ -65,8 +65,6 @@ class TeamsController extends \BaseController {
 
     public function list_suggestions(){
 
-
-
         /*
         $region = "euw";
         if(Input::get("region")){
@@ -207,6 +205,36 @@ class TeamsController extends \BaseController {
         return View::make("teams.not_found");
     }
 
+    public function updateTeam($team_id){
+        $ranked_team = RankedTeam::where("id", "=", $team_id)->first();
+        if($ranked_team->id && $ranked_team->id > 0){
+            $need_api_request = true;
+            $date1   = date('Y-m-d H:i:s');
+            $date2   = $ranked_team->last_update_main_data;
+            $diff    = abs(strtotime($date2) - strtotime($date1));
+            $mins    = floor($diff / 60);
+
+            if($mins < 60){
+                $need_api_request = false;
+            }
+
+            if($need_api_request){
+                $update = RankedTeam::update_team($ranked_team->team_id, $ranked_team->region);
+                if($update){
+                    $ranked_team->last_update_main_data = date('Y-m-d H:i:s');
+                    $ranked_team->save();
+                    echo "success";
+                } else {
+                    echo "error";
+                }
+            } else {
+                echo "no_update_needet";
+            }
+        } else {
+            echo "error";
+        }
+    }
+
     public function settings($region, $tag){
         $region = trim($region);
         $tag    = trim($tag);
@@ -282,6 +310,10 @@ class TeamsController extends \BaseController {
 
             if(Input::get("looking_language")){
                 $ranked_team->looking_for_lang = trim(Input::get("looking_language"));
+            }
+
+            if(Input::get("description")){
+                $ranked_team->description = trim(Input::get("description"));
             }
             /*if(Input::get("looking_language_sec")){ // Zweite Sprache deaktiviert
                 $ranked_team->looking_for_lang_second = trim(Input::get("looking_language_sec"));

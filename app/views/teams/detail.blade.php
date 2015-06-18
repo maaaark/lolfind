@@ -13,16 +13,144 @@
     <div id="position">
         <div class="container">
             <ul>
-                <li><a href="#">Teamranked.com</a></li>
-                <li>Teams</li>
+                <li><a href="/">Teamranked.com</a></li>
+                <li><a href="/teams">Teams</a></li>
+                <li>{{ strtoupper($ranked_team->region) }} - {{ $ranked_team->name }}</li>
             </ul>
         </div>
     </div><!-- Position -->
 @stop
 @section('content')
+    @include("teams.ajax_updater")
+    
 	<div class="container margin_30">
-		<div class="content">
-			<h1>{{ Lang::get('teams.navi.main') }}</h1>
+		<div class="row">
+			<div class="col-md-8">
+                <div class="row strip_all_tour_list team_league_box">
+                    <div class="col-md-6">
+                        <h4>Ranked 5 vs. 5</h4>
+                        @if($ranked_team->ranked_league_5 AND trim($ranked_team->ranked_league_5) != "" AND trim($ranked_team->ranked_league_5) != "none")
+                            <?php
+                                $league_logo = "0_5";
+                                if(strpos($ranked_team->ranked_league_5, "_") > 0){
+                                    $division = substr($ranked_team->ranked_league_5, strpos($ranked_team->ranked_league_5, "_") + 1);
+                                    if($division == "I"){ $division = "1"; }
+                                    else if($division == "II"){ $division = "2"; }
+                                    else if($division == "III"){ $division = "3"; }
+                                    else if($division == "IV"){ $division = "4"; }
+                                    else { $division = "5"; }
+                                    $league_logo = trim(substr($ranked_team->ranked_league_5, 0, strpos($ranked_team->ranked_league_5, "_")))."_".trim($division);
+                                }
+                            ?>
+                            <img src="/img/leagues/{{ trim($league_logo) }}.png">
+                            <div class="team_current_league_text">
+                                {{ ucfirst(trim(substr($ranked_team->ranked_league_5, 0, strpos($ranked_team->ranked_league_5, "_")))) }} {{ $division }}
+
+                                <div class="prediction">
+                                    <div>Wins: <span class="wins">{{ $ranked_team->ranked_league_5_wins }}</span></div>
+                                    <div>Losses: <span class="wins">{{ $ranked_team->ranked_league_5_losses }}</span></div>
+                                    <div>League Points: <span class="wins">{{ $ranked_team->ranked_league_5_league_points }}</span></div>
+                                </div>
+                            </div>
+                        @else
+                            <img src="/img/leagues/0_5.png">
+                            <div class="team_current_league_text">
+                                Unranked
+
+                                <div class="prediction">
+                                    Placement prediction: <span>{{ ucfirst($ranked_team->league_prediction) }}</span>
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+                    <div class="col-md-6 team_league_box">
+                        <h4>Ranked 3 vs. 3</h4>
+                        @if($ranked_team->ranked_league_3 AND trim($ranked_team->ranked_league_3) != "" AND trim($ranked_team->ranked_league_3) != "none")
+                            <?php
+                                $league_logo = "0_5";
+                                if(strpos($ranked_team->ranked_league_3, "_") > 0){
+                                    $division = substr($ranked_team->ranked_league_3, strpos($ranked_team->ranked_league_3, "_") + 1);
+                                    if($division == "I"){ $division = "1"; }
+                                    else if($division == "II"){ $division = "2"; }
+                                    else if($division == "III"){ $division = "3"; }
+                                    else if($division == "IV"){ $division = "4"; }
+                                    else { $division = "5"; }
+                                    $league_logo = trim(substr($ranked_team->ranked_league_3, 0, strpos($ranked_team->ranked_league_3, "_")))."_".trim($division);
+                                }
+                            ?>
+                            <img src="/img/leagues/{{ trim($league_logo) }}.png">
+                            <div class="team_current_league_text">
+                                {{ ucfirst(trim(substr($ranked_team->ranked_league_3, 0, strpos($ranked_team->ranked_league_3, "_")))) }} {{ $division }}
+
+                                <div class="prediction">
+                                    <div>Wins: <span class="wins">{{ $ranked_team->ranked_league_3_wins }}</span></div>
+                                    <div>Losses: <span class="wins">{{ $ranked_team->ranked_league_3_losses }}</span></div>
+                                    <div>League Points: <span class="wins">{{ $ranked_team->ranked_league_3_league_points }}</span></div>
+                                </div>
+                            </div>
+                        @else
+                            <img src="/img/leagues/0_5.png">
+                            <div class="team_current_league_text">
+                                Unranked
+
+                                <div class="prediction">
+                                    Placement prediction: <span>{{ ucfirst($ranked_team->league_prediction) }}</span>
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4" style="padding-top: 0px;">
+                <div class="strip_all_tour_list" style="padding: 10px;">
+                    <h4>Members</h4>
+
+                    @if(Auth::check())
+                        @foreach($ranked_team->player() as $player)
+                        <div class="small_team_member">
+                            <div style="float: right">
+                                <a href="/summoner/{{ trim($player->summoner->region) }}/{{ trim($player->summoner->name) }}" class="bt_filters">View profile</a>
+                            </div>
+                            <img class="team_member_icon" src="http://ddragon.leagueoflegends.com/cdn/{{ Config::get('settings.patch') }}/img/profileicon/{{ $player->summoner->profileIconId }}.png">
+                            
+                            @if($player->summoner->summoner_id == $ranked_team->leader_summoner_id)
+                                <span style="font-weight: bold;color: #555;">Leader:</span>
+                            @endif
+                            {{ $player->summoner->name }}
+                        </div>
+                        @endforeach
+                    @else
+                        <div style="padding: 20px;color: rgba(0,0,0,0.5);text-align: center;">
+                            You need to <a href="/login">login</a> to see the members of this team.
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 strip_all_tour_list">
+                <div style="padding: 15px;">
+                    <h4>Team-Description</h4>
+                    @if($ranked_team->description AND trim($ranked_team->description) != "")
+                        {{ nl2br(trim($ranked_team->description)) }}
+                    @else
+                        No description written yet.
+                    @endif
+                </div>
+            </div>
+
+            <div class="col-md-4" style="padding-top: 0px;">
+                <div class="strip_all_tour_list" style="padding: 10px;">
+                    <h4>Information</h4>
+                    @if($ranked_team->looking_for_players == 1)
+                        <div style="text-align: center;padding: 15px;color: rgb(0, 126, 0);">Is looking for players.</div>
+                    @else
+                        <div style="text-align: center;padding: 15px;">Not looking for players at the moment.</div>
+                    @endif
+                </div>
+            </div>
 		</div>
 	</div>
 @stop
