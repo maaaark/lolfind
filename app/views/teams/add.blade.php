@@ -131,7 +131,6 @@
                                 loading_container.prepend(loading_screen);
                                 
                                 $.post("/teams/add/post_action", {"ranked_team_id": team_id}).done(function(data){
-                                    console.log(data);
                                     if(data.trim() == "error" || data.trim() == "already_added"){
                                         $("#team_add_btn").prop("disabled", true);
                                         
