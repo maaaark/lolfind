@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="/css/network.css">
     <link rel="stylesheet" href="/css/flashignite_dropdowns.css">
     <link rel="stylesheet" href="/css/flashignite_lightbox.css">
+    <link rel="stylesheet" href="/css/tooltipster.css">
     <link rel="stylesheet" href="/js/icheck/orange.css">
     @yield('css_addition')
     
@@ -42,6 +43,7 @@
     <script src="/js/jquery.flashignite_dropdown.js"></script>
     <script src="/js/flashignite_lightbox.js"></script>
     <script src="/js/icheck/icheck.min.js"></script>
+    <script src="/js/jquery.tooltipster.min.js"></script>
     <script src="/js/team_search_dropdowns.js"></script>
     <script src="/js/tabs.js"></script>
 
@@ -195,6 +197,9 @@
             checkboxClass: 'icheckbox_flat-orange',
             radioClass: 'iradio_flat-orange'
         });
+        
+        // Tooltips
+        $('.tooltips').tooltipster();
     });
 </script>
 

@@ -119,9 +119,9 @@
                                          elseif($player->summoner->solo_division == "IV"){ $pl_division = "4"; }
                                          elseif($player->summoner->solo_division == "V"){ $pl_division = "5"; }
                                       ?>
-                                      <img src="/img/leagues/{{ trim(strtolower($player->summoner->solo_tier)) }}_{{ trim($pl_division) }}.png" style="height: 22px;">
+                                      <img src="/img/leagues/{{ trim(strtolower($player->summoner->solo_tier)) }}_{{ trim($pl_division) }}.png" style="height: 22px;" class="tooltips" title="{{ trim(ucfirst(strtolower($player->summoner->solo_tier))) }} {{ trim($pl_division) }}">
                                    @else
-                                      <img src="/img/leagues/0_5.png" style="height: 22px;">
+                                      <img src="/img/leagues/0_5.png" style="height: 22px;" class="tooltip" title="Unranked">
                                    @endif
                                 </span>
                                 <a href="/summoner/{{ trim($player->summoner->region) }}/{{ trim($player->summoner->name) }}" class="bt_filters">View profile</a>
