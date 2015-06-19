@@ -168,29 +168,47 @@
     });
 
     $(document).ready(function(){
-        var login_box = $("#nw_login_box");
+        var login_box        = $("#nw_login_box");
+        var chats_box        = $("#nw_chats_box");
+        var notification_box = $("#nw_notifications_box");
         scrollNavigation();
 
-        $("#nw_login_btn").click(function(){
-            pos = $(this).offset();
-            pos = $(document).width() - parseInt(pos["left"]);
-            pos = pos - $(this).outerWidth(true);
-            login_box.css("right", pos);
+        $(".nw_box_btn").click(function(){
+            type        = $(this).attr("data-box");
+            current_box = false;
+            if(type == "login_box"){
+                current_box = login_box;
+            } else if(type == "chats_box"){
+                current_box = chats_box;
+            } else if(type == "notification_box"){
+                current_box = notification_box;
+            }
+            
+            if(current_box){
+                $(".nw_login_box.open").removeClass("open");
+                $(".nw_box_btn.active").removeClass("active");
+                
+                arrow_pos = Math.round($(this).outerWidth() / 2) - 11; // -11 = Hälfte der Breite des Pfeils
+                current_box.css("background-position", "top right "+parseInt(arrow_pos)+"px");
+                
+                pos = $(this).offset();
+                pos = $(document).width() - parseInt(pos["left"]);
+                pos = pos - $(this).outerWidth(true);
+                current_box.css("right", pos);
 
-            if(login_box.hasClass("open")){
-                login_box.removeClass("open");
-                $(this).removeClass("active");
-            } else {
-                $(this).addClass("active");
-                login_box.addClass("open");
+                if(current_box.hasClass("open")){
+                    current_box.removeClass("open");
+                    $(this).removeClass("active");
+                } else {
+                    $(this).addClass("active");
+                    current_box.addClass("open");
+                }
             }
         });
 
         $("#page_container").click(function(){
-            if(login_box.hasClass("open")){
-                login_box.removeClass("open");
-                $("#nw_login_btn").removeClass("active");
-            }
+            $(".nw_login_box.open").removeClass("open");
+            $(".nw_box_btn.active").removeClass("active");
         });
 
         $('input').iCheck({

@@ -66,6 +66,11 @@ header.page_navigation {
 	background: rgba(255,255,255,0.1);
 }
 
+.network_navi .nw_navi_el.account_icon {
+    font-size: 14px;
+    color: #A0A0A0;
+}
+
 .network_navi .account_part {
 	float: right;
 	margin-right: 20px;
@@ -76,22 +81,38 @@ header.page_navigation {
 	color: rgba(255,255,255,0.8);
 }
 
+.network_navi .account_icon {
+    cursor: pointer;
+}
+
+.network_navi .account_icon:hover {
+    color: #CFCFCF;
+}
+
 .nw_login_box {
 	position: absolute;
 	width: 380px;
-	height: 180px;
-	background: #fff;
-	border: 1px solid #ddd;
-	border-bottom-left-radius: 3px;
-	border-bottom-right-radius: 3px;
 	right: 20px;
 	display: none;
 	z-index: 25;
-	border-top: 2px solid #f25825;
+	background-image: url(../img/nw_box_arrow.png);
+	background-position: top right 8px;
+    background-repeat: no-repeat;
+      margin-top: -10px;
 }
 
 .nw_login_box.open {
 	display: block;
+}
+
+.nw_login_box .nw_box_content {
+	margin-top: 9px;
+	background: #fff;
+	height: 180px;
+	border: 1px solid #ddd;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+	border-top: 2px solid #f25825;
 }
 
 .nw_login_box .title {
