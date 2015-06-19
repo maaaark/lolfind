@@ -45,6 +45,7 @@ Route::get("/teams/{region}/{tag}/members", "TeamsController@detail");
 Route::get("/teams/{region}/{tag}/settings", "TeamsController@settings");
 Route::post("/teams/settings/post", "TeamsController@settings_post");
 Route::post("/teams/apply/start", "TeamsController@apply_lightbox");
+Route::post("/teams/apply/post", "TeamsController@apply_lightbox_post");
 
 
 // Players

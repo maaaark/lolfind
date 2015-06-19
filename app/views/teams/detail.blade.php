@@ -161,9 +161,12 @@
                     @if($ranked_team->looking_for_players == 1)
                         <div style="text-align: center;padding: 15px;color: rgb(0, 126, 0);">
                             Is looking for players.
-                            @if(Auth::check())
-                                @if(RankedTeam::checkSummonerIsInTeam(Auth::user()->summoner->summoner_id, $ranked_team->id) == false)
-                                    <div style="padding-top: 5px;"><a href="javascript:void(0);"class="btn_1 outline apply_team_btn">Apply the team</a></div>
+                            
+                            @if(($check = RankedTeam::loggedCanApplyToTeam($ranked_team->id)))
+                                @if($check == "can_apply")
+                                   <div style="padding-top: 5px;"><a href="javascript:void(0);"class="btn_1 outline apply_team_btn">Apply the team</a></div>
+                                @elseif($check == "already_applied")
+                                   <div style="padding-top: 5px;"><a href="javascript:void(0);"class="btn_1 outline apply_team_btn" disabled>Already applied</a></div>
                                 @endif
                             @endif
                         </div>

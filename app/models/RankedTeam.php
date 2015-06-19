@@ -156,4 +156,20 @@ class RankedTeam extends \Eloquent {
         }
         return false;
     }
+    
+    public static function loggedCanApplyToTeam($team){
+        if(Auth::check()){
+            $is_in_team = RankedTeam::checkSummonerIsInTeam(Auth::user()->summoner->summoner_id, $team);
+            if($is_in_team){
+               return false;
+            }
+            
+            $check = RankedTeamApplication::where("team", "=", $team)->where("user", "=", Auth::user()->id)->first();
+            if($check && $check->id && $check->id > 0){
+                return "already_applied";
+            }
+            return "can_apply";
+        }
+        return false;
+    }
 }

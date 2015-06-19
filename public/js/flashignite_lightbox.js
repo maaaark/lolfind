@@ -1,6 +1,7 @@
 var already_set_lightbox_content = false;
 var animation_speed_lightbox     = 500;
-var lightbox_open				 = false;
+var lightbox_open				      = false;
+var lightbox_bg_close            = true;
 
 function init__FI_Lightbox(){
 	html = '<div id="fi_lightbox_bg" class="fi_lightbox_bg"></div>';
@@ -22,7 +23,8 @@ function showLightbox(content, callback, width){
 		if(typeof content != "undefined"){
 			$("#fi_lightbox .content").html(content);
 		}
-
+      
+      $("body").css("overflow", "hidden");
 		$("#fi_lightbox").attr("style", "");
 		if(typeof width != "undefined" && width != false && width != null){
 			$("#fi_lightbox").attr("style", "max-width: "+width);
@@ -39,10 +41,13 @@ function showLightbox(content, callback, width){
 		});
 
 		$("#fi_lightbox_bg").click(function(){
-			hideLightbox();
-			lightbox_open = false;
+         if(lightbox_bg_close){
+            hideLightbox();
+            lightbox_open = false;
+			}
 		});
-
+      
+      $("#fi_lightbox .close_btn").show();
 		$("#fi_lightbox .close_btn").click(function(){
 			hideLightbox();
 			lightbox_open = false;
@@ -50,7 +55,24 @@ function showLightbox(content, callback, width){
 	}
 }
 
+function allowLightboxCloseBG(status){
+   if(status == true){
+      lightbox_bg_close = true;
+   } else {
+      lightbox_bg_close = false;
+   }
+}
+
+function lightboxCloseBtn(status){
+   if(status == false){
+      $("#fi_lightbox .close_btn").hide();
+   } else {
+      $("#fi_lightbox .close_btn").show();
+   }
+}
+
 function hideLightbox(){
+   $("body").css("overflow", "auto");
 	$("#fi_lightbox_bg").animate({"opacity" : "0"}, (animation_speed_lightbox * 0.6), "linear", function(){
 		$("#fi_lightbox_bg").hide();
 		lightbox_open = false;
@@ -62,4 +84,5 @@ function hideLightbox(){
 		lightbox_open = false;
 	});
 	lightbox_open = false;
+	lightbox_bg_close = true;
 }

@@ -427,4 +427,25 @@ class TeamsController extends \BaseController {
         }
         echo "error";
     }
+    
+    public function apply_lightbox_post(){
+        if(Input::get("team") && Auth::check()){
+           if(RankedTeam::loggedCanApplyToTeam(Input::get("team")) == "can_apply"){
+               $apply = new RankedTeamApplication();
+               $apply->team = Input::get("team");
+               $apply->user = Auth::user()->id;
+               //$apply->role = Input::get("role");
+               
+               if(Input::get("comment") && trim(Input::get("comment")) != ""){
+                  $apply->comment = trim(Input::get("comment"));
+               }
+               $apply->save();
+               echo "success";
+           } else {
+               echo "error";
+           }
+        } else {
+           echo "error";
+        }
+    }
 }

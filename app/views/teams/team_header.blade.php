@@ -84,9 +84,11 @@
     		<div class="team_icon"></div>
         	<div class="team_title text-shadow">
         		{{ $ranked_team->name }}
-        		@if(Auth::check())
-                    @if(RankedTeam::checkSummonerIsInTeam(Auth::user()->summoner->summoner_id, $ranked_team->id) == false)
-                        <button class="button_intro outline apply_team_btn" style="float: right;margin-left: 15px;margin-top: -5px;">Apply the team</button>
+                @if(($check = RankedTeam::loggedCanApplyToTeam($ranked_team->id)))
+                    @if($check == "can_apply")
+                       <button class="button_intro outline apply_team_btn" style="float: right;margin-left: 15px;margin-top: -5px;">Apply the team</button>
+                    @elseif($check == "already_applied")
+                       <button class="btn_1 apply_team_btn" style="float: right;margin-left: 15px;margin-top: -5px;" disabled>Already applied</button>
                     @endif
                 @endif
         		<div class="small_team_info">{{ trim(strtoupper($ranked_team->region)) }} | {{ trim(strtoupper($ranked_team->tag)) }}</div>
@@ -112,7 +114,7 @@
     </div>
     
     @if(Auth::check())
-        @if(RankedTeam::checkSummonerIsInTeam(Auth::user()->summoner->summoner_id, $ranked_team->id) == false)
+        @if(RankedTeam::loggedCanApplyToTeam($ranked_team->id))
             <script>
             $(document).ready(function(){
                 $(".apply_team_btn").click(function(){

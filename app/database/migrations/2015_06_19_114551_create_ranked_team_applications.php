@@ -17,7 +17,8 @@ class CreateRankedTeamApplications extends Migration {
 			$table->increments('id');
 			$table->integer("user");
 			$table->integer("team");
-			$table->integer("comment");
+			$table->text("comment");
+			$table->string("role");
 			$table->timestamps();
 		});
 	}
