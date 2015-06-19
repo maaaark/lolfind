@@ -2290,6 +2290,10 @@ ul.list_order li span {
     background: transparent;
     position:relative;
 }
+.medium-parallax-window .medium-parallax-content {
+   padding-left: 15%;
+   padding-right: 15%;
+}
 .medium-parallax-window .medium-parallax-content h1 {
     text-align: center;
     padding-top: 100px;

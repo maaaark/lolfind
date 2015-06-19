@@ -110,6 +110,20 @@
                         @foreach($ranked_team->player() as $player)
                         <div class="small_team_member">
                             <div style="float: right">
+                                <span style="padding-right: 5px;">
+                                   @if($player->summoner->solo_tier AND trim($player->summoner->solo_tier) != "" AND trim($player->summoner->solo_tier) != "none")
+                                      <?php
+                                         $pl_division = "1";
+                                         if($player->summoner->solo_division == "II"){ $pl_division = "2"; }
+                                         elseif($player->summoner->solo_division == "III"){ $pl_division = "3"; }
+                                         elseif($player->summoner->solo_division == "IV"){ $pl_division = "4"; }
+                                         elseif($player->summoner->solo_division == "V"){ $pl_division = "5"; }
+                                      ?>
+                                      <img src="/img/leagues/{{ trim(strtolower($player->summoner->solo_tier)) }}_{{ trim($pl_division) }}.png" style="height: 22px;">
+                                   @else
+                                      <img src="/img/leagues/0_5.png" style="height: 22px;">
+                                   @endif
+                                </span>
                                 <a href="/summoner/{{ trim($player->summoner->region) }}/{{ trim($player->summoner->name) }}" class="bt_filters">View profile</a>
                             </div>
                             <img class="team_member_icon" src="http://ddragon.leagueoflegends.com/cdn/{{ Config::get('settings.patch') }}/img/profileicon/{{ $player->summoner->profileIconId }}.png">
