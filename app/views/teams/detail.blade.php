@@ -4,8 +4,8 @@
    <link rel="stylesheet" href="/css/teams.css">
 @stop
 @section('header')
-    <section class="parallax-window" data-parallax="scroll" data-image-src="/img/player_background.jpg" data-natural-width="1400" data-natural-height="470">
-        <div class="parallax-content-1">
+    <section class="medium-parallax-window" data-parallax="scroll" data-image-src="/img/player_background.jpg" data-natural-width="1400" data-natural-height="470">
+        <div class="medium-parallax-content">
             @include("teams.team_header")
             <script>$("#team_navi_link_main").addClass("active");</script>
         </div>
