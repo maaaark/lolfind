@@ -10,7 +10,16 @@
             <div class="nw_navi_el account_icon nw_box_btn" data-box="notification_box"><i class="icon-globe-6"></i></div>
             <div class="nw_login_box" id="nw_notifications_box">
                 <div class="nw_box_content">
-                    Notifications
+                    <div class="title">{{ Lang::get('users.notifications') }}</div>
+                    <div id="notification_content">
+                        @if(($notifactions = Auth::user()->notifications()))
+                        
+                        @else
+                            <div style="padding: 35px;text-align: center;">
+                                {{ Lang::get('user.no_notifications') }}
+                            </div>
+                        @endif
+                    </div>
                 </div>
             </div>
             
