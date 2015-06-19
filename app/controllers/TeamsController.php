@@ -340,7 +340,7 @@ class TeamsController extends \BaseController {
                 }
 
                 if($check){
-                    $ranked_team = RankedTeam::update_team(trim(Input::get("ranked_team_id")), $region);
+                    $ranked_team = RankedTeam::update_team(trim(Input::get("ranked_team_id")), $region, true);
                     if($ranked_team){
                         echo json_encode(array("status" => "success", "data" => $ranked_team->id));
                     } else {

@@ -13,7 +13,7 @@ class RankedTeam extends \Eloquent {
         return $this->hasMany('RankedTeamPlayer', 'team', "team_internal_id");
     }
 
-    public static function update_team($full_team_id, $region){
+    public static function update_team($full_team_id, $region, $insert_mode = false){
     	$api_key = Config::get('api.key');
         $content = @file_get_contents("https://".trim($region).".api.pvp.net/api/lol/".trim($region)."/v2.4/team/".trim($full_team_id)."?api_key=".trim($api_key));
         $json    = json_decode($content, true);
@@ -31,8 +31,11 @@ class RankedTeam extends \Eloquent {
         	}
             $ranked_team->name               = $team["name"];
             $ranked_team->tag                = $team["tag"];
-            $ranked_team->adder_summoner_id  = Auth::user()->summoner->summoner_id;
             $ranked_team->leader_summoner_id = $team["roster"]["ownerId"];
+            
+            if($insert_mode && Auth::check()){
+                $ranked_team->adder_summoner_id  = Auth::user()->summoner->summoner_id;
+            }
             
             // Liga-Platzierung laden
             $league_5       = "bronze";
