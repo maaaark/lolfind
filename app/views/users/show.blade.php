@@ -26,47 +26,49 @@
             <div class="col-md-8 strip_all_tour_list">
                 <div style="padding: 15px;">
                     <div class="row">
-                        <div class="col-md-4">
-                            <h4>Main Roles</h4>
-                            <table>
-                                <tr>
-                                    <td valign="top">
-                                        @foreach($user->playerroles as $role)
-                                            @if($role->looking_for_top == 1)
-                                                <img src="/img/roles/tank.jpg" class="img-circle" width="35" />
-                                            @endif
-                                            @if($role->looking_for_jungle == 1)
-                                                <img src="/img/roles/fighter.jpg" class="img-circle" width="35" />
-                                            @endif
-                                            @if($role->looking_for_mid == 1)
-                                                <img src="/img/roles/mage.jpg" class="img-circle" width="35" />
-                                            @endif
-                                            @if($role->looking_for_adc == 1)
-                                                <img src="/img/roles/marksman.jpg" class="img-circle" width="35" />
-                                            @endif
-                                            @if($role->looking_for_support == 1)
-                                                <img src="/img/roles/support.jpg" class="img-circle" width="35" />
-                                            @endif
-                                        @endforeach
-                                    </td>
-                                    <td valign="top">
+                        <div class="col-md-6">
+                            <h4>Roles</h4>
+                            @foreach($user->playerroles as $role)
+                                @if($role->role_id == 1)
+                                    <div class="player_role img-circle"></div><img src="/img/roles/tank.jpg" class="img-circle" width="35" /></div>
+                                @endif
+                                @if($role->role_id == 2)
+                                    <div class="player_role img-circle"><img src="/img/roles/fighter.jpg" class="img-circle" width="35" /></div>
+                                @endif
+                                @if($role->role_id == 3)
+                                     <div class="player_role img-circle"><img src="/img/roles/mage.jpg" class="img-circle" width="35" /></div>
+                                @endif
+                                @if($role->role_id == 4)
+                                     <div class="player_role img-circle"><img src="/img/roles/marksman.jpg" class="img-circle" width="35" /></div>
+                                @endif
+                                @if($role->role_id == 5)
+                                     <div class="player_role img-circle"><img src="/img/roles/support.jpg" class="img-circle" width="35" /></div>
+                                @endif
+                            @endforeach
+                        <div class="clearfix"></div>
+                        
 
-                                    </td>
-                                </tr>
-                            </table>
+                        <div class="col-md-6">
+                            <h4>Top Champions</h4>
+                            <div class="player_role img-circle"></div>
+                            <div class="player_role img-circle"></div>
+                            <div class="player_role img-circle"></div>
+                            <div class="player_role img-circle"></div>
+                            <div class="player_role img-circle"></div>
+                            <div class="clearfix"></div>
                         </div>
-                        <div class="col-md-4">
-                            <h4>Favorite Champions</h4>
-                        </div>
-                        <div class="col-md-4">
-                            <h4>Main Roles</h4>
-                        </div>
+
                     </div>
-
                 </div>
             </div>
+        </div>
+
 
             <div class="col-md-4" style="padding-top: 0px;">
+                <div class="strip_all_tour_list" style="padding: 10px;">
+                    <h4>Contact</h4>
+                    <button href="#" class="btn_1">Contact this user</button>
+                </div>
                 <div class="strip_all_tour_list" style="padding: 10px;">
                     <h4>Solo Queue</h4>
                     <img src="/img/leagues/{{ trim(strtolower($user->summoner->solo_tier)) }}_1.png" class="tooltips" title="{{ trim(ucfirst(strtolower($user->summoner->solo_tier))) }}">
@@ -77,7 +79,7 @@
         <div class="row">
             <div class="col-md-8 strip_all_tour_list">
                 <div style="padding: 15px;">
-                    <h4>Team-Description</h4>
+                    <h4>Description</h4>
 
                 </div>
             </div>

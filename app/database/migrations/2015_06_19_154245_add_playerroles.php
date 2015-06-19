@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
-class 20150619164155CreatePlayerrole extends Migration {
+class AddPlayerroles extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -27,6 +27,7 @@ class 20150619164155CreatePlayerrole extends Migration {
         });
 	}
 
+
 	/**
 	 * Reverse the migrations.
 	 *
@@ -34,7 +35,10 @@ class 20150619164155CreatePlayerrole extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::table('playerroles', function(Blueprint $table)
+		{
+			
+		});
 	}
 
 }
