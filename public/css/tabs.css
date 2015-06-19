@@ -1,0 +1,40 @@
+.tabs_holder .tabs:after {
+	clear: both;
+	content: '';
+	display: block;
+}
+
+.tabs_holder .tabs .tab {
+	float: left;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-bottom: none;
+	padding: 6px 8px;
+	color: #888;
+	margin-right: 10px;
+	cursor: pointer;
+}
+
+.tabs_holder .tabs .tab.active {
+	border-bottom: 2px solid #fff;
+	margin-bottom: -1px;
+}
+
+.tabs_holder .tab_content {
+	display: none;
+	border: 1px solid #ddd;
+	padding: 15px;
+	background: #fff;
+}
+
+.tabs_holder .tab_content.no_padding {
+	padding: 0px;
+}
+
+.tabs_holder .tab_content.no_background, .tabs_holder .tab_content.no_bg {
+	background: transparent;
+}
+
+.tabs_holder .tab_content.active {
+	display: block;
+}

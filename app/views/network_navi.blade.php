@@ -6,14 +6,14 @@
         @else
             <div class="login_btn nw_navi_el hovered" id="nw_login_btn"><i class="fa fa-sign-in"></i> {{ Lang::get('users.login') }}</div>
             <div class="login_btn nw_navi_el hovered"><i class="fa fa-user"></i> {{ Lang::get('users.register') }}</div>
-            {{ Form::open(array('url' => '/dologin')) }}
             <div class="nw_login_box" id="nw_login_box">
+               {{ Form::open(array('url' => '/dologin')) }}
                 <div class="title">{{ Lang::get('users.login') }}</div>
                 <div class="box">
                     <table class="login_input">
                         <tr>
                             <td class="pre">
-                                <i class="fa fa-user"></i>
+                                <i class="icon-user-2"></i>
                             </td>
                             <td class="in">
                                 {{ Form::text('email', Input::old('email'), array('placeholder' => Lang::get('users.placeholder_email'))) }}
@@ -21,7 +21,7 @@
                         </tr>
                         <tr>
                             <td class="pre">
-                                <i class="fa fa-key"></i>
+                                <i class="icon-key-2"></i>
                             </td>
                             <td class="in">
                                 {{ Form::password('password', array("placeholder" => Lang::get('users.placeholder_password'))) }}
@@ -29,12 +29,12 @@
                         </tr>
                     </table>
                     <div style="float: right;padding-top: 3px;">
-                        {{ Form::submit(Lang::get("users.login"), array('class' => 'small')) }}
+                        {{ Form::submit(Lang::get("users.login"), array('class' => 'button_intro')) }}
                     </div>
                     <div style="padding-top: 8px;"><a href="#">{{ Lang::get('users.forgot_pw') }}</a></div>
                 </div>
+               {{ Form::close() }}
             </div>
-            {{ Form::close() }}
         @endif
 	</div>
 	<div class="network_logo">FLASHIGNITE Network</div>

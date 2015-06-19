@@ -3,10 +3,29 @@
 @section('css_addition')
    <link rel="stylesheet" href="/css/teams.css">
 @stop
+@section('header')
+    <section class="small-parallax-window" data-parallax="scroll" data-image-src="/img/player_background.jpg" data-natural-width="1400" data-natural-height="470">
+        <div class="small-parallax-content">
+            <div class="animated fadeInDown">
+                <h1>Add a new team</h1>
+                <p>Select your team and click the continue button.</p>
+            </div>
+        </div>
+    </section><!-- End section -->
+    <div id="position">
+        <div class="container">
+            <ul>
+                <li><a href="/">Teamranked.com</a></li>
+                <li><a href="/teams">Teams</a></li>
+                <li>Add a team</li>
+            </ul>
+        </div>
+    </div><!-- Position -->
+@stop
 @section('content')
    <div class="container margin_30">
    <div class="content">
-      <h1>{{ Lang::get("teams.add.site_title") }}</h1>
+      <h2>{{ Lang::get("teams.add.site_title") }}</h2>
       <div class="team_add_description">
          {{ Lang::get("teams.add.add_description") }}
       </div>
@@ -38,7 +57,7 @@
                       </div>
                       <div class="team_add_continue_flat">
                          <span id="team_add_status"></span>
-                         <button id="team_add_btn" class="small" disabled>{{ Lang::get("main.continue") }}</button>
+                         <button id="team_add_btn" class="btn_1" disabled>{{ Lang::get("main.continue") }}</button>
                       </div>
                   </div>
                </div>

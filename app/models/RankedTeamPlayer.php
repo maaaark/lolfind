@@ -7,4 +7,5 @@ class RankedTeamPlayer extends \Eloquent {
     {
         return $this->belongsTo('Summoner', "summoner_id", "summoner_id");
     }
+
 }

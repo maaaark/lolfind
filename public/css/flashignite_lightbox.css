@@ -9,7 +9,7 @@
 }
 
 .fi_lightbox {
-	position: absolute;
+	position: fixed;
 	margin-left: auto;
 	margin-right: auto;
 	left: 0;
@@ -21,6 +21,8 @@
 	display: none;
 	z-index: 1001;
 	opacity: 0;
+	max-height: 75%;
+	overflow: auto;
 }
 
 .fi_lightbox .content {
@@ -57,6 +59,7 @@
 
 	.fi_lightbox .content {
 		background: rgba(255,255,255,0);
+        max-height: none;
 	}
 
 	.fi_lightbox .close_btn {

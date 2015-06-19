@@ -19,6 +19,7 @@ Route::get('/account/edit', 'UsersController@edit');
 Route::get('/summoner/{region}/{name}', 'UsersController@show');
 Route::get('/user', 'UsersController@index');
 Route::get('/login', 'UsersController@login');
+Route::get('/logout', 'UsersController@logout');
 Route::get('/register', 'UsersController@create');
 Route::get('/register/step1', 'UsersController@step1');
 Route::get('/register/step2', 'UsersController@step2');
@@ -32,14 +33,19 @@ Route::post('/account/update', 'UsersController@updateAccount');
 
 // Teams
 Route::get("/teams", "TeamsController@index");
+Route::get("/teams/league/{league1}", "TeamsController@index");
+Route::get("/teams/league/{league1}/{league2}", "TeamsController@index");
 Route::post("/teams/team_list_suggestions", "TeamsController@list_suggestions");
 Route::get("/teams/add", "TeamsController@add");
 Route::post("/teams/add/rankedTeams", "TeamsController@getLoggedRankedTeams");
 Route::post("/teams/add/post_action", "TeamsController@add_post");
+Route::get("/teams/update_team/{team_id}", "TeamsController@updateTeam");
 Route::get("/teams/{region}/{tag}", "TeamsController@detail");
 Route::get("/teams/{region}/{tag}/members", "TeamsController@detail");
 Route::get("/teams/{region}/{tag}/settings", "TeamsController@settings");
 Route::post("/teams/settings/post", "TeamsController@settings_post");
+Route::post("/teams/apply/start", "TeamsController@apply_lightbox");
+Route::post("/teams/apply/post", "TeamsController@apply_lightbox_post");
 
 
 // Players

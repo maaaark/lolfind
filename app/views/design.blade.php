@@ -23,12 +23,17 @@
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Gochi+Hand' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
-
+    <link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+    
     <link href="/rs-plugin/css/settings.css" rel="stylesheet">
     <link href="/css/extralayers.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/network.css">
     <link rel="stylesheet" href="/css/flashignite_dropdowns.css">
-
+    <link rel="stylesheet" href="/css/flashignite_lightbox.css">
+    <link rel="stylesheet" href="/css/tooltipster.css">
+    <link rel="stylesheet" href="/js/icheck/orange.css">
+    @yield('css_addition')
+    
     <!--[if lt IE 9]>
     <script src="/js/html5shiv.min.js"></script>
     <script src="/js/respond.min.js"></script>
@@ -36,8 +41,11 @@
 
     <script src="/js/jquery-1.11.2.min.js"></script>
     <script src="/js/jquery.flashignite_dropdown.js"></script>
+    <script src="/js/flashignite_lightbox.js"></script>
     <script src="/js/icheck/icheck.min.js"></script>
+    <script src="/js/jquery.tooltipster.min.js"></script>
     <script src="/js/team_search_dropdowns.js"></script>
+    <script src="/js/tabs.js"></script>
 
     @if(Auth::check())
         <!-- FI-Network Server -->
@@ -81,14 +89,13 @@
 <!-- Mobile menu overlay mask -->
 
 <!-- Header================================================== -->
-<header>
-
+<header class="page_navigation">
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-sm-3 col-xs-3">
                 <div id="logo">
-                    <a href="/"><img src="img/teamranked_white.png" width="160" height="34" alt="Teamranked.com" data-retina="true" class="logo_normal"></a>
-                    <a href="/"><img src="img/teamranked_black.png" width="160" height="34" alt="Teamranked.com" data-retina="true" class="logo_sticky"></a>
+                    <a href="/"><img src="/img/teamranked_white.png" width="220" alt="Teamranked.com" data-retina="true" class="logo_normal"></a>
+                    <a href="/"><img src="/img/teamranked_black.png" width="220" alt="Teamranked.com" data-retina="true" class="logo_sticky"></a>
                 </div>
             </div>
             <nav class="col-md-9 col-sm-9 col-xs-9">
@@ -119,28 +126,26 @@
         </div>
     </div><!-- container -->
 </header><!-- End Header -->
-
-@yield('header')
-
-    @include('layouts.errors')
-    @yield('content')
-
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div id="social_footer">
-                    <ul>
-                        <li><a href="#"><i class="icon-facebook"></i></a></li>
-                        <li><a href="#"><i class="icon-twitter"></i></a></li>
-                    </ul>
-                    <p>© Teamranked.com &amp; Flashignite.com 2015</p>
-                </div>
-            </div>
-        </div><!-- End row -->
-    </div><!-- End container -->
-</footer><!-- End footer -->
-
+<div id="page_container">
+   @yield('header')
+   @include('layouts.errors')
+   @yield('content')
+   <footer>
+       <div class="container">
+           <div class="row">
+               <div class="col-md-12">
+                   <div id="social_footer">
+                       <ul>
+                           <li><a href="#"><i class="icon-facebook"></i></a></li>
+                           <li><a href="#"><i class="icon-twitter"></i></a></li>
+                       </ul>
+                       <p>© Teamranked.com &amp; Flashignite.com 2015</p>
+                   </div>
+               </div>
+           </div><!-- End row -->
+       </div><!-- End container -->
+   </footer><!-- End footer -->
+</div>
 <div id="toTop"></div><!-- Back to top button -->
 
 <script>
@@ -181,7 +186,7 @@
             }
         });
 
-        $("#content").click(function(){
+        $("#page_container").click(function(){
             if(login_box.hasClass("open")){
                 login_box.removeClass("open");
                 $("#nw_login_btn").removeClass("active");
@@ -192,6 +197,9 @@
             checkboxClass: 'icheckbox_flat-orange',
             radioClass: 'iradio_flat-orange'
         });
+        
+        // Tooltips
+        $('.tooltips').tooltipster();
     });
 </script>
 

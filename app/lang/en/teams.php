@@ -19,15 +19,15 @@ return array(
 
    "search" => array(
       "title"                => "Search for teams",
-      "select_sec"           => "Customize the filters below to find the perfect summoner for your team:",
-      "region"               => "Region:",
-      "league"               => "Solo Q League:",
-      "primary_lang"         => "Primary language:",
-      "scundary_lang"        => "Alternative language:",
-      "primary_role"         => "Main role",
-      "secundary_role"       => "Alternative role",
+      "region"               => "Region",
+      "league"               => "League",
+      "primary_lang"         => "Primary language",
+      "secundary_lang"       => "Alternative language",
+      "primary_role"         => "Open role",
+      "secundary_role"       => "Second open role",
       "update_btn"           => "Update list",
       "none"                 => "None",
+      "any"                  => "Any",
 
       "team_suggestions"     => "Team suggestions",
       "need_update_list"     => "You need to update the list: You can do this by customizing the filters on the left side and click the button 'Update List'"
