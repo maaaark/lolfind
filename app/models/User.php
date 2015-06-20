@@ -241,4 +241,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         }
         return $return;
     }
+    
+    public function chats(){
+        $return = false;
+        if(Auth::check()){
+            return Chats::chatsList(Auth::user()->id);
+        }
+        return $return;
+    }
 }

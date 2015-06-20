@@ -67,7 +67,7 @@
             <div class="col-md-4" style="padding-top: 0px;">
                 <div class="strip_all_tour_list" style="padding: 10px;">
                     <h4>Contact</h4>
-                    <button href="#" class="btn_1">Contact this user</button>
+                    <button href="#" class="btn_1" onclick="fi_server_open_chat({{ $user->id }}, '{{ $user->summoner->name }}')">Send meesage</button>
                 </div>
                 <div class="strip_all_tour_list" style="padding: 10px;">
                     <h4>Solo Queue</h4>

@@ -4,7 +4,21 @@
             <div class="nw_navi_el account_icon nw_box_btn" data-box="chats_box"><i class="icon-chat-5"></i></div>
             <div class="nw_login_box nw_box_btn" id="nw_chats_box">
                 <div class="nw_box_content">
-                    Chats
+                    <div class="title">{{ Lang::get('users.chats') }}</div>
+                    <div id="chats_content">
+                        @if(($chats = Auth::user()->chats()))
+                            @foreach($chats as $chat)
+                                <div style="padding: 10px;border-bottom: 1px solid rgba(0,0,0,0.1);">
+                                    <div style="font-weight: bold;">{{ $chat->otherUser(Auth::check())->summoner->name }}</div>
+                                    <div>{{ $chat->message }}</div>
+                                </div>
+                            @endforeach
+                        @else
+                            <div style="padding: 35px;text-align: center;">
+                                {{ Lang::get('user.no_chats') }}
+                            </div>
+                        @endif
+                    </div>
                 </div>
             </div>
             <div class="nw_navi_el account_icon nw_box_btn" data-box="notification_box"><i class="icon-globe-6"></i></div>
@@ -13,7 +27,7 @@
                     <div class="title">{{ Lang::get('users.notifications') }}</div>
                     <div id="notification_content">
                         @if(($notifactions = Auth::user()->notifications()))
-                        
+                            {{ $notifications }}
                         @else
                             <div style="padding: 35px;text-align: center;">
                                 {{ Lang::get('user.no_notifications') }}

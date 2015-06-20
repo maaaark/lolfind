@@ -43,7 +43,7 @@ function fi_server_chat_handle_incoming(json){
 	} else {
 		fi_server_open_chat(json["sender"], "Sendername");
 	}
-	fi_server_chat_add_text(json["sender"], json["message"]);
+	fi_server_chat_add_text(json["sender"], json);
 }
 
 function fi_server_open_chat(userid, name){
@@ -72,7 +72,7 @@ function fi_server_bind_chat_sends(){
 		if(e.which == 13){ // Enter
 			if($(this).val().trim() != ""){
 				fi_server_send({"type": "chat", "message": { "message": $(this).val().trim(), "receiver": $(this).attr("data-uId")}});
-				fi_server_chat_add_text($(this).attr("data-uId"), $(this).val().trim());
+				fi_server_chat_add_text($(this).attr("data-uId"), {"message": $(this).val().trim(), "sender_username": fi_server_username});
 			}
 			$(this).val('');
 		}
@@ -92,9 +92,9 @@ function fi_server_bind_window_options(){
 	});
 }
 
-function fi_server_chat_add_text(chat_user_id, message){
+function fi_server_chat_add_text(chat_user_id, json){
 	element = $("#chat_holder #chat_window_"+chat_user_id);
-	element.find(".chat_content").append("<div><b>"+chat_user_id+":</b> "+message+"</div>");
+	element.find(".chat_content").append("<div><b>"+json["sender_username"]+":</b> "+json["message"]+"</div>");
 }
 
 function fi_server_chat_send(value){
