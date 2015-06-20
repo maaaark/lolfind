@@ -51,10 +51,12 @@
         <!-- FI-Network Server -->
         <link rel="stylesheet" href="/css/chat.css">
         <script>
-            var fi_server_host = "ws://{{ trim($_SERVER['SERVER_ADDR']) }}:8080/";
-            //var fi_server_host = "ws://127.0.0.1:8080/";
-            var fi_server_user = {{ Auth::user()->id }};
-            var fi_server_username = "{{ Auth::user()->summoner->name }}";
+            //var fi_server_host      = "ws://{{ trim($_SERVER['SERVER_ADDR']) }}:8080/";
+            var fi_server_host      = "ws://127.0.0.1:8080/";
+            var fi_server_user      = {{ Auth::user()->id }};
+            var fi_server_username  = "{{ Auth::user()->summoner->name }}";
+            var fi_server_user_icon = "{{ Auth::user()->summoner->profileIconId }}";
+            var fi_server_lol_patch = "{{ Config::get('settings.patch') }}";
         </script>
         <script src="/js/fi_network_server.js"></script>
         <script>

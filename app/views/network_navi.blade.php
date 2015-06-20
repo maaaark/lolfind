@@ -5,14 +5,34 @@
             <div class="nw_login_box nw_box_btn" id="nw_chats_box">
                 <div class="nw_box_content">
                     <div class="title">{{ Lang::get('users.chats') }}</div>
-                    <div id="chats_content">
+                    <div id="chats_content" class="nw_chats_box">
                         @if(($chats = Auth::user()->chats()))
                             @foreach($chats as $chat)
-                                <div style="padding: 10px;border-bottom: 1px solid rgba(0,0,0,0.1);">
-                                    <div style="font-weight: bold;">{{ $chat->otherUser(Auth::check())->summoner->name }}</div>
-                                    <div>{{ $chat->message }}</div>
+                                <div class="chat_box_element" id="nw_chat_box_element_{{ $chat->otherUser(Auth::check())->id }}" data-uID="{{ $chat->otherUser(Auth::check())->id }}" data-uName="{{ $chat->otherUser(Auth::check())->summoner->name }}">
+                                    <img src="http://ddragon.leagueoflegends.com/cdn/{{ Config::get('settings.patch') }}/img/profileicon/{{ $chat->otherUser(Auth::check())->summoner->profileIconId }}.png" class="chat_summoner_icon">
+                                    <div class="chat_element_title">{{ $chat->otherUser(Auth::check())->summoner->name }}</div>
+                                    <div>
+                                        @if(Auth::user()->id == $chat->receiver)
+                                            <i class="icon-reply" style="color: rgba(0,0,0,0.2);"></i>
+                                        @endif
+                                        @if(strlen($chat->message) > 80)
+                                            {{ substr($chat->message, 0, 80) }} ...
+                                        @else
+                                            {{ $chat->message }}
+                                        @endif
+                                    </div>
+                                    <div class="chat_element_date">
+                                        {{ Helpers::diffForHumans($chat->created_at) }}
+                                    </div>
                                 </div>
                             @endforeach
+                            <script>
+                                $(document).ready(function(){
+                                    $("#nw_chats_box #chats_content .chat_box_element").click(function(){
+                                        fi_server_open_chat($(this).attr("data-uID"), $(this).attr("data-uName"));
+                                    });
+                                });
+                            </script>
                         @else
                             <div style="padding: 35px;text-align: center;">
                                 {{ Lang::get('user.no_chats') }}

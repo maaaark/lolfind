@@ -154,3 +154,35 @@ header.page_navigation {
 	vertical-align: center;
 	background: rgba(239, 239, 239, 1);
 }
+
+/* Chats Box */
+.nw_box_content .nw_chats_box .chat_box_element {
+    padding: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+.nw_box_content .nw_chats_box .chat_box_element:hover {
+    background: rgb(252, 226, 207);
+}
+
+.nw_box_content .nw_chats_box .chat_box_element img.chat_summoner_icon {
+    border-radius: 50%;
+    float: left;
+    height: 60px;
+    margin-right: 8px;
+}
+
+.nw_box_content .nw_chats_box .chat_box_element .chat_element_title {
+    font-weight: bold;
+    color: #000;
+}
+
+.nw_box_content .nw_chats_box .chat_box_element .chat_element_date {
+    font-size: 9px;
+    margin-top: 2px;
+    color: rgba(0,0,0,0.6);
+}

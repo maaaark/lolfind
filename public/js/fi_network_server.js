@@ -43,13 +43,14 @@ function fi_server_chat_handle_incoming(json){
 	} else {
 		fi_server_open_chat(json["sender"], "Sendername");
 	}
-	fi_server_chat_add_text(json["sender"], json);
+	fi_server_chat_add_text(json["sender"], json, true);
 }
 
 function fi_server_open_chat(userid, name){
 	element = $("#chat_holder #chat_window_"+userid);
 	if(typeof element != "undefiend" && element && element.html() && element.html().trim() != ""){
-		// Chat Fenster bereits offen -> focus darauf legen
+		element.removeClass("minimized");
+		element.find(".chat_value_input").focus();
 	} else {
 		html  = '<div id="chat_window_'+userid+'" class="chat_window">';
 		html += '<div class="minimized_view">'+name+'</div>';
@@ -64,6 +65,7 @@ function fi_server_open_chat(userid, name){
 		$("#chat_holder").append(html);
 		fi_server_bind_chat_sends();
 		fi_server_bind_window_options();
+		$("#chat_holder #chat_window_"+userid).find(".chat_value_input").focus();
 	}
 }
 
@@ -92,20 +94,34 @@ function fi_server_bind_window_options(){
 	});
 }
 
-function fi_server_chat_add_text(chat_user_id, json){
+function fi_server_chat_add_text(chat_user_id, json, incoming_message){
 	element = $("#chat_holder #chat_window_"+chat_user_id);
 	element.find(".chat_content").append("<div><b>"+json["sender_username"]+":</b> "+json["message"]+"</div>");
+	
+	if(typeof incoming_message != "undefined" && incoming_message){
+        fi_server_update_nw_chat_list(json, json["sender"], true);
+    } else {
+        fi_server_update_nw_chat_list(json, fi_server_user);
+    }
 }
 
-function fi_server_chat_send(value){
-	var txt,msg;
-	txt = $("msg");
-	msg = txt.value;
-	if(!msg) { 
-		alert("Message can not be empty"); 
-		return; 
-	}
-	txt.value="";
-	txt.focus();
-	fi_server_send({"type": "chat", "message": { "message": msg, "receiver": 2}}); 
+function fi_server_update_nw_chat_list(json, chat_other_user, incoming_message_status){
+    $("#nw_chats_box #nw_chat_box_element_"+chat_other_user).remove();
+    
+    sender_username_temp = fi_server_username;
+    sender_icon_temp     = fi_server_user_icon;
+    if(typeof incoming_message_status != "undefined" && incoming_message_status){
+        sender_username_temp = json["sender_username"];
+        sender_icon_temp     = json["sender_icon"];
+    }
+    
+    html  = '<div class="chat_box_element" id="nw_chat_box_element_'+chat_other_user+'" data-uID="'+chat_other_user+'" data-uName="'+fi_server_username+'">';
+    html += '<img src="http://ddragon.leagueoflegends.com/cdn/'+fi_server_lol_patch+'/img/profileicon/'+sender_icon_temp+'.png" class="chat_summoner_icon">';
+    html += '<div class="chat_element_title">'+fi_server_username+'</div>';
+    html += '<div>';
+    html += json["message"];
+    html += '</div>';
+    html += '<div class="chat_element_date">A few seconds ago</div>';
+    html += '</div>';
+    $("#nw_chats_box #chats_content").html(html + $("#nw_chats_box #chats_content").html());
 }
