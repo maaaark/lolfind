@@ -5,13 +5,18 @@ header.page_navigation {
 
 .network_navi {
 	height: 35px;
-	background: #3D3D3D;
+	background: #272727;
 	transition: all 200ms;
 	position: fixed;
 	top: 0px;
 	left: 0px;
 	width: 100%;
 	z-index: 25;
+	box-shadow: 0 0 5px 1px rgba(0,0,0,0.8);
+}
+
+.sticky .network_navi { 
+    box-shadow: none;
 }
 
 .network_navi .network_logo {

@@ -72,8 +72,6 @@
 <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a>.</p>
 <![endif]-->
 
-@include('network_navi')
-
 @if(Auth::check())
     <div id="chat_holder" class="chat_holder"></div>
 @endif
@@ -94,6 +92,7 @@
 
 <!-- Header================================================== -->
 <header class="page_navigation">
+    @include('network_navi')
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-sm-3 col-xs-3">
