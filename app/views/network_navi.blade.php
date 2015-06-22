@@ -46,8 +46,8 @@
                 <div class="nw_box_content">
                     <div class="title">{{ Lang::get('users.notifications') }}</div>
                     <div id="notification_content">
-                        @if(($notifactions = Auth::user()->notifications()))
-                            @foreach($notifactions as $notification)
+                        @if(($notifications = Auth::user()->notifications()) AND $notifications AND count($notifications) > 0)
+                            @foreach($notifications as $notification)
                                 @include('users.notification_element', array("notification" => $notification))
                             @endforeach
                         @else

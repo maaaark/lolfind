@@ -28,8 +28,18 @@
             <h2>{{ $user->summoner->name }}'s application</h2>
             <div class="col-md-8">
                 <h4>Role</h4>
-                <img src="/img/roles/marksman.jpg" style="float: left;margin-right: 25px;border-radius: 50%;">
-                <div style="float: left;padding-top: 43px;font-size: 28px;">ADC</div>
+                @if($application->role == "top")
+                    <img src="/img/roles/tank.jpg" style="float: left;margin-right: 25px;border-radius: 50%;">
+                @elseif($application->role == "mid")
+                    <img src="/img/roles/mage.jpg" style="float: left;margin-right: 25px;border-radius: 50%;">
+                @elseif($application->role == "adc")
+                    <img src="/img/roles/marksman.jpg" style="float: left;margin-right: 25px;border-radius: 50%;">
+                @elseif($application->role == "support")
+                    <img src="/img/roles/support.jpg" style="float: left;margin-right: 25px;border-radius: 50%;">
+                @elseif($application->role == "jungle")
+                    <img src="/img/roles/fighter.jpg" style="float: left;margin-right: 25px;border-radius: 50%;">
+                @endif
+                <div style="float: left;padding-top: 43px;font-size: 28px;">{{ strtoupper($application->role) }}</div>
                 <div style="clear: both;"></div>
 
                 <h4 style="margin-top: 35px;">Comment</h4>
@@ -43,7 +53,7 @@
                     <button class="btn_1" onclick="fi_server_open_chat({{ $user->id }}, '{{ $user->summoner->name }}', '{{ $user->summoner->profileIconId }}')" style="margin-right: 15px;">
                         Answer {{ $user->summoner->name }}
                     </button>
-                    <a href="#">Delete application</a>
+                    <a href="/teams/{{ $ranked_team->region }}/{{ $ranked_team->tag }}/applications/{{ $application->id }}/delete">Delete application</a>
                 </div>
             </div>
             <div class="col-md-4">

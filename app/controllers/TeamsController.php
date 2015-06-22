@@ -15,139 +15,11 @@ class TeamsController extends \BaseController {
             }
         }
 
-        /*
-        $team_list_view = false;
-        if($league1 && $league2){
-            $team_list = RankedTeam::where("ranked_league_5", "LIKE", "%".trim($league1)."%")
-                                   ->where("looking_for_players", "=", 1)
-                                   ->orWhere("ranked_league_5", "LIKE", "%".trim($league2)."%")
-                                   ->where("looking_for_players", "=", 1)
-                                   ->take($this->list_suggestion_limit)
-                                   ->get();
-            $team_list_view = View::make("teams.suggestion_list", array(
-               "ranked_teams" => $team_list
-            ));
-        } elseif($league1){
-            if(strtolower(trim($league1)) == "diamond+"){
-               $team_list = RankedTeam::where("ranked_league_5", "LIKE", "%diamond%")
-                                   ->where("looking_for_players", "=", 1)
-                                   ->orWhere("ranked_league_5", "LIKE", "%master%")
-                                   ->where("looking_for_players", "=", 1)
-                                   ->orWhere("ranked_league_5", "LIKE", "%challenger%")
-                                   ->where("looking_for_players", "=", 1)
-                                   ->take($this->list_suggestion_limit)
-                                   ->get();
-               $team_list_view = View::make("teams.suggestion_list", array(
-                  "ranked_teams" => $team_list
-               ));
-            } else {
-               $team_list = RankedTeam::where("ranked_league_5", "LIKE", "%".trim($league1)."%")
-                                   ->where("looking_for_players", "=", 1)
-                                   ->take($this->list_suggestion_limit)
-                                   ->get();
-               $team_list_view = View::make("teams.suggestion_list", array(
-                  "ranked_teams" => $team_list
-               ));
-            }
-        }
-
-
-        return View::make("teams.index", array(
-            "own_teams" => $own_teams,
-            "team_list" => $team_list_view,
-        ));
-
-        */
         $team_list = RankedTeam::where("looking_for_players", "=", 1)->paginate(10);
-
         return View::make('teams.index', compact('team_list', 'own_teams'));
     }
 
     public function list_suggestions(){
-
-        /*
-        $region = "euw";
-        if(Input::get("region")){
-            $region = trim(Input::get("region"));
-        }
-
-        $league = "gold";
-        if(Input::get("league")){
-            $league = trim(Input::get("league"));
-        }
-
-        $main_lang = "english";
-        if(Input::get("main_lang")){
-            $main_lang = trim(Input::get("main_lang"));
-        }
-
-        $sec_lang      = "english";
-        if(Input::get("sec_lang")){
-            $sec_lang = trim(Input::get("sec_lang"));
-        }
-
-        $prime_role = "adc";
-        if(Input::get("prime_role")){
-            $prime_role = trim(Input::get("prime_role"));
-        }
-
-        $sec_role = "support";
-        if(Input::get("sec_role")){
-            $sec_role = trim(Input::get("sec_role"));
-        }
-        
-        $league = "gold";
-        if(Input::get("league")){
-            $league = trim(Input::get("league"));
-        }
-        
-        // Aktuelle Liga muss noch hinzugefügt werden
-        // SQL-Generieren
-        $sql = "SELECT * FROM ranked_team WHERE";
-        $sql_arr = array();
-
-        $sql .= ' region = :region';
-        $sql_arr["region"] = "euw";
-        
-        $sql .= ' AND looking_for_players = 1';
-
-        if($sec_lang == "no_value" || $sec_lang == $main_lang){
-            $sql                 .= " AND looking_for_lang = :main_lang";
-            $sql_arr["main_lang"] = $main_lang;
-        } else {
-            $sql                 .= " AND looking_for_lang IN (:main_lang, :sec_lang)";
-            $sql_arr["main_lang"] = $main_lang;
-            $sql_arr["sec_lang"]  = $sec_lang;
-        }
-
-        if($sec_role == "no_value" || $sec_role == $prime_role){
-            $sql                 .= " AND looking_for_".$prime_role." = 1";
-        } else {
-            $sql                 .= " AND looking_for_".$prime_role." = 1";
-
-            $sql                 .= " OR looking_for_".$sec_role." = 1";
-            $sql                 .= ' AND region = :region2';
-            $sql_arr["region2"] = "euw";
-            
-            $sql .= ' AND looking_for_players = 1';
-            
-            if($sec_lang == "no_value" || $sec_lang == $main_lang){
-                $sql                 .= " AND looking_for_lang = :main_lang2";
-                $sql_arr["main_lang2"] = $main_lang;
-            } else {
-                $sql                 .= " AND looking_for_lang IN (:main_lang2, :sec_lang2)";
-                $sql_arr["main_lang2"] = $main_lang;
-                $sql_arr["sec_lang2"]  = $sec_lang;
-            }
-        }
-        $sql .= ' LIMIT '.intval($this->list_suggestion_limit);
-
-        */
-
-        //print_r(Input::all());
-
-
-        //$ranked_teams = DB::select(DB::raw($sql), $sql_arr);
         $ranked_teams = RankedTeam::where("name","!=", "");
         $ranked_teams->where('looking_for_players',"=",1);
 
@@ -437,10 +309,10 @@ class TeamsController extends \BaseController {
                     $leader      = User::where("summoner_id", "=", $ranked_team["leader_summoner_id"])->first();
 
                     if($leader && isset($leader["id"]) && $leader["id"] > 0){
-                        $apply       = new RankedTeamApplication();
-                        $apply->team = $ranked_team["id"];
-                        $apply->user = Auth::user()->id;
-                        //$apply->role = Input::get("role");
+                        $apply        = new RankedTeamApplication();
+                        $apply->team  = $ranked_team["id"];
+                        $apply->user  = Auth::user()->id;
+                        $apply->role  = Input::get("role");
                         
                         if(Input::get("comment") && trim(Input::get("comment")) != ""){
                            $apply->comment = trim(Input::get("comment"));
@@ -464,19 +336,45 @@ class TeamsController extends \BaseController {
         }
     }
 
-    public function applications(){
-        echo "Coming soon";
+    public function applications($region, $tag){
+        $ranked_team = RankedTeam::where("region", "=", $region)->where("tag", "=", $tag)->first();
+        if(isset($ranked_team["id"]) && $ranked_team["id"] > 0){
+            if(Auth::check() && $ranked_team->leader_summoner_id == Auth::user()->summoner->summoner_id){
+                return View::make("teams.applications", array(
+                    "ranked_team"  => $ranked_team,
+                    "applications" => RankedTeamApplication::where("team", "=", $ranked_team->id)->get(),
+                ));
+            }
+        }
+        return View::make("teams.not_found");
     }
 
     public function application_detail($region, $tag, $id){
         $ranked_team = RankedTeam::where("region", "=", $region)->where("tag", "=", $tag)->first();
         $application = RankedTeamApplication::where("id", "=", $id)->first();
         if(isset($ranked_team["id"]) && $ranked_team["id"] > 0 && isset($application["id"]) && $application["id"] > 0){
-            return View::make("teams.application_detail", array(
-                "ranked_team" => $ranked_team,
-                "user"        => Helpers::getUser($application["user"]),
-                "application" => $application,
-            ));
+            if(Auth::check() && $ranked_team->leader_summoner_id == Auth::user()->summoner->summoner_id){
+                return View::make("teams.application_detail", array(
+                    "ranked_team" => $ranked_team,
+                    "user"        => Helpers::getUser($application["user"]),
+                    "application" => $application,
+                ));
+            }
+        }
+        return View::make("teams.not_found");
+    }
+
+    public function application_delete($region, $tag, $id){
+        $ranked_team = RankedTeam::where("region", "=", $region)->where("tag", "=", $tag)->first();
+        $application = RankedTeamApplication::where("id", "=", $id)->first();
+        if(isset($ranked_team["id"]) && $ranked_team["id"] > 0 && isset($application["id"]) && $application["id"] > 0){
+            if(Auth::check() && $ranked_team->leader_summoner_id == Auth::user()->summoner->summoner_id){
+                // Notification an Team-Leiter senden
+                FIServer::add_notification($application["user"], "team_application_delete", $ranked_team["id"]);
+
+                $application->delete();
+                return Redirect::to('/teams/'.$ranked_team->region."/".$ranked_team->tag."/applications");
+            }
         }
         return View::make("teams.not_found");
     }

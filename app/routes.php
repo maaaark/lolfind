@@ -46,6 +46,7 @@ Route::get("/teams/{region}/{tag}/members", "TeamsController@detail");
 Route::get("/teams/{region}/{tag}/settings", "TeamsController@settings");
 Route::get("/teams/{region}/{tag}/applications", "TeamsController@applications");
 Route::get("/teams/{region}/{tag}/applications/{id}", "TeamsController@application_detail");
+Route::get("/teams/{region}/{tag}/applications/{id}/delete", "TeamsController@application_delete");
 Route::post("/teams/settings/post", "TeamsController@settings_post");
 Route::post("/teams/apply/start", "TeamsController@apply_lightbox");
 Route::post("/teams/apply/post", "TeamsController@apply_lightbox_post");

@@ -17,7 +17,7 @@ class Notification extends \Eloquent {
 
     public static function notificationsList($user){
         if(Auth::check()){
-            return Notification::where("user", "=", $user)->get();
+            return Notification::where("user", "=", $user)->orderBy("id", "DESC")->take(20)->get();
         }
         return false;
     }
