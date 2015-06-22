@@ -22,6 +22,17 @@ class FIServer {
         fclose($sock);
     }
 
+    public static function add_notification($user, $type, $value1, $value2 = false, $value3 = false){
+        $array = array();
+        $array["user"]         = $user;
+        $array["network_page"] = "teamranked.com";
+        $array["type"]         = $type;
+        $array["value1"]       = $value1;
+        $array["value2"]       = $value2;
+        $array["value3"]       = $value3;
+        FIServer::send(json_encode(array("type" => "notification", "message" => $array)));
+    }
+
     public static function hybi10Decode($data){
         $bytes = $data;
         $dataLength = '';

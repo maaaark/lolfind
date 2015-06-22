@@ -431,21 +431,53 @@ class TeamsController extends \BaseController {
     public function apply_lightbox_post(){
         if(Input::get("team") && Auth::check()){
            if(RankedTeam::loggedCanApplyToTeam(Input::get("team")) == "can_apply"){
-               $apply = new RankedTeamApplication();
-               $apply->team = Input::get("team");
-               $apply->user = Auth::user()->id;
-               //$apply->role = Input::get("role");
-               
-               if(Input::get("comment") && trim(Input::get("comment")) != ""){
-                  $apply->comment = trim(Input::get("comment"));
-               }
-               $apply->save();
-               echo "success";
+                $ranked_team = RankedTeam::where("id", "=", Input::get("team"))->first();
+
+                if($ranked_team && isset($ranked_team["id"]) && $ranked_team["id"] > 0){
+                    $leader      = User::where("summoner_id", "=", $ranked_team["leader_summoner_id"])->first();
+
+                    if($leader && isset($leader["id"]) && $leader["id"] > 0){
+                        $apply       = new RankedTeamApplication();
+                        $apply->team = $ranked_team["id"];
+                        $apply->user = Auth::user()->id;
+                        //$apply->role = Input::get("role");
+                        
+                        if(Input::get("comment") && trim(Input::get("comment")) != ""){
+                           $apply->comment = trim(Input::get("comment"));
+                        }
+                        $apply->save();
+
+                        // Notification an Team-Leiter senden
+                        FIServer::add_notification($leader["id"], "team_application", Auth::user()->id, $apply->id, $ranked_team["id"]);
+                        echo "success";
+                    } else {
+                        echo "error";
+                    }
+                } else {
+                    echo "error";
+                }
            } else {
                echo "error";
            }
         } else {
            echo "error";
         }
+    }
+
+    public function applications(){
+        echo "Coming soon";
+    }
+
+    public function application_detail($region, $tag, $id){
+        $ranked_team = RankedTeam::where("region", "=", $region)->where("tag", "=", $tag)->first();
+        $application = RankedTeamApplication::where("id", "=", $id)->first();
+        if(isset($ranked_team["id"]) && $ranked_team["id"] > 0 && isset($application["id"]) && $application["id"] > 0){
+            return View::make("teams.application_detail", array(
+                "ranked_team" => $ranked_team,
+                "user"        => Helpers::getUser($application["user"]),
+                "application" => $application,
+            ));
+        }
+        return View::make("teams.not_found");
     }
 }

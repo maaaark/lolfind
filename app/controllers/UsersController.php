@@ -278,4 +278,16 @@ class UsersController extends \BaseController {
         }
     }
 
+    public function getNotification(){
+        $return = "";
+        if(Auth::check()){
+            if(Input::get("notification_id") && Input::get("notification_id") > 0){
+                $notification = Notification::where("id", "=", Input::get("notification_id"))->first();
+                if($notification->user() && $notification->user()->id == Auth::user()->id){
+                    echo View::make("users.notification_element", array("notification" => $notification))->render();
+                }
+            }
+        }
+    }
+
 }

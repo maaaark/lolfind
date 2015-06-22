@@ -2,7 +2,7 @@
 
 class IndexController extends \BaseController {
 	public function index(){
-        //FIServer::send("teeest"); // Test-Nachricht an den FI-WS-Server
+        //FIServer::add_notification(32, "test", "value100"); // Test-Nachricht an den FI-WS-Server
 		return View::make("index");
 	}
 }

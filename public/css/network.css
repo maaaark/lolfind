@@ -191,3 +191,51 @@ header.page_navigation {
     margin-top: 2px;
     color: rgba(0,0,0,0.6);
 }
+
+/* Notifications */
+.notification_linked_element {
+	padding: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+.notification_linked_element.no_click {
+	cursor: default;
+}
+
+.notification_linked_element:after {
+	content: ' ';
+	display: block;
+	clear: both;
+}
+
+.notification_linked_element:hover {
+    background: rgb(252, 226, 207);
+}
+
+.notification_linked_element img.notification_summoner_icon {
+    border-radius: 50%;
+    float: left;
+    height: 60px;
+    margin-right: 8px;
+}
+
+#notification_effect_holder {
+	position: fixed;
+	left: 15px;
+	bottom: 15px;
+}
+
+#notification_effect_holder .notification_linked_element {
+	background: #fff;
+	border-radius: 5px;
+	width: 300px;
+	border: 1px solid rgba(0,0,0,0,0.3);
+}
+
+#notification_effect_holder .notification_linked_element:hover {
+    background: rgb(255, 170, 107);
+}

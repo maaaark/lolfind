@@ -237,7 +237,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     public function notifications(){
         $return = false;
         if(Auth::check()){
-            
+            return Notification::notificationsList(Auth::user()->id);
         }
         return $return;
     }

@@ -30,4 +30,28 @@ class Helpers {
 		}
         return $html;
     }
+
+    public static function getUser($id){
+    	$user = User::where("id", "=", $id)->first();
+    	if(isset($user["id"]) && $user["id"] > 0){
+    		return $user;
+    	}
+    	return false;
+    }
+
+    public static function getRankedTeam($id){
+    	$team = RankedTeam::where("id", "=", $id)->first();
+    	if(isset($team->id) && $team->id > 0){
+    		return $team;
+    	}
+    	return false;
+    }
+
+    public static function getApplication($id){
+    	$application = RankedTeamApplication::where("id", "=", $id)->first();
+    	if(isset($application->id) && $application->id > 0){
+    		return $application;
+    	}
+    	return false;
+    }
 }

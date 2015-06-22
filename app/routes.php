@@ -30,6 +30,7 @@ Route::post('/register/save1', 'UsersController@step1_save');
 Route::post('/register/save2', 'UsersController@step2_save');
 Route::post('/register/save3', 'UsersController@step3_save');
 Route::post('/account/update', 'UsersController@updateAccount');
+Route::post('/notifications/get', "UsersController@getNotification");
 
 // Teams
 Route::get("/teams", "TeamsController@index");
@@ -43,6 +44,8 @@ Route::get("/teams/update_team/{team_id}", "TeamsController@updateTeam");
 Route::get("/teams/{region}/{tag}", "TeamsController@detail");
 Route::get("/teams/{region}/{tag}/members", "TeamsController@detail");
 Route::get("/teams/{region}/{tag}/settings", "TeamsController@settings");
+Route::get("/teams/{region}/{tag}/applications", "TeamsController@applications");
+Route::get("/teams/{region}/{tag}/applications/{id}", "TeamsController@application_detail");
 Route::post("/teams/settings/post", "TeamsController@settings_post");
 Route::post("/teams/apply/start", "TeamsController@apply_lightbox");
 Route::post("/teams/apply/post", "TeamsController@apply_lightbox_post");

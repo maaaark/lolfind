@@ -12,6 +12,9 @@ function fi_server_init() {
 									if(json["type"] == "chat"){
 										fi_server_chat_handle_incoming(json);
 									}
+									else if(json["type"] == "notification"){
+										fi_server_notification_handle_incoming(json);
+									}
 								}
 						   };
 
@@ -133,4 +136,33 @@ function fi_server_update_nw_chat_list(json, chat_other_user, incoming_message_s
     html += '<div class="chat_element_date">A few seconds ago</div>';
     html += '</div>';
     $("#nw_chats_box #chats_content").html(html + $("#nw_chats_box #chats_content").html());
+}
+
+/* Notifications */
+var opened_navigation_effect = false;
+function fi_server_notification_handle_incoming(json){
+	if(typeof json["notification_id"] != "undefined" && json["notification_id"] > 0){
+		$.post("/notifications/get", {"notification_id": json["notification_id"]}).done(function(data){
+			if(typeof data != "undefined" && data.trim() != ""){
+				$("#notification_content").html(data.trim() + $("#notification_content").html());
+				$("#nw_box_no_notifications").remove();
+
+				if(opened_navigation_effect == false){
+					$("body").append("<div class='notification_effect' id='notification_effect_holder'>"+data.trim()+"</div>");
+					opened_navigation_effect = true;
+				} else {
+					$("#notification_effect_holder").prepend(data.trim());
+				}
+
+				$("#notification_effect_holder").animate({"opacity": "1"}, 500, "linear", function(){
+					$("#notification_effect_holder").animate({"opacity": "1"}, 10000, "linear", function(){
+						$("#notification_effect_holder").animate({"opacity": "0"}, 500, "linear", function(){
+							$("#notification_effect_holder").remove();
+							opened_navigation_effect = false;
+						});
+					});
+				});
+			}
+		});
+	}
 }

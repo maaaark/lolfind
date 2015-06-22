@@ -47,9 +47,11 @@
                     <div class="title">{{ Lang::get('users.notifications') }}</div>
                     <div id="notification_content">
                         @if(($notifactions = Auth::user()->notifications()))
-                            {{ $notifications }}
+                            @foreach($notifactions as $notification)
+                                @include('users.notification_element', array("notification" => $notification))
+                            @endforeach
                         @else
-                            <div style="padding: 35px;text-align: center;">
+                            <div style="padding: 35px;text-align: center;" id="nw_box_no_notifications">
                                 {{ Lang::get('user.no_notifications') }}
                             </div>
                         @endif
