@@ -1,4 +1,6 @@
 var socket;
+var opened_chats = [];
+
 function fi_server_init() {
 	try {
 		socket = new WebSocket(fi_server_host);
@@ -26,6 +28,20 @@ function fi_server_init() {
 	catch(ex){ 
 		console.log(ex); 
 	}
+
+	// Zuvor geöffnetete Chat-Fenster öffnen
+	$(document).ready(function(){
+		if(typeof $.cookie("fi_opened_chats") != "undefined"){
+			chat_windows_json = JSON.parse($.cookie("fi_opened_chats"));
+			console.log($.cookie("fi_opened_chats"));
+			for(i = 0; i < chat_windows_json.length; i++){
+				if(chat_windows_json[i]){
+					fi_server_open_chat(chat_windows_json[i]["userid"], chat_windows_json[i]["name"], chat_windows_json[i]["icon"], true);
+					opened_chats.push(chat_windows_json[i]);
+				}
+			}
+		}
+	});
 }
 
 function fi_server_send(object){
@@ -39,9 +55,8 @@ function fi_server_send(object){
 }
 
 function fi_server_chat_handle_incoming(json){
-	console.log("incoming");
 	element = $("#chat_holder #chat_window_"+json["sender"]);
-	if(typeof element != "undefiend" && element && element.html() && element.html().trim() != ""){
+	if(typeof element != "undefined" && element && element.html() && element.html().trim() != ""){
 		// Fenster bereits offen -> muss nichts mehr gemacht werden
 	} else {
 		fi_server_open_chat(json["sender"], json["sender_username"], json["sender_icon"]);
@@ -49,13 +64,32 @@ function fi_server_chat_handle_incoming(json){
 	fi_server_chat_add_text(json["sender"], json, true);
 }
 
-function fi_server_open_chat(userid, name, icon){
+function fi_server_open_chat(userid, name, icon, automatic_open){
+	if(opened_chats == null || opened_chats == false){
+		opened_chats = [];
+	}
+
+	if(automatic_open){
+		// Wurde vom System geöffnet: nichts machen
+	} else {
+		status = true;
+		for(i = 0; i < opened_chats.length; i++){
+			if(opened_chats[i]["userid"] == userid){
+				status = false;
+			}
+		}
+		if(status){
+			opened_chats.push({"userid": userid, "name": name, "icon": icon});
+			$.cookie("fi_opened_chats", JSON.stringify(opened_chats), { path: '/' });
+		}
+	}
+
 	element = $("#chat_holder #chat_window_"+userid);
-	if(typeof element != "undefiend" && element && element.html() && element.html().trim() != ""){
+	if(typeof element != "undefined" && element && element.html() && element.html().trim() != ""){
 		element.removeClass("minimized");
 		element.find(".chat_value_input").focus();
 	} else {
-		html  = '<div id="chat_window_'+userid+'" class="chat_window">';
+		html  = '<div id="chat_window_'+userid+'" class="chat_window" data-uID="'+userid+'">';
 		html += '<div class="minimized_view">'+name+'</div>';
 		html += '<div class="maximized_view">';
 			html += '<div class="title_bar">';
@@ -95,6 +129,12 @@ function fi_server_bind_window_options(){
 	$(".chat_window .options .chat_window_option").click(function(){
 		if($(this).hasClass("close_chat")){
 			$(this).parent().parent().parent().parent().remove();
+			for(i = 0; i < opened_chats.length; i++){
+				if(opened_chats[i]["userid"] == $(this).parent().parent().parent().parent().attr("data-uID")){
+					opened_chats[i] = null;
+				}
+			}
+			$.cookie("fi_opened_chats", JSON.stringify(opened_chats), { path: '/' });
 		} else {
 			$(this).parent().parent().parent().parent().addClass("minimized");
 			$("#chat_holder .chat_window.minimized .minimized_view").click(function(){

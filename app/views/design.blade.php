@@ -40,6 +40,7 @@
     <![endif]-->
 
     <script src="/js/jquery-1.11.2.min.js"></script>
+    <script src="/js/jquery.cookie.js"></script>
     <script src="/js/jquery.flashignite_dropdown.js"></script>
     <script src="/js/flashignite_lightbox.js"></script>
     <script src="/js/icheck/icheck.min.js"></script>

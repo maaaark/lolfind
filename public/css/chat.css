@@ -2,7 +2,7 @@
 	position: fixed;
 	left: 0px;
 	bottom: 0px;
-	z-index: 5;
+	z-index: 21;
 }
 
 .chat_holder .chat_window {
