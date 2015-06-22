@@ -87,6 +87,7 @@
 .chat_holder .chat_window .chat_content {
 	padding: 5px;
 	height: 200px;
+	overflow-y: scroll;
 }
 
 .chat_holder .chat_window .chat_value_input {

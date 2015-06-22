@@ -41,12 +41,12 @@ function fi_server_chat_handle_incoming(json){
 	if(typeof element != "undefiend" && element && element.html() && element.html().trim() != ""){
 		// Fenster bereits offen -> muss nichts mehr gemacht werden
 	} else {
-		fi_server_open_chat(json["sender"], "Sendername");
+		fi_server_open_chat(json["sender"], json["sender_username"], json["sender_icon"]);
 	}
 	fi_server_chat_add_text(json["sender"], json, true);
 }
 
-function fi_server_open_chat(userid, name){
+function fi_server_open_chat(userid, name, icon){
 	element = $("#chat_holder #chat_window_"+userid);
 	if(typeof element != "undefiend" && element && element.html() && element.html().trim() != ""){
 		element.removeClass("minimized");
@@ -59,7 +59,7 @@ function fi_server_open_chat(userid, name){
 			html += '<div class="options"><span class="chat_window_option minimize">-</span><span class="chat_window_option close_chat">x</span></div>';
 			html += name+'</div>';
 			html += '<div class="chat_content"></div>';
-			html += '<div class="chat_bar"><input type="text" id="chat_value_input_'+userid+'" class="chat_value_input" data-uId="'+userid+'"></div>';
+			html += '<div class="chat_bar"><input type="text" id="chat_value_input_'+userid+'" class="chat_value_input" data-uId="'+userid+'" data-uName="'+name+'" data-uIcon="'+icon+'"></div>';
 		html += '</div>';
 		html += '</div>';
 		$("#chat_holder").append(html);
@@ -74,7 +74,14 @@ function fi_server_bind_chat_sends(){
 		if(e.which == 13){ // Enter
 			if($(this).val().trim() != ""){
 				fi_server_send({"type": "chat", "message": { "message": $(this).val().trim(), "receiver": $(this).attr("data-uId")}});
-				fi_server_chat_add_text($(this).attr("data-uId"), {"message": $(this).val().trim(), "sender_username": fi_server_username});
+				fi_server_chat_add_text($(this).attr("data-uId"), {
+					"message": 			 $(this).val().trim(),
+					"sender": 			 fi_server_user,
+					"sender_username": 	 fi_server_username,
+					"receiver": 		 $(this).attr("data-uId"),
+					"receiver_username": $(this).attr("data-uName"),
+					"receiver_icon": 	 $(this).attr("data-uIcon"),
+				});
 			}
 			$(this).val('');
 		}
@@ -96,28 +103,30 @@ function fi_server_bind_window_options(){
 
 function fi_server_chat_add_text(chat_user_id, json, incoming_message){
 	element = $("#chat_holder #chat_window_"+chat_user_id);
-	element.find(".chat_content").append("<div><b>"+json["sender_username"]+":</b> "+json["message"]+"</div>");
+	content_div = element.find(".chat_content");
+	content_div.append("<div><b>"+json["sender_username"]+":</b> "+json["message"]+"</div>");
 	
 	if(typeof incoming_message != "undefined" && incoming_message){
         fi_server_update_nw_chat_list(json, json["sender"], true);
     } else {
-        fi_server_update_nw_chat_list(json, fi_server_user);
+        fi_server_update_nw_chat_list(json, chat_user_id);
     }
+    content_div.animate({ scrollTop: content_div.prop("scrollHeight") - content_div.height() }, 1);
 }
 
 function fi_server_update_nw_chat_list(json, chat_other_user, incoming_message_status){
     $("#nw_chats_box #nw_chat_box_element_"+chat_other_user).remove();
     
-    sender_username_temp = fi_server_username;
-    sender_icon_temp     = fi_server_user_icon;
+    sender_username_temp = json["receiver_username"];
+    sender_icon_temp     = json["receiver_icon"];
     if(typeof incoming_message_status != "undefined" && incoming_message_status){
         sender_username_temp = json["sender_username"];
         sender_icon_temp     = json["sender_icon"];
     }
     
-    html  = '<div class="chat_box_element" id="nw_chat_box_element_'+chat_other_user+'" data-uID="'+chat_other_user+'" data-uName="'+fi_server_username+'">';
+    html  = '<div class="chat_box_element" id="nw_chat_box_element_'+chat_other_user+'" data-uID="'+chat_other_user+'" data-uName="'+sender_username_temp+'" data-uIcon="'+sender_icon_temp+'">';
     html += '<img src="http://ddragon.leagueoflegends.com/cdn/'+fi_server_lol_patch+'/img/profileicon/'+sender_icon_temp+'.png" class="chat_summoner_icon">';
-    html += '<div class="chat_element_title">'+fi_server_username+'</div>';
+    html += '<div class="chat_element_title">'+sender_username_temp+'</div>';
     html += '<div>';
     html += json["message"];
     html += '</div>';

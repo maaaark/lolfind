@@ -8,7 +8,7 @@
                     <div id="chats_content" class="nw_chats_box">
                         @if(($chats = Auth::user()->chats()))
                             @foreach($chats as $chat)
-                                <div class="chat_box_element" id="nw_chat_box_element_{{ $chat->otherUser(Auth::check())->id }}" data-uID="{{ $chat->otherUser(Auth::check())->id }}" data-uName="{{ $chat->otherUser(Auth::check())->summoner->name }}">
+                                <div class="chat_box_element" id="nw_chat_box_element_{{ $chat->otherUser(Auth::check())->id }}" data-uID="{{ $chat->otherUser(Auth::check())->id }}" data-uName="{{ $chat->otherUser(Auth::check())->summoner->name }}" data-uIcon="{{ $chat->otherUser(Auth::check())->summoner->profileIconId }}">
                                     <img src="http://ddragon.leagueoflegends.com/cdn/{{ Config::get('settings.patch') }}/img/profileicon/{{ $chat->otherUser(Auth::check())->summoner->profileIconId }}.png" class="chat_summoner_icon">
                                     <div class="chat_element_title">{{ $chat->otherUser(Auth::check())->summoner->name }}</div>
                                     <div>
@@ -29,7 +29,7 @@
                             <script>
                                 $(document).ready(function(){
                                     $("#nw_chats_box #chats_content .chat_box_element").click(function(){
-                                        fi_server_open_chat($(this).attr("data-uID"), $(this).attr("data-uName"));
+                                        fi_server_open_chat($(this).attr("data-uID"), $(this).attr("data-uName"), $(this).attr("data-uIcon"));
                                     });
                                 });
                             </script>
