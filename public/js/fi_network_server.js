@@ -14,6 +14,9 @@ function fi_server_init() {
 									if(json["type"] == "chat"){
 										fi_server_chat_handle_incoming(json);
 									}
+									else if(json["type"] == "chathistory"){
+										fi_server_chat_history_handle(json);
+									}
 									else if(json["type"] == "notification"){
 										fi_server_notification_handle_incoming(json);
 									}
@@ -33,7 +36,6 @@ function fi_server_init() {
 	$(document).ready(function(){
 		if(typeof $.cookie("fi_opened_chats") != "undefined"){
 			chat_windows_json = JSON.parse($.cookie("fi_opened_chats"));
-			console.log($.cookie("fi_opened_chats"));
 			for(i = 0; i < chat_windows_json.length; i++){
 				if(chat_windows_json[i]){
 					fi_server_open_chat(chat_windows_json[i]["userid"], chat_windows_json[i]["name"], chat_windows_json[i]["icon"], true);
@@ -95,7 +97,7 @@ function fi_server_open_chat(userid, name, icon, automatic_open){
 			html += '<div class="title_bar">';
 			html += '<div class="options"><span class="chat_window_option minimize">-</span><span class="chat_window_option close_chat">x</span></div>';
 			html += name+'</div>';
-			html += '<div class="chat_content"></div>';
+			html += '<div class="chat_content"><div class="history_holder"></div></div>';
 			html += '<div class="chat_bar"><input type="text" id="chat_value_input_'+userid+'" class="chat_value_input" data-uId="'+userid+'" data-uName="'+name+'" data-uIcon="'+icon+'"></div>';
 		html += '</div>';
 		html += '</div>';
@@ -103,6 +105,9 @@ function fi_server_open_chat(userid, name, icon, automatic_open){
 		fi_server_bind_chat_sends();
 		fi_server_bind_window_options();
 		$("#chat_holder #chat_window_"+userid).find(".chat_value_input").focus();
+
+		// Verlauf anfordern:
+		fi_server_send({"type": "chat", "message": { "load_history": true, "user": userid}});
 	}
 }
 
@@ -176,6 +181,18 @@ function fi_server_update_nw_chat_list(json, chat_other_user, incoming_message_s
     html += '<div class="chat_element_date">A few seconds ago</div>';
     html += '</div>';
     $("#nw_chats_box #chats_content").html(html + $("#nw_chats_box #chats_content").html());
+}
+
+function fi_server_chat_history_handle(json){
+	if(typeof json["history"] != "undefined" && json["history"].length > 0){
+		for(i = 0; i < json["history"].length; i++){
+			$("#chat_window_"+json["user"]).find(".history_holder").append("<div><b>"+json["history"][i]["sender_username"]+":</b> "+json["history"][i]["message"]+"</div>");
+		}
+	} else {
+		$("#chat_window_"+json["user"]).find(".history_holder").html('');
+	}
+	content_div = $("#chat_window_"+json["user"]).find(".chat_content");
+	content_div.animate({ scrollTop: content_div.prop("scrollHeight") - content_div.height() }, 1);
 }
 
 /* Notifications */
