@@ -1,7 +1,23 @@
 <div class="network_navi">
 	<div class="account_part">
         @if(Auth::check())
-            <div class="nw_navi_el account_icon nw_box_btn" data-box="chats_box"><i class="icon-chat-5"></i></div>
+            <div class="nw_navi_el account_icon nw_box_btn" data-box="chats_box">
+               <i class="icon-chat-5"></i>
+               @if(($chats_count = Auth::user()->chats_count()) AND isset($chats_count["count"]) AND $chats_count["count"] > 0 AND isset($chats_count["users"]))
+                  <script>var fi_server_chats_counts = [
+                           @foreach($chats_count["users"] as $chat_el)
+                              {
+                                 userid: {{ $chat_el->sender }}
+                              },
+                           @endforeach
+                          ];
+                  </script>
+                  <span class="box_btn_hint">{{ $chats_count["count"] }}</span>
+               @else
+                  <script>var fi_server_chats_counts = [];</script>
+                  <span class="box_btn_hint hidden">0</span>
+               @endif
+            </div>
             <div class="nw_login_box nw_box_btn" id="nw_chats_box">
                 <div class="nw_box_content">
                     <div class="title">{{ Lang::get('users.chats') }}</div>

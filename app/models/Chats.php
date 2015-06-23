@@ -41,4 +41,15 @@ class Chats extends \Eloquent {
     public function chatsWidth($user){
         
     }
+    
+    public static function unread_count($user){
+        if(Auth::check()){
+            $users_arr = Chats::where("receiver", "=", $user)->where("read_status", "=", 0)->groupBy("hash")->get();
+            return array(
+               "count" => $users_arr->count(),
+               "users" => $users_arr,
+            );
+        }
+        return array("count" => 0, "users" => array());
+    }
 }

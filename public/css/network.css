@@ -191,6 +191,10 @@ header.page_navigation {
     background: rgb(252, 226, 207);
 }
 
+.nw_box_content .nw_chats_box .chat_box_element.new_msg {
+    background: orange;
+}
+
 .nw_box_content .nw_chats_box .chat_box_element img.chat_summoner_icon {
     border-radius: 50%;
     float: left;

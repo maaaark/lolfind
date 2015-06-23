@@ -65,6 +65,33 @@ function fi_server_chat_handle_incoming(json){
 	
 	// Ungelesen-Trigger hinzufpgen
 	$("#chat_holder #chat_window_"+json["sender"]).addClass("unread_messages");
+	
+	// Ungelesen Count - Wert updaten
+   el = $(".nw_navi_el.account_icon.nw_box_btn[data-box='chats_box']").find(".box_btn_hint");
+   $("#chats_content #nw_chat_box_element_"+json["sender"]).addClass("new_msg");
+   
+   count_up_status = true;
+   for(i = 0; i < fi_server_chats_counts.length; i++){
+      if(typeof fi_server_chats_counts[i] != "undefined" && fi_server_chats_counts[i] != null && typeof fi_server_chats_counts[i]["userid"] != "undefined"){
+         if(fi_server_chats_counts[i]["userid"] == json["sender"]){
+            count_up_status = false;
+         }
+      }
+   }
+   if(count_up_status){
+      // Hochzählen
+      fi_server_chats_counts.push({"userid": json["sender"]});
+      el = $(".nw_navi_el.account_icon.nw_box_btn[data-box='chats_box']").find(".box_btn_hint");
+      if(typeof el != "undefined" && el){
+         chat_count_temp = 0;
+         if(el.html().trim() != "" && parseInt(el.html().trim()) > 0){
+            chat_count_temp = parseInt(el.html().trim());
+         }
+         chat_count_temp++;
+         el.html(chat_count_temp);
+         el.removeClass("hidden");
+      }
+   }
 }
 
 function fi_server_open_chat(userid, name, icon, automatic_open){
@@ -77,7 +104,7 @@ function fi_server_open_chat(userid, name, icon, automatic_open){
 	} else {
 		status = true;
 		for(i = 0; i < opened_chats.length; i++){
-			if(opened_chats[i]["userid"] == userid){
+			if(opened_chats[i] != null && opened_chats[i]["userid"] == userid){
 				status = false;
 			}
 		}
@@ -110,6 +137,10 @@ function fi_server_open_chat(userid, name, icon, automatic_open){
 		// Verlauf anfordern:
 		fi_server_send({"type": "chat", "message": { "load_history": true, "user": userid}});
 	}
+	
+	// NW Chats Box schließen
+	$(".nw_navi_el.account_icon.nw_box_btn").removeClass("active");
+	$("#nw_chats_box").removeClass("open");
 }
 
 function fi_server_bind_chat_sends(){
@@ -156,6 +187,27 @@ function fi_server_bind_window_options(){
          
          // Gelesen-Status speichern:
          fi_server_send({"type": "chat", "message": { "read_status": true, "user": fi_server_user, "other_user": $(this).parent().parent().attr("data-uID")} });
+         
+         // Wert updaten
+         el = $(".nw_navi_el.account_icon.nw_box_btn[data-box='chats_box']").find(".box_btn_hint");
+         if(typeof el != "undefined" && el){
+            chats_count = parseInt(el.html().trim());
+            if(chats_count <= 1){
+               el.addClass("hidden");
+               el.html("0");
+            } else {
+               chats_count--;
+               el.removeClass("hidden");
+               el.html(chats_count);
+            }
+         }
+         $("#chats_content #nw_chat_box_element_"+$(this).parent().parent().attr("data-uID")).removeClass("new_msg");
+         
+         for(i = 0; i < fi_server_chats_counts.length; i++){
+            if(typeof fi_server_chats_counts[i] != "undefined" && fi_server_chats_counts[i] != null && typeof fi_server_chats_counts[i]["userid"] != "undefined" && fi_server_chats_counts[i]["userid"] == $(this).parent().parent().attr("data-uID")){
+               fi_server_chats_counts[i] = null;
+            }
+         }
       }
 	});
 }
