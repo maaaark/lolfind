@@ -11,14 +11,18 @@ class UsersController extends \BaseController {
     public function show($region, $name)
     {
         $summoner = Summoner::where("region", "=", $region)->where("name", "=", $name)->first();
-        $user = $summoner->user;
+        $user = @$summoner->user;
         
-        $user_object = false;
-        $user_check  = User::where("summoner_id", "=", $user->summoner_id)->first();
-        if(isset($user_check["id"]) && $user_check["id"] > 0){
-            $user_object = $user_check;
+        if($user && $user->summoner_id && $user->summoner_id > 0){
+            $user_object = false;
+            $user_check  = User::where("summoner_id", "=", $user->summoner_id)->first();
+            if(isset($user_check["id"]) && $user_check["id"] > 0){
+                $user_object = $user_check;
+            }
+            return View::make('users.show', compact('user', "user_object"));
+        } else {
+            return View::make('users.show_not_registered', compact('user', "user_object"));
         }
-        return View::make('users.show', compact('user', "user_object"));
     }
 
     public function index() {
@@ -271,6 +275,18 @@ class UsersController extends \BaseController {
 
             }
 
+        }
+    }
+
+    public function getNotification(){
+        $return = "";
+        if(Auth::check()){
+            if(Input::get("notification_id") && Input::get("notification_id") > 0){
+                $notification = Notification::where("id", "=", Input::get("notification_id"))->first();
+                if($notification->user() && $notification->user()->id == Auth::user()->id){
+                    echo View::make("users.notification_element", array("notification" => $notification))->render();
+                }
+            }
         }
     }
 

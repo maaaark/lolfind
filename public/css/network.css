@@ -5,13 +5,18 @@ header.page_navigation {
 
 .network_navi {
 	height: 35px;
-	background: #3D3D3D;
+	background: #272727;
 	transition: all 200ms;
 	position: fixed;
 	top: 0px;
 	left: 0px;
 	width: 100%;
 	z-index: 25;
+	box-shadow: 0 0 5px 1px rgba(0,0,0,0.8);
+}
+
+.sticky .network_navi { 
+    box-shadow: none;
 }
 
 .network_navi .network_logo {
@@ -66,6 +71,11 @@ header.page_navigation {
 	background: rgba(255,255,255,0.1);
 }
 
+.network_navi .nw_navi_el.account_icon {
+    font-size: 14px;
+    color: #A0A0A0;
+}
+
 .network_navi .account_part {
 	float: right;
 	margin-right: 20px;
@@ -76,22 +86,54 @@ header.page_navigation {
 	color: rgba(255,255,255,0.8);
 }
 
+.network_navi .account_icon {
+    cursor: pointer;
+    position: relative;
+}
+
+.network_navi .account_icon:hover {
+    color: #CFCFCF;
+}
+
+.network_navi .account_icon .box_btn_hint {
+   position: absolute;
+   bottom: 4px;
+   right: 4px;
+   background: orange;
+   color: #000;
+   border-radius: 50%;
+   width: 13px;
+   height: 13px;
+   line-height: 13px;
+   font-size: 10px;
+   text-align: center;
+   padding: 0px;
+   box-sizing: border-box;
+}
+
 .nw_login_box {
 	position: absolute;
 	width: 380px;
-	height: 180px;
-	background: #fff;
-	border: 1px solid #ddd;
-	border-bottom-left-radius: 3px;
-	border-bottom-right-radius: 3px;
 	right: 20px;
 	display: none;
 	z-index: 25;
-	border-top: 2px solid #f25825;
+	background-image: url(../img/nw_box_arrow.png);
+	background-position: top right 8px;
+    background-repeat: no-repeat;
+    margin-top: -10px;
 }
 
 .nw_login_box.open {
 	display: block;
+}
+
+.nw_login_box .nw_box_content {
+	margin-top: 9px;
+	background: #fff;
+	border: 1px solid #ddd;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+	border-top: 2px solid #f25825;
 }
 
 .nw_login_box .title {
@@ -133,4 +175,89 @@ header.page_navigation {
 	text-align: center;
 	vertical-align: center;
 	background: rgba(239, 239, 239, 1);
+}
+
+/* Chats Box */
+.nw_box_content .nw_chats_box .chat_box_element {
+    padding: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+.nw_box_content .nw_chats_box .chat_box_element:hover {
+    background: rgb(252, 226, 207);
+}
+
+.nw_box_content .nw_chats_box .chat_box_element.new_msg {
+    background: orange;
+}
+
+.nw_box_content .nw_chats_box .chat_box_element img.chat_summoner_icon {
+    border-radius: 50%;
+    float: left;
+    height: 60px;
+    margin-right: 8px;
+}
+
+.nw_box_content .nw_chats_box .chat_box_element .chat_element_title {
+    font-weight: bold;
+    color: #000;
+}
+
+.nw_box_content .nw_chats_box .chat_box_element .chat_element_date {
+    font-size: 9px;
+    margin-top: 2px;
+    color: rgba(0,0,0,0.6);
+}
+
+/* Notifications */
+.notification_linked_element {
+	padding: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+.notification_linked_element.no_click {
+	cursor: default;
+}
+
+.notification_linked_element:after {
+	content: ' ';
+	display: block;
+	clear: both;
+}
+
+.notification_linked_element:hover {
+    background: rgb(252, 226, 207);
+}
+
+.notification_linked_element img.notification_summoner_icon {
+    border-radius: 50%;
+    float: left;
+    height: 60px;
+    margin-right: 8px;
+}
+
+#notification_effect_holder {
+	position: fixed;
+	left: 15px;
+	bottom: 15px;
+	z-index: 50;
+}
+
+#notification_effect_holder .notification_linked_element {
+	background: #fff;
+	border-radius: 5px;
+	width: 300px;
+	border: 1px solid rgba(0,0,0,0,0.3);
+}
+
+#notification_effect_holder .notification_linked_element:hover {
+    background: rgb(255, 170, 107);
 }

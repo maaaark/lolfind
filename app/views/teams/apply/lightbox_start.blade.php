@@ -65,13 +65,14 @@
               allowLightboxCloseBG(false);
               lightboxCloseBtn(false);
               
-              html = '<div style="padding: 35px;text-align: center;"><img src="/img/ajax-loader.gif" style="height: 45px;"><div>We submit your application. Please wait a few seconds.</div></div>';
-              $("#application_form_holder").html(html);
               $.post("/teams/apply/post", {"team": {{ $ranked_team->id }}, "comment": $("#application_comment").val(), "role": $("#selection_application_role_sel_val").val() }).done(function(data){
                   allowLightboxCloseBG(true);
                   lightboxCloseBtn(true);
                   $("#application_form_holder").html("geladen");
+                  console.log(data);
               });
+              html = '<div style="padding: 35px;text-align: center;"><img src="/img/ajax-loader.gif" style="height: 45px;"><div>We submit your application. Please wait a few seconds.</div></div>';
+              $("#application_form_holder").html(html);
           });
       </script>
    @endif

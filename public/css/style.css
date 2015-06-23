@@ -2459,6 +2459,13 @@ ul.list_order li span {
 	-webkit-transform:scale(1);
 	transform:scale(1);
 }
+.player_role {
+    width: 35px;
+    height: 35px;
+    float: left;
+    margin-right: 10px;
+    background-color: #EEEEEE;
+}
 .img_container img {
 	-webkit-transform:scale(1.2);
 	transform:scale(1.2);

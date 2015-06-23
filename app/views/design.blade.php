@@ -40,6 +40,7 @@
     <![endif]-->
 
     <script src="/js/jquery-1.11.2.min.js"></script>
+    <script src="/js/jquery.cookie.js"></script>
     <script src="/js/jquery.flashignite_dropdown.js"></script>
     <script src="/js/flashignite_lightbox.js"></script>
     <script src="/js/icheck/icheck.min.js"></script>
@@ -51,8 +52,12 @@
         <!-- FI-Network Server -->
         <link rel="stylesheet" href="/css/chat.css">
         <script>
-            var fi_server_host = "ws://{{ trim($_SERVER['SERVER_ADDR']) }}:8080/";
-            var fi_server_user = {{ Auth::user()->id }};
+            //var fi_server_host      = "ws://{{ trim($_SERVER['SERVER_ADDR']) }}:8080/";
+            var fi_server_host      = "ws://{{ Config::get('fi_server.host') }}:{{ Config::get('fi_server.port') }}/";
+            var fi_server_user      = {{ Auth::user()->id }};
+            var fi_server_username  = "{{ Auth::user()->summoner->name }}";
+            var fi_server_user_icon = "{{ Auth::user()->summoner->profileIconId }}";
+            var fi_server_lol_patch = "{{ Config::get('settings.patch') }}";
         </script>
         <script src="/js/fi_network_server.js"></script>
         <script>
@@ -67,8 +72,6 @@
 <!--[if lte IE 8]>
 <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a>.</p>
 <![endif]-->
-
-@include('network_navi')
 
 @if(Auth::check())
     <div id="chat_holder" class="chat_holder"></div>
@@ -90,6 +93,7 @@
 
 <!-- Header================================================== -->
 <header class="page_navigation">
+    @include('network_navi')
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-sm-3 col-xs-3">
@@ -168,29 +172,47 @@
     });
 
     $(document).ready(function(){
-        var login_box = $("#nw_login_box");
+        var login_box        = $("#nw_login_box");
+        var chats_box        = $("#nw_chats_box");
+        var notification_box = $("#nw_notifications_box");
         scrollNavigation();
 
-        $("#nw_login_btn").click(function(){
-            pos = $(this).offset();
-            pos = $(document).width() - parseInt(pos["left"]);
-            pos = pos - $(this).outerWidth(true);
-            login_box.css("right", pos);
+        $(".nw_box_btn").click(function(){
+            type        = $(this).attr("data-box");
+            current_box = false;
+            if(type == "login_box"){
+                current_box = login_box;
+            } else if(type == "chats_box"){
+                current_box = chats_box;
+            } else if(type == "notification_box"){
+                current_box = notification_box;
+            }
+            
+            if(current_box){
+                $(".nw_login_box.open").removeClass("open");
+                $(".nw_box_btn.active").removeClass("active");
+                
+                arrow_pos = Math.round($(this).outerWidth() / 2) - 11; // -11 = Hälfte der Breite des Pfeils
+                current_box.css("background-position", "top right "+parseInt(arrow_pos)+"px");
+                
+                pos = $(this).offset();
+                pos = $(document).width() - parseInt(pos["left"]);
+                pos = pos - $(this).outerWidth(true);
+                current_box.css("right", pos);
 
-            if(login_box.hasClass("open")){
-                login_box.removeClass("open");
-                $(this).removeClass("active");
-            } else {
-                $(this).addClass("active");
-                login_box.addClass("open");
+                if(current_box.hasClass("open")){
+                    current_box.removeClass("open");
+                    $(this).removeClass("active");
+                } else {
+                    $(this).addClass("active");
+                    current_box.addClass("open");
+                }
             }
         });
 
         $("#page_container").click(function(){
-            if(login_box.hasClass("open")){
-                login_box.removeClass("open");
-                $("#nw_login_btn").removeClass("active");
-            }
+            $(".nw_login_box.open").removeClass("open");
+            $(".nw_box_btn.active").removeClass("active");
         });
 
         $('input').iCheck({
