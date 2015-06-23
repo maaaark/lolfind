@@ -14,7 +14,19 @@
 }
 
 .chat_holder .chat_window.unread_messages .title_bar {
-   background: red;
+   -webkit-animation: blink 2s linear infinite;
+    -moz-animation: blink 2s linear infinite;
+    animation: blink 2s linear infinite;
+}
+@keyframes blink {
+   0% { background: #E2DEDE; }
+   50% { background: #999999; }
+   100% { background: #E2DEDE; }
+}
+@-webkit-keyframes blink {
+   0% { background: #E2DEDE; }
+   50% { background: #999999; }
+   100% { background: #E2DEDE; }
 }
 
 .chat_holder .chat_window.minimized {
