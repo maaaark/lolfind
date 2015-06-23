@@ -41,7 +41,14 @@
                     </div>
                 </div>
             </div>
-            <div class="nw_navi_el account_icon nw_box_btn" data-box="notification_box"><i class="icon-globe-6"></i></div>
+            <div class="nw_navi_el account_icon nw_box_btn" data-box="notification_box">
+               <i class="icon-globe-6"></i>
+               @if(($notifications_count = Auth::user()->notifications_count()) AND $notifications_count AND $notifications_count > 0)
+                  <span class="box_btn_hint">{{ $notifications_count }}</span>
+               @else
+                  <span class="box_btn_hint hidden">0</span>
+               @endif
+            </div>
             <div class="nw_login_box" id="nw_notifications_box">
                 <div class="nw_box_content">
                     <div class="title">{{ Lang::get('users.notifications') }}</div>

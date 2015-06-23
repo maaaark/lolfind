@@ -88,10 +88,27 @@ header.page_navigation {
 
 .network_navi .account_icon {
     cursor: pointer;
+    position: relative;
 }
 
 .network_navi .account_icon:hover {
     color: #CFCFCF;
+}
+
+.network_navi .account_icon .box_btn_hint {
+   position: absolute;
+   bottom: 4px;
+   right: 4px;
+   background: orange;
+   color: #000;
+   border-radius: 50%;
+   width: 13px;
+   height: 13px;
+   line-height: 13px;
+   font-size: 10px;
+   text-align: center;
+   padding: 0px;
+   box-sizing: border-box;
 }
 
 .nw_login_box {
@@ -227,6 +244,7 @@ header.page_navigation {
 	position: fixed;
 	left: 15px;
 	bottom: 15px;
+	z-index: 50;
 }
 
 #notification_effect_holder .notification_linked_element {

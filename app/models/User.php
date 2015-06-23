@@ -249,4 +249,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         }
         return $return;
     }
+    
+    public function notifications_count(){
+        return Notification::unread_count(Auth::user()->id);
+    }
 }

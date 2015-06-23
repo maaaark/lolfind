@@ -37,4 +37,9 @@
 			<b>{{ $team_temp->name }}</b> rejected your application.
 		</div>
 	@endif
+
+@elseif($notification->type == "normal_text")
+   <div class="notification_linked_element no_click">
+      {{ trim($notification->value1) }}
+   </div>
 @endif

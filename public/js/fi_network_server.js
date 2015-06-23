@@ -235,7 +235,34 @@ function fi_server_notification_handle_incoming(json){
 						});
 					});
 				});
+				
+				// Wert updaten
+				el = $(".nw_navi_el.account_icon.nw_box_btn[data-box='notification_box']").find(".box_btn_hint");
+				if(typeof el != "undefined" && el){
+               notification_temp_count = 0;
+               if(el.html().trim() != "" && parseInt(el.html().trim()) > 0){
+                  notification_temp_count = parseInt(el.html().trim());
+               }
+               notification_temp_count++;
+               el.html(notification_temp_count);
+               el.removeClass("hidden");
+				}
 			}
 		});
 	}
 }
+
+function fi_server_notification_box_click(){ // Notifications als gelesen markieren4
+   fi_server_send({"type": "notification_count_update", "message": { "sended_data": "true" } });
+}
+
+$(document).ready(function(){
+   $(".nw_navi_el.account_icon.nw_box_btn[data-box='notification_box']").click(function(){
+      el = $(".nw_navi_el.account_icon.nw_box_btn[data-box='notification_box']").find(".box_btn_hint");
+      if(typeof el != "undefined" && el && el.html().trim() != "" && parseInt(el.html().trim()) > 0){
+         el.addClass("hidden");
+         el.html("0");
+         fi_server_notification_box_click();
+      }
+   });
+});

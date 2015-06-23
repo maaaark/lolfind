@@ -21,4 +21,11 @@ class Notification extends \Eloquent {
         }
         return false;
     }
+    
+    public static function unread_count($user){
+        if(Auth::check()){
+            return Notification::where("user", "=", $user)->where("read_status", "=", 0)->count();
+        }
+        return 0;
+    }
 }
