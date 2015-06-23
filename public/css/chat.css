@@ -13,6 +13,10 @@
   	height: 265px;
 }
 
+.chat_holder .chat_window.unread_messages .title_bar {
+   background: red;
+}
+
 .chat_holder .chat_window.minimized {
 	width: 200px;
 }

@@ -6,11 +6,11 @@
                 <div class="nw_box_content">
                     <div class="title">{{ Lang::get('users.chats') }}</div>
                     <div id="chats_content" class="nw_chats_box">
-                        @if(($chats = Auth::user()->chats()))
+                        @if(($chats = Auth::user()->chats()) AND $chats AND count($chats) > 0)
                             @foreach($chats as $chat)
-                                <div class="chat_box_element" id="nw_chat_box_element_{{ $chat->otherUser(Auth::check())->id }}" data-uID="{{ $chat->otherUser(Auth::check())->id }}" data-uName="{{ $chat->otherUser(Auth::check())->summoner->name }}" data-uIcon="{{ $chat->otherUser(Auth::check())->summoner->profileIconId }}">
-                                    <img src="http://ddragon.leagueoflegends.com/cdn/{{ Config::get('settings.patch') }}/img/profileicon/{{ $chat->otherUser(Auth::check())->summoner->profileIconId }}.png" class="chat_summoner_icon">
-                                    <div class="chat_element_title">{{ $chat->otherUser(Auth::check())->summoner->name }}</div>
+                                <div class="chat_box_element" id="nw_chat_box_element_{{ $chat->otherUser(Auth::user()->id)->id }}" data-uID="{{ $chat->otherUser(Auth::user()->id)->id }}" data-uName="{{ $chat->otherUser(Auth::user()->id)->summoner->name }}" data-uIcon="{{ $chat->otherUser(Auth::user()->id)->summoner->profileIconId }}">
+                                    <img src="http://ddragon.leagueoflegends.com/cdn/{{ Config::get('settings.patch') }}/img/profileicon/{{ $chat->otherUser(Auth::user()->id)->summoner->profileIconId }}.png" class="chat_summoner_icon">
+                                    <div class="chat_element_title">{{ $chat->otherUser(Auth::user()->id)->summoner->name }}</div>
                                     <div>
                                         @if(Auth::user()->id == $chat->receiver)
                                             <i class="icon-reply" style="color: rgba(0,0,0,0.2);"></i>

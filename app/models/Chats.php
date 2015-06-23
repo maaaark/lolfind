@@ -9,7 +9,8 @@ class Chats extends \Eloquent {
      * @var string
      */
     protected $connection = 'mysql2';
-    protected $table = 'chats';
+    protected $table      = 'chats';
+    private   $other_user;
     
     public function sender(){
         return User::where("id", "=", $this->sender)->first();
@@ -20,6 +21,10 @@ class Chats extends \Eloquent {
     }
     
     public function otherUser($user){
+        if($this->other_user){
+            return $this->other_user;
+        }
+        
         if($user == $this->sender){
             return User::where("id", "=", $this->receiver)->first();
         }
