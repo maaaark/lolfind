@@ -59,6 +59,7 @@ class UsersController extends \BaseController {
     public function save_settings() {
         if(Auth::check()) {
             $summoner = Auth::user()->summoner;
+
             $input = Input::all();
 
             $summoner->fav_champion_1 = $input["fav_champion_1"];
@@ -231,6 +232,8 @@ class UsersController extends \BaseController {
             $user->summoner_id = Session::get('summoner_id');
             $user->save();
 
+            //$summoner = Summoner::where("summoner_id", "=", $user->summoner_id)->first();
+
             $user->summoner->fav_champion_1 = Input::get('fav_champion_1');
             $user->summoner->fav_champion_2 = Input::get('fav_champion_2');
             $user->summoner->fav_champion_3 = Input::get('fav_champion_3');
@@ -242,8 +245,13 @@ class UsersController extends \BaseController {
             $user->summoner->search_mid = Input::get('search_mid');
             $user->summoner->search_adc = Input::get('search_adc');
             $user->summoner->search_support = Input::get('search_support');
+            $user->summoner->description = Input::get('description');
 
-            return Redirect::to('/login')->with('success', 'Your account was successfully created.');
+
+            $user->summoner->save();
+            $user->save();
+
+            return Redirect::to('/login')->with('success', 'Your account has been successfully created.');
 
         } else {
             $messages = $validator->messages();

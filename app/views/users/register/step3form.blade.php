@@ -59,7 +59,7 @@
         <td>{{ Form::textarea('description', Input::old('description'),  array('class' => 'form-control')) }}</td>
     </tr>
 </table>
-@if($summoner->user->id == "")
+@if(!isset($summoner))
 <br/>
 <h2 class="headline_no_border">Account details</h2>
 <table class="table table-striped">
