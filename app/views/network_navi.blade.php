@@ -82,16 +82,16 @@
                     </div>
                 </div>
             </div>
-
-            <div class="nw_navi_el account_icon nw_box_btn" data-box="settings">
-                <a href="/settings"><i class="icon-cog-alt"></i></a>
-            </div>
+            
+            <a href="/settings">
+                <div class="nw_navi_el account_icon nw_box_btn" data-box="settings" style="padding-left: 5px;padding-right: 5px;"><i class="icon-cog-alt"></i></div>
+            </a>
 
             <a href="/summoner/{{ Auth::user()->summoner->region }}/{{ Auth::user()->summoner->name }}"><div class="login_btn nw_navi_el hovered" id="nw_login_btn">{{ Auth::user()->summoner->name }}</div></a>
             <a href="/logout"><div class="login_btn nw_navi_el hovered" id="nw_login_btn">{{ Lang::get('users.logout') }}</div></a>
         @else
             <div class="login_btn nw_navi_el hovered nw_box_btn" data-box="login_box"><i class="fa fa-sign-in"></i> {{ Lang::get('users.login') }}</div>
-            <a href="/register"><div class="login_btn nw_navi_el hovered"><i class="fa fa-user"></i> {{ Lang::get('users.register') }}</a></div>
+            <a href="/register" style="color: rgba(255,255,255,0.8);"><div class="login_btn nw_navi_el hovered"><i class="fa fa-user"></i> {{ Lang::get('users.register') }}</a></div>
             <div class="nw_login_box" id="nw_login_box">
                 <div class="nw_box_content">
                    {{ Form::open(array('url' => '/dologin')) }}
