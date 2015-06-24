@@ -1,13 +1,30 @@
-@extends('design_left_sidebar')
-@section('title', "Neuer User - Schritt 2")
-@section('content_page')
+@extends('design')
+@section('title', "Neuer User - Step 2")
+@section('header')
+    <section class="small-parallax-window" data-parallax="scroll" data-image-src="/img/player_background.jpg" data-natural-width="1400" data-natural-height="470">
+        <div class="small-parallax-content">
+            1
+        </div>
+    </section><!-- End section -->
+    <div id="position">
+        <div class="container">
+            <ul>
+                <li><a href="/">Teamranked.com</a></li>
+                <li><a href="/register">Register</a></li>
+                <li>Step 3</li>
+            </ul>
+        </div>
+    </div><!-- Position -->
+@stop
+@section('content')
+    <div class="container margin_30">
+        <div class="row">
 
-
-    <h2 class="headline">Fortschritt</h2>
+    <h2 class="headline">Progress</h2>
 
     <div class="progress">
-        <div class="progress-bar" role="progressbar" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100" style="width: 66%;">
-            Schritt 2 von 3
+        <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">
+            Step 2 of 4
         </div>
     </div>
     <br/>
@@ -23,13 +40,12 @@
         </tr>
     </table>
     <br/>
-    <h2 class="headline">Bestätigungs Code</h2>
+    <h2 class="headline">Validation Code</h2>
     <h3>{{Session::get('verify_code')}}</h3>
-    Benenne eine Runenseite in den oben stehenden Code um und speichere sie.<br/>
-    Nach dem speichern, verifiziere deinen Summoner mit einem klick auf den Button.<br/>
+    Rename one of your Runepages to the code above and save it.<br/>
+    After saving click on the button to verify your summoner.<br/>
     <br/>
-    <a href="/verify_summoner" class="btn btn-primary">Summoner verifizieren</a>
-@stop
-@section('sidebar')
-    @include('layouts.sidebar')
+    <a href="/verify_summoner" class="btn btn-primary">Verify summoner</a>
+    </div>
+    </div>
 @stop

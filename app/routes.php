@@ -24,6 +24,8 @@ Route::get('/register', 'UsersController@create');
 Route::get('/register/step1', 'UsersController@step1');
 Route::get('/register/step2', 'UsersController@step2');
 Route::get('/register/step3', 'UsersController@step3');
+Route::get('/settings', 'UsersController@settings');
+Route::post('/save_settings', 'UsersController@save_settings');
 Route::get('/verify_summoner', 'UsersController@verify_summoner');
 Route::post('/register/save', 'UsersController@save');
 Route::post('/register/save1', 'UsersController@step1_save');

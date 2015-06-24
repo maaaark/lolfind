@@ -48,7 +48,9 @@ class UsersController extends \BaseController {
     public function settings() {
         if(Auth::check()) {
             $user = Auth::user();
-            return View::make("users.settings", compact('user'));
+            $summoner = $user->summoner;
+            $champions = Champion::orderBy("name", "ASC")->get();
+            return View::make("users.settings", compact('user', 'champions', 'summoner'));
         } else {
             return Redirect::to('/login')->with("error", "Bitte einloggen.");
         }
@@ -56,8 +58,56 @@ class UsersController extends \BaseController {
 
     public function save_settings() {
         if(Auth::check()) {
-            $user = Auth::user();
-            return View::make("users.settings", compact('user'));
+            $summoner = Auth::user()->summoner;
+            $input = Input::all();
+
+            $summoner->fav_champion_1 = $input["fav_champion_1"];
+            $summoner->fav_champion_2 = $input["fav_champion_2"];
+            $summoner->fav_champion_3 = $input["fav_champion_3"];
+            $summoner->description = $input["description"];
+
+            if(isset($input["search_top"])) {
+                $summoner->search_top = $input["search_top"];
+            } else {
+                $summoner->search_top = 0;
+            }
+
+            if(isset($input["search_jungle"])) {
+                $summoner->search_jungle = $input["search_jungle"];
+            } else {
+                $summoner->search_jungle = 0;
+            }
+
+            if(isset($input["search_mid"])) {
+                $summoner->search_mid = $input["search_mid"];
+            } else {
+                $summoner->search_mid = 0;
+            }
+
+            if(isset($input["search_adc"])) {
+                $summoner->search_adc = $input["search_adc"];
+            } else {
+                $summoner->search_adc = 0;
+            }
+
+            if(isset($input["search_support"])) {
+                $summoner->search_support = $input["search_support"];
+            } else {
+                $summoner->search_support = 0;
+            }
+
+
+            if(isset($input["looking_for_team"])) {
+                $summoner->looking_for_team = $input["looking_for_team"];
+            } else {
+                $summoner->looking_for_team = 0;
+            }
+
+            $summoner->save();
+
+            //print_r($input);
+
+            return Redirect::to('/settings');
         } else {
             return Redirect::to('/login')->with("error", "Bitte einloggen.");
         }
@@ -97,6 +147,12 @@ class UsersController extends \BaseController {
     }
 
     public function step3() {
+        $summoner = Summoner::where("summoner_id", "=", Session::get('summoner_id'))->first();
+        $champions = Champion::orderBy("name","asc")->get();
+        return View::make("users.register.step3", compact('summoner', 'champions'));
+    }
+
+    public function step4() {
         $summoner = Summoner::where("summoner_id", "=", Session::get('summoner_id'))->first();
         return View::make("users.register.step3", compact('summoner'));
     }
@@ -149,6 +205,56 @@ class UsersController extends \BaseController {
 
 
     public function step3_save() {
+        $input = Input::all();
+
+        $verifier = App::make('validation.presence');
+        $verifier->setConnection('mysql2');
+
+        // validate the info, create rules for the inputs
+        $rules = User::$rules = array(
+            'email'=>'required|unique:users',
+            'password' => 'confirmed|min:5'
+        );
+
+        // run the validation rules on the inputs from the form
+        $validator = Validator::make($input, $rules);
+
+        $validator->setPresenceVerifier($verifier);
+
+
+
+        if ($validator->passes())
+        {
+            $user = User::create($input);
+            $user->password = Hash::make(Input::get('password'));
+            $user->verify_string = str_random(10);
+            $user->summoner_id = Session::get('summoner_id');
+            $user->save();
+
+            $user->summoner->fav_champion_1 = Input::get('fav_champion_1');
+            $user->summoner->fav_champion_2 = Input::get('fav_champion_2');
+            $user->summoner->fav_champion_3 = Input::get('fav_champion_3');
+
+            $user->summoner->looking_for_team = Input::get('looking_for_team');
+
+            $user->summoner->search_top = Input::get('search_top');
+            $user->summoner->search_jungle = Input::get('search_jungle');
+            $user->summoner->search_mid = Input::get('search_mid');
+            $user->summoner->search_adc = Input::get('search_adc');
+            $user->summoner->search_support = Input::get('search_support');
+
+            return Redirect::to('/login')->with('success', 'Your account was successfully created.');
+
+        } else {
+            $messages = $validator->messages();
+            return Redirect::to("/register/step3")
+                ->withInput()
+                ->withErrors($validator)
+                ->with('error', 'There were validation errors.')->with('input', Input::all())->with('messages', $messages);
+        }
+    }
+
+    public function step4_save() {
         $input = Input::all();
         $validation = Validator::make($input, User::$step3);
 
@@ -227,7 +333,7 @@ class UsersController extends \BaseController {
     public function login()
     {
         if(Auth::check()) {
-            return Redirect::to('/users');
+            return Redirect::to('/');
         } else {
             return View::make("layouts.login")->with("error", "Fehler beim einloggen. Username/Passwort falsch.");
         }

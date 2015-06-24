@@ -27,6 +27,21 @@ class Summoner extends \Eloquent {
         return $this->hasMany('Game', 'summoner_id', 'summoner_id');
     }
 
+    public function fav1()
+    {
+        return $this->hasOne('Champion', 'champion_id', 'fav_champion_1');
+    }
+
+    public function fav2()
+    {
+        return $this->hasOne('Champion', 'champion_id', 'fav_champion_2');
+    }
+
+    public function fav3()
+    {
+        return $this->hasOne('Champion', 'champion_id', 'fav_champion_3');
+    }
+
     public function seasonchampstats()
     {
         return $this->hasMany('Seasonchampstat')

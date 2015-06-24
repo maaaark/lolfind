@@ -28,39 +28,53 @@
                     <div class="row">
                         <div class="col-md-6">
                             <h4>Roles</h4>
-                            @foreach($user->playerroles as $role)
-                                @if($role->role_id == 1)
-                                    <div class="player_role img-circle"></div><img src="/img/roles/tank.jpg" class="img-circle" width="35" /></div>
+
+                                @if($user->summoner->search_top == 1)
+                                    <div class="player_role img-circle"><img src="/img/roles/tank.jpg" class="img-circle" width="35" /></div>
                                 @endif
-                                @if($role->role_id == 2)
+                                @if($user->summoner->search_jungle == 1)
                                     <div class="player_role img-circle"><img src="/img/roles/fighter.jpg" class="img-circle" width="35" /></div>
                                 @endif
-                                @if($role->role_id == 3)
+                                @if($user->summoner->search_mid == 1)
                                      <div class="player_role img-circle"><img src="/img/roles/mage.jpg" class="img-circle" width="35" /></div>
                                 @endif
-                                @if($role->role_id == 4)
+                                @if($user->summoner->search_adc == 1)
                                      <div class="player_role img-circle"><img src="/img/roles/marksman.jpg" class="img-circle" width="35" /></div>
                                 @endif
-                                @if($role->role_id == 5)
+                                @if($user->summoner->search_support == 1)
                                      <div class="player_role img-circle"><img src="/img/roles/support.jpg" class="img-circle" width="35" /></div>
                                 @endif
-                            @endforeach
                         <div class="clearfix"></div>
-                        
-
-                        <div class="col-md-6">
-                            <h4>Top Champions</h4>
-                            <div class="player_role img-circle"></div>
-                            <div class="player_role img-circle"></div>
-                            <div class="player_role img-circle"></div>
-                            <div class="player_role img-circle"></div>
-                            <div class="player_role img-circle"></div>
-                            <div class="clearfix"></div>
                         </div>
 
+                        <div class="col-md-6">
+                            <h4>Favorite Champions</h4>
+                            @if($user->summoner->fav_champion_1 != 0)
+                                <div class="player_role img-circle"><img width="35" src="http://ddragon.leagueoflegends.com/cdn/{{ Config::get('settings.patch') }}/img/champion/{{ $user->summoner->fav1->key }}.png" class="img-circle" width="100" /></div>
+                            @else
+                                <div class="player_role img-circle"></div>
+                            @endif
+
+                            @if($user->summoner->fav_champion_2 != 0)
+                                <div class="player_role img-circle"><img width="35" src="http://ddragon.leagueoflegends.com/cdn/{{ Config::get('settings.patch') }}/img/champion/{{ $user->summoner->fav2->key }}.png" class="img-circle" width="100" /></div>
+                            @else
+                                <div class="player_role img-circle"></div>
+                            @endif
+
+                            @if($user->summoner->fav_champion_3 != 0)
+                                <div class="player_role img-circle"><img width="35" src="http://ddragon.leagueoflegends.com/cdn/{{ Config::get('settings.patch') }}/img/champion/{{ $user->summoner->fav3->key }}.png" class="img-circle" width="100" /></div>
+                            @else
+                                <div class="player_role img-circle"></div>
+                            @endif
+
+                            <div class="clearfix"></div>
+                        </div>
                     </div>
+                    <br/><br/>
+                    <h4>Description</h4>
+                    {{ $user->summoner->description }}
+
                 </div>
-            </div>
         </div>
 
 
@@ -76,20 +90,5 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-8 strip_all_tour_list">
-                <div style="padding: 15px;">
-                    <h4>Description</h4>
-
-                </div>
-            </div>
-
-            <div class="col-md-4" style="padding-top: 0px;">
-                <div class="strip_all_tour_list" style="padding: 10px;">
-                    <h4>Information</h4>
-
-                </div>
-            </div>
-        </div>
     </div>
 @stop

@@ -4,7 +4,11 @@
     <link rel="stylesheet" href="/css/teams.css">
 @stop
 @section('header')
-
+    <section class="small-parallax-window" data-parallax="scroll" data-image-src="/img/player_background.jpg" data-natural-width="1400" data-natural-height="230">
+        <div class="small-parallax-content">
+            dads
+        </div>
+    </section><!-- End section -->
 @stop
 @section('content')
     <section id="hero" class="login">

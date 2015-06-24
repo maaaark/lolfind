@@ -1,6 +1,7 @@
 <div class="network_navi">
 	<div class="account_part">
         @if(Auth::check())
+
             <div class="nw_navi_el account_icon nw_box_btn" data-box="chats_box">
                <i class="icon-chat-5"></i>
                @if(($chats_count = Auth::user()->chats_count()) AND isset($chats_count["count"]) AND $chats_count["count"] > 0 AND isset($chats_count["users"]))
@@ -81,7 +82,11 @@
                     </div>
                 </div>
             </div>
-            
+
+            <div class="nw_navi_el account_icon nw_box_btn" data-box="settings">
+                <a href="/settings"><i class="icon-cog-alt"></i></a>
+            </div>
+
             <a href="/summoner/{{ Auth::user()->summoner->region }}/{{ Auth::user()->summoner->name }}"><div class="login_btn nw_navi_el hovered" id="nw_login_btn">{{ Auth::user()->summoner->name }}</div></a>
             <a href="/logout"><div class="login_btn nw_navi_el hovered" id="nw_login_btn">{{ Lang::get('users.logout') }}</div></a>
         @else
