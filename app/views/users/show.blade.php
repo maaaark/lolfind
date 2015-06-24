@@ -26,7 +26,14 @@
             <div class="col-md-8 strip_all_tour_list">
                 <div style="padding: 15px;">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-3">
+                            @if($user->summoner->solo_tier != "none")
+                            <img src="/img/leagues/{{ trim(strtolower($user->summoner->solo_tier)) }}_1.png" class="tooltips" title="{{ trim(ucfirst(strtolower($user->summoner->solo_tier))) }}">
+                            @else
+                                <img src="/img/leagues/0_5.png" width="85" class="tooltips" title="Unranked">
+                            @endif
+                        </div>
+                        <div class="col-md-5">
                             <h4>Roles</h4>
 
                                 @if($user->summoner->search_top == 1)
@@ -47,7 +54,7 @@
                         <div class="clearfix"></div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <h4>Favorite Champions</h4>
                             @if($user->summoner->fav_champion_1 != 0)
                                 <div class="player_role img-circle"><img width="35" src="http://ddragon.leagueoflegends.com/cdn/{{ Config::get('settings.patch') }}/img/champion/{{ $user->summoner->fav1->key }}.png" class="img-circle" width="100" /></div>
@@ -70,7 +77,7 @@
                             <div class="clearfix"></div>
                         </div>
                     </div>
-                    <br/><br/>
+                    <br/>
                     <h4>Description</h4>
                     {{ $user->summoner->description }}
 
@@ -82,10 +89,6 @@
                 <div class="strip_all_tour_list" style="padding: 10px;">
                     <h4>Contact</h4>
                     <button href="#" class="btn_1" onclick="fi_server_open_chat({{ $user->id }}, '{{ $user->summoner->name }}', '{{ $user->summoner->profileIconId }}')">Send meesage</button>
-                </div>
-                <div class="strip_all_tour_list" style="padding: 10px;">
-                    <h4>Solo Queue</h4>
-                    <img src="/img/leagues/{{ trim(strtolower($user->summoner->solo_tier)) }}_1.png" class="tooltips" title="{{ trim(ucfirst(strtolower($user->summoner->solo_tier))) }}">
                 </div>
             </div>
         </div>
