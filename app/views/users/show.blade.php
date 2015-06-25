@@ -135,7 +135,12 @@
                 <div class="strip_all_tour_list" style="padding: 15px;">
                     <h4 style="padding-top: 5px;padding-bottom: 15px;">Matchhistory</h4>
                     <div id="matchhistory_holder">
-
+                        <div id="ranked_stats_holder">
+                            <div style="text-align: center;padding-top: 5px;">
+                                <div style="margin-bottom: 10px;"><img src="/img/ajax-loader.gif" style="height: 30px;"></div>
+                                We update the matchhistory ... Please wait a few seconds.
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -143,7 +148,12 @@
             <div class="col-md-4">
                 <div class="strip_all_tour_list" style="padding: 10px;">
                     <h4>Ranked-Stats</h4>
-                    <div id="ranked_stats_holder"></div>
+                    <div id="ranked_stats_holder">
+                        <div style="text-align: center;padding-top: 5px;">
+                            <div style="margin-bottom: 10px;"><img src="/img/ajax-loader.gif" style="height: 30px;"></div>
+                            We update the Ranked-Stats ... Please wait a few seconds.
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
