@@ -26,9 +26,11 @@
                                 }
                             ?>
 
-                            <a href="/teams/{{ $team->region }}/{{ $team->tag }}"><img src="/img/leagues/{{ trim($league_logo) }}.png" width="120" alt=""></a>
 
                             <div style="text-align: center;">
+                                <a href="/teams/{{ $team->region }}/{{ $team->tag }}">
+                                    <img src="/img/leagues/{{ trim($league_logo) }}.png" style="width: 120px;margin-top: 20px;" alt="">
+                                </a>
                                 @if(isset($division) AND $league_logo != "0_5")
                                     <b>{{ ucfirst(trim(substr($team->ranked_league_5, 0, strpos($team->ranked_league_5, "_")))) }} {{trim($division) }}</b>
                                 @else
@@ -41,23 +43,25 @@
                 <div class="clearfix visible-xs-block"></div>
                 <div class="col-lg-10 col-md-10 col-sm-10">
                     <div class="">
+                        <div style="float: right;font-size: 26px;color: rgba(0,0,0,0.1);cursor: default;padding-right: 20px;">
+                            {{ strtoupper(trim($team->tag)) }}
+                        </div>
                         <h3>
-                            <a href="/teams/{{ $team->region }}/{{ $team->tag }}">
-                            @if(Auth::check())
-                                <strong>{{ $team->name }}</strong>
-                            @else
-                                <strong>Teamname</strong>
-                            @endif
-                            </a>
+                            <a href="/teams/{{ $team->region }}/{{ $team->tag }}"><strong>{{ $team->name }}</strong></a>
+                            <a href="/teams/{{ $team->region }}/{{ $team->tag }}#open_apply" class="btn_1 outline" style="margin-left: 10px;">Apply</a>
+                            <a href="/teams/{{ $team->region }}/{{ $team->tag }}" class="btn_1 outline" style="margin-left: 10px;">Open team page</a>
                         </h3>
-                        @if(Auth::check())
-                            @if($team->description != "")
-                                <p>{{ $team->description }} <a href="/teams/{{ $team->region }}/{{ $team->tag }}">more</a></p>
-                            @else
-                                <p>No description</p>
-                            @endif
+                        @if($team->description != "")
+                            <p>
+                                @if(strlen($team->description) > 100)
+                                    {{ substr(trim($team->description, 0, 100)) }} ...
+                                @else
+                                    {{ $team->description }}
+                                @endif
+                                <a href="/teams/{{ $team->region }}/{{ $team->tag }}">more</a>
+                            </p>
                         @else
-                            <p>Login to see more details.</p>
+                            <p>No description</p>
                         @endif
 
                         <div class="row">
@@ -65,23 +69,23 @@
                                 <?php $no_roles_open = true; ?>
                                 <h5>Open Roles:</h5>
                                 @if($team->looking_for_top == 1)
-                                    <img src="/img/roles/tank.jpg" class="img-circle" width="35" />
+                                    <img src="/img/roles/tank.jpg" class="img-circle tooltips" title="Top" width="35" />
                                     <?php $no_roles_open = false; ?>
                                 @endif
                                 @if($team->looking_for_jungle == 1)
-                                    <img src="/img/roles/fighter.jpg" class="img-circle" width="35" />
+                                    <img src="/img/roles/fighter.jpg" class="img-circle tooltips" title="Jungle" width="35" />
                                     <?php $no_roles_open = false; ?>
                                 @endif
                                 @if($team->looking_for_mid == 1)
-                                    <img src="/img/roles/mage.jpg" class="img-circle" width="35" />
+                                    <img src="/img/roles/mage.jpg" class="img-circle tooltips" title="Mid" width="35" />
                                     <?php $no_roles_open = false; ?>
                                 @endif
                                 @if($team->looking_for_adc == 1)
-                                    <img src="/img/roles/marksman.jpg" class="img-circle" width="35" />
+                                    <img src="/img/roles/marksman.jpg" class="img-circle tooltips" title="ADC" width="35" />
                                     <?php $no_roles_open = false; ?>
                                 @endif
                                 @if($team->looking_for_support == 1)
-                                    <img src="/img/roles/support.jpg" class="img-circle" width="35" />
+                                    <img src="/img/roles/support.jpg" class="img-circle tooltips" title="Support" width="35" />
                                     <?php $no_roles_open = false; ?>
                                 @endif
 

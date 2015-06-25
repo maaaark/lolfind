@@ -85,7 +85,7 @@
 		height: 35px;
 	}
 	</style>
-    <div class="content">
+    <div class="content" style="max-width: 1170px;width: 100%;margin: auto;">
     	<div class="team_header">
     		<div class="team_updater_progress text-shadow" id="team_updater_progress">
     			<img src="/img/ajax-loader.gif" class="progress_animation">
@@ -135,6 +135,11 @@
                         });
                     });
                 });
+                
+                if(typeof window.location.hash != "undefined" && window.location.hash == "#open_apply"){
+                    $(".apply_team_btn").click();
+                    window.location.hash = '';
+                }
             });
             </script>
         @endif
