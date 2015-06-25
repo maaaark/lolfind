@@ -105,9 +105,9 @@
 
 
         <div>
-            <h2>{{ Lang::get("teams.search.team_suggestions") }}</h2>
-            <div id="team_list_suggestions">
-                <div style="color: rgba(0,0,0,0.6);text-align: center;padding: 35px;">{{ Lang::get("teams.search.need_update_list") }}</div>
+            <h2>{{ Lang::get("players.search.team_suggestions") }}</h2>
+            <div id="player_list_suggestions">
+                <div style="color: rgba(0,0,0,0.6);text-align: center;padding: 35px;">{{ Lang::get("players.search.need_update_list") }}</div>
             </div>
         </div>
 
@@ -127,39 +127,30 @@
     </div>
 
     <script>
-        $('#region_sel').makeSelect("region", dropdown_region_arr('euw'));
-        $('#leagues_sel').makeSelect("league", dropdown_leagues_arr('silver'));
-
-        $('#prime_lang_sel').makeSelect("main_language", dropdown_languages_arr('english'));
-        $('#sec_lang_sel').makeSelect("sec_language", dropdown_languages_arr('no_value', ["{{ Lang::get('teams.search.none') }}", "no_value"]));
-
-        $('#prime_role_sel').makeSelect("primary_role", dropdown_roles_arr('adc'));
-        $('#sec_role_sel').makeSelect("secundary_role", dropdown_roles_arr('no_value', ["{{ Lang::get('teams.search.none') }}", "no_value"]));
-
         // Update List
         can_update = true;
-        function update_team_list_suggestions(){
-            $("#team_list_update_btn").prop("disabled", false);
+        function update_player_list_suggestions(){
+            $("#player_list_update_btn").prop("disabled", false);
 
-            $.post('/teams/team_list_suggestions', {
+            $.post('/players/player_list_suggestions', {
                 region: $('#region_sel input').val(),
                 league: $('#leagues_sel input').val(),
                 main_lang: $('#prime_lang_sel input').val(),
                 sec_lang: $('#sec_lang_sel input').val(),
                 prime_role: $('#prime_role_sel input').val(),
                 sec_role: $('#sec_role_sel input').val(),
+                unranked_search: $('#search_unranked').prop('checked')
             }).done(function(data){
-                $("#team_list_update_btn").prop("disabled", false);
+                $("#player_list_update_btn").prop("disabled", false);
                 can_update = true;
-                //console.log(data);
-                $("#team_list_suggestions").html(data);
+                $("#player_list_suggestions").html(data);
             });
         }
 
-        $("#team_list_update_btn").click(function(){
+        $("#player_list_update_btn").click(function(){
             if(can_update){
                 can_update = false;
-                update_team_list_suggestions();
+                update_player_list_suggestions();
             }
         });
     </script>

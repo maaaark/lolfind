@@ -29,7 +29,7 @@
                 <div id="sec_role_sel"></div>
             </div>
 
-            <p><a href="javascript:void(0);" class="btn_1" id="team_list_update_btn">Filter Search</a></p>
+            <p><a href="javascript:void(0);" class="btn_1" id="player_list_update_btn">Filter Search</a></p>
 
         </div><!--End collapse -->
     </div><!--End filters col-->

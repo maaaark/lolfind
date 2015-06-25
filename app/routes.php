@@ -56,5 +56,6 @@ Route::post("/teams/apply/post", "TeamsController@apply_lightbox_post");
 
 // Players
 Route::get("/players", "PlayersController@index");
+Route::post("/players/player_list_suggestions", "PlayersController@list_suggestions");
 Route::get('/summoner/{region}/{name}', 'UsersController@show');
 Route::get('/summoner/{region}/{name}/ajax', 'UsersController@ajax_summoner_update');

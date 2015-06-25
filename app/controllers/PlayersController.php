@@ -9,4 +9,8 @@ class PlayersController extends \BaseController {
     	return View::make("players.details", compact(''));
     }
 
+    public function list_suggestions(){
+    	echo "LIST SUGGESTIONS:<br/>";
+    	print_r(Input::all());
+    }
 }
