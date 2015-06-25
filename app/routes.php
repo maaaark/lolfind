@@ -16,7 +16,6 @@ Route::get('/', 'IndexController@index');
 // User
 Route::post('/dologin', 'UsersController@doLogin');
 Route::get('/account/edit', 'UsersController@edit');
-Route::get('/summoner/{region}/{name}', 'UsersController@show');
 Route::get('/user', 'UsersController@index');
 Route::get('/login', 'UsersController@login');
 Route::get('/logout', 'UsersController@logout');
@@ -56,3 +55,5 @@ Route::post("/teams/apply/post", "TeamsController@apply_lightbox_post");
 
 // Players
 Route::get("/players", "PlayersController@index");
+Route::get('/summoner/{region}/{name}', 'UsersController@show');
+Route::get('/summoner/{region}/{name}/ajax', 'UsersController@ajax_summoner_update');

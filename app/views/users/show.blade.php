@@ -2,6 +2,7 @@
 @section('title', $user->summoner->name)
 @section('css_addition')
     <link rel="stylesheet" href="/css/players.css">
+    <link rel="stylesheet" href="/css/summoner_matchhistory.css">
 @stop
 @section('header')
     <section class="small-parallax-window" data-parallax="scroll" data-image-src="/img/player_background.jpg" data-natural-width="1400" data-natural-height="470">
@@ -102,9 +103,11 @@
                 </div>
             </div>
 
-            <div class="col-md-8 strip_all_tour_list">
-                <h4 style="margin-top: 20px;margin-bottom: 15px;">Connected Ranked-Teams</h4>
+            <div class="col-md-8 nopadding">
+                <div class="strip_all_tour_list" style="padding: 15px;">
+                <h4 style="margin-top: 5px;margin-bottom: 15px;">Connected Ranked-Teams</h4>
                 @if(isset($ranked_teams) AND is_array($ranked_teams) AND count($ranked_teams) > 0)
+                    <div class="row">
                     @foreach($ranked_teams as $team)
                         <div class="col-md-4 player_team_element">
                             <?php
@@ -123,11 +126,85 @@
                             <div class="team_name"><a href="/teams/{{ $team->region }}/{{ $team->tag }}">{{ $team->name }}</a></div>
                         </div>
                     @endforeach
+                    </div>
                 @else
                     <div style="padding: 35px;text-align: center;">{{ $user->summoner->name }} did not connect any Ranked-Teams with teamranked.com yet.</div>
                 @endif
+                </div>
+
+                <div class="strip_all_tour_list" style="padding: 15px;">
+                    <h4 style="padding-top: 5px;padding-bottom: 15px;">Matchhistory</h4>
+                    <div id="matchhistory_holder">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="strip_all_tour_list" style="padding: 10px;">
+                    <h4>Ranked-Stats</h4>
+                    <div id="ranked_stats_holder"></div>
+                </div>
             </div>
         </div>
-
     </div>
+
+    <script>
+    $(document).ready(function(){
+        $.get("/summoner/{{ $user->summoner->region }}/{{ $user->summoner->name }}/ajax", {"data": "true", sID: "{{ $user->summoner->summoner_id }}"}).done(function(data){
+            json = JSON.parse(data);
+            if(typeof json["matchhistory"] != "undefined"){
+                $("#matchhistory_holder").html(json["matchhistory"]);
+                $(".matchhistory_element .more_details").click(function(){
+                   element = $("#more_details_"+$(this).attr("data-id"));
+                   if(element.hasClass("active")){
+                      element.removeClass("active");
+                      $(this).html("Mehr Details anzeigen");
+                   } else {
+                      element.addClass("active");
+                      $(this).html("Details ausblenden");
+                   }
+                });
+            } else {
+                $("#matchhistory_holder").html("There was an error loading the matchhistory. Check back later.");
+            }
+
+            if(typeof json["ranked_stats"] == "string" && json["ranked_stats"].length > 0){
+                html         = '<div class="player_ranked_stats">';
+                html        += '<table class="table"><thead>';
+                html        += '<th>Champ</th>';
+                html        += '<th>Wins</th>';
+                html        += '<th>Losses</th>';
+                html        += '</thead><tbody>';
+                ranked_stats = JSON.parse(json["ranked_stats"]);
+                for(i = 0; i<ranked_stats.length; i++){
+                    element = ranked_stats[i];
+                    if(typeof element["championId"] != "undefined" && typeof element["championName"] != "undefined"){
+                        html += '<tr>';
+                        html += '<td><img style="height: 25px;margin-right: 8px;float: left;" src="http://ddragon.leagueoflegends.com/cdn/{{ Config::get('settings.patch') }}/img/champion/'+element["championKey"]+'.png" class="img-circle" />';
+                        html += '<div style="padding-top: 5px;">'+element["championName"]+'</div></td>';
+                        html += '<td>'+element["totalSessionsWon"]+'</td>';
+                        html += '<td>'+element["totalSessionsLost"]+'</td>';
+                        html += '</tr>';
+                    }
+                }
+                html += '</tbody></table>';
+                html += '</div>';
+                $("#ranked_stats_holder").html(html);
+
+                if($("#ranked_stats_holder .player_ranked_stats").outerHeight() > 450){
+                    $("#ranked_stats_holder .player_ranked_stats").addClass("smaller");
+                    $("#ranked_stats_holder .player_ranked_stats").prepend("<div class='minimizer'>Show all</div>");
+
+                    $("#ranked_stats_holder .player_ranked_stats .minimizer").click(function(){
+                        $(this).remove();
+                        $("#ranked_stats_holder .player_ranked_stats").removeClass("smaller");
+                    });
+                }
+            } else {
+                $("#ranked_stats_holder").html("There was an error loading the Ranked-Stats. Check back later.");
+            }
+        });
+    });
+    </script>
 @stop

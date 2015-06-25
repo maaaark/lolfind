@@ -1,6 +1,13 @@
 <?php
 
 class UsersController extends \BaseController {
+    private $allowed_regions = array(
+                                    "euw" => array("status" => true, "api_endpoint" => "https://euw.api.pvp.net", "name" => "Europe West", "platform_id" => "EUW1"), // PlatformId -> für Spectator Mode
+                                    "na"  => array("status" => true, "api_endpoint" => "https://euw.api.pvp.net", "name" => "Nordamerika", "platform_id" => "NA1")
+                                    );
+    private $summoner_update_interval = 60;
+    private $current_season = "SEASON2015";
+
     /**
      * Display the specified resource.
      * GET /teams/{id}
@@ -410,6 +417,11 @@ class UsersController extends \BaseController {
                 }
             }
         }
+    }
+
+    public function ajax_summoner_update($region, $summoner_name){
+        $api_key = Config::get('api.key');
+        include 'players/ajax.init.php';
     }
 
 }

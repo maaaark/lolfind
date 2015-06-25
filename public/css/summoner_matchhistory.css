@@ -1,0 +1,231 @@
+/* Matchhistory */
+.matchhistory_element {
+	border: 1px solid rgba(0,0,0,0.2);
+	margin-bottom: 15px;
+}
+
+.matchhistory_element .bg {
+	background: rgba(255,255,255,0.9);
+}
+
+.matchhistory_element .match_title {
+	background: #202528;
+        color: #fff;
+        font-family: 'Fjalla One', sans-serif;
+		font-size: 14px;
+		font-weight: 300;
+		padding: 5px;
+}
+
+.matchhistory_element .more_details {
+   text-align: center;
+   padding: 5px;
+   border-top: 1px solid rgba(0,0,0,0.2);
+   background-color: rgba(0,0,0,0.1);
+   cursor: pointer;
+}
+
+.matchhistory_element .more_details:hover {
+   background-color: rgba(0,0,0,0.15);
+}
+
+.matchhistory_element .more_details_holder {
+   display: none;
+}
+
+.matchhistory_element .more_details_holder.active {
+   display: block;
+}
+
+.matchhistory_table.table, .matchhistory_table_detail.table {
+	margin: 0px;
+}
+
+.matchhistory_table.table tr td {
+	border: none;
+}
+
+.matchhistory_table td.champion {
+	width: 15%;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.matchhistory_table td.stats {
+	width: 15%;
+	vertical-align: middle;
+}
+
+.matchhistory_table td.champion img {
+	max-width: 75px;
+}
+
+.matchhistory_table td.team {
+	width: 17%;
+}
+
+.matchhistory_table td.items {
+	vertical-align: middle;
+}
+
+.matchhistory_table td.items .item {
+	height: 50px;
+	width: 50px;
+	background-position: center center;
+	border: 1px solid rgba(0,0,0,0.7);
+	border-radius: 5px;
+	display: inline-block;
+}
+
+.matchhistory_table td.items .no_item {
+	height: 50px;
+	width: 50px;
+	border: 1px solid rgba(0,0,0,0.7);
+	border-radius: 5px;
+	display: inline-block;
+}
+
+.matchhistory_table td.team div {
+	display: block;
+}
+
+.matchhistory_table td.team div img {
+	width: 20px;
+}
+
+.matchhistory_table td.farm {
+   vertical-align: middle;
+   text-align: right;
+}
+
+.matchhistory_table td.farm img {
+   margin-left: 2px;
+}
+
+.matchhistory_table td.farm span.val {
+   font-weight: bold;
+}
+
+.matchhistory_table td.spells {
+	width: 8%;
+	vertical-align: middle;
+}
+
+.matchhistory_table td.spells .spell {
+	width: 40px;
+	height: 40px;
+	margin-top: 2px;
+	background-size: 42px;
+	border: 1px solid rgba(0,0,0,0.7);
+	border-radius: 5px;
+}
+
+@media (max-width: 950px){
+	.matchhistory_table .no_mobile {
+		display: none;
+	}
+	
+	.matchhistory_table td.team span {
+		display: none;
+	}
+	
+	.matchhistory_table td.team div.player {
+		display: inline-block;
+		width: 33%;
+		text-align: center;
+	}
+
+	.matchhistory_table td.team div.player img {
+		width: 80%;
+	}
+	
+	.matchhistory_table td.items .item_breaker {
+		display: none;
+	}
+}
+
+@media (max-width: 650px){
+	.matchhistory_table td.items .item {
+		height: 30px;
+		width: 30px;
+		background-size: 35px;
+		border-radius: 3px;
+	}
+	
+	.matchhistory_table td.items .no_item {
+		height: 30px;
+		width: 30px;
+		border-radius: 3px;
+	}
+	
+	.matchhistory_table td.spells .spell {
+		height: 25px;
+		width: 25px;
+		background-size: 27px;
+	}
+	
+	.matchhistory_table td.stats {
+		font-size: 12px;
+	}
+	
+	.matchhistory_table td.stats span {
+		font-size: 10px;
+	}
+	
+	.matchhistory_element .match_title {
+		background: #202528;
+        color: #fff;
+        font-family: 'Fjalla One', sans-serif;
+		font-size: 14px;
+		font-weight: 300;
+		padding: 5px;
+	}
+}
+
+@media (max-width: 500px){
+	.matchhistory_table td.items .item {
+		height: 20px;
+		width: 20px;
+		background-size: 25px;
+		border-radius: 3px;
+	}
+	
+	.matchhistory_table td.items .no_item {
+		height: 20px;
+		width: 20px;
+		border-radius: 3px;
+	}
+	
+	.matchhistory_table td.team div.title {
+		font-size: 12px;
+	}
+}
+
+@media (max-width: 420px){
+   .matchhistory_table .no_mobile_mini {
+      display: none;
+   }
+   
+   .matchhistory_table .show_mobile_mini {
+      display: block !important; 
+   }
+   
+	.summoner_bg .summoner_navi .element {
+		padding: 8px;
+      margin-left: 3px;
+	}
+}
+
+.matchhistory_table_detail.table tr {
+  position: relative;
+}
+
+.matchhistory_table_detail.table tr td {
+   padding: 4px;
+   font-size: 14px;
+   height: 25px;
+}
+
+.matchhistory_table_detail.table tr td.val {
+   font-weight: bold;
+}

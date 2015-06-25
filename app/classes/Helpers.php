@@ -31,6 +31,55 @@ class Helpers {
         return $html;
     }
 
+    public static function niceGameMode($gameMode) {
+		if($gameMode == "CLASSIC") {
+			$nice_gameMode = "Klassisch";
+		} elseif($gameMode == "ODIN") {
+			$nice_gameMode = "Dominion";
+		} elseif($gameMode == "ARAM") {
+			$nice_gameMode = "Aram";
+		} else {
+			$nice_gameMode = "Spezial Modus";
+		}
+        return $nice_gameMode;
+    }
+
+    public static function niceSubType($queueMode) {
+		if($queueMode == "NONE") {
+			$nice_queueMode = "Freies Spiel";
+		} elseif($queueMode == "NORMAL") {
+			$nice_queueMode = "Normales Spiel";
+        } elseif($queueMode == "NORMAL_3x3") {
+			$nice_queueMode = "Twisted Treeline";
+        } elseif($queueMode == "ARAM_UNRANKED_5x5") {
+			$nice_queueMode = "ARAM";
+        } elseif($queueMode == "BOT ") {
+			$nice_queueMode = "Bot Spiel";
+        } elseif($queueMode == "RANKED_SOLO_5x5") {
+			$nice_queueMode = "Solo Ranglisten Spiel";
+        } elseif($queueMode == "RANKED_TEAM_3x3") {
+			$nice_queueMode = "Team Ranglisten Spiel 3on3";
+        } elseif($queueMode == "RANKED_TEAM_5x5") {
+			$nice_queueMode = "Team Ranglisten Spiel 5on5";
+        } elseif($queueMode == "URF") {
+			$nice_queueMode = "Ultra Rapid Fire";
+		} else {
+			$nice_queueMode = "Anderer Spielmodus";
+		}
+        return $nice_queueMode;
+    }
+
+    public static function niceMatchMode($matchMode) {
+		if($matchMode == "MATCHED_GAME") {
+			$nice_matchMode = "Matched Game";
+		} elseif($matchMode == "CUSTOM_GAME") {
+			$nice_matchMode = "Freies Spiel";
+		} else {
+			$nice_matchMode = "Tutorial";
+		}
+        return $nice_matchMode;
+    }
+
     public static function getUser($id){
     	$user = User::where("id", "=", $id)->first();
     	if(isset($user["id"]) && $user["id"] > 0){
