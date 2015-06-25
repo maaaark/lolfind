@@ -10,7 +10,7 @@
 	width: 300px;
 	margin-left: 15px;
   	overflow: hidden;
-  	height: 265px;
+  	height: 305px;
 }
 
 .chat_holder .chat_window.unread_messages .title_bar {
@@ -60,6 +60,10 @@
 	height: 35px;
 }
 
+.chat_holder .chat_window.minimized .minimized_view:hover {
+	background: #D2D2D2;
+}
+
 .chat_holder .chat_window .maximized_view {
 	background: #F4F3F3;
 	-webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
@@ -76,34 +80,46 @@
 	background: #E2DEDE;
 	color: #525252;
 	font-weight: bold;
-	padding: 3px;
-	padding-top: 3px;
 	font-size: 16px;
 	box-sizing: border-box;
 	padding-left: 6px;
 }
 
+.chat_holder .chat_window .title_bar .chat_window_name {
+	padding: 5px;
+	cursor: default;
+}
+
 .chat_holder .chat_window .title_bar .options {
 	float: right;
-	padding-top: 1px;
+	padding-top: 3px;
+	padding-right: 3px;
+	padding-bottom: 0px;
 }
 
 .chat_holder .chat_window .title_bar .options .chat_window_option {
 	border: 1px solid rgba(0,0,0,0.2);
 	background: rgba(0,0,0,0.1);
-	border-radius: 3px;
+	border-radius: 2px;
 	padding: 5px;
-	padding-top: 3px;
-	padding-bottom: 3px;
+	padding-top: 1px;
+	padding-bottom: 1px;
 	text-align: center;
-	margin-left: 3px;
 	cursor: pointer;
+	font-size: 12px;
+	line-height: 12px;
+	margin-left: 3px;
+}
+
+.chat_holder .chat_window .title_bar .options .chat_window_option:hover {
+	background: rgba(0,0,0,0.3);
 }
 
 .chat_holder .chat_window .chat_content {
 	padding: 5px;
-	height: 200px;
+	height: 240px;
 	overflow-y: scroll;
+	overflow-x: hidden;
 }
 
 .chat_holder .chat_window .chat_value_input {
@@ -115,4 +131,26 @@
 	border-top: 1px solid rgba(0,0,0,0.5);
 	outline: none;
 	height: 40px;
+}
+
+.chat_holder .chat_window .chat_content .chat_msg {
+	max-width: 80%;
+	padding: 3px;
+	padding-left: 7px;
+	padding-right: 7px;
+	background: rgba(224, 224, 224, 1);
+	margin-top: 2px;
+	margin-bottom: 2px;
+	float: left;
+	text-align: left;
+	border-radius: 6px;
+}
+
+.chat_holder .chat_window .chat_content .chat_msg.own {
+	background: rgb(244, 213, 92);
+	float: right;
+}
+
+.chat_holder .chat_window .chat_content .chat_clear {
+	clear: both;
 }

@@ -1,5 +1,6 @@
 var socket;
 var opened_chats = [];
+var fi_chat_history_last_sender;
 
 function fi_server_init() {
 	try {
@@ -146,7 +147,7 @@ function fi_server_open_chat(userid, name, icon, automatic_open, minimized_statu
 		html += '<div class="maximized_view">';
 			html += '<div class="title_bar">';
 			html += '<div class="options"><span class="chat_window_option minimize">-</span><span class="chat_window_option close_chat">x</span></div>';
-			html += name+'</div>';
+			html += '<div class="chat_window_name">'+name+'</div></div>';
 			html += '<div class="chat_content"><div class="history_holder"></div></div>';
 			html += '<div class="chat_bar"><input type="text" id="chat_value_input_'+userid+'" class="chat_value_input" data-uId="'+userid+'" data-uName="'+name+'" data-uIcon="'+icon+'"></div>';
 		html += '</div>';
@@ -266,7 +267,21 @@ function fi_server_bind_window_options(){
 function fi_server_chat_add_text(chat_user_id, json, incoming_message){
 	element = $("#chat_holder #chat_window_"+chat_user_id);
 	content_div = element.find(".chat_content");
-	content_div.append("<div><b>"+json["sender_username"]+":</b> "+json["message"]+"</div>");
+	if(json["sender"] == fi_server_user){
+		if(fi_chat_history_last_sender == json["sender"]){
+			html = "<div class='chat_msg own'>"+json["message"]+"</div>";
+		} else {
+			html = "<div class='chat_msg own'><b>"+json["sender_username"]+":</b> "+json["message"]+"</div>";
+		}
+	} else {
+		if(fi_chat_history_last_sender == json["sender"]){
+			html = "<div class='chat_msg'>"+json["message"]+"</div>";
+		} else {
+			html = "<div class='chat_msg'><b>"+json["sender_username"]+":</b> "+json["message"]+"</div>";
+		}
+	}
+	content_div.append(html + '<div class="chat_clear"></div>');
+	fi_chat_history_last_sender = json["sender"];
 	
 	if(typeof incoming_message != "undefined" && incoming_message){
         fi_server_update_nw_chat_list(json, json["sender"], true);
@@ -300,7 +315,21 @@ function fi_server_update_nw_chat_list(json, chat_other_user, incoming_message_s
 function fi_server_chat_history_handle(json){
 	if(typeof json["history"] != "undefined" && json["history"].length > 0){
 		for(i = 0; i < json["history"].length; i++){
-			$("#chat_window_"+json["user"]).find(".history_holder").append("<div><b>"+json["history"][i]["sender_username"]+":</b> "+json["history"][i]["message"]+"</div>");
+			if(json["history"][i]["sender"] == fi_server_user){
+				if(fi_chat_history_last_sender == json["history"][i]["sender"]){
+					html = "<div class='chat_msg own'>"+json["history"][i]["message"]+"</div>";
+				} else {
+					html = "<div class='chat_msg own'><b>"+json["history"][i]["sender_username"]+":</b> "+json["history"][i]["message"]+"</div>";
+				}
+			} else {
+				if(fi_chat_history_last_sender == json["history"][i]["sender"]){
+					html = "<div class='chat_msg'>"+json["history"][i]["message"]+"</div>";
+				} else {
+					html = "<div class='chat_msg'><b>"+json["history"][i]["sender_username"]+":</b> "+json["history"][i]["message"]+"</div>";
+				}
+			}
+			$("#chat_window_"+json["user"]).find(".history_holder").append(html + '<div class="chat_clear"></div>');
+			fi_chat_history_last_sender = json["history"][i]["sender"];
 		}
 	} else {
 		$("#chat_window_"+json["user"]).find(".history_holder").html('');
