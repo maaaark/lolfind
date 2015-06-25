@@ -30,7 +30,12 @@ return array(
       "any"                  => "Any",
 
       "team_suggestions"     => "Team suggestions",
-      "need_update_list"     => "You need to update the list: You can do this by customizing the filters on the left side and click the button 'Update List'"
+      "need_update_list"     => "You need to update the list: You can do this by customizing the filters on the left side and click the button 'Update List'",
+   ),
+
+   "navi" => array(
+      "main"                 => "Overview",
+      "settings"             => "Team-Settings",
    ),
 	
 );

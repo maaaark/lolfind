@@ -1,4 +1,4 @@
-<h3>Apply {{ $ranked_team->name }}</h3>
+<h3 id="lightbox_apply_head_title">Apply {{ $ranked_team->name }}</h3>
 
 @if(RankedTeam::loggedCanApplyToTeam($ranked_team->id))
    @if(RankedTeam::loggedCanApplyToTeam($ranked_team->id) == "already_applied")
@@ -68,8 +68,22 @@
               $.post("/teams/apply/post", {"team": {{ $ranked_team->id }}, "comment": $("#application_comment").val(), "role": $("#selection_application_role_sel_val").val() }).done(function(data){
                   allowLightboxCloseBG(true);
                   lightboxCloseBtn(true);
-                  $("#application_form_holder").html("geladen");
-                  console.log(data);
+
+                  if(data.trim() == "error"){
+                      html  = '<div style="margin-top: 35px;"">';
+                      html += 'There was an error. We could not save your application. Please check back later.';
+                      html += '</div>';
+                      $("#application_form_holder").html(html);
+                  } else {
+                      html  = '<div style="font-size: 26px;text-align: center;line-height: 32px;">';
+                      html += 'Your application was succesfully send to the leader of {{ $ranked_team->name }}';
+                      html += '<div style="font-size: 16px;margin-top: 15px;">';
+                      html += 'The leader can now refuse your application or get in contact with you.';
+                      html += '</div>';
+                      html += '</div>';
+                      $("#application_form_holder").html(html);
+                      $("#lightbox_apply_head_title").remove();
+                  }
               });
               html = '<div style="padding: 35px;text-align: center;"><img src="/img/ajax-loader.gif" style="height: 45px;"><div>We submit your application. Please wait a few seconds.</div></div>';
               $("#application_form_holder").html(html);

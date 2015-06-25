@@ -46,20 +46,30 @@
 	.team_header .team_navigation .team_navi_el {
 		float: left;
 		color: rgba(0,0,0,0.5);
-		background: rgba(255,255,255,0.9);
-		border: 2px solid rgba(0,0,0,0.1);
+		background: rgba(255,255,255,0.1);
+		border: 3px solid rgba(255,255,255,1);
+		border-radius: 3px;
 		padding: 7px;
+		padding-left: 25px;
+		padding-right: 25px;
 		margin-right: 10px;
 		cursor: pointer;
+		color: #fff;
+		font-weight: bold;
+		font-size: 14px;
+		transition: all 300ms;
 	}
 
 	.team_header .team_navigation .team_navi_el:hover {
-		border: 2px solid rgba(255,255,255,1);
-		background: #fff;
+		background: rgba(255,255,255,1);
+		color: #000;
 	}
 
 	.team_header .team_navigation .team_navi_el.active {
-		border-bottom: 2px solid orange;
+		border: 3px solid orange;
+		background: rgba(255,255,255,0.3);
+		color: #fff;
+		cursor: default;
 	}
 
 	.team_updater_progress {
@@ -83,12 +93,14 @@
     		</div>
         	<div class="team_title text-shadow">
         		{{ $ranked_team->name }}
-                @if(($check = RankedTeam::loggedCanApplyToTeam($ranked_team->id)))
-                    @if($check == "can_apply")
-                       <button class="button_intro outline apply_team_btn" style="float: right;margin-left: 15px;margin-top: -5px;">Apply the team</button>
-                    @elseif($check == "already_applied")
-                       <button class="btn_1 apply_team_btn" style="float: right;margin-left: 15px;margin-top: -5px;" disabled>Already applied</button>
-                    @endif
+        		@if($ranked_team->looking_for_players == 1)
+	                @if(($check = RankedTeam::loggedCanApplyToTeam($ranked_team->id)))
+	                    @if($check == "can_apply")
+	                       <button class="button_intro outline apply_team_btn" style="float: right;margin-left: 15px;margin-top: -5px;">Apply the team</button>
+	                    @elseif($check == "already_applied")
+	                       <button class="btn_1 apply_team_btn" style="float: right;margin-left: 15px;margin-top: -5px;" disabled>Already applied</button>
+	                    @endif
+	                @endif
                 @endif
         		<div class="small_team_info">{{ trim(strtoupper($ranked_team->region)) }} | {{ trim(strtoupper($ranked_team->tag)) }}</div>
     		</div>
@@ -96,9 +108,6 @@
     		<div class="team_navigation">
     			<a href="/teams/{{ trim($ranked_team->region) }}/{{ trim($ranked_team->tag) }}/">
     				<div class="team_navi_el" id="team_navi_link_main">{{ Lang::get("teams.navi.main") }}</div>
-				</a>
-    			<a href="/teams/{{ trim($ranked_team->region) }}/{{ trim($ranked_team->tag) }}/matchhistory">
-    				<div class="team_navi_el" id="team_navi_link_members">{{ Lang::get("teams.navi.matchhistory") }}</div>
 				</a>
 
     			@if(Auth::check())
