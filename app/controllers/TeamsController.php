@@ -31,6 +31,10 @@ class TeamsController extends \BaseController {
                 $ranked_teams->where('ranked_league_5',"LIKE", '%'.Input::get("league").'%');
             }
 
+        } else {
+            if(Input::get("unranked_search") == false) {
+                $ranked_teams->where('ranked_league_5',"!=", "none")->where('ranked_league_5',"!=", "");
+            }
         }
 
         if(Input::get("region") != "any") {
