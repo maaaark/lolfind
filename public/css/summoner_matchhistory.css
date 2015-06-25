@@ -120,23 +120,39 @@
 	border-radius: 5px;
 }
 
+.matchhistory_element .team .player {
+	box-sizing: border-box;
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.matchhistory_element .team .player img {
+	width: 90%;
+	max-width: 100px;
+}
+
+.matchhistory_element .team .player .player_name {
+	margin-top: 5px;
+}
+
+.matchhistory_element .team .team_bg {
+	background: #f1f1f1;
+}
+
+.matchhistory_element .team .team_title {
+	background: rgb(125, 125, 229);
+	padding: 15px;
+	color: #000;
+}
+
+.matchhistory_element .team .team_title.team2 {
+	background: rgb(255, 119, 119);
+}
+
 @media (max-width: 950px){
 	.matchhistory_table .no_mobile {
 		display: none;
-	}
-	
-	.matchhistory_table td.team span {
-		display: none;
-	}
-	
-	.matchhistory_table td.team div.player {
-		display: inline-block;
-		width: 33%;
-		text-align: center;
-	}
-
-	.matchhistory_table td.team div.player img {
-		width: 80%;
 	}
 	
 	.matchhistory_table td.items .item_breaker {

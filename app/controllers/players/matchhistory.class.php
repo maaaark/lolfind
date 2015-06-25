@@ -71,7 +71,7 @@ class MatchhistoryView {
 		$api_key = Config::get('api.key');
 
 		$champion = Champion::where('champion_id', '=', trim($game["championId"]))->first();
-		/*$game["items"] = array(0 => false, 1 => false, 2 => false, 3 => false, 4 => false, 5 => false, 6 => false);
+		$game["items"] = array(0 => false, 1 => false, 2 => false, 3 => false, 4 => false, 5 => false, 6 => false);
 		foreach($game["stats"] as $column => $value){
 			if(strpos("platzhalter_".$column, "item") > 0){
 				if($value > 0){
@@ -81,7 +81,7 @@ class MatchhistoryView {
 					$game["items"][intval(str_replace("item", "", $column))] = false;
 				}
 			}
-		}*/
+		}
 
 		$team1 = array();
 		$team2 = array();

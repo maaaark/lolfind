@@ -159,10 +159,10 @@
                    element = $("#more_details_"+$(this).attr("data-id"));
                    if(element.hasClass("active")){
                       element.removeClass("active");
-                      $(this).html("Mehr Details anzeigen");
+                      $(this).html("Show more details");
                    } else {
                       element.addClass("active");
-                      $(this).html("Details ausblenden");
+                      $(this).html("Hide details");
                    }
                 });
             } else {
