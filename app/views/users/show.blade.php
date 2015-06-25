@@ -1,7 +1,7 @@
 @extends('design')
 @section('title', $user->summoner->name)
 @section('css_addition')
-    <link rel="stylesheet" href="/css/teams.css">
+    <link rel="stylesheet" href="/css/players.css">
 @stop
 @section('header')
     <section class="small-parallax-window" data-parallax="scroll" data-image-src="/img/player_background.jpg" data-natural-width="1400" data-natural-height="470">
@@ -80,16 +80,52 @@
                     <br/>
                     <h4>Description</h4>
                     {{ $user->summoner->description }}
-
                 </div>
-        </div>
-
+            </div>
 
             <div class="col-md-4" style="padding-top: 0px;">
                 <div class="strip_all_tour_list" style="padding: 10px;">
-                    <h4>Contact</h4>
-                    <button href="#" class="btn_1" onclick="fi_server_open_chat({{ $user->id }}, '{{ $user->summoner->name }}', '{{ $user->summoner->profileIconId }}')">Send meesage</button>
+                    @if(Auth::check() AND Auth::user()->id == $user->id)
+                        <h4>Edit profile</h4>
+                        You got new favorite champs? Or just want to change some information?
+                        <div style="margin-top: 12px;text-align: center;">
+                            <a href="/settings" class="btn_1">Customize your profile</a>
+                        </div>
+                    @else
+                        <h4>Contact</h4>
+                        Get in contact with <b>{{ $user->summoner->name }}</b>:
+                        <div style="margin-top: 12px;text-align: center;">
+                            <button href="#" class="btn_1" onclick="fi_server_open_chat({{ $user->id }}, '{{ $user->summoner->name }}', '{{ $user->summoner->profileIconId }}')">Send meesage</button>
+                            <div class="btn_1 disabled tooltips" title="Coming soon!">Add as friend</div>
+                        </div>
+                    @endif
                 </div>
+            </div>
+
+            <div class="col-md-8 strip_all_tour_list">
+                <h4 style="margin-top: 20px;margin-bottom: 15px;">Connected Ranked-Teams</h4>
+                @if(isset($ranked_teams) AND is_array($ranked_teams) AND count($ranked_teams) > 0)
+                    @foreach($ranked_teams as $team)
+                        <div class="col-md-4 player_team_element">
+                            <?php
+                                $league_logo = "0_5";
+                                if(strpos($team->ranked_league_5, "_") > 0){
+                                    $division = substr($team->ranked_league_5, strpos($team->ranked_league_5, "_") + 1);
+                                    if($division == "I"){ $division = "1"; }
+                                    else if($division == "II"){ $division = "2"; }
+                                    else if($division == "III"){ $division = "3"; }
+                                    else if($division == "IV"){ $division = "4"; }
+                                    else { $division = "5"; }
+                                    $league_logo = trim(substr($team->ranked_league_5, 0, strpos($team->ranked_league_5, "_")))."_".trim($division);
+                                }
+                            ?>
+                            <div class="team_icon"><img src="/img/leagues/{{ trim($league_logo) }}.png"></div>
+                            <div class="team_name"><a href="/teams/{{ $team->region }}/{{ $team->tag }}">{{ $team->name }}</a></div>
+                        </div>
+                    @endforeach
+                @else
+                    <div style="padding: 35px;text-align: center;">{{ $user->summoner->name }} did not connect any Ranked-Teams with teamranked.com yet.</div>
+                @endif
             </div>
         </div>
 

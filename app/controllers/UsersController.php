@@ -8,21 +8,29 @@ class UsersController extends \BaseController {
      * @param  int  $id
      * @return Response
      */
-    public function show($region, $name)
-    {
-        $summoner = Summoner::where("region", "=", $region)->where("name", "=", $name)->first();
-        $user = @$summoner->user;
-        
-        if($user && $user->summoner_id && $user->summoner_id > 0){
-            $user_object = false;
-            $user_check  = User::where("summoner_id", "=", $user->summoner_id)->first();
-            if(isset($user_check["id"]) && $user_check["id"] > 0){
-                $user_object = $user_check;
+    public function show($region, $name){
+        if(Auth::check()){
+            $summoner = Summoner::where("region", "=", $region)->where("name", "=", $name)->first();
+            $user = @$summoner->user;
+            
+            if($user && $user->summoner_id && $user->summoner_id > 0){
+                $user_object = false;
+                $user_check  = User::where("summoner_id", "=", $user->summoner_id)->first();
+                if(isset($user_check["id"]) && $user_check["id"] > 0){
+                    $user_object = $user_check;
+                }
+
+                $ranked_teams      = array();
+                $ranked_teams_data = RankedTeamPlayer::where("summoner_id", "=", $user->summoner_id)->get();
+                foreach($ranked_teams_data as $team_join){
+                    $ranked_teams[] = RankedTeam::where("id", "=", $team_join->team)->first();
+                }
+                return View::make('users.show', compact('user', "user_object", "ranked_teams"));
+            } else {
+                return View::make('users.show_not_registered', compact('user', "user_object"));
             }
-            return View::make('users.show', compact('user', "user_object"));
-        } else {
-            return View::make('users.show_not_registered', compact('user', "user_object"));
         }
+        return View::make("users.show_login");
     }
 
     public function index() {

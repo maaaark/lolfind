@@ -1,0 +1,19 @@
+.player_team_element {
+	margin-bottom: 15px;
+}
+
+.player_team_element .team_name {
+	font-weight: bold;
+	margin-top: 8px;
+	font-size: 16px;
+	text-align: center;
+}
+
+.player_team_element .team_icon {
+	text-align: center;
+}
+
+.player_team_element .team_icon img {
+	height: 95px;
+	margin-bottom: 15px;
+}

@@ -6,7 +6,7 @@ class PlayersController extends \BaseController {
     }
 
     public function details($id){
-        return View::make("players.details", compact(''));
+    	return View::make("players.details", compact(''));
     }
 
 }
