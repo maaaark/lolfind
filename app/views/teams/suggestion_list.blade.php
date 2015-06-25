@@ -11,7 +11,7 @@
                     <div class="center">
                         <div style="text-align: center">
                             @if(!isset($team->ranked_league_5) || trim($team->ranked_league_5) == "none" || trim($team->ranked_league_5) == "")
-                                <div class="ribbon unranked" ></div>
+                                <div class="ribbon unranked" ></div><br/>
                             @endif
                             <?php
                                 $league_logo = "0_5";

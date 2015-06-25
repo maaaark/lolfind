@@ -20,22 +20,30 @@ class TeamsController extends \BaseController {
     }
 
     public function list_suggestions(){
+        print_r(Input::all());
         $ranked_teams = RankedTeam::where("name","!=", "");
         $ranked_teams->where('looking_for_players',"=",1);
 
         if(Input::get("league") != "any") {
-            $ranked_teams->where('ranked_league_5',"LIKE", '%'.Input::get("league").'%');
+            if(Input::get("unranked_search") == true) {
+                $ranked_teams->where('ranked_league_5',"LIKE", '%'.Input::get("league").'%')->orWhere('league_prediction',"=",Input::get("league"));
+            } else {
+                $ranked_teams->where('ranked_league_5',"LIKE", '%'.Input::get("league").'%');
+            }
+
         }
 
         if(Input::get("region") != "any") {
             $ranked_teams->where('region',"=",Input::get("region"));
         }
 
-        if(Input::get("unranked_search") == false) {
-            // 1 = bronze
-
-            $ranked_teams->where('league_prediction',"=",1);
+        /*
+        if(Input::get("unranked_search") == true) {
+            if(Input::get("league") != "any") {
+                $ranked_teams->where('league_prediction',"=",Input::get("league"));
+            }
         }
+        */
 
         if(Input::get("main_lang") != "any") {
             $ranked_teams->where('looking_for_lang',"=",Input::get("main_lang"));
