@@ -240,6 +240,18 @@ class TeamsController extends \BaseController {
             echo "error";
         }
 	}
+
+    public function add_success($id){
+        if(Auth::check()){
+            $ranked_team = RankedTeam::where("id", "=", $id)->first();
+            if(isset($ranked_team->id) && $ranked_team->id > 0 && $ranked_team->leader_summoner_id == Auth::user()->summoner->summoner_id){
+                return View::make("teams.add_success", array(
+                    "ranked_team" => $ranked_team
+                ));
+            }
+        }
+        return View::make("teams.not_found");
+    }
 	
 	public function getLoggedRankedTeams(){
         if(Auth::check()){

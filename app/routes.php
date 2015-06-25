@@ -41,6 +41,7 @@ Route::post("/teams/team_list_suggestions", "TeamsController@list_suggestions");
 Route::get("/teams/add", "TeamsController@add");
 Route::post("/teams/add/rankedTeams", "TeamsController@getLoggedRankedTeams");
 Route::post("/teams/add/post_action", "TeamsController@add_post");
+Route::get("/teams/add/success/{id}", "TeamsController@add_success");
 Route::get("/teams/update_team/{team_id}", "TeamsController@updateTeam");
 Route::get("/teams/{region}/{tag}", "TeamsController@detail");
 Route::get("/teams/{region}/{tag}/members", "TeamsController@detail");

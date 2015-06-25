@@ -9,15 +9,25 @@ function fi_server_init() {
 							   console.log("readyState FI-Network-Server: "+this.readyState);
 							   
 							   // Zuvor geöffnete Chat-Fenster öffnen
-							   if(typeof $.cookie("fi_opened_chats") != "undefined"){
-                           chat_windows_json = JSON.parse($.cookie("fi_opened_chats"));
-                           for(i = 0; i < chat_windows_json.length; i++){
-                              if(chat_windows_json[i]){
-                                 fi_server_open_chat(chat_windows_json[i]["userid"], chat_windows_json[i]["name"], chat_windows_json[i]["icon"], true);
-                                 opened_chats.push(chat_windows_json[i]);
-                              }
-                           }
-                        }
+							   	if(typeof $.cookie("fi_opened_chats") != "undefined"){
+		                           	chat_windows_json = JSON.parse($.cookie("fi_opened_chats"));
+		                           	for(i = 0; i < chat_windows_json.length; i++){
+			                            if(chat_windows_json[i]){
+			                                minimized_status = false;
+			                                if(typeof chat_windows_json[i]["minimized"] != "undefined" && chat_windows_json[i]["minimized"] == true){
+			                                	minimized_status = true;
+			                                }
+			                                
+			                                opened_chats.push({
+			                                	"userid": chat_windows_json[i]["userid"],
+			                                	"name": chat_windows_json[i]["name"],
+			                                	"icon": chat_windows_json[i]["icon"],
+			                                	"minimized": minimized_status,
+			                                });
+			                                fi_server_open_chat(chat_windows_json[i]["userid"], chat_windows_json[i]["name"], chat_windows_json[i]["icon"], true, minimized_status);
+			                            }
+		                           	}
+                       			}
 						   };
 		socket.onmessage = function(msg) {
 								json = JSON.parse(msg.data);
@@ -94,7 +104,7 @@ function fi_server_chat_handle_incoming(json){
    }
 }
 
-function fi_server_open_chat(userid, name, icon, automatic_open){
+function fi_server_open_chat(userid, name, icon, automatic_open, minimized_status){
 	if(opened_chats == null || opened_chats == false){
 		opened_chats = [];
 	}
@@ -102,14 +112,14 @@ function fi_server_open_chat(userid, name, icon, automatic_open){
 	if(automatic_open){
 		// Wurde vom System geöffnet: nichts machen
 	} else {
-		status = true;
+		status_add_temp = true;
 		for(i = 0; i < opened_chats.length; i++){
 			if(opened_chats[i] != null && opened_chats[i]["userid"] == userid){
-				status = false;
+				status_add_temp = false;
 			}
 		}
-		if(status){
-			opened_chats.push({"userid": userid, "name": name, "icon": icon});
+		if(status_add_temp == true){
+			opened_chats.push({"userid": userid, "name": name, "icon": icon, "minimized": false});
 			$.cookie("fi_opened_chats", JSON.stringify(opened_chats), { path: '/' });
 		}
 	}
@@ -118,8 +128,20 @@ function fi_server_open_chat(userid, name, icon, automatic_open){
 	if(typeof element != "undefined" && element && element.html() && element.html().trim() != ""){
 		element.removeClass("minimized");
 		element.find(".chat_value_input").focus();
+		element.find(".chat_content").animate({ scrollTop: content_div.prop("scrollHeight") - content_div.height() }, 1);
+		for(i = 0; i < opened_chats.length; i++){
+			if(opened_chats[i] != null && opened_chats[i]["userid"] == userid){
+				opened_chats[i]["minimized"] = false;
+			}
+		}
+		$.cookie("fi_opened_chats", JSON.stringify(opened_chats), { path: '/' });
 	} else {
-		html  = '<div id="chat_window_'+userid+'" class="chat_window" data-uID="'+userid+'">';
+		class_addition_temp = '';
+		if(typeof minimized_status != "undefined" && minimized_status == true){
+			class_addition_temp = ' minimized';
+		}
+
+		html  = '<div id="chat_window_'+userid+'" class="chat_window'+class_addition_temp+'" data-uID="'+userid+'">';
 		html += '<div class="minimized_view">'+name+'</div>';
 		html += '<div class="maximized_view">';
 			html += '<div class="title_bar">';
@@ -133,6 +155,19 @@ function fi_server_open_chat(userid, name, icon, automatic_open){
 		fi_server_bind_chat_sends();
 		fi_server_bind_window_options();
 		$("#chat_holder #chat_window_"+userid).find(".chat_value_input").focus();
+
+		// Re minimize
+		$("#chat_holder .chat_window.minimized .minimized_view").click(function(){
+			$(this).parent().removeClass("minimized");
+			content_div = $(this).parent().find(".chat_content");
+			content_div.animate({ scrollTop: content_div.prop("scrollHeight") - content_div.height() }, 1);
+			for(i = 0; i < opened_chats.length; i++){
+				if(opened_chats[i] != null && opened_chats[i]["userid"] == $(this).parent().attr("data-uID")){
+					opened_chats[i]["minimized"] = false;
+				}
+			}
+			$.cookie("fi_opened_chats", JSON.stringify(opened_chats), { path: '/' });
+		});
 
 		// Verlauf anfordern:
 		fi_server_send({"type": "chat", "message": { "load_history": true, "user": userid}});
@@ -174,10 +209,26 @@ function fi_server_bind_window_options(){
 			$.cookie("fi_opened_chats", JSON.stringify(opened_chats), { path: '/' });
 		} else {
 			$(this).parent().parent().parent().parent().addClass("minimized");
-			$("#chat_holder .chat_window.minimized .minimized_view").click(function(){
-				$(this).parent().removeClass("minimized");
-			});
+			for(i = 0; i < opened_chats.length; i++){
+				if(opened_chats[i]["userid"] == $(this).parent().parent().parent().parent().attr("data-uID")){
+					opened_chats[i]["minimized"] = true;
+				}
+			}
+			$.cookie("fi_opened_chats", JSON.stringify(opened_chats), { path: '/' });
 		}
+
+		$("#chat_holder .chat_window.minimized .minimized_view").click(function(){
+			$(this).parent().removeClass("minimized");
+			$(this).parent().removeClass("minimized");
+			content_div = $(this).parent().find(".chat_content");
+			content_div.animate({ scrollTop: content_div.prop("scrollHeight") - content_div.height() }, 1);
+			for(i = 0; i < opened_chats.length; i++){
+				if(opened_chats[i]["userid"] == $(this).parent().attr("data-uID")){
+					opened_chats[i]["minimized"] = false;
+				}
+			}
+			$.cookie("fi_opened_chats", JSON.stringify(opened_chats), { path: '/' });
+		});
 	});
 	
 	// Gelesen Status händeln
