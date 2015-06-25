@@ -16,8 +16,7 @@
         <div class="container">
             <ul>
                 <li><a href="#">Teamranked.com</a></li>
-                <li><a href="#">Find a player</a></li>
-                <li>Show players</li>
+                <li><a href="/players">Find a player</a></li>
             </ul>
         </div>
     </div><!-- Position -->
@@ -58,57 +57,13 @@
             </div>
         </div><!--/tools -->
 
-
-        <div class="strip_all_tour_list player_searchbox wow fadeIn" data-wow-delay="0.1s">
-            <div class="row">
-                <div class="col-lg-2 col-md-2 col-sm-2">
-                    <div class="wishlist">
-                        <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">
-                            +<span class="tooltip-content-flip"><span class="tooltip-back">Add to favorites</span></span>
-                        </a>
-                    </div>
-                    <div class="center">
-                        <div style="text-align: center">
-                            <a href="#"><img src="img/leagues/gold_2.png" width="120" alt=""></a><br/>
-                            Gold 1<br/>
-                            <br/>
-                        </div>
-                    </div>
-                </div>
-                <div class="clearfix visible-xs-block"></div>
-                <div class="col-lg-10 col-md-10 col-sm-10">
-                    <div class="">
-                        <h3><strong>Summoner</strong></h3>
-                        <p>Lorem ipsum dolor sit amet, quem convenire interesset ut vix, ad dicat sanctus detracto vis. Eos modus dolorum interesset ut vix, ad dicat sanctus detracto vis. Eos modus dolorum... <a href="">more</a></p>
-                        <div class="row">
-                            <div class="skill_profile col-lg-4 col-md-4 col-sm-4">
-                                <h5>Main Roles:</h5>
-                                <img src="http://teamranked.com/img/roles/marksman.jpg" class="img-circle" width="35" />
-                                <img src="http://teamranked.com/img/roles/support.jpg" class="img-circle" width="35" />
-                            </div>
-                            <div class="skill_profile col-lg-4 col-md-4 col-sm-4">
-                                <h5>Favorite Champions:</h5>
-                                <img src="http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/Jinx.png" class="img-circle" width="35" />
-                                <img src="http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/Sivir.png" class="img-circle" width="35" />
-                                <img src="http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/Leona.png" class="img-circle" width="35" />
-                            </div>
-                            <div class="skill_profile col-lg-4 col-md-4 col-sm-4">
-                                <h5>Languages:</h5>
-                                <img src="http://teamranked.com/img/roles/marksman.jpg" class="img-circle" width="35" />
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div><!--End strip -->
-
-
         <div>
             <h2>{{ Lang::get("players.search.team_suggestions") }}</h2>
-            <div id="player_list_suggestions">
-                <div style="color: rgba(0,0,0,0.6);text-align: center;padding: 35px;">{{ Lang::get("players.search.need_update_list") }}</div>
-            </div>
+            @if(isset($player_list))
+                @include("players.suggestion_list", array("player_list" => $player_list))
+            @else
+                <div style="color: rgba(0,0,0,0.6);text-align: center;padding: 35px;">{{ Lang::get("player.search.need_update_list") }}</div>
+            @endif
         </div>
 
         <hr>
