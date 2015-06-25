@@ -29,52 +29,95 @@
                     <div class="row">
                         <div class="col-md-3">
                             @if($user->summoner->solo_tier != "none")
-                            <img src="/img/leagues/{{ trim(strtolower($user->summoner->solo_tier)) }}_1.png" class="tooltips" title="{{ trim(ucfirst(strtolower($user->summoner->solo_tier))) }}">
+                                <img src="/img/leagues/{{ trim(strtolower($user->summoner->solo_tier)) }}_1.png" class="tooltips" title="{{ trim(ucfirst(strtolower($user->summoner->solo_tier))) }}">
+                                <div style="padding-top: 8px;font-weight: bold;text-align: center;">
+                                    {{ trim(ucfirst(strtolower($user->summoner->solo_tier))) }} {{ $user->summoner->solo_division }}
+                                </div>
                             @else
                                 <img src="/img/leagues/0_5.png" width="85" class="tooltips" title="Unranked">
+                                <div style="padding-top: 8px;font-weight: bold;text-align: center;">
+                                    Unranked
+                                </div>
                             @endif
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <h4>Roles</h4>
-
+                                <?php $placed_role = false; ?>
                                 @if($user->summoner->search_top == 1)
-                                    <div class="player_role img-circle"><img src="/img/roles/tank.jpg" class="img-circle" width="35" /></div>
+                                    <div class="player_role_element img-circle">
+                                        <img src="/img/roles/tank.jpg" class="img-circle" width="35" />
+                                        <div class="role_name">Top</div>
+                                    </div>
+                                    <?php $placed_role = true; ?>
                                 @endif
+
                                 @if($user->summoner->search_jungle == 1)
-                                    <div class="player_role img-circle"><img src="/img/roles/fighter.jpg" class="img-circle" width="35" /></div>
+                                    <div class="player_role_element img-circle">
+                                        <img src="/img/roles/fighter.jpg" class="img-circle" width="35" />
+                                        <div class="role_name">Jungle</div>
+                                    </div>
+                                    <?php $placed_role = true; ?>
                                 @endif
+
                                 @if($user->summoner->search_mid == 1)
-                                     <div class="player_role img-circle"><img src="/img/roles/mage.jpg" class="img-circle" width="35" /></div>
+                                    <div class="player_role_element img-circle">
+                                        <img src="/img/roles/mage.jpg" class="img-circle" width="35" />
+                                        <div class="role_name">Mid</div>
+                                    </div>
+                                    <?php $placed_role = true; ?>
                                 @endif
                                 @if($user->summoner->search_adc == 1)
-                                     <div class="player_role img-circle"><img src="/img/roles/marksman.jpg" class="img-circle" width="35" /></div>
+                                    <div class="player_role_element img-circle">
+                                        <img src="/img/roles/marksman.jpg" class="img-circle" width="35" />
+                                        <div class="role_name">ADC</div>
+                                    </div>
+                                    <?php $placed_role = true; ?>
                                 @endif
                                 @if($user->summoner->search_support == 1)
-                                     <div class="player_role img-circle"><img src="/img/roles/support.jpg" class="img-circle" width="35" /></div>
+                                    <div class="player_role_element img-circle">
+                                        <img src="/img/roles/support.jpg" class="img-circle" width="35" />
+                                        <div class="role_name">Support</div>
+                                    </div>
+                                    <?php $placed_role = true; ?>
                                 @endif
+
+                                @if($placed_role == false)
+                                    {{ $user->summoner->name }} did not set any prefered roles yet.
+                                @endif
+                                <div style="clear: both;"></div>
                         <div class="clearfix"></div>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <h4>Favorite Champions</h4>
+                            <?php $palced_fav_champ = false; ?>
                             @if($user->summoner->fav_champion_1 != 0)
-                                <div class="player_role img-circle"><img width="35" src="http://ddragon.leagueoflegends.com/cdn/{{ Config::get('settings.patch') }}/img/champion/{{ $user->summoner->fav1->key }}.png" class="img-circle" width="100" /></div>
-                            @else
-                                <div class="player_role img-circle"></div>
+                                <div class="player_role_element img-circle">
+                                    <img width="35" src="http://ddragon.leagueoflegends.com/cdn/{{ Config::get('settings.patch') }}/img/champion/{{ $user->summoner->fav1->key }}.png" class="img-circle" width="100" />
+                                    <div class="role_name">{{ $user->summoner->fav1->name }}</div>
+                                </div>
+                                <?php $palced_fav_champ = true; ?>
                             @endif
 
                             @if($user->summoner->fav_champion_2 != 0)
-                                <div class="player_role img-circle"><img width="35" src="http://ddragon.leagueoflegends.com/cdn/{{ Config::get('settings.patch') }}/img/champion/{{ $user->summoner->fav2->key }}.png" class="img-circle" width="100" /></div>
-                            @else
-                                <div class="player_role img-circle"></div>
+                                <div class="player_role_element img-circle">
+                                    <img width="35" src="http://ddragon.leagueoflegends.com/cdn/{{ Config::get('settings.patch') }}/img/champion/{{ $user->summoner->fav2->key }}.png" class="img-circle" width="100" />
+                                    <div class="role_name">{{ $user->summoner->fav2->name }}</div>
+                                </div>
+                                <?php $palced_fav_champ = true; ?>
                             @endif
 
                             @if($user->summoner->fav_champion_3 != 0)
-                                <div class="player_role img-circle"><img width="35" src="http://ddragon.leagueoflegends.com/cdn/{{ Config::get('settings.patch') }}/img/champion/{{ $user->summoner->fav3->key }}.png" class="img-circle" width="100" /></div>
-                            @else
-                                <div class="player_role img-circle"></div>
+                                <div class="player_role_element img-circle">
+                                    <img width="35" src="http://ddragon.leagueoflegends.com/cdn/{{ Config::get('settings.patch') }}/img/champion/{{ $user->summoner->fav3->key }}.png" class="img-circle" width="100" />
+                                    <div class="role_name">{{ $user->summoner->fav3->name }}</div>
+                                </div>
+                                <?php $palced_fav_champ = true; ?>
                             @endif
 
+                            @if($palced_fav_champ == false)
+                                {{ $user->summoner->name }} did not set any favorite champions yet.
+                            @endif
                             <div class="clearfix"></div>
                         </div>
                     </div>

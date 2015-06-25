@@ -50,3 +50,22 @@
 .player_ranked_stats.smaller .minimizer:hover {
 	color: #000;
 }
+
+
+.player_role_element {
+	padding-top: 3px;
+	padding-bottom: 5px;
+	width: 50%;
+	float: left;
+	box-sizing: border-box;
+}
+
+.player_role_element img {
+	float: left;
+	margin-right: 8px;
+}
+
+.player_role_element .role_name {
+	font-weight: bold;
+	padding-top:8px;
+}
