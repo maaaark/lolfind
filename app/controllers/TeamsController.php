@@ -25,14 +25,14 @@ class TeamsController extends \BaseController {
         $ranked_teams->where('looking_for_players',"=",1);
 
         if(Input::get("league") != "any") {
-            if(Input::get("unranked_search") == true) {
+            if(Input::get("unranked_search") == true && Input::get("unranked_search") != "false") {
                 $ranked_teams->where('ranked_league_5',"LIKE", '%'.Input::get("league").'%')->orWhere('league_prediction',"=",Input::get("league"));
             } else {
-                $ranked_teams->where('ranked_league_5',"LIKE", '%'.Input::get("league").'%');
+                $ranked_teams->where('ranked_league_5',"LIKE", '%'.Input::get("league").'%')->where("ranked_league_5", "!=", "")->where("ranked_league_5", "!=", "none");
             }
 
         } else {
-            if(Input::get("unranked_search") == false) {
+            if(Input::get("unranked_search") == false || Input::get("unranked_search") == "false"){
                 $ranked_teams->where('ranked_league_5',"!=", "none")->where('ranked_league_5',"!=", "");
             }
         }
