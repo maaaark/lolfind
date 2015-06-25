@@ -19,7 +19,6 @@
 		position: absolute;
 		color: #fff;
 		font-size: 36px;
-		margin-left: 200px;
 		font-weight: bold;
 		bottom: 70px;
 	}
@@ -35,7 +34,6 @@
 		position: absolute;
 		bottom: 3px;
 		height: 35px;
-		margin-left: 200px;
 		font-size: 12px;
 	}
 
@@ -69,6 +67,8 @@
 		right: 0px;
 		bottom: 2px;
 		display: none;
+		color: #fff;
+		font-weight: bold;
 	}
 
 	.team_updater_progress .progress_animation {
@@ -81,7 +81,6 @@
     			<img src="/img/ajax-loader.gif" class="progress_animation">
     			We refresh the team data ...
     		</div>
-    		<div class="team_icon"></div>
         	<div class="team_title text-shadow">
         		{{ $ranked_team->name }}
                 @if(($check = RankedTeam::loggedCanApplyToTeam($ranked_team->id)))
