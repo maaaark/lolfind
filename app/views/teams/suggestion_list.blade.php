@@ -50,7 +50,17 @@
                         </div>
                         <h3>
                             <a href="/teams/{{ $team->region }}/{{ $team->tag }}"><strong>{{ $team->name }}</strong></a>
-                            <a href="/teams/{{ $team->region }}/{{ $team->tag }}#open_apply" class="btn_1 outline" style="margin-left: 10px;">Apply</a>
+                            @if(Auth::check())
+                              @if($team->looking_for_players == 1)
+                                 @if(($check = RankedTeam::loggedCanApplyToTeam($team->id)))
+                                      @if($check == "can_apply")
+                                         <a href="/teams/{{ $team->region }}/{{ $team->tag }}#open_apply" class="btn_1 outline apply_team_btn" style="margin-left: 10px;">Apply</a>
+                                      @elseif($check == "already_applied")
+                                         <a href="javascript:void(0);"class="btn_1 outline apply_team_btn disabled" style="margin-left: 10px;" disabled>Already applied</a>
+                                      @endif
+                                 @endif
+                              @endif
+                            @endif
                             <a href="/teams/{{ $team->region }}/{{ $team->tag }}" class="btn_1 outline" style="margin-left: 10px;">Open team page</a>
                         </h3>
                         @if($team->description != "")
