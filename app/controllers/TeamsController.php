@@ -359,6 +359,20 @@ class TeamsController extends \BaseController {
            echo "error";
         }
     }
+    
+    public function invite_lightbox(){
+        if(Input::get("player") && Auth::check()){
+            $player = User::where("id", "=", Input::get("player"))->first();
+            $teams  = RankedTeam::where("leader_summoner_id", "=", Auth::user()->summoner->summoner_id)->get();
+            if($player && $player->id > 0){
+                return View::make("teams.invite.lightbox_start", array(
+                    "user"  => $player,
+                    "teams" => $teams,
+                ));
+            }
+        }
+        echo "error";
+    }
 
     public function applications($region, $tag){
         $ranked_team = RankedTeam::where("region", "=", $region)->where("tag", "=", $tag)->first();

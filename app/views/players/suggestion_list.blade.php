@@ -3,11 +3,6 @@
         <div class="strip_all_tour_list player_searchbox wow fadeIn" data-wow-delay="0.1s">
             <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-3">
-                    <div class="wishlist">
-                        <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">
-                            +<span class="tooltip-content-flip"><span class="tooltip-back">Add to favorites</span></span>
-                        </a>
-                    </div>
                     <div class="center">
                         <div style="text-align: center">
                             @if($player->solo_tier AND trim($player->solo_tier) != "" AND trim($player->solo_tier) != "none")
@@ -18,10 +13,9 @@
                                 elseif($player->solo_division == "IV"){ $pl_division = "4"; }
                                 elseif($player->solo_division == "V"){ $pl_division = "5"; }
                                 ?>
-                                <br/>
-                                <img src="/img/leagues/{{ trim(strtolower($player->solo_tier)) }}_{{ trim($pl_division) }}.png" class="tooltips" title="{{ trim(ucfirst(strtolower($player->solo_tier))) }} {{ trim($pl_division) }}">
+                                <img style="margin-top: 20px;" src="/img/leagues/{{ trim(strtolower($player->solo_tier)) }}_{{ trim($pl_division) }}.png" class="tooltips" title="{{ trim(ucfirst(strtolower($player->solo_tier))) }} {{ trim($pl_division) }}">
                             @else
-                                <img src="/img/leagues/0_5.png" class="tooltip" title="Unranked">
+                                <img style="margin-top: 20px;" src="/img/leagues/0_5.png" class="tooltips" title="Unranked">
                             @endif
                             <br/><br/>
                             <div class="last_update">Last Update:<br/>{{ $player->updated_at->diffForHumans() }}</div>
@@ -32,7 +26,14 @@
                 <div class="col-lg-9 col-md-9 col-sm-9">
                     <div class="">
                         @if(Auth::check())
-                            <h3><strong>{{ $player->name }}</strong></h3>
+                           <h3>
+                              <strong>{{ $player->name }}</strong>
+                              @if($player->looking_for_team == 1)
+                                 @if(RankedTeam::loggedCanInvitePlayer($player))
+                                    <a href="/summoner/{{ $player->region }}/{{ $player->name }}" class="btn_1 outline apply_team_btn" style="margin-left: 10px;">Invite in team</a>
+                                 @endif
+                              @endif
+                           </h3>
                         @else
                             <h3><strong>Summoner</strong></h3>
                         @endif
