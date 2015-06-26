@@ -20,6 +20,9 @@
                 }
              </style>
              
+             <h5 id="select_your_team_header">Select your team</h5>
+             <div id="team_sel_invite"></div>
+             
              <h5>Roles of {{ $user->summoner->name }} your team is interested in:</h5>
              <?php $open_roles = false; ?>
              <div class="role_labels_holder">
@@ -72,20 +75,88 @@
         });
         
         $(document).ready(function(){
+            @if(isset($teams) && $teams->count() > 0)
+                $("#team_sel_invite").makeSelect("team_select", [
+                    <?php $need_first_select = true; ?>
+                    @foreach($teams as $team)
+                        @if($need_first_select)
+                            { title: "{{ $team->name }}", value: "{{ $team->id }}", selected: true },
+                        @else    
+                            { title: "{{ $team->name }}", value: "{{ $team->id }}" },
+                        @endif
+                    @endforeach    
+                ]);
+            @else
+                $("#select_your_team_header").remove();
+                $("#invitation_submit_btn").replaceWith("<button class='btn_1' disabled>You have no teams, to invite this player.</button>");
+            @endif
+            
             var labels_role_count = 0;
-            $(".role_labels_holder label").click(function(){
-                el = $(this).find(".icheckbox_flat-orange");
-                if(el.hasClass("checked")){
-                    labels_role_count++;
-                } else {
-                    labels_role_count--;
-                }
+            $('.role_labels_holder input').on('ifChecked', function(event){
+                labels_role_count++;
                 
                 if(labels_role_count > 0){
                     $("#invitation_submit_btn").prop("disabled", false);
                 } else {
                     $("#invitation_submit_btn").prop("disabled", true);
                 }
+            });
+            $('.role_labels_holder input').on('ifUnchecked', function(event){
+                labels_role_count--;
+                
+                if(labels_role_count > 0){
+                    $("#invitation_submit_btn").prop("disabled", false);
+                } else {
+                    $("#invitation_submit_btn").prop("disabled", true);
+                }
+            });
+            
+            $("#invitation_submit_btn").click(function(){
+                allowLightboxCloseBG(false);
+                lightboxCloseBtn(false);
+                
+                roles = [];
+                if(typeof $("input[name='role_top']") != "undefined" && $("input[name='role_top']").is(":checked")){
+                    roles.push("top");
+                }
+                if(typeof $("input[name='role_mid']") != "undefined" && $("input[name='role_mid']").is(":checked")){
+                    roles.push("mid");
+                }
+                if(typeof $("input[name='role_adc']") != "undefined" && $("input[name='role_adc']").is(":checked")){
+                    roles.push("adc");
+                }
+                if(typeof $("input[name='role_support']") != "undefined" && $("input[name='role_support']").is(":checked")){
+                    roles.push("support");
+                }
+                if(typeof $("input[name='role_jungle']") != "undefined" && $("input[name='role_jungle']").is(":checked")){
+                    roles.push("jungle");
+                }
+                
+                $.post("/teams/invite/post", {"user": {{ $user->id }}, "comment": $("#invitation_comment").val(), "roles": JSON.stringify(roles), "team": $("#selection_team_sel_invite_val").val() }).done(function(data){
+                    allowLightboxCloseBG(true);
+                    lightboxCloseBtn(true);
+                    
+                    console.log(data);
+                    
+                    if(data.trim() == "error"){
+                        html  = '<div style="margin-top: 35px;"">';
+                        html += 'There was an error. We could not save your invitatino. Please check back later.';
+                        html += '</div>';
+                        $("#application_form_holder").html(html);
+                    } else {
+                        html  = '<div style="font-size: 26px;text-align: center;line-height: 32px;">';
+                        html += 'Your invitatino was succesfully send to {{ $user->summoner->name }}';
+                        html += '<div style="font-size: 16px;margin-top: 15px;">';
+                        html += '{{ $user->summoner->name }} can now refuse your invitation or get in contact with you.';
+                        html += '</div>';
+                        html += '</div>';
+                        $("#application_form_holder").html(html);
+                        $("#lightbox_apply_head_title").remove();
+                    }
+                });
+                    
+                html = '<div style="padding: 35px;text-align: center;"><img src="/img/ajax-loader.gif" style="height: 45px;"><div>We submit your invitation. Please wait a few seconds.</div></div>';
+                $("#application_form_holder").html(html);
             });
         });
       </script>
