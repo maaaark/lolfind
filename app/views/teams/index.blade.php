@@ -47,25 +47,6 @@
         
         <div id="tools">
             <div class="row">
-                <div class="col-md-3 col-sm-3 col-xs-6">
-                    <div class="styled-select-filters">
-                        <select name="sort_price" id="sort_price">
-                            <option value="" selected>Sort by Role</option>
-                            <option value="lower">ASC</option>
-                            <option value="lower">DESC</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-3 col-xs-6">
-                    <div class="styled-select-filters">
-                        <select  name="sort_rating" id="sort_rating">
-                            <option value="" selected>Sort by ranking</option>
-                            <option value="lower">ASC</option>
-                            <option value="lower">DESC</option>
-                        </select>
-                    </div>
-                </div>
-
                 <div class="text-right" style="margin-right: 15px;">
                     <a href="/teams/add" class="bt_filters button_intro"><i class="icon-plus"></i> Add new team</a>
                 </div>

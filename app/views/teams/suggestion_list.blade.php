@@ -37,6 +37,8 @@
                                     Placement prediction: <b>{{ ucfirst(trim($team->league_prediction)) }}</b>
                                 @endif
                             </div>
+
+                                <div class="last_update">Last Update:<br/>{{ $team->updated_at->diffForHumans() }}</div>
                         </div>
                     </div>
                 </div>

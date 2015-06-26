@@ -783,6 +783,11 @@ a#email_footer:before{
 	text-align:center;
 	text-transform:uppercase;
 }
+.last_update {
+    text-align: center;
+    font-size: 11px;
+    color: #888888;
+}
 .rolebox {
     margin-right: 20px;
 }

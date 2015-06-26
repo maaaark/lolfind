@@ -2,7 +2,7 @@
 
 class PlayersController extends \BaseController {
     public function index(){
-        $player_list = Summoner::where("looking_for_team", "=", 1)->get();
+        $player_list = Summoner::where("looking_for_team", "=", 1)->paginate(10);
         return View::make("players.index", compact('player_list'));
     }
 
@@ -18,29 +18,20 @@ class PlayersController extends \BaseController {
 
 
         if(Input::get("league") != "any") {
-            $player_list->where('solo_tier',"LIKE", '%'.Input::get("league").'%');
+            $player_list->where('solo_tier',"LIKE", '%'.strtoupper(Input::get("league")).'%');
         }
 
         if(Input::get("region") != "any") {
             $player_list->where('region',"=",Input::get("region"));
         }
 
-        /*
-        if(Input::get("unranked_search") == true) {
-            if(Input::get("league") != "any") {
-                $ranked_teams->where('league_prediction',"=",Input::get("league"));
-            }
-        }
-
-
         if(Input::get("main_lang") != "any") {
-            $player_list->where('looking_for_lang',"=",Input::get("main_lang"));
+            $player_list->where('main_lang',"=",Input::get("main_lang"))->orWhere('sec_lang',"=",Input::get("sec_lang"));
             //$ranked_teams->where('looking_for_lang_second',"=",Input::get("main_lang"));
         }
-        */
 
 
-        /*
+
         if(Input::get("prime_role") != "any") {
             if(Input::get("prime_role") == "adc") {
                 $player_list->where('search_adc',"=",1);
@@ -58,11 +49,11 @@ class PlayersController extends \BaseController {
                 $player_list->where('search_mid',"=",1);
             }
         }
-        */
+
         $player_list = $player_list->paginate(10);
 
 
-        return View::make("teams.suggestion_list", array(
+        return View::make("players.suggestion_list", array(
             "player_list" => $player_list
         ));
     }

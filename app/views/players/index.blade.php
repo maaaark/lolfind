@@ -28,37 +28,8 @@
 
     <div class="content">
 
-        <div id="tools">
-            <div class="row">
-                <div class="col-md-3 col-sm-3 col-xs-6">
-                    <div class="styled-select-filters">
-                        <select name="sort_price" id="sort_price">
-                            <option value="" selected>Sort by Role</option>
-                            <option value="lower">ASC</option>
-                            <option value="lower">DESC</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-3 col-xs-6">
-                    <div class="styled-select-filters">
-                        <select  name="sort_rating" id="sort_rating">
-                            <option value="" selected>Sort by ranking</option>
-                            <option value="lower">ASC</option>
-                            <option value="lower">DESC</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="text-right">
-                    <a href="#" class="bt_filters"><i class="icon-th"></i></a>
-                    <a href="#" class="bt_filters"><i class=" icon-list"></i></a>
-                    <a href="/teams/add" class="bt_filters"><i class=" icon-plus"></i> Add new team</a>
-                </div>
-            </div>
-        </div><!--/tools -->
-
         <div>
-            <h2>{{ Lang::get("players.search.team_suggestions") }}</h2>
+            <h2>{{ Lang::get("players.search.player_suggestions") }}</h2>
             @if(isset($player_list))
                 @include("players.suggestion_list", array("player_list" => $player_list))
             @else
@@ -69,15 +40,7 @@
         <hr>
 
         <div class="text-center">
-            <ul class="pagination">
-                <li><a href="#">Prev</a></li>
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">Next</a></li>
-            </ul>
+            {{ $player_list->links() }}
         </div><!-- end pagination-->
     </div>
 

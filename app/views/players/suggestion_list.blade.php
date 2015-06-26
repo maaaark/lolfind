@@ -2,7 +2,7 @@
     @foreach($player_list as $player)
         <div class="strip_all_tour_list player_searchbox wow fadeIn" data-wow-delay="0.1s">
             <div class="row">
-                <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="col-lg-3 col-md-3 col-sm-3">
                     <div class="wishlist">
                         <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">
                             +<span class="tooltip-content-flip"><span class="tooltip-back">Add to favorites</span></span>
@@ -23,12 +23,13 @@
                             @else
                                 <img src="/img/leagues/0_5.png" class="tooltip" title="Unranked">
                             @endif
-                            <br/>
+                            <br/><br/>
+                            <div class="last_update">Last Update:<br/>{{ $player->updated_at->diffForHumans() }}</div>
                         </div>
                     </div>
                 </div>
                 <div class="clearfix visible-xs-block"></div>
-                <div class="col-lg-10 col-md-10 col-sm-10">
+                <div class="col-lg-9 col-md-9 col-sm-9">
                     <div class="">
                         @if(Auth::check())
                             <h3><strong>{{ $player->name }}</strong></h3>
@@ -78,7 +79,7 @@
                             </div>
                         </div>
                             <br/>
-                            <p>{{ $player->description }} <a href="">more</a></p>
+                            <p>{{ Str::limit($player->description, 200) }} <a href="">more</a></p>
                     </div>
                 </div>
             </div>

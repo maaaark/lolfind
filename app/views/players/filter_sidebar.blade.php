@@ -37,12 +37,12 @@
 
 <script>
     // Make Dropdowns
-    $('#region_sel').makeSelect("region", dropdown_region_arr('euw'));
-    $('#leagues_sel').makeSelect("league", dropdown_leagues_arr('silver'));
+    $('#region_sel').makeSelect("region", dropdown_region_arr('any'));
+    $('#leagues_sel').makeSelect("league", dropdown_leagues_arr('any'));
 
-    $('#prime_lang_sel').makeSelect("main_language", dropdown_languages_arr('english'));
+    $('#prime_lang_sel').makeSelect("main_language", dropdown_languages_arr('any'));
     $('#sec_lang_sel').makeSelect("sec_language", dropdown_languages_arr('no_value', ["{{ Lang::get('teams.search.none') }}", "no_value"]));
 		
-    $('#prime_role_sel').makeSelect("primary_role", dropdown_roles_arr('adc'));
+    $('#prime_role_sel').makeSelect("primary_role", dropdown_roles_arr('any'));
     $('#sec_role_sel').makeSelect("secundary_role", dropdown_roles_arr('no_value', ["{{ Lang::get('teams.search.none') }}", "no_value"]));
 </script>
