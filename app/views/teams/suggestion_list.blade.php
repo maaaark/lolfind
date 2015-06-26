@@ -102,7 +102,7 @@
                                 @endif
 
                                 @if($no_roles_open)
-                                    Any
+                                    No open roles
                                 @endif
                             </div>
                             <div class="skill_profile col-lg-4 col-md-4 col-sm-4">
