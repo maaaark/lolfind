@@ -110,7 +110,7 @@
                                 @if($team->looking_for_lang AND trim($team->looking_for_lang) != "")
                                     {{ $team->looking_for_lang }}
                                 @else
-                                    Any
+                                    No explicit language.
                                 @endif
                             </div>
                             <div class="skill_profile col-lg-4 col-md-4 col-sm-4">
