@@ -30,11 +30,13 @@
 
         <div>
             <h2>{{ Lang::get("players.search.player_suggestions") }}</h2>
-            @if(isset($player_list))
-                @include("players.suggestion_list", array("player_list" => $player_list))
-            @else
-                <div style="color: rgba(0,0,0,0.6);text-align: center;padding: 35px;">{{ Lang::get("player.search.need_update_list") }}</div>
-            @endif
+            <div id="player_list_suggestions">
+                @if(isset($player_list))
+                    @include("players.suggestion_list", array("player_list" => $player_list))
+                @else
+                    <div style="color: rgba(0,0,0,0.6);text-align: center;padding: 35px;">{{ Lang::get("player.search.need_update_list") }}</div>
+                @endif
+            </div>
         </div>
 
         <hr>
