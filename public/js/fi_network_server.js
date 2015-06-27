@@ -66,13 +66,19 @@ function fi_server_send(object){
 }
 
 function fi_server_chat_handle_incoming(json){
-	element = $("#chat_holder #chat_window_"+json["sender"]);
+    add_status = true;
+	element    = $("#chat_holder #chat_window_"+json["sender"]);
 	if(typeof element != "undefined" && element && element.html() && element.html().trim() != ""){
 		// Fenster bereits offen -> muss nichts mehr gemacht werden
+		element.removeClass("minimized");
 	} else {
 		fi_server_open_chat(json["sender"], json["sender_username"], json["sender_icon"]);
+		add_status = false;
 	}
-	fi_server_chat_add_text(json["sender"], json, true);
+	
+	if(add_status){
+        fi_server_chat_add_text(json["sender"], json, true);
+    }
 	
 	// Ungelesen-Trigger hinzufpgen
 	$("#chat_holder #chat_window_"+json["sender"]).addClass("unread_messages");

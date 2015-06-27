@@ -406,6 +406,26 @@ class TeamsController extends \BaseController {
            echo "error";
         }
     }
+    
+    public function invite_lightbox_show(){
+        if(Input::get("invitation_id") && Input::get("invitation_id") > 0){
+            $invitation = RankedTeamInvitation::where("id", "=", Input::get("invitation_id"))->first();
+            if($invitation && isset($invitation->user) && $invitation->user > 0){
+                $user = User::where("id", "=", $invitation->user)->first();
+                $team = RankedTeam::where("id", "=", $invitation->team)->first();
+                $leader = User::where("summoner_id", "=", $team->leader_summoner_id)->first();
+                if(isset($user->id) && $user->id > 0 && isset($team->id) && $team->id > 0 && isset($leader->id) && $leader->id > 0){
+                    return View::make("teams.invite.lightbox_show", array(
+                        "user"        => $user,
+                        "invitation"  => $invitation,
+                        "ranked_team" => $team,
+                        "leader"      => $leader,
+                    ));
+                }
+            }
+        }
+        echo "error";
+    }
 
     public function applications($region, $tag){
         $ranked_team = RankedTeam::where("region", "=", $region)->where("tag", "=", $tag)->first();
@@ -440,7 +460,7 @@ class TeamsController extends \BaseController {
         $application = RankedTeamApplication::where("id", "=", $id)->first();
         if(isset($ranked_team["id"]) && $ranked_team["id"] > 0 && isset($application["id"]) && $application["id"] > 0){
             if(Auth::check() && $ranked_team->leader_summoner_id == Auth::user()->summoner->summoner_id){
-                // Notification an Team-Leiter senden
+                // Notification an User senden
                 FIServer::add_notification($application["user"], "team_application_delete", $ranked_team["id"]);
 
                 $application->delete();

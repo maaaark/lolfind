@@ -37,6 +37,29 @@
 			<b>{{ $team_temp->name }}</b> rejected your application.
 		</div>
 	@endif
+	
+@elseif($notification->type == "team_invitation")
+    <?php
+		$team_temp       = Helpers::getRankedTeam($notification->value1);
+		$invitation_temp = Helpers::getInvitation($notification->value2);
+	?>
+	
+    @if(isset($team_temp->id) AND $team_temp->id > 0)
+       <div class="notification_linked_element no_click">
+            <img src="/img/notifications/notification_invite_to_team.jpg" class="notification_summoner_icon">
+            You were invited to join the team <b>{{ $team_temp->name }}</b>.
+            
+            @if(isset($invitation_temp->id) AND $invitation_temp->id > 0)
+            <div>
+                <button class="btn_1" onclick="open_team_invitation({{ $invitation_temp->id }});">Show details</button>
+            </div>
+            @else
+            <div style="text-style: italic;margin-top: 5px;">
+                Invitation rejected.
+            </div>
+            @endif
+       </div>
+    @endif
 
 @elseif($notification->type == "normal_text")
    <div class="notification_linked_element no_click">

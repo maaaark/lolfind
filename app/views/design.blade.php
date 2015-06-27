@@ -47,6 +47,7 @@
     <script src="/js/jquery.tooltipster.min.js"></script>
     <script src="/js/team_search_dropdowns.js"></script>
     <script src="/js/tabs.js"></script>
+    <script src="/js/teamranked.js"></script>
 
     @if(Auth::check())
         <!-- FI-Network Server -->
