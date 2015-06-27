@@ -35,7 +35,7 @@
                               @endif
                            </h3>
                         @else
-                            <h3><strong>Summoner</strong></h3>
+                            <h3><strong><a href="/login">Login</a> to see more summoner-info</strong></h3>
                         @endif
                         <div class="row">
                             <div class="skill_profile col-lg-4 col-md-4 col-sm-4">
