@@ -1,15 +1,5 @@
 @extends('design')
 @section('title', Lang::get("teams.site_title"))
-@section('css_addition')
-    <link rel="stylesheet" href="/css/teams.css">
-@stop
-@section('header')
-    <section class="small-parallax-window" data-parallax="scroll" data-image-src="/img/player_background.jpg" data-natural-width="1400" data-natural-height="230">
-        <div class="small-parallax-content">
-            dads
-        </div>
-    </section><!-- End section -->
-@stop
 @section('content')
     <section id="hero" class="login">
         <div class="container">
@@ -20,6 +10,8 @@
                             {{ $errors->first('email') }}
                             {{ $errors->first('password') }}
                         </p>
+                        <div class="text-center"><img src="/img/teamranked_black.png" alt="" data-retina="true" width="280"></div>
+                        <hr>
                         {{ Form::open(array('url' => '/dologin')) }}
                             <div class="form-group">
                                 <label>E-Mail</label>
@@ -32,8 +24,8 @@
                             <p class="small">
                                 <a href="#">Forgot Password?</a>
                             </p>
-                            {{ Form::submit('Einloggen', array('class' => 'btn_full')) }}
-                            <a href="/register" class="btn_full_outline">Register</a>
+                            {{ Form::submit('Einloggen', array('class' => 'button_intro text-shadow')) }}
+                            <a href="/register" class="btn_1 outline">Register</a>
                         {{ Form::close() }}
                     </div>
                 </div>
