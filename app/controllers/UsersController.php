@@ -288,7 +288,7 @@ class UsersController extends \BaseController {
             $user->verify_string = str_random(10);
             $user->summoner_id = Session::get('summoner_id');
             $user->save();
-            return Redirect::to('/login')->with("success", "User erstellt - Bitte einloggen");
+            return Redirect::to('/login')->with("success", "Your account has been created.");
 
         } else {
             $messages = $validation->messages();

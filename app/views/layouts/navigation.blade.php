@@ -21,10 +21,5 @@
             <li><a href="/players"><img src="/img/roles/support.jpg" height="23" class="img-circle" > AD-Carry</a></li>
         </ul>
     </li>
-    <li class="submenu">
-        <a class="text-shadow" href="#">Find a Ringer</a>
-    </li>
-    <li class="submenu">
-        <a class="text-shadow" href="#">Premium</a>
-    </li>
+
 </ul>

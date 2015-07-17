@@ -62,3 +62,9 @@ Route::get("/players", "PlayersController@index");
 Route::post("/players/player_list_suggestions", "PlayersController@list_suggestions");
 Route::get('/summoner/{region}/{name}', 'UsersController@show');
 Route::get('/summoner/{region}/{name}/ajax', 'UsersController@ajax_summoner_update');
+
+// PW Reset / Reminder
+
+Route::get("/password/forgot", "RemindersController@getRemind");
+Route::get("/password/reset", "RemindersController@getReset");
+Route::controller('password', 'RemindersController');

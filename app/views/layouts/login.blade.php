@@ -22,7 +22,7 @@
                                 {{ Form::password('password', array('class' => 'form-control')) }}
                             </div>
                             <p class="small">
-                                <a href="#">Forgot Password?</a>
+                                <a href="/register">Register now</a> | <a href="/password/forgot">Reset password</a>
                             </p>
                             {{ Form::submit('Einloggen', array('class' => 'button_intro text-shadow')) }}
                             <a href="/register" class="btn_1 outline">Register</a>
