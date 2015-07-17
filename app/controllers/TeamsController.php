@@ -359,6 +359,73 @@ class TeamsController extends \BaseController {
            echo "error";
         }
     }
+    
+    public function invite_lightbox(){
+        if(Input::get("player") && Auth::check()){
+            $player = User::where("id", "=", Input::get("player"))->first();
+            $teams  = RankedTeam::where("leader_summoner_id", "=", Auth::user()->summoner->summoner_id)->get();
+            if($player && $player->id > 0){
+                return View::make("teams.invite.lightbox_start", array(
+                    "user"  => $player,
+                    "teams" => $teams,
+                ));
+            }
+        }
+        echo "error";
+    }
+    
+    public function invite_lightbox_post(){
+        if(Input::get("user") && Input::get("roles") && Input::get("team") && Auth::check()){
+            $user = User::where("id", "=", Input::get("user"))->first();
+            if(isset($user->id) && $user->summoner->looking_for_team == 1){
+                $team = RankedTeam::where("id", "=", Input::get("team"))->first();
+                if(isset($team->id) && $team->id > 0 && $team->leader_summoner_id == Auth::user()->summoner->summoner_id){
+                    $invitation = new RankedTeamInvitation;
+                    $invitation->team = $team->id;
+                    $invitation->user = $user->id;
+                    
+                    if(Input::get("comment") && trim(Input::get("comment")) != ""){
+                       $invitation->comment = trim(Input::get("comment"));
+                    }
+                    
+                    if(Input::get("roles") && trim(Input::get("roles")) != ""){
+                       $invitation->roles = trim(Input::get("roles"));
+                    }
+                    $invitation->save();
+                    
+                    // Notification an User senden
+                    FIServer::add_notification($user->id, "team_invitation", $team->id, $invitation->id);
+                    echo "success";
+                } else {
+                    echo "error";
+                }
+           } else {
+               echo "error";
+           }
+        } else {
+           echo "error";
+        }
+    }
+    
+    public function invite_lightbox_show(){
+        if(Input::get("invitation_id") && Input::get("invitation_id") > 0){
+            $invitation = RankedTeamInvitation::where("id", "=", Input::get("invitation_id"))->first();
+            if($invitation && isset($invitation->user) && $invitation->user > 0){
+                $user = User::where("id", "=", $invitation->user)->first();
+                $team = RankedTeam::where("id", "=", $invitation->team)->first();
+                $leader = User::where("summoner_id", "=", $team->leader_summoner_id)->first();
+                if(isset($user->id) && $user->id > 0 && isset($team->id) && $team->id > 0 && isset($leader->id) && $leader->id > 0){
+                    return View::make("teams.invite.lightbox_show", array(
+                        "user"        => $user,
+                        "invitation"  => $invitation,
+                        "ranked_team" => $team,
+                        "leader"      => $leader,
+                    ));
+                }
+            }
+        }
+        echo "error";
+    }
 
     public function applications($region, $tag){
         $ranked_team = RankedTeam::where("region", "=", $region)->where("tag", "=", $tag)->first();
@@ -393,7 +460,7 @@ class TeamsController extends \BaseController {
         $application = RankedTeamApplication::where("id", "=", $id)->first();
         if(isset($ranked_team["id"]) && $ranked_team["id"] > 0 && isset($application["id"]) && $application["id"] > 0){
             if(Auth::check() && $ranked_team->leader_summoner_id == Auth::user()->summoner->summoner_id){
-                // Notification an Team-Leiter senden
+                // Notification an User senden
                 FIServer::add_notification($application["user"], "team_application_delete", $ranked_team["id"]);
 
                 $application->delete();

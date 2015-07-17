@@ -172,4 +172,25 @@ class RankedTeam extends \Eloquent {
         }
         return false;
     }
+    
+    public static function loggedCanInvitePlayer($summoner){
+        if(Auth::check()){
+            $status = false;
+            $teams_leader = RankedTeam::where("leader_summoner_id", "=", Auth::user()->summoner->summoner_id)->get();
+            foreach($teams_leader as $team){
+                $team_player = RankedTeamPlayer::where("summoner_id", "=", $summoner->summoner_id)->where("team", "=", $team->id)->first();
+                if(isset($team_player->id) && $team_player->id > 0){
+                    // Ist bereits in dem Team -> nichts machen
+                } else {
+                    // Ist nicht in dem Team -> kann eingeladen werden:
+                    $status = true;
+                }
+            }
+            
+            if($status){
+                return true;
+            }
+        }
+        return false;
+    }
 }

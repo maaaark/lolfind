@@ -123,11 +123,42 @@
                     </div>
                     <br/>
                     <h4>Description</h4>
-                    {{ $user->summoner->description }}
+                    @if(trim($user->summoner->description) != "")
+                        {{ $user->summoner->description }}
+                    @else
+                        Did not write any description yet.
+                    @endif    
                 </div>
             </div>
 
             <div class="col-md-4" style="padding-top: 0px;">
+                <!-- Einladen wenn möglich: -->
+                @if(Auth::check())
+                    @if($user->summoner->looking_for_team == 1)
+                        @if(RankedTeam::loggedCanInvitePlayer($user->summoner))
+                            <div class="strip_all_tour_list" style="padding: 10px;">
+                                <button class="btn_1 outline" id="invite_in_team_btn" style="width: 100%%;">Invite in one of your teams</button>
+                            </div>
+                            
+                            <script>
+                                $(document).ready(function(){
+                                    $("#invite_in_team_btn").click(function(){
+                                        html  = "<div style='text-align: center;padding: 40px;'><img src='/img/ajax-loader.gif' style='height: 50px;'>";
+                                        html += "<div style='padding-top: 10px;'>Content is loading ...</div>";
+                                        html += '</div>';
+                                        showLightbox(html, function(lightbox_content){
+                                            $.post("/teams/invite/start", {"player": {{ $user->id }} }).done(function(data){
+                                                lightbox_content.html(data);
+                                            });
+                                        });
+                                    });
+                                });
+                            </script>    
+                        @endif
+                    @endif
+                @endif            
+                
+                
                 <div class="strip_all_tour_list" style="padding: 10px;">
                     @if(Auth::check() AND Auth::user()->id == $user->id)
                         <h4>Edit profile</h4>

@@ -3,11 +3,11 @@
         <div class="strip_all_tour_list player_searchbox wow fadeIn" data-wow-delay="0.1s">
             <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-3">
-                   <!-- <div class="wishlist">
+                    <div class="wishlist">
                         <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">
                             +<span class="tooltip-content-flip"><span class="tooltip-back">Add to favorites</span></span>
                         </a>
-                    </div>-->
+                    </div>
                     <div class="center">
                         <div style="text-align: center">
                             @if($player->solo_tier AND trim($player->solo_tier) != "" AND trim($player->solo_tier) != "none")

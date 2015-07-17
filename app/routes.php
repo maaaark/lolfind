@@ -52,6 +52,9 @@ Route::get("/teams/{region}/{tag}/applications/{id}/delete", "TeamsController@ap
 Route::post("/teams/settings/post", "TeamsController@settings_post");
 Route::post("/teams/apply/start", "TeamsController@apply_lightbox");
 Route::post("/teams/apply/post", "TeamsController@apply_lightbox_post");
+Route::post("/teams/invite/start", "TeamsController@invite_lightbox");
+Route::post("/teams/invite/post", "TeamsController@invite_lightbox_post");
+Route::post("/teams/invite/show", "TeamsController@invite_lightbox_show");
 
 
 // Players

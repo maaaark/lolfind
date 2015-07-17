@@ -103,4 +103,12 @@ class Helpers {
     	}
     	return false;
     }
+    
+    public static function getInvitation($id){
+    	$invitation = RankedTeamInvitation::where("id", "=", $id)->first();
+    	if(isset($invitation->id) && $invitation->id > 0){
+    		return $invitation;
+    	}
+    	return false;
+    }
 }
