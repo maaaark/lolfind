@@ -8,7 +8,7 @@
         <div class="parallax-content-1">
             <div class="animated fadeInDown">
                 <h1>Find a new player</h1>
-                <p class="text-shadow">Ridiculus sociosqu cursus neque cursus curae ante scelerisque vehicula.</p>
+                <p class="text-shadow">Find a single summoner or multiple people to play with!</p>
             </div>
         </div>
     </section><!-- End section -->

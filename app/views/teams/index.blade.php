@@ -8,7 +8,7 @@
         <div class="parallax-content-1">
             <div class="animated fadeInDown">
                 <h1>Find a new team</h1>
-                <p>Ridiculus sociosqu cursus neque cursus curae ante scelerisque vehicula.</p>
+                <p class="text-shadow">Find your perfect team matching your style and skill. Never play alone again!</p>
             </div>
         </div>
     </section><!-- End section -->

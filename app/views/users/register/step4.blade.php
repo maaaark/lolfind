@@ -1,14 +1,16 @@
-@extends('design_left_sidebar')
-@section('title', "Neuer User - Schritt 4")
-@section('content_page')
+@extends('design')
+@section('title', "New Account - Step 4")
+@section('content')
+    <section id="hero" class="register">
+        <div class="container margin_30 register">
     {{ Form::open(array('action' => 'UsersController@step4_save')) }}
 
 
-    <h2 class="headline">Fortschritt</h2>
+    <h2 class="headline">Register Progress</h2>
 
     <div class="progress">
         <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;">
-            Schritt 4 von 4
+            Step 4 of 4
         </div>
     </div>
     <br/>
@@ -45,6 +47,8 @@
     <br/>
     {{ Form::submit("Account anlegen", array('class' => 'btn btn-primary')) }}
     {{ Form::close() }}
+            </div>
+        </section>
 @stop
 @section('siebar')
     @include('layouts.sidebar')

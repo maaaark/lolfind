@@ -38,7 +38,7 @@
             <div class="feature_home">
                 <h3><span>120+</span> Teams looking for player</h3>
                 <p>
-                    Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus efficiantur in. Nec id tempor imperdiet deterruisset.
+                    Many teams are looking for one or more players in specific roles or skills. Find a team that fits your strength!
                 </p>
                 <a href="/teams" class="btn_1 outline">Search your team</a>
             </div>
@@ -48,7 +48,7 @@
             <div class="feature_home">
                 <h3><span>1000+</span> Players searching</h3>
                 <p>
-                    Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus efficiantur in. Nec id tempor imperdiet deterruisset.
+                    You need one or more players for your League of Legends team to storm the ladder? Find players with specific skills for your team!
                 </p>
                 <a href="/players" class="btn_1 outline">Find a new player</a>
             </div>
@@ -58,14 +58,14 @@
             <div class="feature_home">
                 <h3><span>Join</span> the community</h3>
                 <p>
-                    Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus efficiantur in. Nec id tempor imperdiet deterruisset.
+                    Join the community and look for a player with specific roles/skills or search a team that fits your skills! It's free!
                 </p>
-                <a href="#" class="btn_1 outline">Register for free</a>
+                <a href="/register" class="btn_1 outline">Register for free</a>
             </div>
         </div>
 
     </div><!--End row -->
-
+    @if(!Auth::check())
     <hr>
 
     <div class="row" style="background: url('img/network.png');">
@@ -75,16 +75,39 @@
         <div class="col-md-10 col-sm-10">
             <h3>Register your <span>free account</span> now</h3>
             <p>
-                Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus efficiantur in. Nec id tempor imperdiet deterruisset.
+                You are only three easy steps away from your new League of Legends team!
             </p>
             <ul class="list_order">
                 <li><span>1</span>Insert your summoner name</li>
-                <li><span>2</span>Verify your name</li>
+                <li><span>2</span>Verify your summoner</li>
                 <li><span>3</span>Search for teams and player</li>
             </ul>
-            <a href="#" class="btn_1">Register now</a>
+            <a href="#" class="btn_1">Register now for free</a>
             <br/><br/>
         </div>
     </div><!-- End row -->
+    @endif
+        <hr>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <div class="feature_home">
+                    <h3>Recently updated <span>Players</span></h3>
+                    <p>
+                        Many teams are looking for one or more players in specific roles or skills. Find a team that fits your strength!
+                    </p>
+                    <a href="/players" class="btn_1 outline">Find a player</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="feature_home">
+                    <h3>Recently updated <span>Teams</span></h3>
+                    <p>
+                        Many teams are looking for one or more players in specific roles or skills. Find a team that fits your strength!
+                    </p>
+                    <a href="/teams" class="btn_1 outline">Find your team</a>
+                </div>
+            </div>
+        </div><!-- End row -->
 </div>
 @stop

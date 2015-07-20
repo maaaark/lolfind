@@ -21,5 +21,7 @@
             <li><a href="/players"><img src="/img/roles/support.jpg" height="23" class="img-circle" > AD-Carry</a></li>
         </ul>
     </li>
-
+    <li>
+        <a href="/ringer" class="show-submenu text-shadow">Find a Ringer</a>
+    </li>
 </ul>

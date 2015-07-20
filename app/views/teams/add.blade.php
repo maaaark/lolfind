@@ -160,8 +160,8 @@
             });
          </script>
       @else
-         <div style="padding: 25px;">
-            {{ Lang::get("teams.add.login_needed") }}
+         <div style="">
+             <a href="/register" class="btn_1 outline">{{ Lang::get("teams.add.login_needed") }}</a>
          </div>
       @endif
    </div>
