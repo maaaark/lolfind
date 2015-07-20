@@ -80,7 +80,7 @@ return array(
 	|
 	*/
 
-	'username' => "teamrankedcom@gmail.com",
+	'username' => 'teamrankedcom@gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return array(
 	|
 	*/
 
-	'password' => "gutenmorgenteam!",
+	'password' => 'gutenmorgenteam!',
 
 	/*
 	|--------------------------------------------------------------------------
