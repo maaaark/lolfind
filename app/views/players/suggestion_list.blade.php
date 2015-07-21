@@ -69,8 +69,15 @@
                                 @endif
                             </div>
                             <div class="skill_profile col-lg-4 col-md-4 col-sm-4">
+                                @if($player->main_lang != "" || $player->sec_lang != "")
                                 <h5>Languages:</h5>
-                                <img src="http://teamranked.com/img/roles/marksman.jpg" class="img-circle" width="35" />
+                                @endif
+                                @if($player->main_lang != "")
+                                <img src="/img/flags/{{ $player->main_lang }}.png" class="img-circle" width="35" />
+                                @endif
+                                @if($player->sec_lang != "")
+                                    <img src="/img/flags/{{ $player->sec_lang }}.png" class="img-circle" width="35" />
+                                @endif
                             </div>
                         </div>
                             <br/>

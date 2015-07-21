@@ -3361,3 +3361,9 @@ font-weight:400;
     -webkit-box-shadow: 0 0 5 rgba(0, 0, 0, 0.4);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
 }
+.last_tables {
+	width: 100%;
+	text-align: left;
+	border-collapse: separate;
+	border-spacing: 5px;
+}
