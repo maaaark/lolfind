@@ -161,7 +161,7 @@
                     @if($ranked_team->looking_for_players == 1)
                         <div style="text-align: center;padding: 15px;color: rgb(0, 126, 0);">
                             Is looking for players.
-                            
+
                             @if(($check = RankedTeam::loggedCanApplyToTeam($ranked_team->id)))
                                 @if($check == "can_apply")
                                    <div style="padding-top: 5px;"><a href="javascript:void(0);"class="btn_1 outline apply_team_btn">Apply the team</a></div>
@@ -169,6 +169,40 @@
                                    <div style="padding-top: 5px;"><a href="javascript:void(0);"class="btn_1 outline apply_team_btn" disabled>Already applied</a></div>
                                 @endif
                             @endif
+                        </div>
+                            
+                        <div style="padding: 5px;padding-bottom: 0px;">
+                            <table class="table" style="border-bottom: none;margin-bottom: 0px;">
+                                <tr style="border-top: none;">
+                                    <td style="border-top: none;">Team Language</td>
+                                    <td style="border-top: none;">
+                                        @if(trim($ranked_team->looking_for_lang) == "")
+                                            English
+                                        @else
+                                            {{ ucfirst(trim($ranked_team->looking_for_lang)) }}
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Open roles</td>
+                                    <td>
+                                        @if($ranked_team->looking_for_adc == 1)
+                                            <div class="ranked_team_role_open"><img src="/img/roles/marksman.jpg"> ADC</div>
+                                        @endif
+                                        @if($ranked_team->looking_for_support == 1)
+                                            <div class="ranked_team_role_open"><img src="/img/roles/support.jpg"> Support</div>
+                                        @endif
+                                        @if($ranked_team->looking_for_jungle == 1)
+                                            <div class="ranked_team_role_open"><img src="/img/roles/fighter.jpg"> Jungle</div>
+                                        @endif
+                                        @if($ranked_team->looking_for_top == 1)
+                                            <div class="ranked_team_role_open"><img src="/img/roles/tank.jpg"> Top</div>
+                                        @endif
+                                        @if($ranked_team->looking_for_mid == 1)
+                                            <div class="ranked_team_role_open"><img src="/img/roles/mage.jpg"> Mid</div>
+                                        @endif
+                                    </td>
+                            </table>
                         </div>
                     @else
                         <div style="text-align: center;padding: 15px;">Not looking for players at the moment.</div>

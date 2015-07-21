@@ -3,11 +3,6 @@
         <div class="strip_all_tour_list player_searchbox wow fadeIn" data-wow-delay="0.1s">
             <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-3">
-                    <div class="wishlist">
-                        <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">
-                            +<span class="tooltip-content-flip"><span class="tooltip-back">Add to favorites</span></span>
-                        </a>
-                    </div>
                     <div class="center">
                         <div style="text-align: center">
                             @if($player->solo_tier AND trim($player->solo_tier) != "" AND trim($player->solo_tier) != "none")
@@ -32,7 +27,7 @@
                 <div class="col-lg-9 col-md-9 col-sm-9">
                     <div class="">
                         @if(Auth::check())
-                            <h3><strong>{{ $player->name }}</strong></h3>
+                            <h3><a href="/summoner/{{ trim($player->region) }}/{{ trim($player->name) }}"><strong>{{ $player->name }}</strong></a></h3>
                         @else
                             <h3><strong>Summoner</strong></h3>
                         @endif
@@ -79,7 +74,7 @@
                             </div>
                         </div>
                             <br/>
-                            <p>{{ Str::limit($player->description, 200) }} <a href="">more</a></p>
+                            <p>{{ Str::limit($player->description, 200) }} <a href="/summoner/{{ trim($player->region) }}/{{ trim($player->name) }}">more</a></p>
                     </div>
                 </div>
             </div>
