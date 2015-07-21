@@ -123,7 +123,7 @@
                 <div class="main-menu">
                     @include('layouts.navigation')
                 </div><!-- End main-menu -->
-                <ul id="top_tools">
+                <ul id="top_tools" style="display: none;">
                     <li>
                         <div class="dropdown dropdown-search">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-search"></i></a>
