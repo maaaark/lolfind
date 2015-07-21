@@ -24,7 +24,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
      */
     protected $connection = 'mysql2';
     protected $table = 'users';
-    protected $fillable = array('password', 'username', 'first_name', 'last_name', 'email', 'roles', 'description', 'image', 'task', 'autor_text', 'twitter', 'twitch', 'order', 'updated_at', 'created_at');
+    protected $fillable = array('password', 'username', 'first_name', 'last_name', 'email', 'roles', 'description', 'image', 'task', 'autor_text', 'twitter', 'twitch', 'order', 'updated_at', 'created_at', 'main_lang', 'sec_lang');
 
     private $allowed_regions = array(
         "euw" => array("status" => true, "api_endpoint" => "https://euw.api.pvp.net", "name" => "Europe West", "platform_id" => "EUW1"), // PlatformId -> für Spectator Mode

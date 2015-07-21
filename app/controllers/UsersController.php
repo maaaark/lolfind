@@ -82,6 +82,9 @@ class UsersController extends \BaseController {
             $summoner->fav_champion_3 = $input["fav_champion_3"];
             $summoner->description = $input["description"];
 
+            $summoner->main_lang = $input["main_lang"];
+            $summoner->sec_lang = $input["sec_lang"];
+
             if(isset($input["search_top"])) {
                 $summoner->search_top = $input["search_top"];
             } else {
@@ -170,7 +173,7 @@ class UsersController extends \BaseController {
 
     public function step4() {
         $summoner = Summoner::where("summoner_id", "=", Session::get('summoner_id'))->first();
-        return View::make("users.register.step3", compact('summoner'));
+        return View::make("users.register.step4", compact('summoner'));
     }
 
     public function step2() {
@@ -228,8 +231,8 @@ class UsersController extends \BaseController {
 
         // validate the info, create rules for the inputs
         $rules = User::$rules = array(
-            'email'=>'required|unique:users',
-            'password' => 'confirmed|min:5'
+            //'email'=>'required|unique:users',
+            //'password' => 'confirmed|min:5'
         );
 
         // run the validation rules on the inputs from the form
@@ -241,32 +244,35 @@ class UsersController extends \BaseController {
 
         if ($validator->passes())
         {
+            /*
             $user = User::create($input);
             $user->password = Hash::make(Input::get('password'));
             $user->verify_string = str_random(10);
             $user->summoner_id = Session::get('summoner_id');
             $user->save();
+            */
 
-            //$summoner = Summoner::where("summoner_id", "=", $user->summoner_id)->first();
+            $summoner = Summoner::where("summoner_id", "=", Session::get('summoner_id'))->first();
 
-            $user->summoner->fav_champion_1 = Input::get('fav_champion_1');
-            $user->summoner->fav_champion_2 = Input::get('fav_champion_2');
-            $user->summoner->fav_champion_3 = Input::get('fav_champion_3');
+            $summoner->fav_champion_1 = Input::get('fav_champion_1');
+            $summoner->fav_champion_2 = Input::get('fav_champion_2');
+            $summoner->fav_champion_3 = Input::get('fav_champion_3');
 
-            $user->summoner->looking_for_team = Input::get('looking_for_team');
+            $summoner->looking_for_team = Input::get('looking_for_team');
 
-            $user->summoner->search_top = Input::get('search_top');
-            $user->summoner->search_jungle = Input::get('search_jungle');
-            $user->summoner->search_mid = Input::get('search_mid');
-            $user->summoner->search_adc = Input::get('search_adc');
-            $user->summoner->search_support = Input::get('search_support');
-            $user->summoner->description = Input::get('description');
+            $summoner->search_top = Input::get('search_top');
+            $summoner->search_jungle = Input::get('search_jungle');
+            $summoner->search_mid = Input::get('search_mid');
+            $summoner->search_adc = Input::get('search_adc');
+            $summoner->search_support = Input::get('search_support');
+            $summoner->description = Input::get('description');
 
+            $summoner->main_lang = Input::get('main_lang');
+            $summoner->sec_lang = Input::get('sec_lang');
 
-            $user->summoner->save();
-            $user->save();
+            $summoner->save();
 
-            return Redirect::to('/login')->with('success', 'Your account has been successfully created.');
+            return Redirect::to('/register/step4');
 
         } else {
             $messages = $validator->messages();
@@ -279,7 +285,17 @@ class UsersController extends \BaseController {
 
     public function step4_save() {
         $input = Input::all();
-        $validation = Validator::make($input, User::$step3);
+
+        $verifier = App::make('validation.presence');
+        $verifier->setConnection('mysql2');
+
+        // validate the info, create rules for the inputs
+        $rules = User::$rules = array(
+            'email'=>'required|unique:users',
+            'password' => 'confirmed|min:5'
+        );
+
+        $validation = Validator::make($input, $rules);
 
         if ($validation->passes())
         {

@@ -4,7 +4,7 @@
     <section id="hero" class="register">
         <div class="container margin_30 register">
         <div class="">
-
+            @include('layouts.errors')
     <h2 class="headline">Progress</h2>
 
     <div class="progress">

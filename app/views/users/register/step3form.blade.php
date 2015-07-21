@@ -1,3 +1,4 @@
+
 <h2 class="headline_no_border">Account details</h2>
 <table class="table table-striped">
     <tr>
@@ -51,6 +52,31 @@
     <tr>
         <td width="200"><strong>Looking for team?</strong></td>
         <td>
+            <select name="main_lang" id="m">
+                <option value="0">Main/Native language</option>
+                <option value="en">English</option>
+                <option value="de">German</option>
+                <option value="es">Spanish</option>
+                <option value="it">Italian</option>
+                <option value="pl">Polish</option>
+                <option value="ru">Russian</option>
+            </select>
+
+            <select name="sec_lang" id="s">
+                <option value="0">Secound language</option>
+                <option value="none">none</option>
+                <option value="en">English</option>
+                <option value="de">German</option>
+                <option value="es">Spanish</option>
+                <option value="it">Italian</option>
+                <option value="pl">Polish</option>
+                <option value="ru">Russian</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td width="200"><strong>Looking for team?</strong></td>
+        <td>
             <label class="rolebox">{{ Form::checkbox('looking_for_team', 1, Input::old('looking_for_team')) }} I'm looking for a team</label>
         </td>
     </tr>
@@ -94,3 +120,24 @@
         </td>
     </tr>
 </table><br/>
+<script>
+    function setOption(selectElement, value) {
+
+        var options = selectElement.getElementsByTagName('option');
+
+        for (var i = 0, optionsLength = options.length; i < optionsLength; i++) {
+            console.log(options[i].value);
+            if (options[i].value == value) {
+                selectElement.selectedIndex = i;
+                return true;
+            }
+        }
+
+        return false;
+
+    }
+
+    setOption(document.getElementById('s'), '{{ $summoner->sec_lang }}');
+    setOption(document.getElementById('m'), '{{ $summoner->main_lang }}');
+
+</script>

@@ -7,6 +7,7 @@
     {{ Form::open(array('action' => 'UsersController@step3_save')) }}
 
 
+            @include('layouts.errors')
     <h2 class="headline">Register Progress</h2>
 
     <div class="progress">
@@ -17,7 +18,7 @@
     <br/>
 
     @include('users.register.step3form')
-    {{ Form::submit("Create Account", array('class' => 'btn btn-primary')) }}
+    {{ Form::submit("Next step", array('class' => 'btn btn-primary')) }}
     {{ Form::close() }}
             </div>
         </div>

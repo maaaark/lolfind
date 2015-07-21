@@ -23,6 +23,7 @@ Route::get('/register', 'UsersController@create');
 Route::get('/register/step1', 'UsersController@step1');
 Route::get('/register/step2', 'UsersController@step2');
 Route::get('/register/step3', 'UsersController@step3');
+Route::get('/register/step4', 'UsersController@step4');
 Route::get('/settings', 'UsersController@settings');
 Route::post('/save_settings', 'UsersController@save_settings');
 Route::get('/verify_summoner', 'UsersController@verify_summoner');
@@ -30,6 +31,7 @@ Route::post('/register/save', 'UsersController@save');
 Route::post('/register/save1', 'UsersController@step1_save');
 Route::post('/register/save2', 'UsersController@step2_save');
 Route::post('/register/save3', 'UsersController@step3_save');
+Route::post('/register/save4', 'UsersController@step4_save');
 Route::post('/account/update', 'UsersController@updateAccount');
 Route::post('/notifications/get', "UsersController@getNotification");
 
