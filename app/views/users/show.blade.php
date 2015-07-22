@@ -135,7 +135,7 @@
                 <!-- Einladen wenn möglich: -->
                 @if(Auth::check())
                     @if($user->summoner->looking_for_team == 1)
-                        @if(RankedTeam::loggedCanInvitePlayer($user->summoner))
+                        @if(RankedTeam::loggedCanInvitePlayer($user->summoner) AND Auth::user()->summoner->summoner_id != $user->summoner->summoner_id)
                             <div class="strip_all_tour_list" style="padding: 10px;">
                                 <button class="btn_1 outline" id="invite_in_team_btn" style="width: 100%%;">Invite in one of your teams</button>
                             </div>
