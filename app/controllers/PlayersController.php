@@ -1,8 +1,17 @@
 <?php
 
 class PlayersController extends \BaseController {
-    public function index(){
-        $player_list = Summoner::where("looking_for_team", "=", 1)->paginate(10);
+    public function index($lane = false){
+        if($lane == false){
+            $player_list = Summoner::where("looking_for_team", "=", 1)->paginate(10);
+        } else {
+            $lane = trim(strtolower($lane));
+            if($lane == "top" || $lane == "mid" || $lane == "support" || $lane == "jungle" || $lane == "adc"){
+                $player_list = Summoner::where("looking_for_team", "=", 1)->where("search_".$lane, "=", 1)->paginate(10);
+            } else {
+                $player_list = Summoner::where("looking_for_team", "=", 1)->paginate(10);
+            }
+        }
         return View::make("players.index", compact('player_list'));
     }
 

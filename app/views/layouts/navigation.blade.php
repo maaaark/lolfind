@@ -14,11 +14,11 @@
     <li class="submenu">
         <a href="/players" class="show-submenu text-shadow">Search Player <i class="icon-down-open-mini"></i></a>
         <ul>
-            <li><a href="/players"><img src="/img/roles/tank.jpg" height="23" class="img-circle" > Top-Laner</a></li>
-            <li><a href="/players"><img src="/img/roles/fighter.jpg" height="23" class="img-circle" > Jungler</a></li>
-            <li><a href="/players"><img src="/img/roles/mage.jpg" height="23" class="img-circle" > Mid-Laner</a></li>
-            <li><a href="/players"><img src="/img/roles/marksman.jpg" height="23" class="img-circle" > Marksman</a></li>
-            <li><a href="/players"><img src="/img/roles/support.jpg" height="23" class="img-circle" > AD-Carry</a></li>
+            <li><a href="/players/top"><img src="/img/roles/tank.jpg" height="23" class="img-circle" > Top-Laner</a></li>
+            <li><a href="/players/jungle"><img src="/img/roles/fighter.jpg" height="23" class="img-circle" > Jungler</a></li>
+            <li><a href="/players/mid"><img src="/img/roles/mage.jpg" height="23" class="img-circle" > Mid-Laner</a></li>
+            <li><a href="/players/adc"><img src="/img/roles/marksman.jpg" height="23" class="img-circle" > AD-Carry</a></li>
+            <li><a href="/players/support"><img src="/img/roles/support.jpg" height="23" class="img-circle" > Support</a></li>
         </ul>
     </li>
     <li>
