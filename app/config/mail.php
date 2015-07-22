@@ -28,7 +28,7 @@ return array(
 	|
 	*/
 
-	'host' => 'smtp.gmail.com',
+	'host' => 'mail.flashignite.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -41,7 +41,7 @@ return array(
 	|
 	*/
 
-	'port' => 587,
+	'port' => 25,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,8 +80,7 @@ return array(
 	|
 	*/
 
-	'username' => 'teamrankedcom@gmail.com',
-
+	'username' => 'info@teamranked.com',
 	/*
 	|--------------------------------------------------------------------------
 	| SMTP Server Password
@@ -93,7 +92,7 @@ return array(
 	|
 	*/
 
-	'password' => 'gutenmorgenteam!',
+	'password' => 'gutenmorgenteam1337!',
 
 	/*
 	|--------------------------------------------------------------------------
