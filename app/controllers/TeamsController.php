@@ -26,22 +26,42 @@ class TeamsController extends \BaseController {
     }
 
     public function list_suggestions(){
-        print_r(Input::all());
+        // print_r(Input::all());
         $ranked_teams = RankedTeam::where("name","!=", "");
         $ranked_teams->where('looking_for_players',"=",1);
 
-        if(Input::get("league") != "any") {
+
+        if(Input::get("league") == "any") {
             if(Input::get("unranked_search") == true && Input::get("unranked_search") != "false") {
+                // No more filtering
+	        } else {
+                $ranked_teams->where('ranked_league_5',"!=", "none")->where('ranked_league_5',"!=", "");
+	        }
+        } else {
+            if(Input::get("unranked_search") == true && Input::get("unranked_search") != "false") {
+                $ranked_teams->where('ranked_league_5',"LIKE", '%'.Input::get("league").'%')->where('league_prediction',"=",Input::get("league"));
+	        } else {
+                $ranked_teams->where('ranked_league_5',"LIKE", '%'.Input::get("league").'%');
+            }
+        }
+
+
+
+        /*
+        if(Input::get("league") != "any") {
+            $ranked_teams->where("ranked_league_5", "!=", "none");
+            if(Input::get("unranked_search") == true && Input::get("unranked_search") != "false") {
+                //$ranked_teams->where('ranked_league_5',"LIKE", '%'.Input::get("league").'%')->orWhere('league_prediction',"=",Input::get("league"));
                 $ranked_teams->where('ranked_league_5',"LIKE", '%'.Input::get("league").'%')->orWhere('league_prediction',"=",Input::get("league"));
             } else {
                 $ranked_teams->where('ranked_league_5',"LIKE", '%'.Input::get("league").'%')->where("ranked_league_5", "!=", "")->where("ranked_league_5", "!=", "none");
             }
-
         } else {
             if(Input::get("unranked_search") == false || Input::get("unranked_search") == "false"){
                 $ranked_teams->where('ranked_league_5',"!=", "none")->where('ranked_league_5',"!=", "");
             }
         }
+        */
 
         if(Input::get("region") != "any") {
             $ranked_teams->where('region',"=",Input::get("region"));
