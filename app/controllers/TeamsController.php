@@ -39,7 +39,7 @@ class TeamsController extends \BaseController {
 	        }
         } else {
             if(Input::get("unranked_search") == true && Input::get("unranked_search") != "false") {
-                $ranked_teams->where('ranked_league_5',"LIKE", '%'.Input::get("league").'%')->where('league_prediction',"=",Input::get("league"));
+                $ranked_teams->where('ranked_league_5',"LIKE", '%'.Input::get("league").'%')->orWhere("ranked_league_5", "=", "")->where('league_prediction',"=",Input::get("league"));
 	        } else {
                 $ranked_teams->where('ranked_league_5',"LIKE", '%'.Input::get("league").'%');
             }
