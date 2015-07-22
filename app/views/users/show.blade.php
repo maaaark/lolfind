@@ -173,6 +173,37 @@
                             <button href="#" class="btn_1" onclick="fi_server_open_chat({{ $user->id }}, '{{ $user->summoner->name }}', '{{ $user->summoner->profileIconId }}')">Send meesage</button>
                             <div class="btn_1 disabled tooltips" title="Coming soon!">Add as friend</div>
                         </div>
+
+                        <div style="margin-top: 20px;">
+                            <table class="table" style="border-bottom: none;">
+                                <tr>
+                                    <td>Region:</td>
+                                    <td>{{ strtoupper($user->summoner->region) }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Language:</td>
+                                    <td>
+                                        @if(trim($user->summoner->main_lang) == "" AND trim($user->summoner->sec_lang) == "")
+                                            EN
+                                        @else
+                                            @if(trim($user->summoner->main_lang) != "")
+                                                <div>
+                                                    <img src="/img/flags/{{ strtoupper(trim($user->summoner->main_lang)) }}.png" style="height: 25px;">
+                                                    {{ strtoupper(trim($user->summoner->main_lang)) }}
+                                                </div>
+                                            @endif
+
+                                            @if(trim($user->summoner->sec_lang) != "")
+                                                <div>
+                                                    <img src="/img/flags/{{ strtoupper(trim($user->summoner->sec_lang)) }}.png" style="height: 25px;">
+                                                    {{ strtoupper(trim($user->summoner->sec_lang)) }}
+                                                </div>
+                                            @endif
+                                        @endif
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
                     @endif
                 </div>
             </div>
