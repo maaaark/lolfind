@@ -33,7 +33,15 @@ class Chats extends \Eloquent {
     
     public static function chatsList($user){
         if(Auth::check()){
-            return $chats = Chats::where("sender", "=", $user)->orWhere("receiver", "=", $user)->orderBy("id", "DESC")->groupBy("hash")->get();
+            return $chats = Chats::where("sender", "=", $user)->orWhere("receiver", "=", $user)->groupBy("hash")->orderBy("updated_at", "DESC")->get();
+        }
+        return false;
+    }
+
+    public static function getLastMessage($hash){
+        if(Auth::check()){
+            $last_message = Chats::where("hash", "=", $hash)->orderBy("id", "DESC")->first();
+            return $last_message;
         }
         return false;
     }

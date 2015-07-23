@@ -279,6 +279,9 @@
                       element.addClass("active");
                       $(this).html("Hide details");
                    }
+
+                    $("#matchhistory_holder .minimizer").remove();
+                    $("#matchhistory_holder").removeClass("smaller");
                 });
 
                 if($("#matchhistory_holder").outerHeight() > 530){
