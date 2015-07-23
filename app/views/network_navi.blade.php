@@ -25,21 +25,28 @@
                     <div id="chats_content" class="nw_chats_box">
                         @if(($chats = Auth::user()->chats()) AND $chats AND count($chats) > 0)
                             @foreach($chats as $chat)
-                                <div class="chat_box_element" id="nw_chat_box_element_{{ $chat->otherUser(Auth::user()->id)->id }}" data-uID="{{ $chat->otherUser(Auth::user()->id)->id }}" data-uName="{{ $chat->otherUser(Auth::user()->id)->summoner->name }}" data-uIcon="{{ $chat->otherUser(Auth::user()->id)->summoner->profileIconId }}">
+                                <?php
+                                    $last_message_chat = Chats::getLastMessage($chat->hash);
+                                    $class_addition    = "";
+                                    if($last_message_chat->read_status == 0 && $last_message_chat->receiver == Auth::user()->id){
+                                        $class_addition = " new_msg";
+                                    }
+                                ?>
+                                <div class="chat_box_element{{ $class_addition }}" id="nw_chat_box_element_{{ $chat->otherUser(Auth::user()->id)->id }}" data-uID="{{ $chat->otherUser(Auth::user()->id)->id }}" data-uName="{{ $chat->otherUser(Auth::user()->id)->summoner->name }}" data-uIcon="{{ $chat->otherUser(Auth::user()->id)->summoner->profileIconId }}">
                                     <img src="http://ddragon.leagueoflegends.com/cdn/{{ Config::get('settings.patch') }}/img/profileicon/{{ $chat->otherUser(Auth::user()->id)->summoner->profileIconId }}.png" class="chat_summoner_icon">
                                     <div class="chat_element_title">{{ $chat->otherUser(Auth::user()->id)->summoner->name }}</div>
                                     <div>
                                         @if(Auth::user()->id == $chat->receiver)
                                             <i class="icon-reply" style="color: rgba(0,0,0,0.2);"></i>
                                         @endif
-                                        @if(strlen($chat->message) > 80)
-                                            {{ substr($chat->message, 0, 80) }} ...
+                                        @if(strlen($last_message_chat->message) > 30)
+                                            {{ substr($last_message_chat->message, 0, 30) }} ...
                                         @else
-                                            {{ $chat->message }}
+                                            {{ $last_message_chat->message }}
                                         @endif
                                     </div>
                                     <div class="chat_element_date">
-                                        {{ Helpers::diffForHumans($chat->created_at) }}
+                                        {{ $last_message_chat->created_at->diffForHumans() }}
                                     </div>
                                 </div>
                             @endforeach
