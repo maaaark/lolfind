@@ -54,23 +54,23 @@
         <td>
             <select name="main_lang" id="m">
                 <option value="0">Main/Native language</option>
-                <option value="uk">English</option>
-                <option value="de">German</option>
-                <option value="es">Spanish</option>
-                <option value="it">Italian</option>
-                <option value="pl">Polish</option>
-                <option value="ru">Russian</option>
+                <option value="UK">English</option>
+                <option value="DE">German</option>
+                <option value="ES">Spanish</option>
+                <option value="IT">Italian</option>
+                <option value="PL">Polish</option>
+                <option value="RU">Russian</option>
             </select>
 
             <select name="sec_lang" id="s">
                 <option value="0">Secound language</option>
                 <option value="none">none</option>
-                <option value="uk">English</option>
-                <option value="de">German</option>
-                <option value="es">Spanish</option>
-                <option value="it">Italian</option>
-                <option value="pl">Polish</option>
-                <option value="ru">Russian</option>
+                <option value="UK">English</option>
+                <option value="DE">German</option>
+                <option value="ES">Spanish</option>
+                <option value="IT">Italian</option>
+                <option value="PL">Polish</option>
+                <option value="RU">Russian</option>
             </select>
         </td>
     </tr>

@@ -15,4 +15,16 @@ class BaseController extends Controller {
 		}
 	}
 
+	public function mail(){
+		return View::make("emails.mail");
+	}
+
+	public function legal(){
+		return View::make("page.legal");
+	}
+
+	public function tos(){
+		return View::make("page.tos");
+	}
+
 }

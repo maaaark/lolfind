@@ -71,3 +71,9 @@ Route::get('/summoner/{region}/{name}/ajax', 'UsersController@ajax_summoner_upda
 Route::get("/password/forgot", "RemindersController@getRemind");
 Route::get("/password/reset", "RemindersController@getReset");
 Route::controller('password', 'RemindersController');
+
+
+// Pages
+Route::get("/tos", "BaseController@tos");
+Route::get("/legal", "BaseController@legal");
+Route::get("/mail", "BaseController@mail");

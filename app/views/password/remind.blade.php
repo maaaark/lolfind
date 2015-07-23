@@ -6,9 +6,9 @@
             <div class="row">
                 <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
                     <div id="login">
-                        @include('layouts.errors')
                         <div class="text-center"><img src="/img/teamranked_black.png" alt="" data-retina="true" width="280"></div>
                         <hr>
+                        @include('layouts.errors')
                         <form action="{{ action('RemindersController@postRemind') }}" method="POST">
                             <input type="email" name="email" placeholder="Your E-Mail adress" class="form-control">
                             <br/>
