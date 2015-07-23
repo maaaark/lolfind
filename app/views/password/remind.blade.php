@@ -6,10 +6,7 @@
             <div class="row">
                 <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
                     <div id="login">
-                        <p>
-                            {{ $errors->first('email') }}
-                            {{ $errors->first('password') }}
-                        </p>
+                        @include('layouts.errors')
                         <div class="text-center"><img src="/img/teamranked_black.png" alt="" data-retina="true" width="280"></div>
                         <hr>
                         <form action="{{ action('RemindersController@postRemind') }}" method="POST">

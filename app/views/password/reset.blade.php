@@ -6,6 +6,7 @@
             <div class="row">
                 <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
                     <div id="login">
+                        @include('layouts.errors')
                         <p>
                             {{ $errors->first('email') }}
                             {{ $errors->first('password') }}

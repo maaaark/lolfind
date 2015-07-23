@@ -19,14 +19,20 @@ class RemindersController extends Controller {
 	 */
 	public function postRemind()
 	{
-		switch ($response = Password::remind(Input::only('email')))
+		Password::remind(Input::only('email'), function($message)
+		{
+			$message->subject('Teamranked.com - Password Reminder');
+			return Redirect::back()->with('success', "A reminder E-Mail has been sent if there is a linked account.");
+		});
+
+		/*switch ($response = Password::remind(Input::only('email')))
 		{
 			case Password::INVALID_USER:
-				return Redirect::back()->with('error', Lang::get($response));
+				return Redirect::back()->with('error', "No account found for this E-Mail.");
 
 			case Password::REMINDER_SENT:
-				return Redirect::back()->with('status', Lang::get($response));
-		}
+
+		}*/
 	}
 
 	/**
