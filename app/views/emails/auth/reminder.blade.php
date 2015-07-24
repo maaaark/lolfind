@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html lang="en-US">
-<head>
-    <meta charset="utf-8">
-</head>
-<body>
-<h2>Password Reset</h2>
+@extends('emails.mail')
+@section('mail_content_headline')
+    <strong style="font-size:20px; text-transform:uppercase;">Password reset</strong><br />
+    You requested a reset for your password on Teamranked.com
+@stop
 
-<div>
-    To reset your password, complete this form: {{ URL::to('password/reset', array($token)) }}.
-</div>
-</body>
-</html>
+@section('mail_content')
+    Hello $summoner->name,<br/><br/>
+    to reset your password, complete this form: {{ URL::to('password/reset', array($token)) }}.
+@stop
