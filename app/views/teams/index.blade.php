@@ -48,6 +48,7 @@
         <div id="tools">
             <div class="row">
                 <div class="text-right" style="margin-right: 15px;">
+                    <a href="/applications" class="bt_filters button_intro">Your applications</a>
                     <a href="/teams/add" class="bt_filters button_intro"><i class="icon-plus"></i> Add new team</a>
                 </div>
             </div>

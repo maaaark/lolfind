@@ -440,4 +440,15 @@ class UsersController extends \BaseController {
         include 'players/ajax.init.php';
     }
 
+    public function applications(){
+        if(Auth::check()){
+            $applications = RankedTeamApplication::where("user", "=", Auth::user()->id)->get();
+            return View::make("users.applications", array(
+                "applications" => $applications
+            ));
+        } else {
+            return Redirect::to('/login'); 
+        }
+    }
+
 }
