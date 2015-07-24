@@ -57,7 +57,7 @@ class MatchhistoryView {
 					}
 					return array("updated" => $updated, "template" => $template);
 				} else {
-					return array("updated" => $updated, "template" => "Matchhistory konnte nicht geladen werden.");
+					return array("updated" => $updated, "template" => "Error while loading the matchhistory.");
 				}
 			} else {
 				return array("updated" => $updated, "template" => "Summoner not found");
