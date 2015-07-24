@@ -21,7 +21,7 @@
             <div style="float: right;padding-top: 20px;">
                 <a href="/teams" class="btn_1">Search for a team</a>
             </div>
-            <h1>Active applications</h1>
+            <h1>Pending applications</h1>
 
             @if(!isset($applications) || $applications == false || $applications->count() < 1)
                 <div style="padding: 35px;">
