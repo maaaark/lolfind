@@ -131,7 +131,7 @@
                                     <table width="160" align="left" cellspacing="0" cellpadding="0" border="0" class="full-width">
                                         <tbody>
                                         <tr>
-                                            <td height="34" valign="middle" align="center" class="center-stack" ><a href="http://teamranked.com"><img src="/img/teamranked_black.png" height="40" alt="Idroponica" /></a></td>
+                                            <td height="34" valign="middle" align="center" class="center-stack" ><a href="http://teamranked.com"><img src="http://teamranked.com/img/teamranked_black.png" height="40" alt="Idroponica" /></a></td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -142,9 +142,9 @@
                                         <tbody>
                                         <tr>
                                             <td height="34" valign="bottom" align="right" class="center">
-                                                <a style="text-decoration: none; border:0;" href="http://facebook.com/teamranked"><img src="/img/fb_bt.jpg" width="27" height="27" alt="Facebook" /></a>
+                                                <a style="text-decoration: none; border:0;" href="http://facebook.com/teamranked"><img src="http://teamranked.com/img/fb_bt.jpg" width="27" height="27" alt="Facebook" /></a>
                                                 &nbsp;
-                                                <a style="text-decoration: none; border:0" href="http://twitter.com/teamranked"><img src="/img/twitter_bt.jpg" width="27" height="27" alt="Youtube" /></a>
+                                                <a style="text-decoration: none; border:0" href="http://twitter.com/teamranked"><img src="http://teamranked.com/img/twitter_bt.jpg" width="27" height="27" alt="Youtube" /></a>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -170,7 +170,7 @@
                         <table bgcolor="#ffffff" width="100%" cellspacing="0" cellpadding="0" border="0" class="full-width">
                             <tbody>
                             <tr>
-                                <td valign="top" align="left"><a href="http://teamranked.com"><img src="/img/cover.jpg" class="emailImage" alt="Main banner" border="0" width="600" /></a></td>
+                                <td valign="top" align="left"><a href="http://teamranked.com"><img src="http://teamranked.com/img/cover.jpg" class="emailImage" alt="Main banner" border="0" width="600" /></a></td>
                             </tr>
                             </tbody>
                         </table>
@@ -192,18 +192,18 @@
                                                     <tr>
                                                         <td height="30">&nbsp;</td>
                                                     </tr>
+
                                                     <tr>
-                                                        <td class="font_fix" style="font-size:16px; mso-line-height-rule:exactly; line-height:20px; color:#555555; font-weight:bold; font-family: 'Montserrat', sans-serif;" align="center"><strong style="font-size:20px; text-transform:uppercase;">New player application</strong><br />
-                                                            You have a new player application on Teamranked.com</td>
+                                                        <td class="font_fix" style="font-size:16px; mso-line-height-rule:exactly; line-height:20px; color:#555555; font-weight:bold; font-family: 'Montserrat', sans-serif;" align="center">
+                                                            @yield('mail_content_headline')
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td height="20" style="line-height:20px; " ></td>
                                                     </tr>
                                                     <tr >
                                                         <td style="font-size:14px; mso-line-height-rule:exactly; line-height:18px; color:#95a5a6; font-weight:normal; font-family: Arial, Helvetica, sans-serif;" align="center">
-                                                            Hello $summoner->name,<br/><br/>
-                                                            Your team <strong>$team->name</strong> has a new payer application.<br/>
-                                                            Check out your account on <a style="color: #f25825;" href="http://teamranked.com">Teamranked.com</a><br/>
+                                                            @yield('mail_content')
                                                         </td>
                                                     </tr>
                                                     <tr>
