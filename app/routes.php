@@ -34,6 +34,7 @@ Route::post('/register/save3', 'UsersController@step3_save');
 Route::post('/register/save4', 'UsersController@step4_save');
 Route::post('/account/update', 'UsersController@updateAccount');
 Route::post('/notifications/get', "UsersController@getNotification");
+Route::get('/applications', "UsersController@applications");
 
 // Teams
 Route::get("/teams", "TeamsController@index");

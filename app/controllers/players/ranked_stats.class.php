@@ -71,14 +71,14 @@ class RankedStatsView {
 
 						return array("updated" => $updated, "template" => json_encode($out));
 					} else {
-						return array("updated" => $updated, "template" => "Es liegen noch keine genaueren Informationen über die Ranked-Stats von ".$summoner["name"]." vor.");
+						return array("updated" => $updated, "template" => "error");
 					}
 				} else {
-					return array("updated" => $updated, "template" => "Es liegen noch keine genaueren Informationen über die Ranked-Stats von ".$summoner["name"]." vor.");
+					return array("updated" => $updated, "template" => "error");
 				}
 			}
 		}
-		return array("updated" => $updated, "template" => "Die Ranked-Stats konnten aufgrund eines unbekannten Fehlers nicht geladen werden.");
+		return array("updated" => $updated, "template" => "error");
 	}
 }
 ?>

@@ -5,10 +5,7 @@ class Summoner extends \Eloquent {
     private $summoner_update_interval = 60;
     private $current_season = "SEASON2015";
 
-    private $allowed_regions = array(
-        "euw" => array("status" => true, "api_endpoint" => "https://euw.api.pvp.net", "name" => "Europe West", "platform_id" => "EUW1"), // PlatformId -> für Spectator Mode
-        "na"  => array("status" => true, "api_endpoint" => "https://euw.api.pvp.net", "name" => "Nordamerika", "platform_id" => "NA1")
-    );
+    private $allowed_regions = null;
 
 
     protected $connection = 'mysql2';
@@ -473,6 +470,7 @@ class Summoner extends \Eloquent {
 
 
     public function addSummoner($region, $summoner_name){
+        $this->allowed_regions = Config::get('api.allowed_regions');
         $region = trim(strtolower($region));
         if(isset($this->allowed_regions[$region]) && isset($this->allowed_regions[$region]["status"]) && $this->allowed_regions[$region]["status"] == true){
             $data = Summoner::where('name', 'LIKE', trim($summoner_name))->where("region","=",$region)->first();
