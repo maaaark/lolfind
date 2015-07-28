@@ -138,7 +138,7 @@
                                 </td>
                                 <td>
                                     @if(Auth::check())
-                                        {{ $player->name }}
+                                        <a href="/summoner/{{ $player->region }}/{{ $player->name }}">{{ $player->name }}</a>
                                     @else
                                         Login to see Summoner Name
                                     @endif
@@ -159,15 +159,15 @@
                             <tr>
                                 <td>
                                     @if($player->solo_tier == "none")
-                                        <img src="/img/leagues/0_5.png" class="tooltips" title="Unranked" width="35">
+                                        <img src="/img/leagues/0_5.png" class="tooltips" title="Unranked" width="45">
                                     @else
                                         <img src="/img/leagues/{{ trim(strtolower($player->solo_tier)) }}_1.png"
                                              class="tooltips" title="{{ trim(ucfirst(strtolower($player->solo_tier))) }}"
-                                             width="35">
+                                             width="45">
                                     @endif
                                 </td>
                                 <td>
-                                    {{ $team->name }}
+                                    <a href="/teams/{{ $team->region }}/{{ $team->tag }}">{{ $team->name }}</a>
                                 </td>
                                 <td>{{ $team->updated_at->diffForHumans() }}</td>
                             </tr>

@@ -74,6 +74,7 @@ Route::controller('password', 'RemindersController');
 
 
 // Pages
+Route::get("/ringer", "BaseController@ringer");
 Route::get("/tos", "BaseController@tos");
 Route::get("/legal", "BaseController@legal");
 Route::get("/mail", "BaseController@mail");

@@ -27,4 +27,8 @@ class BaseController extends Controller {
 		return View::make("page.tos");
 	}
 
+	public function ringer(){
+		return View::make("page.ringer");
+	}
+
 }
