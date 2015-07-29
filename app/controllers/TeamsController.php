@@ -18,9 +18,16 @@ class TeamsController extends \BaseController {
         if($league1 == false && $league2 == false){
             $team_list = RankedTeam::where("looking_for_players", "=", 1)->paginate(10);
         } else {
-            $team_list = RankedTeam::where("looking_for_players", "=", 1)->where("ranked_league_5", "LIKE", "%".trim($league1)."%")
-                                                                         ->orWhere("ranked_league_5", "LIKE", "%".trim($league2)."%")
-                                                                         ->paginate(10);
+            if($league1 == "diamond+"){
+                $team_list = RankedTeam::where("looking_for_players", "=", 1)->where("ranked_league_5", "LIKE", "%".trim("diamond")."%")
+                                                                             ->orWhere("ranked_league_5", "LIKE", "%".trim("master")."%")
+                                                                             ->orWhere("ranked_league_5", "LIKE", "%".trim("challenger")."%")
+                                                                             ->paginate(10); 
+            } else {
+                $team_list = RankedTeam::where("looking_for_players", "=", 1)->where("ranked_league_5", "LIKE", "%".trim($league1)."%")
+                                                                             ->orWhere("ranked_league_5", "LIKE", "%".trim($league2)."%")
+                                                                             ->paginate(10); 
+            }
         }
         return View::make('teams.index', compact('team_list', 'own_teams'));
     }

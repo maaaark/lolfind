@@ -1,4 +1,4 @@
-@if($player_list)
+@if($player_list AND $player_list->count() > 0)
     @foreach($player_list as $player)
         <div class="strip_all_tour_list player_searchbox wow fadeIn" data-wow-delay="0.1s">
             <div class="row">

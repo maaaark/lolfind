@@ -21,8 +21,6 @@ class PlayersController extends \BaseController {
     }
 
     public function list_suggestions(){
-
-        print_r(Input::all());
         $player_list = Summoner::where('looking_for_team',"=",1);
 
 

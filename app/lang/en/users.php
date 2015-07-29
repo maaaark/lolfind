@@ -19,4 +19,9 @@ return array(
 	"placeholder_email" => "Your email adress here",
 	"placeholder_password" => "Your password here",
     "logout" => "Logout",
+
+    "chats" => "Chats",
+    "notifications" => "Notifications",
+    "no_chats" => "No chats",
+    "no_notifications" => "No notifications",
 );

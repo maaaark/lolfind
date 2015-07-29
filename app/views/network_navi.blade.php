@@ -59,7 +59,7 @@
                             </script>
                         @else
                             <div style="padding: 35px;text-align: center;">
-                                {{ Lang::get('user.no_chats') }}
+                                {{ Lang::get('users.no_chats') }}
                             </div>
                         @endif
                     </div>
@@ -83,7 +83,7 @@
                             @endforeach
                         @else
                             <div style="padding: 35px;text-align: center;" id="nw_box_no_notifications">
-                                {{ Lang::get('user.no_notifications') }}
+                                {{ Lang::get('users.no_notifications') }}
                             </div>
                         @endif
                     </div>
