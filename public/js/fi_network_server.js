@@ -8,9 +8,6 @@ function fi_server_init() {
 		socket = new WebSocket(fi_server_host);
 		socket.onopen    = function(msg) { 
 							    console.log("readyState FI-Network-Server: "+this.readyState);
-							    if(this.readyState == 1){
-							   		fi_server_online = true;
-							    }
 
 							    fi_server_send({"type": "login", "values": {"uID": fi_server_user}});
 							   
@@ -40,7 +37,11 @@ function fi_server_init() {
 		socket.onmessage = function(msg) {
 								json = JSON.parse(msg.data);
 								if(typeof json["type"] != "undefined"){
-									if(json["type"] == "chat"){
+									if(json["type"] == "login_success"){
+										if(this.readyState == 1 && typeof json["status"] != "undefined" && json["status"] == "true"){
+							   				fi_server_online = true;
+							    		}
+									} else if(json["type"] == "chat"){
 										fi_server_chat_handle_incoming(json);
 									}
 									else if(json["type"] == "chathistory"){
