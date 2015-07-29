@@ -1,34 +1,41 @@
 var socket;
 var opened_chats = [];
 var fi_chat_history_last_sender;
+var fi_server_online = false;
 
 function fi_server_init() {
 	try {
 		socket = new WebSocket(fi_server_host);
 		socket.onopen    = function(msg) { 
-							   fi_server_send({"type": "login", "values": {"uID": fi_server_user}});
-							   console.log("readyState FI-Network-Server: "+this.readyState);
+							    console.log("readyState FI-Network-Server: "+this.readyState);
+							    if(this.readyState == 1){
+							   		fi_server_online = true;
+							    }
+
+							    fi_server_send({"type": "login", "values": {"uID": fi_server_user}});
 							   
-							   // Zuvor geöffnete Chat-Fenster öffnen
-							   	if(typeof $.cookie("fi_opened_chats") != "undefined"){
-		                           	chat_windows_json = JSON.parse($.cookie("fi_opened_chats"));
-		                           	for(i = 0; i < chat_windows_json.length; i++){
-			                            if(chat_windows_json[i]){
-			                                minimized_status = false;
-			                                if(typeof chat_windows_json[i]["minimized"] != "undefined" && chat_windows_json[i]["minimized"] == true){
-			                                	minimized_status = true;
-			                                }
-			                                
-			                                opened_chats.push({
-			                                	"userid": chat_windows_json[i]["userid"],
-			                                	"name": chat_windows_json[i]["name"],
-			                                	"icon": chat_windows_json[i]["icon"],
-			                                	"minimized": minimized_status,
-			                                });
-			                                fi_server_open_chat(chat_windows_json[i]["userid"], chat_windows_json[i]["name"], chat_windows_json[i]["icon"], true, minimized_status);
-			                            }
-		                           	}
-                       			}
+							    // Zuvor geöffnete Chat-Fenster öffnen, nur wenn Chat-Server online ist:
+							    if(fi_server_online){
+									if(typeof $.cookie("fi_opened_chats") != "undefined"){
+										chat_windows_json = JSON.parse($.cookie("fi_opened_chats"));
+										for(i = 0; i < chat_windows_json.length; i++){
+									    if(chat_windows_json[i]){
+									        minimized_status = false;
+									        if(typeof chat_windows_json[i]["minimized"] != "undefined" && chat_windows_json[i]["minimized"] == true){
+									        	minimized_status = true;
+									        }
+									        
+									        opened_chats.push({
+									        	"userid": chat_windows_json[i]["userid"],
+									        	"name": chat_windows_json[i]["name"],
+									        	"icon": chat_windows_json[i]["icon"],
+									        	"minimized": minimized_status,
+									        });
+									        fi_server_open_chat(chat_windows_json[i]["userid"], chat_windows_json[i]["name"], chat_windows_json[i]["icon"], true, minimized_status);
+									    }
+										}
+									}
+								}
 						   };
 		socket.onmessage = function(msg) {
 								json = JSON.parse(msg.data);
@@ -51,7 +58,7 @@ function fi_server_init() {
 						   };
 	}
 	catch(ex){ 
-		console.log(ex); 
+		console.log(ex);
 	}
 }
 
@@ -176,8 +183,19 @@ function fi_server_open_chat(userid, name, icon, automatic_open, minimized_statu
 			$.cookie("fi_opened_chats", JSON.stringify(opened_chats), { path: '/' });
 		});
 
-		// Verlauf anfordern:
-		fi_server_send({"type": "chat", "message": { "load_history": true, "user": userid}});
+		if(fi_server_online){	// Wenn Chatserver online: Chat-Verlauf anfordern
+			fi_server_send({"type": "chat", "message": { "load_history": true, "user": userid}});
+		} else {
+			offline_html  = '<div class="chat_msg_chat_offline">';
+			offline_html += '<div class="chat_offline_smiley">:(</div>';
+			offline_html += '<div>The chat-server is temporary offline.</div>';
+			offline_html += '<div class="check_back_later">Please check back later.</div>';
+			offline_html += '</div>';
+			$('#chat_window_'+userid+' .chat_content').html(offline_html);
+			$('#chat_window_'+userid+' #chat_value_input_'+userid).prop("disabled", true);
+			$('#chat_window_'+userid+' #chat_value_input_'+userid).addClass("chat_offline");
+			$('#chat_window_'+userid+' #chat_value_input_'+userid).val("The chat-server is offline ...");
+		}
 	}
 	
 	// NW Chats Box schließen

@@ -133,6 +133,13 @@
 	height: 40px;
 }
 
+.chat_holder .chat_window .chat_value_input.chat_offline {
+	background: #555;
+	color: #fff;
+	font-weight: bold;
+	text-align: center;
+}
+
 .chat_holder .chat_window .chat_content .chat_msg {
 	max-width: 80%;
 	padding: 3px;
@@ -153,4 +160,21 @@
 
 .chat_holder .chat_window .chat_content .chat_clear {
 	clear: both;
+}
+
+.chat_holder .chat_window .chat_content .chat_msg_chat_offline {
+	padding: 20px;
+	font-size: 16px;
+	text-align: center;
+}
+
+.chat_holder .chat_window .chat_content .chat_msg_chat_offline .chat_offline_smiley {
+	font-size: 36px;
+	margin-bottom: 35px;
+	margin-top: 15px;
+}
+
+.chat_holder .chat_window .chat_content .chat_msg_chat_offline .check_back_later {
+	font-size: 14px;
+	margin-top: 8px;
 }
