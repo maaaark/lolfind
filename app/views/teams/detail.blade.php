@@ -164,7 +164,7 @@
 
                             @if(($check = RankedTeam::loggedCanApplyToTeam($ranked_team->id)))
                                 @if($check == "can_apply")
-                                   <div style="padding-top: 5px;"><a href="javascript:void(0);"class="btn_1 outline apply_team_btn">Apply the team</a></div>
+                                   <div style="padding-top: 5px;"><a href="javascript:void(0);"class="btn_1 outline apply_team_btn">Apply</a></div>
                                 @elseif($check == "already_applied")
                                    <div style="padding-top: 5px;"><a href="javascript:void(0);"class="btn_1 outline apply_team_btn" disabled>Already applied</a></div>
                                 @endif
