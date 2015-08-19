@@ -43,7 +43,7 @@ function dropdown_roles_arr(selected_value, addition){
 }
 
 function dropdown_languages_arr(selected_value, addition){
-	temp = [["Any language", "any"], ["German", "german"], ["English", "english"]];
+	temp = [["Any language", "any"], ["German", "DE"], ["English", "UK"], ["Spanish", "ES"], ["Italian", "IT"], ["Russian", "RU"], ["Polska", "PL"]];
 	if(addition){
 		temp.push(addition);
 	}

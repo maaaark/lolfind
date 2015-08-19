@@ -132,7 +132,7 @@
             </div>
 
             <div class="col-md-4" style="padding-top: 0px;">
-                <!-- Einladen wenn möglich: -->
+                <!-- Einladen wenn mï¿½glich: -->
                 @if(Auth::check())
                     @if($user->summoner->looking_for_team == 1)
                         @if(RankedTeam::loggedCanInvitePlayer($user->summoner) AND Auth::user()->summoner->summoner_id != $user->summoner->summoner_id)
@@ -199,6 +199,8 @@
                                                     {{ strtoupper(trim($user->summoner->sec_lang)) }}
                                                 </div>
                                             @endif
+
+
                                         @endif
                                     </td>
                                 </tr>

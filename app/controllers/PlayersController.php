@@ -23,7 +23,6 @@ class PlayersController extends \BaseController {
     public function list_suggestions(){
         $player_list = Summoner::where('looking_for_team',"=",1);
 
-
         if(Input::get("league") != "any") {
             $player_list->where('solo_tier',"LIKE", '%'.strtoupper(Input::get("league")).'%');
         }

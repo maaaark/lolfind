@@ -78,9 +78,10 @@
                                 @if($player->sec_lang != "")
                                     <img src="/img/flags/{{ $player->sec_lang }}.png" class="img-circle" width="35" />
                                 @endif
+                                <br/>
+                                    Region: {{ $player->region }}
                             </div>
                         </div>
-                            <br/>
                             <p>{{ Str::limit($player->description, 200) }} <a href="/summoner/{{ trim($player->region) }}/{{ trim($player->name) }}">more</a></p>
                     </div>
                 </div>
