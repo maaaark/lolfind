@@ -29,7 +29,9 @@
                         @if(Auth::check())
                             <h3><a href="/summoner/{{ trim($player->region) }}/{{ trim($player->name) }}"><strong>{{ $player->name }}</strong></a></h3>
                         @else
-                            <h3><strong>Summoner</strong></h3>
+                            <div style="margin-top: 20px;margin-bottom: 10px;height: 22px;">
+                                <a href="/login">Login to see detailled summoner information</a>
+                            </div>
                         @endif
                         <div class="row">
                             <div class="skill_profile col-lg-4 col-md-4 col-sm-4">
