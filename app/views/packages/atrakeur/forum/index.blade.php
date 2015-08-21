@@ -2,6 +2,12 @@
 	@include('forum::partials.pathdisplay')
 @stop
 
+<div style="padding: 25px;background: #0071FF;border-radius: 4px;margin-bottom: 20px;color: #fff;">
+	<div style="font-size: 18px;margin-bottom: 10px;">Attention!</div>
+	Please keep in mind, that this forum is very quick implemented to have a temporary opportunity to collect feedback and bugs.<br/>
+	We are going to create a better version of this forum after our main services run great.
+</div>
+
 <h1 style="margin-bottom: 25px;margin-top: 0px;padding-top: 0px;">Overview</h1>
 
 <div class="forum_list">
