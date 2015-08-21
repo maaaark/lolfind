@@ -2,7 +2,7 @@
 	@include('forum::partials.pathdisplay')
 @stop
 
-<div style="padding: 25px;background: #0071FF;border-radius: 4px;margin-bottom: 20px;color: #fff;">
+<div style="padding: 25px;background: #FF7100;border-radius: 4px;margin-bottom: 20px;color: #fff;">
 	<div style="font-size: 18px;margin-bottom: 10px;">Attention!</div>
 	Please keep in mind, that this forum is very quick implemented to have a temporary opportunity to collect feedback and bugs.<br/>
 	We are going to create a better version of this forum after our main services run great.
