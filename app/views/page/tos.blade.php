@@ -23,7 +23,7 @@
                 <a href="mailto:Mark@teamranked.com">Mark@teamranked.com</a><br/>
             </p>
             <p>
-                Benedikt Romp<br/>
+                Benedict Romp<br/>
                 <a href="mailto:torrnext@teamranked.com">torrnext@teamranked.com</a><br/>
             </p>
             <p>
