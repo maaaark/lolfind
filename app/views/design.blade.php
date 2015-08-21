@@ -144,7 +144,7 @@
                            <li><a href="http://facebook.com/teamranked" target="blank"><i class="icon-facebook"></i></a></li>
                            <li><a href="http://twitter.com/teamranked"><i class="icon-twitter"></i></a></li>
                        </ul>
-                       <p><a href="/legal">Legal</a> | <a href="/tos">Terms of Service</a> | © Teamranked.com &amp; Flashignite.com 2015</p>
+                       <p><a href="/legal">Privacy Policy</a> | <a href="/tos">Terms of Service</a> | © Teamranked.com &amp; Flashignite.com 2015</p>
                    </div>
                </div>
            </div><!-- End row -->

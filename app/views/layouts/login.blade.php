@@ -7,12 +7,14 @@
                 <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
                     <div id="login">
                         @include('layouts.errors')
-                        <p>
-                            {{ $errors->first('email') }}
-                            {{ $errors->first('password') }}
-                        </p>
                         <div class="text-center"><img src="/img/teamranked_black.png" alt="" data-retina="true" width="280"></div>
                         <hr>
+                        <p><div class="bs-callout bs-callout-danger">
+                            @if ($errors->any())
+                                {{ implode('', $errors->all(':message')) }}
+                            @endif
+                        </div>
+                        </p>
                         {{ Form::open(array('url' => '/dologin')) }}
                             <div class="form-group">
                                 <label>E-Mail</label>

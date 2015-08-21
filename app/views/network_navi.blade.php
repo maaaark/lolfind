@@ -97,9 +97,9 @@
             <a href="/summoner/{{ Auth::user()->summoner->region }}/{{ Auth::user()->summoner->name }}"><div class="login_btn nw_navi_el hovered" id="nw_login_btn">{{ Auth::user()->summoner->name }}</div></a>
             <a href="/logout"><div class="login_btn nw_navi_el hovered" id="nw_login_btn">{{ Lang::get('users.logout') }}</div></a>
         @else
-            <div class="login_btn nw_navi_el hovered nw_box_btn" data-box="login_box"><i class="fa fa-sign-in"></i> {{ Lang::get('users.login') }}</div>
+            <a href="/login"><div class="login_btn nw_navi_el hovered nw_box_btn" data-box="login_box"><i class="fa fa-sign-in"></i> {{ Lang::get('users.login') }}</div></a>
             <a href="/register" style="color: rgba(255,255,255,0.8);"><div class="login_btn nw_navi_el hovered"><i class="fa fa-user"></i> {{ Lang::get('users.register') }}</a></div>
-            <div class="nw_login_box" id="nw_login_box">
+            <!--<div class="nw_login_box" id="nw_login_box">
                 <div class="nw_box_content">
                    {{ Form::open(array('url' => '/dologin')) }}
                     <div class="title">{{ Lang::get('users.login') }}</div>
@@ -130,6 +130,7 @@
                    {{ Form::close() }}
                </div>
             </div>
+            -->
         @endif
 	</div>
 	<div class="network_logo">FLASHIGNITE Network</div>

@@ -418,7 +418,7 @@ class UsersController extends \BaseController {
 
             } else {
                 // validation not successful, send back to form
-                return Redirect::to('/login');
+                return Redirect::to('/login')->withErrors(array('wrongpw' => 'Wrong E-mail address or Password'));;
 
             }
 
