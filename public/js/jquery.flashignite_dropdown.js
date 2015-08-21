@@ -88,3 +88,15 @@ $(document).ready(function(){
 		selection_click_status = false;
 	});
 });
+
+$.fn.dropdownSelect = function(value){
+	object 		= $(this);
+	input 		= object.find("input[type=hidden]");
+	select_row 	= object.find(".select_box");
+
+	select_row.find(".select_option").each(function(){
+		if($(this).attr("data-value") == value){
+			$(this).click();
+		}
+	});
+}

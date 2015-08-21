@@ -23,6 +23,7 @@ function dropdown_leagues_arr(selected_value){
            ["Silver", "silver", "/img/leagues/silver_I.png"],
            ["Gold", "gold", "/img/leagues/gold_I.png"],
            ["Platinum", "platinum", "/img/leagues/platinum_1.png"],
+           ["Diamond", "diamond", "/img/leagues/diamond_1.png"],
            ["Master", "master", "/img/leagues/master_I.png"],
            ["Challenger", "challenger", "/img/leagues/challenger_1.png"]];
 	return dropdown_build_arr(temp, selected_value);

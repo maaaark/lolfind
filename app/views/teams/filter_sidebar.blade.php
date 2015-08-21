@@ -27,7 +27,6 @@
             </div>
 
             <p><a href="javascript:void(0);" class="btn_1" id="team_list_update_btn">Filter Search</a></p>
-
         </div><!--End collapse -->
     </div><!--End filters col-->
 </aside><!--End aside -->
@@ -35,7 +34,13 @@
 <script>
     // Make Dropdowns
     $('#region_sel').makeSelect("region", dropdown_region_arr('any'));
-    $('#leagues_sel').makeSelect("league", dropdown_leagues_arr('any'));
+
+    @if(isset($url_selected_league) AND $url_selected_league)
+        $('#leagues_sel').makeSelect("league", dropdown_leagues_arr('any'));
+        $('#leagues_sel').dropdownSelect("{{ $url_selected_league }}");
+    @else
+        $('#leagues_sel').makeSelect("league", dropdown_leagues_arr('any'));
+    @endif
 
     $('#prime_lang_sel').makeSelect("main_language", dropdown_languages_arr('any'));
     //$('#sec_lang_sel').makeSelect("sec_language", dropdown_languages_arr('no_value', ["{{ Lang::get('teams.search.none') }}", "no_value"]));
