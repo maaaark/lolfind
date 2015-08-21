@@ -19,7 +19,7 @@
 
 <div class="control-group">
 	<div class="controls">
-		{{ Form::submit(trans('forum::base.send')) }}
+		{{ Form::submit(trans('forum::base.send'), array("class" => "btn_1")) }}
 	</div>
 </div>
 

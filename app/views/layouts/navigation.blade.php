@@ -28,4 +28,7 @@
     <li>
         <a href="/ringer" class="show-submenu text-shadow">Find a Ringer</a>
     </li>
+    <li>
+        <a href="/forum" class="show-submenu text-shadow">Forum</a>
+    </li>
 </ul>
