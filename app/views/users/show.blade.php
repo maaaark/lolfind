@@ -124,7 +124,7 @@
                     <br/>
                     <h4>Description</h4>
                     @if(trim($user->summoner->description) != "")
-                        {{ $user->summoner->description }}
+                        {{ strip_tags(nl2br(trim($user->summoner->description)), "<br/><br>") }}
                     @else
                         Did not write any description yet.
                     @endif    

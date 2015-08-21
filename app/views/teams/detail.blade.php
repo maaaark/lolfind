@@ -148,7 +148,7 @@
                 <div style="padding: 15px;">
                     <h4>Team-Description</h4>
                     @if($ranked_team->description AND trim($ranked_team->description) != "")
-                        {{ nl2br(trim($ranked_team->description)) }}
+                        {{ strip_tags(nl2br(trim($ranked_team->description)), "<br/><br>") }}
                     @else
                         No description written yet.
                     @endif
