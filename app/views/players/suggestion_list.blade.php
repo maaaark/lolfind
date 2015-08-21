@@ -89,5 +89,6 @@
         </div><!--End strip -->
     @endforeach
 @else
-    No players found :(
+    <div style="text-align: center;margin-top: 25px;"><img src="/img/sad_amumu.png"></div>
+    <div style="padding-top: 25px;font-size: 16px;text-align: center;">No players found matching the current filters :(</div>
 @endif
