@@ -38,5 +38,10 @@
 			@endforeach
 		</tbody>
 	</table>
+	@else
+		<div style="padding: 30px;text-align: center;">	
+			<div style="font-size: 26px;margin-bottom: 18px;">No topics created yet ...</div>
+			@include('forum::partials.postbutton',array('message' => "Create the first topic" , 'url' => $category->postUrl, 'accessModel' => $category))
+		</div>	
 	@endif
 </div>
