@@ -158,11 +158,11 @@
                         @foreach($last_teams as $team)
                             <tr>
                                 <td>
-                                    @if($player->solo_tier == "none")
+                                    @if(trim($team->ranked_league_5) == "" OR $team->ranked_league_5 == false OR $team->ranked_league_5 == "none" OR $team->ranked_league_5 == "false")
                                         <img src="/img/leagues/0_5.png" class="tooltips" title="Unranked" width="45">
                                     @else
-                                        <img src="/img/leagues/{{ trim(strtolower($player->solo_tier)) }}_1.png"
-                                             class="tooltips" title="{{ trim(ucfirst(strtolower($player->solo_tier))) }}"
+                                        <img src="/img/leagues/{{ trim(strtolower(substr($team->ranked_league_5, 0, strpos($team->ranked_league_5, '_')))) }}_1.png"
+                                             class="tooltips" title="{{ trim(ucfirst(strtolower(substr($team->ranked_league_5, 0, strpos($team->ranked_league_5, '_'))))) }}"
                                              width="45">
                                     @endif
                                 </td>

@@ -9,7 +9,7 @@
             </div>
 
             <div class="filter_type">
-                <h6>Main Role</h6>
+                <h6>League</h6>
                 <div id="leagues_sel"></div>
             </div>
 
@@ -42,7 +42,13 @@
 
     $('#prime_lang_sel').makeSelect("main_language", dropdown_languages_arr('any'));
     $('#sec_lang_sel').makeSelect("sec_language", dropdown_languages_arr('no_value', ["{{ Lang::get('teams.search.none') }}", "no_value"]));
-		
-    $('#prime_role_sel').makeSelect("primary_role", dropdown_roles_arr('any'));
+	
+    @if(isset($lane) AND $lane)
+        $('#prime_role_sel').makeSelect("primary_role", dropdown_roles_arr('any'));
+        $('#prime_role_sel').dropdownSelect("{{ $lane }}");
+    @else
+        $('#prime_role_sel').makeSelect("primary_role", dropdown_roles_arr('any'));
+    @endif
+
     $('#sec_role_sel').makeSelect("secundary_role", dropdown_roles_arr('no_value', ["{{ Lang::get('teams.search.none') }}", "no_value"]));
 </script>

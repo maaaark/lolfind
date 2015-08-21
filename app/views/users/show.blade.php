@@ -24,8 +24,8 @@
 
     <div class="container margin_30">
         <div class="row">
-            <div class="col-md-8 strip_all_tour_list">
-                <div style="padding: 15px;">
+            <div class="col-md-8">
+                <div style="padding: 15px;" class="strip_all_tour_list">
                     <div class="row">
                         <div class="col-md-3">
                             @if($user->summoner->solo_tier != "none")
@@ -124,10 +124,50 @@
                     <br/>
                     <h4>Description</h4>
                     @if(trim($user->summoner->description) != "")
-                        {{ $user->summoner->description }}
+                        {{ strip_tags(nl2br(trim($user->summoner->description)), "<br/><br>") }}
                     @else
                         Did not write any description yet.
                     @endif    
+                </div>
+
+                <div class="strip_all_tour_list" style="padding: 15px;">
+                    <h4 style="margin-top: 5px;margin-bottom: 15px;">Connected Ranked-Teams</h4>
+                    @if(isset($ranked_teams) AND is_array($ranked_teams) AND count($ranked_teams) > 0)
+                        <div class="row">
+                        @foreach($ranked_teams as $team)
+                            <div class="col-md-4 player_team_element">
+                                <?php
+                                    $league_logo = "0_5";
+                                    if(strpos($team->ranked_league_5, "_") > 0){
+                                        $division = substr($team->ranked_league_5, strpos($team->ranked_league_5, "_") + 1);
+                                        if($division == "I"){ $division = "1"; }
+                                        else if($division == "II"){ $division = "2"; }
+                                        else if($division == "III"){ $division = "3"; }
+                                        else if($division == "IV"){ $division = "4"; }
+                                        else { $division = "5"; }
+                                        $league_logo = trim(substr($team->ranked_league_5, 0, strpos($team->ranked_league_5, "_")))."_".trim($division);
+                                    }
+                                ?>
+                                <div class="team_icon"><img src="/img/leagues/{{ trim($league_logo) }}.png"></div>
+                                <div class="team_name"><a href="/teams/{{ $team->region }}/{{ $team->tag }}">{{ $team->name }}</a></div>
+                            </div>
+                        @endforeach
+                        </div>
+                    @else
+                        <div style="padding: 35px;text-align: center;">{{ $user->summoner->name }} did not connect any Ranked-Teams with teamranked.com yet.</div>
+                    @endif
+                </div>
+
+                <div class="strip_all_tour_list" style="padding: 15px;">
+                    <h4 style="padding-top: 5px;padding-bottom: 15px;">Matchhistory</h4>
+                    <div id="matchhistory_holder" class="matchhistory_holder">
+                        <div id="ranked_stats_holder">
+                            <div style="text-align: center;padding-top: 5px;">
+                                <div style="margin-bottom: 10px;"><img src="/img/ajax-loader.gif" style="height: 30px;"></div>
+                                We update the matchhistory ... Please wait a few seconds.
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -208,51 +248,7 @@
                         </div>
                     @endif
                 </div>
-            </div>
 
-            <div class="col-md-8 nopadding">
-                <div class="strip_all_tour_list" style="padding: 15px;">
-                <h4 style="margin-top: 5px;margin-bottom: 15px;">Connected Ranked-Teams</h4>
-                @if(isset($ranked_teams) AND is_array($ranked_teams) AND count($ranked_teams) > 0)
-                    <div class="row">
-                    @foreach($ranked_teams as $team)
-                        <div class="col-md-4 player_team_element">
-                            <?php
-                                $league_logo = "0_5";
-                                if(strpos($team->ranked_league_5, "_") > 0){
-                                    $division = substr($team->ranked_league_5, strpos($team->ranked_league_5, "_") + 1);
-                                    if($division == "I"){ $division = "1"; }
-                                    else if($division == "II"){ $division = "2"; }
-                                    else if($division == "III"){ $division = "3"; }
-                                    else if($division == "IV"){ $division = "4"; }
-                                    else { $division = "5"; }
-                                    $league_logo = trim(substr($team->ranked_league_5, 0, strpos($team->ranked_league_5, "_")))."_".trim($division);
-                                }
-                            ?>
-                            <div class="team_icon"><img src="/img/leagues/{{ trim($league_logo) }}.png"></div>
-                            <div class="team_name"><a href="/teams/{{ $team->region }}/{{ $team->tag }}">{{ $team->name }}</a></div>
-                        </div>
-                    @endforeach
-                    </div>
-                @else
-                    <div style="padding: 35px;text-align: center;">{{ $user->summoner->name }} did not connect any Ranked-Teams with teamranked.com yet.</div>
-                @endif
-                </div>
-
-                <div class="strip_all_tour_list" style="padding: 15px;">
-                    <h4 style="padding-top: 5px;padding-bottom: 15px;">Matchhistory</h4>
-                    <div id="matchhistory_holder" class="matchhistory_holder">
-                        <div id="ranked_stats_holder">
-                            <div style="text-align: center;padding-top: 5px;">
-                                <div style="margin-bottom: 10px;"><img src="/img/ajax-loader.gif" style="height: 30px;"></div>
-                                We update the matchhistory ... Please wait a few seconds.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
                 <div class="strip_all_tour_list" style="padding: 10px;">
                     <h4>Ranked-Stats</h4>
                     <div id="ranked_stats_holder">

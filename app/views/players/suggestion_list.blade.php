@@ -29,7 +29,9 @@
                         @if(Auth::check())
                             <h3><a href="/summoner/{{ trim($player->region) }}/{{ trim($player->name) }}"><strong>{{ $player->name }}</strong></a></h3>
                         @else
-                            <h3><strong>Summoner</strong></h3>
+                            <div style="margin-top: 20px;margin-bottom: 10px;height: 22px;">
+                                <a href="/login">Login to see detailled summoner information</a>
+                            </div>
                         @endif
                         <div class="row">
                             <div class="skill_profile col-lg-4 col-md-4 col-sm-4">
@@ -89,5 +91,6 @@
         </div><!--End strip -->
     @endforeach
 @else
-    No players found :(
+    <div style="text-align: center;margin-top: 25px;"><img src="/img/sad_amumu.png"></div>
+    <div style="padding-top: 25px;font-size: 16px;text-align: center;">No players found matching the current filters :(</div>
 @endif

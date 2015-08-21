@@ -12,7 +12,7 @@ class PlayersController extends \BaseController {
                 $player_list = Summoner::where("looking_for_team", "=", 1)->paginate(10);
             }
         }
-        return View::make("players.index", compact('player_list'));
+        return View::make("players.index", compact('player_list', 'lane'));
     }
 
     public function details($id){

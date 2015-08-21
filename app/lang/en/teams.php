@@ -37,5 +37,23 @@ return array(
       "main"                 => "Overview",
       "settings"             => "Team-Settings",
    ),
+
+   "settings" => array(
+      "general_settings"      => "General settings",
+      "recruitement_settings" => "Recruitement settings",
+      "looking_for"           => "Looking for",
+      "looking_adc"           => "Looking for an ADC?",
+      "looking_support"       => "Looking for a Support?",
+      "looking_jungle"        => "Looking for a Jungler?",
+      "looking_top"           => "Looking for a Top-Laner?",
+      "looking_mid"           => "Looking for a Mid-Laner?",
+      "looking_lang"          => "Which language does your team speak?",
+
+      "looking_adc_info"      => "How should your ADC be like?",
+      "looking_support_info"  => "How should your Support be like?",
+      "looking_jungle_info"   => "How should your Jungler be like?",
+      "looking_top_info"      => "How should your Top-Laner be like?",
+      "looking_mid_info"      => "How should your Mid-Laner be like?",
+   )
 	
 );

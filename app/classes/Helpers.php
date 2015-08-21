@@ -1,7 +1,11 @@
 <?php
 class Helpers {
     public static function diffForHumans($timestamp) {
-		$created_timestamp = $timestamp->getTimestamp();
+    	if(is_string($timestamp)){
+    		$created_timestamp = strtotime($timestamp);
+    	} else {
+			$created_timestamp = $timestamp->getTimestamp();
+		}
 		$current_timestamp = time();
 		
 		$timediff = $current_timestamp - $created_timestamp;
@@ -14,19 +18,19 @@ class Helpers {
 		$normalDate = 1814400;
 		
 		if($timediff < $minutes) {
-			$html = "vor " . $timediff . " sekunden";
+			$html = $timediff . " seconds ago";
 		} else if ($timediff >= $minutes && $timediff < $hours) {
 			//var_dump($timediff,round($timediff / $minutes));
 			$outputTime = round($timediff / $minutes);
-			$html = "vor " . $outputTime . " minuten";
+			$html = $outputTime . " minutes ago";
 		} else if ($timediff >= $hours && $timediff < $days) {
 			$outputTime = round($timediff / $hours);
-			$html = "vor " . $outputTime . " Stunden";
+			$html = $outputTime . " hours ago";
 		} else if ($timediff >= $days && $timediff < $twoWeek) {
 			$outputTime = round($timediff / $days);
-			$html = "vor " . $outputTime . " Tagen";
+			$html = $outputTime . " days ago";
 		} else {
-			$html = date("d.m.Y", $created_timestamp);
+			$html = date("Y-m-d", $created_timestamp);
 		}
         return $html;
     }
@@ -110,5 +114,13 @@ class Helpers {
     		return $invitation;
     	}
     	return false;
+    }
+
+    public static function get_summoner($summoner_id, $region = false){
+    	if($region == false || trim($region) == ""){
+    		$region = "euw";
+    	}
+
+    	return Summoner::where("summoner_id", "=", $summoner_id)->where("region", "=", $region)->first();
     }
 }

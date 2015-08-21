@@ -1,0 +1,135 @@
+.forum_posts {
+
+}
+
+.forum_posts .forum_post {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	box-shadow: 0 0 3px 1px rgba(0,0,0,0.3);
+	border-radius: 3px;
+}
+
+.forum_posts .forum_post table.table.forum_post_table {
+	border: none;
+	margin: none;
+	width: 100%;
+}
+
+.forum_posts .forum_post table.table.forum_post_table tr, .forum_posts .forum_post table.table.forum_post_table tr td {
+	border: none;
+}
+
+.forum_posts .forum_post table.table.forum_post_table tr.post_content td.author_info {
+	width: 20%;
+}
+
+.forum_posts .forum_post table.table.forum_post_table tr td.border_right {
+	border-right: 1px solid rgba(0,0,0,0.1);
+	background: rgba(0,0,0,0.1);
+}
+
+.forum_posts .forum_post table.table.forum_post_table tr.post_content td.author_info {
+	text-align: center;
+}
+
+.forum_posts .forum_post table.table.forum_post_table tr.post_content td.author_info .profile_icon {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.forum_posts .forum_post table.table.forum_post_table tr.post_content td.author_info .profile_icon img {
+	border-radius: 50%;
+	height: 80px;
+}
+
+.forum_posts .forum_post table.table.forum_post_table tr.post_info td.date {
+	border-top: 1px solid rgba(0,0,0,0.05);
+	color: rgb(140, 140, 140);
+}
+
+textarea.forum_create_textarea {
+	width: 100%;
+	min-width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
+	outline: none;
+	padding: 15px;
+}
+
+input.forum_create_input {
+	width: 100%;
+	max-width: 350px;
+	outline: none;
+	padding: 8px;
+}
+
+.forum_list .forum_list_element {
+	padding: 10px;
+	box-shadow: 0 0 3px 1px rgba(0,0,0,0.3);
+	border-radius: 3px;
+	margin-bottom: 15px;
+}
+
+.forum_list .forum_list_element table.table {
+	border: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+.forum_list .forum_list_element table.table tr td {
+	border: none;
+	vertical-align: middle;
+}
+
+.forum_list .forum_list_element table.table tr td.forum_icon {
+	width: 50px;
+}
+
+.forum_list .forum_list_element table.table tr td.forum_icon img {
+	width: 50px;
+}
+
+.forum_list .forum_list_element table.table tr td.replies, .forum_list .forum_list_element table.table tr td.topics {
+	width: 120px;
+}
+
+.topics_table_holder {
+	padding: 10px;
+	border-radius: 3px;
+	box-shadow: 0 0 3px 1px rgba(0,0,0,0.3);
+}
+
+.topics_table_holder table.table.topics_table {
+	margin: 0px;
+	padding: 0px;
+	border-collapse: collapse;
+	border: none;
+}
+
+.topics_table_holder table.table.topics_table tr {
+	border: none;
+}
+
+.topics_table_holder table.table.topics_table tr td {
+	border: none;
+	border-top: 1px solid #E0E0E0;
+	vertical-align: middle;
+}
+
+.topics_table_holder table.table.topics_table tr td.thread_icon {
+	width: 50px;
+}
+
+.topics_table_holder table.table.topics_table tr td.thread_icon img {
+	width: 50px;
+}
+
+.topics_table_holder table.table.topics_table tr td.replies {
+	width: 120px;
+}
+
+.topics_table_holder table.table.topics_table tr td.name .info {
+	padding-top: 4px;
+	font-size: 12px;
+	color: rgba(0,0,0,0.5);
+}

@@ -3,7 +3,7 @@
 @section('header')
     <section class="small-parallax-window" data-parallax="scroll" data-image-src="/img/player_background.jpg" data-natural-width="1400" data-natural-height="470">
         <div class="small-parallax-content">
-            Ringer
+            <h1>Coming soon ...</h1>
         </div>
     </section><!-- End section -->
     <div id="position">
@@ -18,11 +18,12 @@
 @section('content')
     <div class="container margin_30">
         <div class="row">
-            <h2>Ringer</h2>
-            You are searching a player/team for just a few games or a cup?<br/>
-            This is the right place for you!<br/>
-            <br/>
-            Coming soon!
+            <div style="text-align: center;margin-top: 50px;margin-bottom: 50px;">
+                <h2>Ringer - Coming soon!</h2>
+                <div style="font-size: 18px; padding-top: 25px;">
+                    This section of teamranked.com is still under construction. We want to release this feature in the next few weeks!
+                </div>
+            </div>
         </div>
     </div>
 @stop
