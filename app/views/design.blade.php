@@ -105,7 +105,7 @@
             </div>
             <nav class="col-md-9 col-sm-9 col-xs-9">
                 <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
-                <div class="main-menu">
+                <div class="main-menu" id="page_main_menu">
                     @include('layouts.navigation')
                 </div><!-- End main-menu -->
                 <ul id="top_tools" style="display: none;">

@@ -1,8 +1,8 @@
 <div id="header_menu">
-    <img src="/img/logo_sticky.png" width="160" height="34" alt="Teamranked.com" data-retina="true">
+    <img src="/img/teamranked_black.png" width="160" height="34" alt="Teamranked.com" data-retina="true">
 </div>
-<a href="/" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
-<ul>
+<a href="javascript:void(0)" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
+<ul id="page_main_menu_items_holder">
     <li class="submenu">
         <a href="/teams" class="text-shadow show-submenu">Search Team <i class="icon-down-open-mini"></i></a>
         <ul>

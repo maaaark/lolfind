@@ -1,3 +1,14 @@
+﻿/* Custom Styles */
+.layer.layer-is-visible {
+	display: none;
+}
+
+@media(max-width: 991px){
+	ul#page_main_menu_items_holder li a.text-shadow {
+		text-shadow: none;
+	}
+}
+
 /*
 Theme Name: CITYTOURS 
 Theme URI: http://www.ansonika.com/citytours/
