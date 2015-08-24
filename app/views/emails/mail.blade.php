@@ -237,7 +237,7 @@
                         </table><!-- End Section presentazione ==================-->
 
                         <div style="padding: 15px; color: #95a5a6; font-size: 12px;">
-                            If you dont want to get emails from teamranked.com you can easily deactivate email-notifications at <a style="color: #f25825;" href="http://teamranked.com/settings">http://teamranked.com/settings</a>.
+                            If you dont want to get emails from <a style="color: #f25825;" href="http://teamranked.com/">teamranked.com</a> you can easily deactivate email-notifications at <a style="color: #f25825;" href="http://teamranked.com/settings">http://teamranked.com/settings</a>.
                         </div>
 
                         <!-- Start second footer ============ -->

@@ -385,10 +385,12 @@ class TeamsController extends \BaseController {
                         FIServer::add_notification($leader["id"], "team_application", Auth::user()->id, $apply->id, $ranked_team["id"]);
 
                         // E-Mail an Team-Leiter senden
-                        Mail::send('emails.mail_new_application', array('team' => $ranked_team, 'leader' => $leader), function($message) use($leader)
-                        {
-                            $message->to($leader["email"], 'John Smith')->subject('New player application');
-                        });
+                        if($leader->check_email_settings("team_application")){
+                            Mail::send('emails.mail_new_application', array('team' => $ranked_team, 'leader' => $leader), function($message) use($leader)
+                            {
+                                $message->to($leader["email"], $leader->summoner->name)->subject('New player application');
+                            });
+                        }
                         echo "success";
                     } else {
                         echo "error";
@@ -439,6 +441,14 @@ class TeamsController extends \BaseController {
                     
                     // Notification an User senden
                     FIServer::add_notification($user->id, "team_invitation", $team->id, $invitation->id);
+
+                    // E-Mail an Spieler senden
+                    if($leader->check_email_settings("player_invitation")){
+                        Mail::send('emails.mail_new_invitation', array('team' => $ranked_team, 'user' => $user), function($message) use($user)
+                        {
+                            $message->to($user["email"], $user->summoner->name)->subject('New team invitation');
+                        });
+                    }
                     echo "success";
                 } else {
                     echo "error";
