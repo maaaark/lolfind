@@ -236,6 +236,10 @@
                             </tbody>
                         </table><!-- End Section presentazione ==================-->
 
+                        <div style="padding: 15px; color: #95a5a6; font-size: 12px;">
+                            If you dont want to get emails from teamranked.com you can easily deactivate email-notifications at <a style="color: #f25825;" href="http://teamranked.com/settings">http://teamranked.com/settings</a>.
+                        </div>
+
                         <!-- Start second footer ============ -->
                         <table width="600" bgcolor="#464646" align="center" cellspacing="0" cellpadding="0" border="0" class="mobile-width">
                             <tbody>

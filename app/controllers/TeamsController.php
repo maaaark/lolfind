@@ -383,6 +383,12 @@ class TeamsController extends \BaseController {
 
                         // Notification an Team-Leiter senden
                         FIServer::add_notification($leader["id"], "team_application", Auth::user()->id, $apply->id, $ranked_team["id"]);
+
+                        // E-Mail an Team-Leiter senden
+                        Mail::send('emails.mail_new_application.blade', array('team' => $ranked_team, 'leader' => $leader), function($message)
+                        {
+                            $message->to($leader["email"], 'John Smith')->subject('New player application');
+                        });
                         echo "success";
                     } else {
                         echo "error";
