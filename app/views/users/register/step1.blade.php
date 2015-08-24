@@ -8,13 +8,13 @@
     @include('layouts.errors')
     <h2 class="headline">Register Progress</h2>
     <div class="progress">
-        <div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;">
+        <div class="progress-bar orange" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;">
             Step 1 of 4
         </div>
     </div>
     <br/>
 
-    <h2 class="headline_no_border">Summoner Informationen</h2>
+    <h2 class="headline_no_border">Summoner information</h2>
     <table class="table table-striped">
             <tr>
                 <td width="200"><strong>Summoner Name *</strong></td>
@@ -34,7 +34,7 @@
             </tr>
     </table>
 
-    {{ Form::submit("Summoner prüfen", array('class' => 'btn btn-primary')) }}
+    {{ Form::submit("Summoner prüfen", array('class' => 'btn_1')) }}
     {{ Form::close() }}
             </div>
     </div>

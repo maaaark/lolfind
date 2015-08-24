@@ -18,7 +18,7 @@
     <br/>
 
     @include('users.register.step3form')
-    {{ Form::submit("Next step", array('class' => 'btn btn-primary')) }}
+    {{ Form::submit("Next step", array('class' => 'btn_1')) }}
     {{ Form::close() }}
             </div>
         </div>

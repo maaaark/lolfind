@@ -45,7 +45,7 @@
         </tr>
     </table><br/>
     <br/>
-    {{ Form::submit("Create Account", array('class' => 'btn btn-primary')) }}
+    {{ Form::submit("Create Account", array('class' => 'btn_1')) }}
     {{ Form::close() }}
             </div>
         </section>

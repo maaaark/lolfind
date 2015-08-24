@@ -182,16 +182,16 @@ class UsersController extends \BaseController {
                         $summoner = Summoner::where("summoner_id","=", Session::get('summoner_id'))->first();
                         $summoner->verify = 1;
                         $summoner->save();
-                        return Redirect::to('/register/step3')->with("success", "Summoner wurde verifiziert!");
+                        return Redirect::to('/register/step3')->with("success", "Summoner verified!");
                     }
                 }
             }
-            return Redirect::to('/register/step2')->with("error", "Keine Runenseite mit dem Namen gefunden.");
+            return Redirect::to('/register/step2')->with("error", "The runepage was not found. Try again 15 seconds after you saved the runepage.");
         } else {
-            return Redirect::to('/register/step1')->with("error", "Session abgelaufen.");
+            return Redirect::to('/register/step1')->with("error", "Session timed out.");
         }
 
-        return Redirect::to('/register/step1')->with("error", "Session abgelaufen.");
+        return Redirect::to('/register/step1')->with("error", "Session timed out.");
     }
 
     public function step1() {
@@ -217,7 +217,7 @@ class UsersController extends \BaseController {
 
             return View::make("users.register.step2", compact('summoner'));
         } else {
-            return Redirect::to("/register/step1")->with("error", "Session abgelaufen oder nicht vorhanden!");
+            return Redirect::to("/register/step1")->with("error", "Session timed out");
         }
 
     }
@@ -234,16 +234,16 @@ class UsersController extends \BaseController {
                 $summoner_found = $summoner->addSummoner(Input::get('region'), Input::get('summoner_name'));
                 if($summoner_found) {
                     Session::put('verify_code', str_random(10));
-                    return Redirect::to('/register/step2')->with("success", "Summoner bitte verifizieren");
+                    return Redirect::to('/register/step2')->with("success", "Please verify your summoner.");
                 } else {
                     $messages = $validation->messages();
                     return Redirect::to("/register/step1")
                         ->withInput()
                         ->withErrors($validation)
-                        ->with('error', 'Der Beschw&ouml;rer wurde nicht gefunden.')->with('input', Input::all())->with('messages', $messages);
+                        ->with('error', 'The summoner was not found.')->with('input', Input::all())->with('messages', $messages);
                 }
             } else {
-                return Redirect::to('/register/step1')->with("error", "Dieser Summoner gehört bereits zu einem Account");
+                return Redirect::to('/register/step1')->with("error", "This summoner is already connected to a flashignite-account.");
             }
 
         } else {
@@ -251,7 +251,7 @@ class UsersController extends \BaseController {
             return Redirect::to("/register/step1")
                 ->withInput()
                 ->withErrors($validation)
-                ->with('error', 'Der Beschw&ouml;rer wurde nicht gefunden.')->with('input', Input::all())->with('messages', $messages);
+                ->with('error', 'The summoner was not found.')->with('input', Input::all())->with('messages', $messages);
         }
     }
 

@@ -40,3 +40,10 @@
 	font-weight: 200;
 	padding-right: 20px;
 }
+
+/*
+ *	Registrierung
+ */
+.progress .progress-bar {
+	background: #f25825;
+}

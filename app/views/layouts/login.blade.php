@@ -27,7 +27,7 @@
                             <p class="small">
                                 <a href="/register">Register now</a> | <a href="/password/forgot">Reset password</a>
                             </p>
-                            {{ Form::submit('Einloggen', array('class' => 'button_intro text-shadow')) }}
+                            {{ Form::submit('Login', array('class' => 'btn_1')) }}
                             <a href="/register" class="btn_1 outline">Register</a>
                         {{ Form::close() }}
                     </div>
