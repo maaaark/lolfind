@@ -123,10 +123,41 @@ class UsersController extends \BaseController {
             } else {
                 $summoner->looking_for_team = 0;
             }
-
             $summoner->save();
 
-            //print_r($input);
+            $email_player_invitation = 0;
+            if(isset($input["email_player_invitation"]) && $input["email_player_invitation"] == 1){
+                $email_player_invitation = 1;
+            }
+            $email_temp = UserEmail::where("user", "=", Auth::user()->id)->where("network_page", "=", "teamranked")->where("type", "=", "player_invitation")->first();
+            if(isset($email_temp->id) && $email_temp->id > 0){
+                $email_temp->value = $email_player_invitation;
+                $email_temp->save();
+            } else {
+                $email_temp = new UserEmail;
+                $email_temp->network_page = "teamranked";
+                $email_temp->user         = Auth::user()->id;
+                $email_temp->type         = "player_invitation";
+                $email_temp->value        = $email_player_invitation;
+                $email_temp->save();
+            }
+
+            $email_team_application = 0;
+            if(isset($input["email_team_application"]) && $input["email_team_application"] == 1){
+                $email_team_application = 1;
+            }
+            $email_temp = UserEmail::where("user", "=", Auth::user()->id)->where("network_page", "=", "teamranked")->where("type", "=", "team_application")->first();
+            if(isset($email_temp->id) && $email_temp->id > 0){
+                $email_temp->value = $email_team_application;
+                $email_temp->save();
+            } else {
+                $email_temp = new UserEmail;
+                $email_temp->network_page = "teamranked";
+                $email_temp->user         = Auth::user()->id;
+                $email_temp->type         = "team_application";
+                $email_temp->value        = $email_team_application;
+                $email_temp->save();
+            }
 
             return Redirect::to('/settings');
         } else {

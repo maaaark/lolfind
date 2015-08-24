@@ -145,7 +145,7 @@
                         $("#application_form_holder").html(html);
                     } else {
                         html  = '<div style="font-size: 26px;text-align: center;line-height: 32px;">';
-                        html += 'Your invitatino was succesfully send to {{ $user->summoner->name }}';
+                        html += 'Your invitation was succesfully send to {{ $user->summoner->name }}';
                         html += '<div style="font-size: 16px;margin-top: 15px;">';
                         html += '{{ $user->summoner->name }} can now refuse your invitation or get in contact with you.';
                         html += '</div>';

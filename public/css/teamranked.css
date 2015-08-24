@@ -1,0 +1,42 @@
+.account_settings_box {
+	padding: 25px;
+	background: #fff;
+	width: 100%;
+	max-width: 800px;
+	margin: auto;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.account_settings_box h2 {
+	margin-top: 0px;
+	padding-top: 0px;
+}
+
+.account_settings_box table.table.account_settings_table {
+	width: 100%;
+	border-collapse: collapse;
+	border: none;
+}
+
+.account_settings_box table.table.account_settings_table tr {
+	border-none;
+}
+
+.account_settings_box table.table.account_settings_table tr td {
+	border: none;
+	padding-top: 25px;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #F5F5F5;
+}
+
+.account_settings_box table.table.account_settings_table tr.no_border td {
+	border-bottom: none;
+}
+
+.account_settings_box table.table.account_settings_table tr td.title {
+	text-align: right;
+	font-size: 16px;
+	font-weight: 200;
+	padding-right: 20px;
+}

@@ -30,6 +30,7 @@
     <link href="/rs-plugin/css/settings.css" rel="stylesheet">
     <link href="/css/extralayers.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/network.css">
+    <link rel="stylesheet" href="/css/teamranked.css">
     <link rel="stylesheet" href="/css/flashignite_dropdowns.css">
     <link rel="stylesheet" href="/css/flashignite_lightbox.css">
     <link rel="stylesheet" href="/css/tooltipster.css">
