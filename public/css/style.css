@@ -3365,7 +3365,6 @@ font-weight:400;
 .register {
     padding: 20px;
     width: 100%;
-    max-width: 800px;
     text-align: left;
     color: #333;
     background: #fff;
@@ -3373,6 +3372,12 @@ font-weight:400;
     -webkit-box-shadow: 0 0 5 rgba(0, 0, 0, 0.4);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
 }
+
+.register .container {
+	width: 100%;
+	max-width: 800px;
+}
+
 .last_tables {
 	width: 100%;
 	text-align: left;
