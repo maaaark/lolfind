@@ -18,15 +18,15 @@
     <h2 class="headline_no_border">Account details</h2>
     <table class="table table-striped">
         <tr>
-            <td width="200"><strong>E-Mail</strong></td>
+            <td><strong>E-Mail</strong></td>
             <td>{{ Form::text('email', Input::old('email'),  array('class' => 'form-control')) }}</td>
         </tr>
         <tr>
-            <td width="200"><strong>Password</strong></td>
+            <td><strong>Password</strong></td>
             <td>{{ Form::password('password', array('class' => 'form-control')) }}</td>
         </tr>
         <tr>
-            <td width="200"><strong>Password confirmation</strong></td>
+            <td><strong>Password confirmation</strong></td>
             <td>{{ Form::password('password_confirmation', array('class' => 'form-control')) }}</td>
         </tr>
     </table>

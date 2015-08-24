@@ -17,7 +17,7 @@
     <h2 class="headline_no_border">Summoner information</h2>
     <table class="table table-striped">
             <tr>
-                <td width="200"><strong>Summoner Name *</strong></td>
+                <td><strong>Summoner Name *</strong></td>
                 @if(Auth::check() && Auth::user()->summoner)
                     <td>{{ Form::text('summoner_name', Auth::user()->summoner->name,  array('class' => 'form-control')) }}</td>
                 @else
@@ -25,7 +25,7 @@
                 @endif
             </tr>
             <tr>
-                <td width="200"><strong>Server Region *</strong></td>
+                <td><strong>Server Region *</strong></td>
                 <td>
                     <select name="region" class="form-control">
                         <option value="euw">EU-West</option>

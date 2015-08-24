@@ -2,7 +2,7 @@
 <h2 class="headline_no_border">Account details</h2>
 <table class="table table-striped">
     <tr>
-        <td width="200"><strong>Prefered Roles</strong></td>
+        <td><strong>Prefered Roles</strong></td>
         <td>
             <label class="rolebox">{{ Form::checkbox('search_top', 1, Input::old('search_top')) }} Top-Lane</label>
             <label class="rolebox">{{ Form::checkbox('search_jungle', 1, Input::old('search_jungle')) }} Jungle</label>
@@ -12,7 +12,7 @@
         </td>
     </tr>
     <tr>
-        <td width="200"><strong>Favorite Champions</strong></td>
+        <td><strong>Favorite Champions</strong></td>
         <td>
             <select name="fav_champion_1">
                 @if($summoner->fav_champion_1 > 0)
@@ -50,7 +50,7 @@
         </td>
     </tr>
     <tr>
-        <td width="200"><strong>Looking for team?</strong></td>
+        <td><strong>Looking for team?</strong></td>
         <td>
             <select name="main_lang" id="m">
                 <option value="0">Main/Native language</option>
@@ -75,13 +75,13 @@
         </td>
     </tr>
     <tr>
-        <td width="200"><strong>Looking for team?</strong></td>
+        <td><strong>Looking for team?</strong></td>
         <td>
             <label class="rolebox">{{ Form::checkbox('looking_for_team', 1, Input::old('looking_for_team')) }} I'm looking for a team</label>
         </td>
     </tr>
     <tr>
-        <td width="200"><strong>Description</strong></td>
+        <td><strong>Description</strong></td>
         <td>{{ Form::textarea('description', Input::old('description'),  array('class' => 'form-control')) }}</td>
     </tr>
 </table>
@@ -91,15 +91,15 @@
 <table class="table table-striped">
 
     <tr>
-        <td width="200"><strong>E-Mail</strong></td>
+        <td><strong>E-Mail</strong></td>
         <td>{{ Form::text('email', Input::old('email'),  array('class' => 'form-control')) }}</td>
     </tr>
     <tr>
-        <td width="200"><strong>Password</strong></td>
+        <td><strong>Password</strong></td>
         <td>{{ Form::password('password', array('class' => 'form-control')) }}</td>
     </tr>
     <tr>
-        <td width="200"><strong>Repeat Password</strong></td>
+        <td><strong>Repeat Password</strong></td>
         <td>{{ Form::password('password_confirmation', array('class' => 'form-control')) }}</td>
     </tr>
 
