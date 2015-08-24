@@ -89,8 +89,8 @@
 </div>
 <!-- End Preload -->
 
-<div class="layer"></div>
-<!-- Mobile menu overlay mask -->
+<div class="layer" id="mobile_detecter_element"></div>
+<!-- Mobile menu overlay mask (is invisible)-->
 
 <!-- Header================================================== -->
 <header class="page_navigation">
@@ -104,7 +104,7 @@
                 </div>
             </div>
             <nav class="col-md-9 col-sm-9 col-xs-9">
-                <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
+                <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" id="mobile_navigation_btn_switcher" href="javascript:void(0);"><span>Menu mobile</span></a>
                 <div class="main-menu" id="page_main_menu">
                     @include('layouts.navigation')
                 </div><!-- End main-menu -->
@@ -223,6 +223,16 @@
         
         // Tooltips
         $('.tooltips').tooltipster();
+
+        $("#mobile_navigation_btn_switcher").click(function(){
+            if($("#mobile_detecter_element").hasClass("layer-is-visible")){
+                // Nichts machen
+            } else {
+                setTimeout(function(){
+                    $("#mobile_navigation_btn_switcher").removeClass("active");
+                }, 100);
+            }
+        });
     });
 </script>
 
