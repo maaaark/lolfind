@@ -3364,7 +3364,8 @@ font-weight:400;
 
 .register {
     padding: 20px;
-    width: 800px;
+    width: 100%;
+    max-width: 800px;
     text-align: left;
     color: #333;
     background: #fff;
