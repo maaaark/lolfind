@@ -1,7 +1,95 @@
 @if(isset($ranked_teams) AND count($ranked_teams) > 0)
 	@foreach($ranked_teams as $team)
 		<div class="strip_all_tour_list player_searchbox wow fadeIn" data-wow-delay="0.1s">
-            <div class="row">
+            <div class="row small_version">
+                <div class="col-xs-3" style="text-align: right;">
+                    @if(!isset($team->ranked_league_5) || trim($team->ranked_league_5) == "none" || trim($team->ranked_league_5) == "")
+                        <div class="ribbon unranked" ></div><br/>
+                    @endif
+                    <?php
+                        $league_logo = "0_5";
+                        if(strpos($team->ranked_league_5, "_") > 0){
+                            $division = substr($team->ranked_league_5, strpos($team->ranked_league_5, "_") + 1);
+                            if($division == "I"){ $division = "1"; }
+                            else if($division == "II"){ $division = "2"; }
+                            else if($division == "III"){ $division = "3"; }
+                            else if($division == "IV"){ $division = "4"; }
+                            else { $division = "5"; }
+                            $league_logo = trim(substr($team->ranked_league_5, 0, strpos($team->ranked_league_5, "_")))."_".trim($division);
+                        }
+                    ?>
+
+
+                    <div style="text-align: center;padding-bottom: 15px;">
+                        <a href="/teams/{{ $team->region }}/{{ $team->tag }}">
+                            <img src="/img/leagues/{{ trim($league_logo) }}.png" style="width: 100%;margin-top: 20px;margin-bottom: 10px;" alt="">
+                        </a>
+                        @if(isset($division) AND $league_logo != "0_5")
+                            <b>{{ ucfirst(trim(substr($team->ranked_league_5, 0, strpos($team->ranked_league_5, "_")))) }} {{trim($division) }}</b>
+                        @else
+                            Placement prediction: <b>{{ ucfirst(trim($team->league_prediction)) }}</b>
+                        @endif
+                    </div>
+                </div>
+                <div class="col-xs-9" style="text-align: left;position: relative;">
+                    <h3><a href="/teams/{{ $team->region }}/{{ $team->tag }}"><strong>{{ $team->name }}</strong></a></h3>
+
+                    <table class="list_info_table">
+                        <tr>
+                            <td class="title">Open roles:</td>
+                            <td>
+                                <?php $no_roles_open = true; ?>
+                                @if($team->looking_for_top == 1)
+                                    <img src="/img/roles/tank.jpg" class="img-circle tooltips" title="Top" width="35" />
+                                    <?php $no_roles_open = false; ?>
+                                @endif
+                                @if($team->looking_for_jungle == 1)
+                                    <img src="/img/roles/fighter.jpg" class="img-circle tooltips" title="Jungle" width="35" />
+                                    <?php $no_roles_open = false; ?>
+                                @endif
+                                @if($team->looking_for_mid == 1)
+                                    <img src="/img/roles/mage.jpg" class="img-circle tooltips" title="Mid" width="35" />
+                                    <?php $no_roles_open = false; ?>
+                                @endif
+                                @if($team->looking_for_adc == 1)
+                                    <img src="/img/roles/marksman.jpg" class="img-circle tooltips" title="ADC" width="35" />
+                                    <?php $no_roles_open = false; ?>
+                                @endif
+                                @if($team->looking_for_support == 1)
+                                    <img src="/img/roles/support.jpg" class="img-circle tooltips" title="Support" width="35" />
+                                    <?php $no_roles_open = false; ?>
+                                @endif
+
+                                @if($no_roles_open)
+                                    No open roles
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="title">Languages:</td>
+                            <td>
+                                @if($team->looking_for_lang AND trim($team->looking_for_lang) != "")
+                                    {{ ucfirst($team->looking_for_lang) }}
+                                @else
+                                    No explicit language.
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="title">Member:</td>
+                            <td>
+                                @if($team->player()->count() <= 1)
+                                    1 Member
+                                @else
+                                    {{ $team->player()->count() }} Members
+                                @endif
+                            </td>
+                    </table>
+                    <div style="position: absolute;right: 30px;bottom: 10px;"><a href="/teams/{{ $team->region }}/{{ $team->tag }}">more</a></div>
+                </div>
+            </div>
+
+            <div class="row desktop_version">
                 <div class="col-lg-2 col-md-2 col-sm-2">
                     <!--<div class="wishlist">
                         <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">
@@ -38,7 +126,7 @@
                                 @endif
                             </div>
 
-                                <div class="last_update">Last Update:<br/>{{ $team->updated_at->diffForHumans() }}</div>
+                            <div class="last_update">Last Update:<br/>{{ $team->updated_at->diffForHumans() }}</div>
                         </div>
                     </div>
                 </div>
