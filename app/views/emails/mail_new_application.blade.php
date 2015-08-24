@@ -5,6 +5,7 @@
 @stop
 
 @section('mail_content')
+	{{ print_r($leader) }}
     Hello $summoner->name,<br/><br/>
     Your team <strong>{{ $team->name }}</strong> has a new payer application.<br/>
     Check out your account on <a style="color: #f25825;" href="http://teamranked.com">Teamranked.com</a><br/>
