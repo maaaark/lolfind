@@ -443,7 +443,7 @@ class TeamsController extends \BaseController {
                     FIServer::add_notification($user->id, "team_invitation", $team->id, $invitation->id);
 
                     // E-Mail an Spieler senden
-                    if($leader->check_email_settings("player_invitation")){
+                    if($user->check_email_settings("player_invitation")){
                         Mail::send('emails.mail_new_invitation', array('team' => $ranked_team, 'user' => $user), function($message) use($user)
                         {
                             $message->to($user["email"], $user->summoner->name)->subject('New team invitation');
