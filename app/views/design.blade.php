@@ -190,16 +190,28 @@
             }
             
             if(current_box){
+                current_box.attr("style", "");
                 $(".nw_login_box.open").removeClass("open");
                 $(".nw_box_btn.active").removeClass("active");
                 
-                arrow_pos = Math.round($(this).outerWidth() / 2) - 11; // -11 = Hälfte der Breite des Pfeils
-                current_box.css("background-position", "top right "+parseInt(arrow_pos)+"px");
-                
-                pos = $(this).offset();
-                pos = $(document).width() - parseInt(pos["left"]);
-                pos = pos - $(this).outerWidth(true);
-                current_box.css("right", pos);
+                if(parseInt($(window).width()) > 750){ // Anpassungen für Desktop Version
+                    arrow_pos = Math.round($(this).outerWidth() / 2) - 11; // -11 = Hälfte der Breite des Pfeils
+                    current_box.css("background-position", "top right "+parseInt(arrow_pos)+"px");
+                    
+                    pos = $(this).offset();
+                    pos = $(document).width() - parseInt(pos["left"]);
+                    pos = pos - $(this).outerWidth(true);
+                    current_box.css("right", pos);
+                } else { // Anpassungen für Mobile-Version
+                    current_box.css("width", "90%");
+                    current_box.css("left", "5%");
+
+                    arrow_pos = $(this).find("i").offset();
+                    console.log($(this).get());
+                    console.log(arrow_pos);
+                    arrow_pos = parseInt(arrow_pos["left"]) - (parseInt($(this).find("i").outerWidth())) - 5;
+                    current_box.css("background-position", "top left "+parseInt(arrow_pos)+"px");
+                }
 
                 if(current_box.hasClass("open")){
                     current_box.removeClass("open");

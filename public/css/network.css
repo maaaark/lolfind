@@ -34,7 +34,9 @@ header.page_navigation {
 	padding-top: 7px;
 	padding-left: 26px;
 	cursor: default;
+
 }
+
 
 .scrolled .network_navi .network_logo {
 	background-size: auto 28px;
@@ -76,10 +78,28 @@ header.page_navigation {
     color: #A0A0A0;
 }
 
+
 .network_navi .account_part {
 	float: right;
 	margin-right: 20px;
 	height: 100%;
+}
+
+@media(max-width: 500px){
+	.network_navi .network_logo {
+		font-size: 12px;
+		margin-left: 8px;
+		padding-top: 8px;
+	}
+
+	.network_navi .nw_navi_el {
+		padding-right: 5px;
+		padding-left: 5px;
+	}
+
+	.network_navi .account_part {
+		margin-right: 5px;
+	}
 }
 
 .network_navi .account_part .login_btn {
