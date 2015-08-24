@@ -16,7 +16,7 @@
     <!-- Favicons-->
     <link rel="icon" type="image/ico" href="favicon.ico">
     <link rel="icon" sizes="180x180" href="/img/profile_picture.jpg">
-    <meta name="theme-color" content="#f25825">
+    <meta name="theme-color" content="#AF360E">
 
     <!-- BASE CSS -->
     <link href="/css/base.css" rel="stylesheet">
