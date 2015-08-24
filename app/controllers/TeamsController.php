@@ -425,7 +425,7 @@ class TeamsController extends \BaseController {
             $user = User::where("id", "=", Input::get("user"))->first();
             if(isset($user->id) && $user->summoner->looking_for_team == 1){
                 $team = RankedTeam::where("id", "=", Input::get("team"))->first();
-                //if(isset($team->id) && $team->id > 0 && $team->leader_summoner_id == Auth::user()->summoner->summoner_id){
+                if(isset($team->id) && $team->id > 0 && $team->leader_summoner_id == Auth::user()->summoner->summoner_id){
                     $invitation = new RankedTeamInvitation;
                     $invitation->team = $team->id;
                     $invitation->user = $user->id;
@@ -450,14 +450,14 @@ class TeamsController extends \BaseController {
                         });
                     }
                     echo "success";
-                //} else {
-                //    echo "error3";
-                //}
+                } else {
+                    echo "error";
+                }
            } else {
-               echo "error2";
+               echo "error";
            }
         } else {
-           echo "error1";
+           echo "error";
         }
     }
     
