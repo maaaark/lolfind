@@ -451,13 +451,13 @@ class TeamsController extends \BaseController {
                     }
                     echo "success";
                 } else {
-                    echo "error";
+                    echo "error3";
                 }
            } else {
-               echo "error";
+               echo "error2";
            }
         } else {
-           echo "error";
+           echo "error1";
         }
     }
     
