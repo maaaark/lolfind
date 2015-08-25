@@ -165,7 +165,7 @@
                                     Region: {{ $player->region }}
                             </div>
                         </div>
-                            <p>{{ Str::limit($player->description, 200) }} <a href="/summoner/{{ trim($player->region) }}/{{ trim($player->name) }}">more</a></p>
+                            <p>{{{ Str::limit($player->description, 200) }}} <a href="/summoner/{{ trim($player->region) }}/{{ trim($player->name) }}">more</a></p>
                     </div>
                 </div>
             </div>
