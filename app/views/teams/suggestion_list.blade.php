@@ -69,7 +69,7 @@
                             <td class="title">Languages:</td>
                             <td>
                                 @if($team->looking_for_lang AND trim($team->looking_for_lang) != "")
-                                    {{ ucfirst($team->looking_for_lang) }}
+                                    <img src="/img/flags/{{ $team->looking_for_lang }}.png" class="img-circle" width="35" />
                                 @else
                                     No explicit language.
                                 @endif
