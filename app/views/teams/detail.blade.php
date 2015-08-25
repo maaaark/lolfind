@@ -4,6 +4,7 @@
    <link rel="stylesheet" href="/css/teams.css">
 @stop
 @section('header')
+    <script>var refresh_after_finish_team_update = true;</script>
     <section class="medium-parallax-window" data-parallax="scroll" data-image-src="/img/player_background.jpg" data-natural-width="1400" data-natural-height="470">
         <div class="medium-parallax-content">
             @include("teams.team_header")

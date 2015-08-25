@@ -126,6 +126,7 @@
             <script>
             $(document).ready(function(){
                 $(".apply_team_btn").click(function(){
+                	refresh_after_finish_team_update = false;
                     html  = "<div style='text-align: center;padding: 40px;'><img src='/img/ajax-loader.gif' style='height: 50px;'>";
                     html += "<div style='padding-top: 10px;'>Content is loading ...</div>";
                     html += '</div>';
