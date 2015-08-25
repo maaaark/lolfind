@@ -9,7 +9,12 @@ class AdminController extends BaseController {
     public function network_server(){
     	$array = array();
         $array["test"] = "teamranked.com";
-        $server_response = FIServer::send_width_answer(json_encode(array("type" => "get_server_info", "message" => $array)));
+
+        try {
+            $server_response = FIServer::send_width_answer(json_encode(array("type" => "get_server_info", "message" => $array)));
+        } catch(Exception $e){
+            $server_response = false;
+        }
 
         $server_info = false;
         if(isset($server_response) && $server_response && trim($server_response) != ""){

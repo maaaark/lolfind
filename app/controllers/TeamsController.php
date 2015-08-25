@@ -382,7 +382,11 @@ class TeamsController extends \BaseController {
                         $apply->save();
 
                         // Notification an Team-Leiter senden
-                        FIServer::add_notification($leader["id"], "team_application", Auth::user()->id, $apply->id, $ranked_team["id"]);
+                        try {
+                            FIServer::add_notification($leader["id"], "team_application", Auth::user()->id, $apply->id, $ranked_team["id"]);
+                        } catch(Exception $e){
+                            // nichts machen
+                        }
 
                         // E-Mail an Team-Leiter senden
                         if($leader->check_email_settings("team_application")){
@@ -440,7 +444,11 @@ class TeamsController extends \BaseController {
                     $invitation->save();
                     
                     // Notification an User senden
-                    FIServer::add_notification($user->id, "team_invitation", $team->id, $invitation->id);
+                    try {
+                        FIServer::add_notification($user->id, "team_invitation", $team->id, $invitation->id);
+                    } catch(Exception $e){
+                        // nichts machen
+                    }
 
                     // E-Mail an Spieler senden
                     if($user->check_email_settings("player_invitation")){
