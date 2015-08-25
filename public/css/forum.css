@@ -101,6 +101,7 @@ input.forum_create_input {
 	padding: 10px;
 	border-radius: 3px;
 	box-shadow: 0 0 3px 1px rgba(0,0,0,0.3);
+	background: #fff;
 }
 
 .topics_table_holder table.table.topics_table {

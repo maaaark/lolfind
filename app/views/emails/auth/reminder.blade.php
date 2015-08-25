@@ -5,6 +5,6 @@
 @stop
 
 @section('mail_content')
-    Hello $summoner->name,<br/><br/>
+    Hello Summoner,<br/><br/>
     to reset your password, complete this form: {{ URL::to('password/reset', array($token)) }}.
 @stop

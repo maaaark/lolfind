@@ -333,6 +333,7 @@ class UsersController extends \BaseController {
         if ($validation->passes())
         {
             $user = User::create($input);
+            $user->region = Session::get('region');
             $user->password = Hash::make(Input::get('password'));
             $user->verify_string = str_random(10);
             $user->summoner_id = Session::get('summoner_id');
@@ -341,7 +342,7 @@ class UsersController extends \BaseController {
 
         } else {
             $messages = $validation->messages();
-            return Redirect::to("/register/step3")
+            return Redirect::to("/register/step4")
                 ->withInput()
                 ->withErrors($validation)
                 ->with('error', 'There were validation errors.')->with('input', Input::all())->with('messages', $messages);

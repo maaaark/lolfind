@@ -59,10 +59,10 @@
                         <tr>
                             <td class="title">Languages:</td>
                             <td>
-                                @if($player->main_lang != "")
+                                @if($player->main_lang != "0" && $player->main_lang)
                                     <img src="/img/flags/{{ $player->main_lang }}.png" class="img-circle" width="35" />
                                 @endif
-                                @if($player->sec_lang != "")
+                                @if($player->sec_lang && $player->sec_lang != "0")
                                     <img src="/img/flags/{{ $player->sec_lang }}.png" class="img-circle" width="35" />
                                 @endif
                             </td>
@@ -71,7 +71,9 @@
                         <tr>
                             <td class="title">Region:</td>
                             <td>
+                                @if(Auth::check())
                                 <span style="float: right;padding-right: 10px;"><a href="/summoner/{{ trim($player->region) }}/{{ trim($player->name) }}">more</a></span>
+                                @endif
                                 {{ strtoupper($player->region) }}
                             </td>
                         </tr>
@@ -151,12 +153,12 @@
                                 @if($player->main_lang != "" || $player->sec_lang != "")
                                 <h5>Languages:</h5>
                                 @endif
-                                @if($player->main_lang != "")
-                                <img src="/img/flags/{{ $player->main_lang }}.png" class="img-circle" width="35" />
-                                @endif
-                                @if($player->sec_lang != "")
-                                    <img src="/img/flags/{{ $player->sec_lang }}.png" class="img-circle" width="35" />
-                                @endif
+                                    @if($player->main_lang != "0" && $player->main_lang)
+                                        <img src="/img/flags/{{ $player->main_lang }}.png" class="img-circle" width="35" />
+                                    @endif
+                                    @if($player->sec_lang && $player->sec_lang != "0")
+                                        <img src="/img/flags/{{ $player->sec_lang }}.png" class="img-circle" width="35" />
+                                    @endif
                                 <br/>
                                     Region: {{ $player->region }}
                             </div>

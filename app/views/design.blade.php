@@ -150,7 +150,6 @@
 </header><!-- End Header -->
 <div id="page_container">
    @yield('header')
-   @include('layouts.errors')
    @yield('content')
    <footer>
        <div class="container">
