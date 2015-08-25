@@ -58,6 +58,7 @@ Route::post("/teams/apply/post", "TeamsController@apply_lightbox_post");
 Route::post("/teams/invite/start", "TeamsController@invite_lightbox");
 Route::post("/teams/invite/post", "TeamsController@invite_lightbox_post");
 Route::post("/teams/invite/show", "TeamsController@invite_lightbox_show");
+Route::post("/teams/invite/delete", "TeamsController@invite_lightbox_delete");
 
 
 // Players

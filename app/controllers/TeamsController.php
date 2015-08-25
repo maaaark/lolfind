@@ -502,6 +502,20 @@ class TeamsController extends \BaseController {
         echo "error";
     }
 
+    public function invite_lightbox_delete(){
+        if(Input::get("invitation_id") && Input::get("invitation_id") > 0){
+            $invitation = RankedTeamInvitation::where("id", "=", Input::get("invitation_id"))->first();
+            if($invitation && isset($invitation->user) && $invitation->user > 0){
+                $invitation->delete();
+                echo "success";
+            } else {
+                echo "error";
+            }
+        } else {
+            echo "error";
+        }
+    }
+
     public function applications($region, $tag){
         $ranked_team = RankedTeam::where("region", "=", $region)->where("tag", "=", $tag)->first();
         if(isset($ranked_team["id"]) && $ranked_team["id"] > 0){
