@@ -56,7 +56,7 @@ class PlayersController extends \BaseController {
             }
         }
 
-        $player_list = $player_list->paginate(10);
+        $player_list = $player_list->orderBy("updated_at", "DESC")->paginate(10);
 
 
         return View::make("players.suggestion_list", array(
