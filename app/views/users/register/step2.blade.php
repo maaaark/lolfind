@@ -38,4 +38,5 @@
             </div>
         </div>
     </section>
+    @include('users.register.register_resize_script')
 @stop
