@@ -412,12 +412,25 @@ class TeamsController extends \BaseController {
     
     public function invite_lightbox(){
         if(Input::get("player") && Auth::check()){
-            $player = User::where("id", "=", Input::get("player"))->first();
-            $teams  = RankedTeam::where("leader_summoner_id", "=", Auth::user()->summoner->summoner_id)->get();
+            $player                 = User::where("id", "=", Input::get("player"))->first();
+            $teams_db               = RankedTeam::where("leader_summoner_id", "=", Auth::user()->summoner->summoner_id)->get();
+
+            $teams_already_invited  = array();
+            $teams                  = array();
+            foreach($teams_db as $team){
+                $check = RankedTeamInvitation::where("user", "=", $player->id)->where("team", "=", $team->id)->first();
+                if(isset($check->id) && $check->id > 0){
+                    $teams_already_invited[] = $team;
+                } else {
+                    $teams[] = $team;
+                }
+            }
+
             if($player && $player->id > 0){
                 return View::make("teams.invite.lightbox_start", array(
-                    "user"  => $player,
-                    "teams" => $teams,
+                    "user"                  => $player,
+                    "teams"                 => $teams,
+                    "teams_already_invited" => $teams_already_invited,
                 ));
             }
         }

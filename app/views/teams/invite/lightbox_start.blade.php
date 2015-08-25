@@ -22,8 +22,17 @@
              
              <h5 id="select_your_team_header">Select your team</h5>
              <div id="team_sel_invite"></div>
+
+             @if(isset($teams_already_invited) AND $teams_already_invited AND count($teams_already_invited) > 0)
+                <span style="font-weight: bold;padding-right: 5px;">Already invited:</span>
+                @foreach($teams_already_invited as $team)
+                    <span style="padding: 5px;background: rgba(0,0,0,0.1);border-radius: 2px;margin-right: 5px;">
+                        {{ $team->name }}
+                    </span>
+                @endforeach
+             @endif
              
-             <h5>Roles of {{ $user->summoner->name }} your team is interested in:</h5>
+             <h5 style="margin-top: 25px;">Roles of {{ $user->summoner->name }} your team is interested in:</h5>
              <?php $open_roles = false; ?>
              <div class="role_labels_holder">
                  @if($user->summoner->search_top)
@@ -75,7 +84,7 @@
         });
         
         $(document).ready(function(){
-            @if(isset($teams) && $teams->count() > 0)
+            @if(isset($teams) && $teams && count($teams) > 0)
                 $("#team_sel_invite").makeSelect("team_select", [
                     <?php $need_first_select = true; ?>
                     @foreach($teams as $team)
@@ -84,11 +93,10 @@
                         @else    
                             { title: "{{ $team->name }}", value: "{{ $team->id }}" },
                         @endif
-                    @endforeach    
+                    @endforeach
                 ]);
             @else
-                $("#select_your_team_header").remove();
-                $("#invitation_submit_btn").replaceWith("<button class='btn_1' disabled>You have no teams, to invite this player.</button>");
+                $("#team_sel_invite").replaceWith("<div style='background: #DC2A2A;padding: 5px;color: #fff;border-radius: 3px;margin-bottom: 15px;'>You have no teams, to invite this player.</div>");
             @endif
             
             var labels_role_count = 0;
