@@ -22,6 +22,38 @@ class FIServer {
         fclose($sock);
     }
 
+    public static function send_width_answer($data){
+        $host = Config::get('fi_server.host');  //where is the websocket server
+        $port = Config::get('fi_server.port');
+        $local = "http://".Config::get('fi_server.host');  //url where this script run
+
+        $head = "GET / HTTP/1.1"."\r\n".
+                "Upgrade: WebSocket"."\r\n".
+                "Connection: Upgrade"."\r\n".
+                "Origin: $local"."\r\n".
+                "Host: $host"."\r\n".
+                "Sec-WebSocket-Version: 13"."\r\n".
+                "Sec-WebSocket-Key: asdasdaas76da7sd6asd6as7d"."\r\n".
+                "Content-Length: ".strlen($data)."\r\n"."\r\n";
+        //WebSocket handshake
+        $sock = fsockopen($host, $port, $errno, $errstr, 2);
+        fwrite($sock, $head ) or die('error:'.$errno.':'.$errstr);
+        $headers = fread($sock, 2000);
+        fwrite($sock, FIServer::hybi10Encode($data)) or die('error:'.$errno.':'.$errstr);
+        
+        $out = "";
+        while ($line = fgets($sock)) {
+            $out .= $line;
+            $line = preg_split('/\s+/', $line, 0, PREG_SPLIT_NO_EMPTY);
+            $code = $line[0];
+            if (strtoupper($code) == 'C01') {
+                break;
+            }
+        }
+        fclose($sock);
+        return $out;
+    }
+
     public static function add_notification($user, $type, $value1, $value2 = false, $value3 = false){
         $array = array();
         $array["user"]         = $user;
@@ -32,6 +64,7 @@ class FIServer {
         $array["value3"]       = $value3;
         FIServer::send(json_encode(array("type" => "notification", "message" => $array)));
     }
+
 
     public static function hybi10Decode($data){
         $bytes = $data;

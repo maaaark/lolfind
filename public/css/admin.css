@@ -1,0 +1,89 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,800italic,700italic,800,700,600italic,600,400italic,300italic,300);
+body {
+	padding: 0px;
+	margin: 0px;
+	font-size: 14px;
+	font-weight: 400;
+	background: #f1f1f1;
+}
+
+* {
+	font-family: 'Open Sans', Arial;
+}
+
+.page_header {
+	position: fixed;
+	z-index: 10;
+	top: 0px;
+	width: 100%;
+}
+
+.page_header .bar {
+	background: #EC891A;
+	height: 40px;
+	overflow: hidden;
+}
+
+.page_header .bar img.logo {
+	float: left;
+	height: 35px;
+	margin-left: 10px;
+	margin-top: 3px;
+	margin-right: 5px;
+}
+
+.page_header .bar .admin_title_flag {
+	float :left;
+	padding-top: 11px;
+	color: rgba(0,0,0,0.2);
+	cursor: default;
+}
+
+.page_header .bar .auth_box {
+	float: right;
+	padding: 5px;
+	margin-right: 20px;
+	color: #F5F5F5;
+	height: 40px;
+	box-sizing: border-box;
+}
+
+.page_header .bar a .auth_box:hover {
+	background: rgba(255,255,255,0.3);
+}
+
+.page_header .bar .auth_box img {
+	margin-right: 7px;
+}
+
+.page_header .page_navigation {
+	background: #464646;
+}
+
+.page_header .page_navigation:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+.page_header .page_navigation .element {
+	padding: 12px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	float: left;
+	color: #fff;
+	cursor: pointer;
+}
+
+.page_header .page_navigation .element.logout {
+	margin-right: 20px;
+	float: right;
+}
+
+.page_header .page_navigation .element:hover {
+	background: rgba(255,255,255,0.1);
+}
+
+.page_holder .page_width {
+	padding: 25px;
+}

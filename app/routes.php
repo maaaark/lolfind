@@ -79,3 +79,10 @@ Route::get("/ringer", "BaseController@ringer");
 Route::get("/tos", "BaseController@tos");
 Route::get("/legal", "BaseController@legal");
 Route::get("/mail", "BaseController@mail");
+
+Route::group(array('prefix' => 'admin', 'before' => 'auth'), function(){
+    if(Auth::check() && Auth::user()->hasRole("admin")){
+    	Route::get('/', "AdminController@index");
+    	Route::get('/network_server', "AdminController@network_server");
+	}
+});
