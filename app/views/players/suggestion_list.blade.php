@@ -15,7 +15,8 @@
                         <img style="width: 100%;" src="/img/leagues/{{ trim(strtolower($player->solo_tier)) }}_{{ trim($pl_division) }}.png" class="tooltips" title="{{ trim(ucfirst(strtolower($player->solo_tier))) }} {{ trim($pl_division) }}">
                         <div style="padding-top: 15px;text-align: center;">{{ $player->solo_tier }} {{ $player->solo_division }}</div>
                     @else
-                        <img style="width: 100%;" src="/img/leagues/0_5.png" class="tooltip" title="Unranked">
+                         <br/>
+                        <img style="width: 100%;" src="/img/leagues/0_5.png" class="tooltips tooltipstered" title="Unranked">
                         <div style="padding-top: 15px;text-align: center;">Unranked</div>
                     @endif
                 </div>
@@ -95,7 +96,8 @@
                                 <br/>
                                 <img src="/img/leagues/{{ trim(strtolower($player->solo_tier)) }}_{{ trim($pl_division) }}.png" class="tooltips" title="{{ trim(ucfirst(strtolower($player->solo_tier))) }} {{ trim($pl_division) }}">
                             @else
-                                <img src="/img/leagues/0_5.png" class="tooltip" title="Unranked">
+                                <br/>
+                                <img src="/img/leagues/0_5.png" class="tooltips tooltipstered" title="Unranked">
                             @endif
                             <br/><br/>
                             <div class="last_update">Last Update:<br/>{{ $player->updated_at->diffForHumans() }}</div>
