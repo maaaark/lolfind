@@ -233,6 +233,11 @@ header.page_navigation {
     color: rgba(0,0,0,0.6);
 }
 
+.nw_box_content .elements_list {
+	max-height: 400px;
+	overflow-y: auto;
+}
+
 /* Notifications */
 .notification_linked_element {
 	padding: 10px;

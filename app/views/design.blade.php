@@ -35,6 +35,7 @@
     <link rel="stylesheet" href="/css/flashignite_lightbox.css">
     <link rel="stylesheet" href="/css/tooltipster.css">
     <link rel="stylesheet" href="/js/icheck/orange.css">
+    <link rel="stylesheet" href="/css/jquery.mCustomScrollbar.css">
     @yield('css_addition')
     
     <!--[if lt IE 9]>
@@ -51,6 +52,7 @@
     <script src="/js/team_search_dropdowns.js"></script>
     <script src="/js/tabs.js"></script>
     <script src="/js/teamranked.js"></script>
+    <script src="/js/jquery.mCustomScrollbar.js"></script>
 
     @if(Auth::check())
         <!-- FI-Network Server -->
@@ -66,6 +68,18 @@
         <script src="/js/fi_network_server.js"></script>
         <script>
             fi_server_init();
+
+            $(document).ready(function(){
+                function loadScrollBars(){
+                   $(".scroll_bar").mCustomScrollbar({
+                      theme:"minimal-dark",
+                      scrollInertia:600,
+                      autoDraggerLength:false,
+                      mouseWheel:{ scrollAmount: 140 }
+                   });
+                }
+                loadScrollBars();
+            });
         </script>
     @endif
 

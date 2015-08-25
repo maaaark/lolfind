@@ -22,7 +22,7 @@
             <div class="nw_login_box nw_box_btn" id="nw_chats_box">
                 <div class="nw_box_content">
                     <div class="title">{{ Lang::get('users.chats') }}</div>
-                    <div id="chats_content" class="nw_chats_box">
+                    <div id="chats_content" class="nw_chats_box elements_list scroll_bar">
                         @if(($chats = Auth::user()->chats()) AND $chats AND count($chats) > 0)
                             @foreach($chats as $chat)
                                 <?php
@@ -76,7 +76,7 @@
             <div class="nw_login_box" id="nw_notifications_box">
                 <div class="nw_box_content">
                     <div class="title">{{ Lang::get('users.notifications') }}</div>
-                    <div id="notification_content">
+                    <div id="notification_content" class="elements_list scroll_bar">
                         @if(($notifications = Auth::user()->notifications()) AND $notifications AND count($notifications) > 0)
                             @foreach($notifications as $notification)
                                 @include('users.notification_element', array("notification" => $notification))
