@@ -150,8 +150,8 @@
 </header><!-- End Header -->
 <div id="page_container">
    @yield('header')
-   @yield('content')
-   <footer>
+   <div class="page_content_container" id="page_content_container">@yield('content')</div>
+   <footer id="page_footer">
        <div class="container">
            <div class="row">
                <div class="col-md-12">
@@ -261,6 +261,12 @@
                 }, 100);
             }
         });
+
+        // Footer nach unten verschieben wenn Seite nicht hoch genug ist
+        if($(window).height() > $("body").height()){
+            diff = parseInt($(window).height()) - parseInt($("body").outerHeight());
+            $("#page_content_container").css("height", diff + parseInt($("#page_content_container").outerHeight()) + "px");
+        }
     });
 </script>
 
