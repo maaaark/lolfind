@@ -265,7 +265,8 @@
         // Footer nach unten verschieben wenn Seite nicht hoch genug ist
         if($(window).height() > $("body").height()){
             diff = parseInt($(window).height()) - parseInt($("body").outerHeight());
-            $("#page_content_container").css("height", diff + parseInt($("#page_content_container").outerHeight()) + "px");
+            $("#page_content_container").css("min-height", diff + parseInt($("#page_content_container").outerHeight()) + "px");
+            $(document).trigger("footer_resize");
         }
     });
 </script>
