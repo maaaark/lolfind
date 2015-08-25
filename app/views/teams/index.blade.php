@@ -36,7 +36,7 @@
                             <div style="padding: 10px;">
                                 <div style="margin-top: 6px;text-align: right;">
                                     <div style="float: left;color: rgba(0,0,0,0.5);padding-top: 5px;">{{ strtoupper($team->tag) }}</div>
-                                    <a href="/teams/{{ $team->region }}/{{ $team->tag }}" class="btn_1">Ansehen</a>
+                                    <a href="/teams/{{ $team->region }}/{{ $team->tag }}" class="btn_1">DETAILS</a>
                                 </div>
                             </div>
                         </div>
