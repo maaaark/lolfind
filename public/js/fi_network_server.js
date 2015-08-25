@@ -10,29 +10,6 @@ function fi_server_init() {
 							    console.log("readyState FI-Network-Server: "+this.readyState);
 
 							    fi_server_send({"type": "login", "values": {"uID": fi_server_user}});
-							   
-							    // Zuvor geöffnete Chat-Fenster öffnen, nur wenn Chat-Server online ist:
-							    if(fi_server_online){
-									if(typeof $.cookie("fi_opened_chats") != "undefined"){
-										chat_windows_json = JSON.parse($.cookie("fi_opened_chats"));
-										for(i = 0; i < chat_windows_json.length; i++){
-									    if(chat_windows_json[i]){
-									        minimized_status = false;
-									        if(typeof chat_windows_json[i]["minimized"] != "undefined" && chat_windows_json[i]["minimized"] == true){
-									        	minimized_status = true;
-									        }
-									        
-									        opened_chats.push({
-									        	"userid": chat_windows_json[i]["userid"],
-									        	"name": chat_windows_json[i]["name"],
-									        	"icon": chat_windows_json[i]["icon"],
-									        	"minimized": minimized_status,
-									        });
-									        fi_server_open_chat(chat_windows_json[i]["userid"], chat_windows_json[i]["name"], chat_windows_json[i]["icon"], true, minimized_status);
-									    }
-										}
-									}
-								}
 						   };
 		socket.onmessage = function(msg) {
 								json = JSON.parse(msg.data);
@@ -40,6 +17,7 @@ function fi_server_init() {
 									if(json["type"] == "login_success"){
 										if(this.readyState == 1 && typeof json["status"] != "undefined" && json["status"] == "true"){
 							   				fi_server_online = true;
+							   				open_still_opened_chat_windows();
 							    		}
 									} else if(json["type"] == "chat"){
 										fi_server_chat_handle_incoming(json);
@@ -70,6 +48,29 @@ function fi_server_send(object){
 	} catch(ex) { 
 		// Exception nicht ausgeben
 		//log(ex);
+	}
+}
+
+function open_still_opened_chat_windows(){
+	// Zuvor geöffnete Chat-Fenster öffnen, nur wenn Chat-Server online ist:
+	if(typeof $.cookie("fi_opened_chats") != "undefined"){
+		chat_windows_json = JSON.parse($.cookie("fi_opened_chats"));
+		for(i = 0; i < chat_windows_json.length; i++){
+			if(chat_windows_json[i]){
+				minimized_status = false;
+				if(typeof chat_windows_json[i]["minimized"] != "undefined" && chat_windows_json[i]["minimized"] == true){
+					minimized_status = true;
+				}
+
+				opened_chats.push({
+					"userid": chat_windows_json[i]["userid"],
+					"name": chat_windows_json[i]["name"],
+					"icon": chat_windows_json[i]["icon"],
+					"minimized": minimized_status,
+				});
+				fi_server_open_chat(chat_windows_json[i]["userid"], chat_windows_json[i]["name"], chat_windows_json[i]["icon"], true, minimized_status);
+			}
+		}
 	}
 }
 
@@ -217,6 +218,34 @@ function fi_server_bind_chat_sends(){
 					"receiver_username": $(this).attr("data-uName"),
 					"receiver_icon": 	 $(this).attr("data-uIcon"),
 				});
+
+				// Gelesen-Status speichern:
+				if($(this).parent().parent().parent().hasClass("unread_messages")){
+					$(this).parent().parent().parent().removeClass("unread_messages");
+
+					fi_server_send({"type": "chat", "message": { "read_status": true, "user": fi_server_user, "other_user": $(this).attr("data-uId")} });
+
+					// Wert updaten
+					el = $(".nw_navi_el.account_icon.nw_box_btn[data-box='chats_box']").find(".box_btn_hint");
+					if(typeof el != "undefined" && el){
+						chats_count = parseInt(el.html().trim());
+						if(chats_count <= 1){
+							el.addClass("hidden");
+							el.html("0");
+						} else {
+							chats_count--;
+							el.removeClass("hidden");
+							el.html(chats_count);
+						}
+					}
+					$("#chats_content #nw_chat_box_element_"+$(this).parent().parent().attr("data-uID")).removeClass("new_msg");
+
+					for(i = 0; i < fi_server_chats_counts.length; i++){
+						if(typeof fi_server_chats_counts[i] != "undefined" && fi_server_chats_counts[i] != null && typeof fi_server_chats_counts[i]["userid"] != "undefined" && fi_server_chats_counts[i]["userid"] == $(this).parent().parent().attr("data-uID")){
+							fi_server_chats_counts[i] = null;
+						}
+					}
+				}
 			}
 			$(this).val('');
 		}
