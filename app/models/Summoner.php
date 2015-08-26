@@ -544,6 +544,7 @@ class Summoner extends \Eloquent {
                                 }
                             }
                             //$summoner = $this->updateRankedData($summoner, $summoner->summoner_id, $region);
+                            $summoner = Summoner::updateRankedData($summoner, $summoner->summoner_id, $region);
                             $summoner->save();
                             Session::put('summoner_id', $summoner->summoner_id);
                             return true;
