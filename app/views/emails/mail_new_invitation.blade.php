@@ -5,7 +5,7 @@
 @stop
 
 @section('mail_content')
-    Hello {{ $user->summoner->name }},<br/><br/>
+    Hello Summoner,<br/><br/>
     The team <strong>{{ $team->name }}</strong> invited you in their team.<br/>
     Check out your account on <a style="color: #f25825;" href="http://teamranked.com">Teamranked.com</a><br/>
 @stop

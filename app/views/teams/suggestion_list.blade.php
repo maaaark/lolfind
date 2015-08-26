@@ -69,7 +69,7 @@
                             <td class="title">Languages:</td>
                             <td>
                                 @if($team->looking_for_lang AND trim($team->looking_for_lang) != "")
-                                    {{ ucfirst($team->looking_for_lang) }}
+                                    <img src="/img/flags/{{ $team->looking_for_lang }}.png" class="img-circle" width="35" />
                                 @else
                                     No explicit language.
                                 @endif
@@ -196,7 +196,7 @@
                             <div class="skill_profile col-lg-4 col-md-4 col-sm-4">
                                 <h5>Languages:</h5>
                                 @if($team->looking_for_lang AND trim($team->looking_for_lang) != "")
-                                    {{ $team->looking_for_lang }}
+                                    <img src="/img/flags/{{ $team->looking_for_lang }}.png" class="img-circle" width="35" />
                                 @else
                                     No explicit language.
                                 @endif

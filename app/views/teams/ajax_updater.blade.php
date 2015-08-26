@@ -17,7 +17,9 @@ if($mins < 60){
 		team_id = {{ $ranked_team->id }};
 		$.get("/teams/update_team/"+team_id, {"ajax_load": "true"}).done(function(data){
 			if(data.trim() == "success"){
-				location.reload();
+				if(refresh_after_finish_team_update){
+					location.reload();
+				}
 			}
 		});
 	}

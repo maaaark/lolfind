@@ -15,7 +15,8 @@
                         <img style="width: 100%;" src="/img/leagues/{{ trim(strtolower($player->solo_tier)) }}_{{ trim($pl_division) }}.png" class="tooltips" title="{{ trim(ucfirst(strtolower($player->solo_tier))) }} {{ trim($pl_division) }}">
                         <div style="padding-top: 15px;text-align: center;">{{ $player->solo_tier }} {{ $player->solo_division }}</div>
                     @else
-                        <img style="width: 100%;" src="/img/leagues/0_5.png" class="tooltip" title="Unranked">
+                         <br/>
+                        <img style="width: 100%;" src="/img/leagues/0_5.png" class="tooltips tooltipstered" title="Unranked">
                         <div style="padding-top: 15px;text-align: center;">Unranked</div>
                     @endif
                 </div>
@@ -59,10 +60,10 @@
                         <tr>
                             <td class="title">Languages:</td>
                             <td>
-                                @if($player->main_lang != "")
+                                @if($player->main_lang != "0" && $player->main_lang)
                                     <img src="/img/flags/{{ $player->main_lang }}.png" class="img-circle" width="35" />
                                 @endif
-                                @if($player->sec_lang != "")
+                                @if($player->sec_lang && $player->sec_lang != "0")
                                     <img src="/img/flags/{{ $player->sec_lang }}.png" class="img-circle" width="35" />
                                 @endif
                             </td>
@@ -71,7 +72,9 @@
                         <tr>
                             <td class="title">Region:</td>
                             <td>
+                                @if(Auth::check())
                                 <span style="float: right;padding-right: 10px;"><a href="/summoner/{{ trim($player->region) }}/{{ trim($player->name) }}">more</a></span>
+                                @endif
                                 {{ strtoupper($player->region) }}
                             </td>
                         </tr>
@@ -93,7 +96,8 @@
                                 <br/>
                                 <img src="/img/leagues/{{ trim(strtolower($player->solo_tier)) }}_{{ trim($pl_division) }}.png" class="tooltips" title="{{ trim(ucfirst(strtolower($player->solo_tier))) }} {{ trim($pl_division) }}">
                             @else
-                                <img src="/img/leagues/0_5.png" class="tooltip" title="Unranked">
+                                <br/>
+                                <img src="/img/leagues/0_5.png" class="tooltips tooltipstered" title="Unranked">
                             @endif
                             <br/><br/>
                             <div class="last_update">Last Update:<br/>{{ $player->updated_at->diffForHumans() }}</div>
@@ -151,17 +155,17 @@
                                 @if($player->main_lang != "" || $player->sec_lang != "")
                                 <h5>Languages:</h5>
                                 @endif
-                                @if($player->main_lang != "")
-                                <img src="/img/flags/{{ $player->main_lang }}.png" class="img-circle" width="35" />
-                                @endif
-                                @if($player->sec_lang != "")
-                                    <img src="/img/flags/{{ $player->sec_lang }}.png" class="img-circle" width="35" />
-                                @endif
+                                    @if($player->main_lang != "0" && $player->main_lang)
+                                        <img src="/img/flags/{{ $player->main_lang }}.png" class="img-circle" width="35" />
+                                    @endif
+                                    @if($player->sec_lang && $player->sec_lang != "0")
+                                        <img src="/img/flags/{{ $player->sec_lang }}.png" class="img-circle" width="35" />
+                                    @endif
                                 <br/>
                                     Region: {{ $player->region }}
                             </div>
                         </div>
-                            <p>{{ Str::limit($player->description, 200) }} <a href="/summoner/{{ trim($player->region) }}/{{ trim($player->name) }}">more</a></p>
+                            <p>{{{ Str::limit($player->description, 200) }}} <a href="/summoner/{{ trim($player->region) }}/{{ trim($player->name) }}">more</a></p>
                     </div>
                 </div>
             </div>

@@ -50,7 +50,7 @@
         </td>
     </tr>
     <tr>
-        <td><strong>Looking for team?</strong></td>
+        <td><strong>Your languages</strong></td>
         <td>
             <select name="main_lang" id="m">
                 <option value="0">Main/Native language</option>

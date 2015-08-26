@@ -1738,7 +1738,7 @@ ul#contact-info {
 
 /*-------- 2.7 Login --------*/
 #hero.login {
-    height: auto;
+    height: 100%;
 	display:block;
 	text-transform:none;
 	font-size:12px;
@@ -1748,7 +1748,7 @@ ul#contact-info {
     padding-bottom: 100px;
 }
 #hero.register {
-    height: auto;
+    height: 100%;
     display:block;
     text-transform:none;
     font-size:12px;

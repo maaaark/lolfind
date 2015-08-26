@@ -6,6 +6,9 @@
     <li class="submenu">
         <a href="/teams" class="text-shadow show-submenu">Search Team <i class="icon-down-open-mini"></i></a>
         <ul>
+            @if(Auth::check())
+                <li style="text-align: center;"><a href="/applications">Your applications</a></li>
+            @endif
             <li><a href="/teams/league/bronze"><img src="/img/leagues/bronze_1.png" height="23"> Bronze</a></li>
             <li><a href="/teams/league/silver"><img src="/img/leagues/silver_1.png" height="23"> Silver</a></li>
             <li><a href="/teams/league/gold"><img src="/img/leagues/gold_1.png" height="23"> Gold</a></li>

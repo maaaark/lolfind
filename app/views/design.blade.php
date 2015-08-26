@@ -148,9 +148,8 @@
 </header><!-- End Header -->
 <div id="page_container">
    @yield('header')
-   @include('layouts.errors')
-   @yield('content')
-   <footer>
+   <div class="page_content_container" id="page_content_container">@yield('content')</div>
+   <footer id="page_footer">
        <div class="container">
            <div class="row">
                <div class="col-md-12">
@@ -260,9 +259,25 @@
                 }, 100);
             }
         });
+
+        // Footer nach unten verschieben wenn Seite nicht hoch genug ist
+        if($(window).height() > $("body").height()){
+            diff = parseInt($(window).height()) - parseInt($("body").outerHeight());
+            $("#page_content_container").css("min-height", diff + parseInt($("#page_content_container").outerHeight()) + "px");
+            $(document).trigger("footer_resize");
+        }
     });
 </script>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
+    ga('create', 'UA-51337940-5', 'auto');
+    ga('send', 'pageview');
+
+</script>
 <!-- Common scripts -->
 <script src="/js/common_scripts_min.js"></script>
 <script src="/js/functions.js"></script>

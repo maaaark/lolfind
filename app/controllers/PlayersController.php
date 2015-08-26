@@ -3,13 +3,13 @@
 class PlayersController extends \BaseController {
     public function index($lane = false){
         if($lane == false){
-            $player_list = Summoner::where("looking_for_team", "=", 1)->paginate(10);
+            $player_list = Summoner::where("looking_for_team", "=", 1)->orderBy("updated_at", "DESC")->paginate(10);
         } else {
             $lane = trim(strtolower($lane));
             if($lane == "top" || $lane == "mid" || $lane == "support" || $lane == "jungle" || $lane == "adc"){
-                $player_list = Summoner::where("looking_for_team", "=", 1)->where("search_".$lane, "=", 1)->paginate(10);
+                $player_list = Summoner::where("looking_for_team", "=", 1)->where("search_".$lane, "=", 1)->orderBy("updated_at", "DESC")->paginate(10);
             } else {
-                $player_list = Summoner::where("looking_for_team", "=", 1)->paginate(10);
+                $player_list = Summoner::where("looking_for_team", "=", 1)->orderBy("updated_at", "DESC")->paginate(10);
             }
         }
         return View::make("players.index", compact('player_list', 'lane'));
@@ -56,7 +56,7 @@ class PlayersController extends \BaseController {
             }
         }
 
-        $player_list = $player_list->paginate(10);
+        $player_list = $player_list->orderBy("updated_at", "DESC")->paginate(10);
 
 
         return View::make("players.suggestion_list", array(

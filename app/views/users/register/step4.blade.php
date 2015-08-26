@@ -49,6 +49,7 @@
     {{ Form::close() }}
             </div>
         </section>
+        @include('users.register.register_resize_script')
 @stop
 @section('siebar')
     @include('layouts.sidebar')
