@@ -226,14 +226,14 @@
                                         @if($user->summoner->main_lang == "" AND $user->summoner->sec_lang == "")
                                             EN
                                         @else
-                                            @if($user->summoner->main_lang != "" && $user->summoner->main_lang != "none" $user->summoner->main_lang != "0")
+                                            @if($user->summoner->main_lang != "" && $user->summoner->main_lang != "none" && $user->summoner->main_lang != "0")
                                                 <div>
                                                     <img src="/img/flags/{{ strtoupper($user->summoner->main_lang) }}.png" style="height: 25px;">
                                                     {{ strtoupper(trim($user->summoner->main_lang)) }}
                                                 </div>
                                             @endif
 
-                                            @if($user->summoner->sec_lang != "" && $user->summoner->sec_lang != "none" $user->summoner->sec_lang != "0")
+                                            @if($user->summoner->sec_lang != "" && $user->summoner->sec_lang != "none" && $user->summoner->sec_lang != "0")
                                                 <div>
                                                     <img src="/img/flags/{{ strtoupper(trim($user->summoner->sec_lang)) }}.png" style="height: 25px;">
                                                     {{ strtoupper($user->summoner->sec_lang) }}
