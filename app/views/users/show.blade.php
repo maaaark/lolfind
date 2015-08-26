@@ -27,7 +27,7 @@
             <div class="col-md-8">
                 <div style="padding: 15px;" class="strip_all_tour_list">
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-3" style="text-align: center;">
                             @if($user->summoner->solo_tier != "none")
                                 <img src="/img/leagues/{{ trim(strtolower($user->summoner->solo_tier)) }}_1.png" class="tooltips" title="{{ trim(ucfirst(strtolower($user->summoner->solo_tier))) }}">
                                 <div style="padding-top: 8px;font-weight: bold;text-align: center;">
@@ -223,20 +223,20 @@
                                 <tr>
                                     <td>Language:</td>
                                     <td>
-                                        @if(trim($user->summoner->main_lang) == "" AND trim($user->summoner->sec_lang) == "")
+                                        @if($user->summoner->main_lang == "" AND $user->summoner->sec_lang == "")
                                             EN
                                         @else
-                                            @if(trim($user->summoner->main_lang) != "")
+                                            @if($user->summoner->main_lang != "" && $user->summoner->main_lang != "none" && $user->summoner->main_lang != "0")
                                                 <div>
-                                                    <img src="/img/flags/{{ strtoupper(trim($user->summoner->main_lang)) }}.png" style="height: 25px;">
+                                                    <img src="/img/flags/{{ strtoupper($user->summoner->main_lang) }}.png" style="height: 25px;">
                                                     {{ strtoupper(trim($user->summoner->main_lang)) }}
                                                 </div>
                                             @endif
 
-                                            @if(trim($user->summoner->sec_lang) != "")
+                                            @if($user->summoner->sec_lang != "" && $user->summoner->sec_lang != "none" && $user->summoner->sec_lang != "0")
                                                 <div>
                                                     <img src="/img/flags/{{ strtoupper(trim($user->summoner->sec_lang)) }}.png" style="height: 25px;">
-                                                    {{ strtoupper(trim($user->summoner->sec_lang)) }}
+                                                    {{ strtoupper($user->summoner->sec_lang) }}
                                                 </div>
                                             @endif
 
