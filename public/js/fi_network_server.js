@@ -1,7 +1,10 @@
 var socket;
 var opened_chats = [];
 var fi_chat_history_last_sender;
-var fi_server_online = false;
+var fi_server_online 	= false;
+var fi_server_user      = 0;
+var fi_server_username  = "";
+var fi_server_user_icon = "";
 
 function fi_server_init() {
 	try {
@@ -9,15 +12,22 @@ function fi_server_init() {
 		socket.onopen    = function(msg) { 
 							    console.log("readyState FI-Network-Server: "+this.readyState);
 
-							    fi_server_send({"type": "login", "values": {"uID": fi_server_user}});
+							    fi_server_send({"type": "login", "values": fi_server_login });
 						   };
 		socket.onmessage = function(msg) {
 								json = JSON.parse(msg.data);
 								if(typeof json["type"] != "undefined"){
 									if(json["type"] == "login_success"){
 										if(this.readyState == 1 && typeof json["status"] != "undefined" && json["status"] == "true"){
-							   				fi_server_online = true;
-							   				open_still_opened_chat_windows();
+											if(typeof json["data"] != "undefined"){
+												if(typeof json["data"]["username"] != "undefined" && typeof json["data"]["user"] != "undefined" && json["data"]["user_icon"] != "undefined"){
+													fi_server_user 		= json["data"]["user"];
+													fi_server_username  = json["data"]["username"];
+													fi_server_user_icon	= json["data"]["user_icon"];
+							   						fi_server_online = true;
+							   						open_still_opened_chat_windows();
+						   						}
+											}
 							    		}
 									} else if(json["type"] == "chat"){
 										fi_server_chat_handle_incoming(json);
@@ -32,8 +42,8 @@ function fi_server_init() {
 						   };
 
 		socket.onclose   = function(msg) { 
-							   // log("Disconnected - status "+this.readyState);
-							   // Nichts machen
+							   fi_server_online = false;
+							   console.log("FI-Network-Server disconnected");
 						   };
 	}
 	catch(ex){ 
