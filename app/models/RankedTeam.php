@@ -34,7 +34,8 @@ class RankedTeam extends \Eloquent {
             $ranked_team->leader_summoner_id = $team["roster"]["ownerId"];
             
             if($insert_mode && Auth::check()){
-                $ranked_team->adder_summoner_id  = Auth::user()->summoner->summoner_id;
+                $ranked_team->adder_summoner_id   = Auth::user()->summoner->summoner_id;
+                $ranked_team->looking_for_players = 1;
             }
             
             // Liga-Platzierung laden
