@@ -12,6 +12,7 @@
 				</a><br/>
 				<?php
 				$user = Helpers::getUser($message->author->id);
+				?>
 				@if($user->hasRole("admin"))
 					<i>Administrator</i>
 				@endif
