@@ -60,10 +60,10 @@
                         <tr>
                             <td class="title">Languages:</td>
                             <td>
-                                @if($player->main_lang != "0" && $player->main_lang)
+                                @if($player->main_lang != "0" && $player->main_lang&& $player->main_lang != "none")
                                     <img src="/img/flags/{{ $player->main_lang }}.png" class="img-circle" width="35" />
                                 @endif
-                                @if($player->sec_lang && $player->sec_lang != "0")
+                                @if($player->sec_lang && $player->sec_lang != "0"&& $player->sec_lang != "none")
                                     <img src="/img/flags/{{ $player->sec_lang }}.png" class="img-circle" width="35" />
                                 @endif
                             </td>
@@ -155,10 +155,10 @@
                                 @if($player->main_lang != "" || $player->sec_lang != "")
                                 <h5>Languages:</h5>
                                 @endif
-                                    @if($player->main_lang != "0" && $player->main_lang)
+                                    @if($player->main_lang != "0" && $player->main_lang && $player->main_lang != "none")
                                         <img src="/img/flags/{{ $player->main_lang }}.png" class="img-circle" width="35" />
                                     @endif
-                                    @if($player->sec_lang && $player->sec_lang != "0")
+                                    @if($player->sec_lang && $player->sec_lang != "0" && $player->sec_lang != "none")
                                         <img src="/img/flags/{{ $player->sec_lang }}.png" class="img-circle" width="35" />
                                     @endif
                                 <br/>
