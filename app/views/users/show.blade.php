@@ -223,20 +223,20 @@
                                 <tr>
                                     <td>Language:</td>
                                     <td>
-                                        @if(trim($user->summoner->main_lang) == "" AND trim($user->summoner->sec_lang) == "")
+                                        @if($user->summoner->main_lang == "" AND $user->summoner->sec_lang == "")
                                             EN
                                         @else
-                                            @if(trim($user->summoner->main_lang) != "" && trim($user->summoner->main_lang) != "none" trim($user->summoner->main_lang) != "0")
+                                            @if($user->summoner->main_lang != "" && $user->summoner->main_lang != "none" $user->summoner->main_lang != "0")
                                                 <div>
-                                                    <img src="/img/flags/{{ strtoupper(trim($user->summoner->main_lang)) }}.png" style="height: 25px;">
+                                                    <img src="/img/flags/{{ strtoupper($user->summoner->main_lang) }}.png" style="height: 25px;">
                                                     {{ strtoupper(trim($user->summoner->main_lang)) }}
                                                 </div>
                                             @endif
 
-                                            @if(trim($user->summoner->sec_lang) != "" && trim($user->summoner->sec_lang) != "none" trim($user->summoner->sec_lang) != "0")
+                                            @if($user->summoner->sec_lang != "" && $user->summoner->sec_lang != "none" $user->summoner->sec_lang != "0")
                                                 <div>
                                                     <img src="/img/flags/{{ strtoupper(trim($user->summoner->sec_lang)) }}.png" style="height: 25px;">
-                                                    {{ strtoupper(trim($user->summoner->sec_lang)) }}
+                                                    {{ strtoupper($user->summoner->sec_lang) }}
                                                 </div>
                                             @endif
 
