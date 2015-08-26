@@ -10,9 +10,13 @@
 				<a href="/summoner/{{ $message->author->region }}/{{{ Helpers::get_summoner($message->author->summoner_id, $message->author->region)->name }}}">
 					{{{ Helpers::get_summoner($message->author->summoner_id, $message->author->region)->name }}}
 				</a><br/>
-				@if($message->author->hasRole("admin"))
+				<?php
+				$user = Helpers::getUser($message->author->id);
+				?>
+				@if($user->hasRole("admin"))
 					<i>Administrator</i>
 				@endif
+
 			</td>
 			<td class="author_message">
 				{{ nl2br(e($message->data)) }}

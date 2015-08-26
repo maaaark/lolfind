@@ -139,6 +139,6 @@ input.forum_create_input {
 	font-size: 12px;
 	color: rgba(0,0,0,0.5);
 }
-.author_message {
+.topics_table_holder table.table.topics_table tr td.author_message {
 	padding: 25px;
 }
