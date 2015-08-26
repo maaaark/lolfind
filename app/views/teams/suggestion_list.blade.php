@@ -154,7 +154,7 @@
                         @if($team->description != "")
                             <p>
                                 @if(strlen($team->description) > 100)
-                                    {{ substr(trim($team->description, 0, 100)) }} ...
+                                    {{ substr(trim($team->description), 0, 100) }} ...
                                 @else
                                     {{ $team->description }}
                                 @endif
