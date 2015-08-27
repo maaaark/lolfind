@@ -198,6 +198,8 @@ class UsersController extends \BaseController {
     }
 
     public function step1() {
+        Session::put('region', "");
+        Session::put('summoner_name', "");
         return View::make("users.register.step1");
     }
 
@@ -215,8 +217,6 @@ class UsersController extends \BaseController {
     public function step2() {
         if(Session::get('summoner_id')) {
             $summoner = Summoner::where("summoner_id", "=", Session::get('summoner_id'))->first();
-            Session::put('region', $summoner->region);
-            Session::put('summoner_name', $summoner->name);
 
             return View::make("users.register.step2", compact('summoner'));
         } else {
@@ -231,11 +231,15 @@ class UsersController extends \BaseController {
 
         if ($validation->passes())
         {
-            $check_summoner = Summoner::where("name","=", Input::get('summoner_name'))->where("verify","=", 1)->first();
+            $check_summoner = Summoner::where("name","=", Input::get('summoner_name'))->where("region", "=", Input::get('region'))->where("verify","=", 1)->first();
             if(!$check_summoner) {
                 $summoner = new Summoner();
                 $summoner_found = $summoner->addSummoner(Input::get('region'), Input::get('summoner_name'));
-                if($summoner_found) {
+                $summoner = Summoner::where("summoner_id", "=", Session::get('summoner_id'))->where("region", "=", Input::get('region'))->first();
+                if($summoner_found && $summoner && isset($summoner->id) && $summoner->id > 0) {
+                    Session::put('region', $summoner->region);
+                    Session::put('summoner_name', $summoner->name);
+
                     Session::put('verify_code', str_random(10));
                     return Redirect::to('/register/step2')->with("success", "Please verify your summoner.");
                 } else {
