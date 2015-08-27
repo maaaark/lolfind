@@ -29,7 +29,7 @@
                 <td>
                     <select name="region" class="form-control">
                         <option value="euw">EU-West</option>
-                        <option value="na">Nordamerika</option>
+                        <option value="na">North America</option>
                     </select>
             </tr>
     </table>
