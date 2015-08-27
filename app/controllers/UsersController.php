@@ -526,6 +526,7 @@ class UsersController extends \BaseController {
                     if(!$summoner) {
                         $summoner = new Summoner;
                     }
+
                     $summoner->summoner_id = $obj[$clean_summoner_name]["id"];
                     $summoner->name = $obj[$clean_summoner_name]["name"];
                     $summoner->profileIconId = $obj[$clean_summoner_name]["profileIconId"];
@@ -533,6 +534,7 @@ class UsersController extends \BaseController {
                     $summoner->revisionDate = $obj[$clean_summoner_name]["revisionDate"];
                     $summoner->region = $region;
                     $summoner->last_update_maindata = date('Y-m-d H:i:s');
+                    $summoner->save();
 
                     $summoner_stats = $this->allowed_regions[$region]["api_endpoint"]."/api/lol/".$region."/v1.3/stats/by-summoner/".$summoner->summoner_id."/summary?season=".$this->current_season."&api_key=".$api_key;
                     $json2 = @file_get_contents($summoner_stats);
