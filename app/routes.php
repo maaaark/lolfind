@@ -93,3 +93,8 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function(){
 App::missing(function($exception){
     return Response::view('404_error', array(), 404);
 });
+
+App::error(function(RuntimeException $exception)
+{
+    return Response::view('500_error', array(), 404);
+});
