@@ -1,4 +1,4 @@
-@extends('design')
+@extends('design', array('no_page_errors' => true))
 @section('title', "New Account - Step 1")
 @section('content')
     <section id="hero" class="register">

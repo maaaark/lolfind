@@ -415,7 +415,7 @@ class UsersController extends \BaseController {
         if(Auth::check()) {
             return Redirect::to('/');
         } else {
-            return View::make("layouts.login")->with("error", "Wrong E-mail address or password.");
+            return View::make("layouts.login");
         }
     }
 
@@ -453,7 +453,7 @@ class UsersController extends \BaseController {
                 // redirect them to the secure section or whatever
                 // return Redirect::to('secure');
                 // for now we'll just echo success (even though echoing in a controller is bad)
-                return Redirect::to("/");
+                return Redirect::to("/")->with("success", "You have been logged in.");
 
             } else {
                 // validation not successful, send back to form

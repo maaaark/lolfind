@@ -1,4 +1,4 @@
-@extends('design')
+@extends('design', array('no_page_errors' => true))
 @section('title', Lang::get("teams.site_title"))
 @section('content')
     <section id="hero" class="login">
@@ -6,15 +6,9 @@
             <div class="row">
                 <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
                     <div id="login">
-                        @include('layouts.errors')
                         <div class="text-center"><img src="/img/teamranked_black.png" alt="" data-retina="true" width="280"></div>
+                        @include('layouts.errors')
                         <hr>
-                        <p><div class="bs-callout bs-callout-danger">
-                            @if ($errors->any())
-                                {{ implode('', $errors->all(':message')) }}
-                            @endif
-                        </div>
-                        </p>
                         {{ Form::open(array('url' => '/dologin')) }}
                             <div class="form-group">
                                 <label>E-Mail</label>

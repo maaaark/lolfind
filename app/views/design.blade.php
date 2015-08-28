@@ -149,7 +149,12 @@
 </header><!-- End Header -->
 <div id="page_container">
    @yield('header')
-   <div class="page_content_container" id="page_content_container">@yield('content')</div>
+   <div class="page_content_container" id="page_content_container">
+        @if(!isset($no_page_errors) || $no_page_errors == false)
+            <div class="errors_container">@include('layouts.errors')</div>
+        @endif
+        @yield('content')
+   </div>
    <footer id="page_footer">
        <div class="container">
            <div class="row">
