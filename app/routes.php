@@ -87,3 +87,8 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function(){
     	Route::get('/network_server', "AdminController@network_server");
 	}
 });
+
+// Error Pages
+App::missing(function($exception){
+    return Response::view('404_error', array(), 404);
+});

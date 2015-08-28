@@ -399,13 +399,13 @@ class UsersController extends \BaseController {
                 $user->password = Hash::make(Input::get('password'));
             }
             $user->save();
-            return Redirect::to('/account/edit/')->with("success", "Eingaben gespeichert!");
+            return Redirect::to('/account/edit/')->with("success", "Input saved!");
         } else {
             $messages = $validation->messages();
             return Redirect::to("/account/edit/")
                 ->withInput()
                 ->withErrors($validation)
-                ->with('error', 'Es sind Fehler aufgetreten!.')->with('input', Input::all());
+                ->with('error', 'An error has occurred!')->with('input', Input::all());
         }
     }
 
@@ -415,14 +415,14 @@ class UsersController extends \BaseController {
         if(Auth::check()) {
             return Redirect::to('/');
         } else {
-            return View::make("layouts.login")->with("error", "Fehler beim einloggen. Username/Passwort falsch.");
+            return View::make("layouts.login")->with("error", "Wrong E-mail address or password.");
         }
     }
 
     public function logout()
     {
         Auth::logout();
-        return Redirect::to("/")->with("success", "Du wurdest ausgeloggt");
+        return Redirect::to("/")->with("success", "You have been logged out");
     }
 
     public function doLogin()
