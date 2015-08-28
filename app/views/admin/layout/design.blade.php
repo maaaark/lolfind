@@ -3,10 +3,11 @@
 	<head>
 		<title>@yield('title')Admin - Teamranked</title>
 
-		<script type="text/javascript" src="/js/jquery.min.js"></script>
-
 		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="/css/admin.css">
+		
+		<script type="text/javascript" src="/js/jquery.min.js"></script>
+		<script type="text/javascript" src="/js/chartjs/Chart.min.js"></script>
 
 		<script>
 			$(document).ready(function(){
@@ -30,6 +31,7 @@
 			<div class="page_navigation">
 				<a href="/admin"><div class="element">Dashboard</div></a>
 				<a href="/admin/network_server"><div class="element">Network Server</div></a>
+				<a href="/admin/statistics"><div class="element">Statistiken</div></a>
 				<a href="/logout"><div class="element logout">Logout</div></a>
 			</div>
 		</div>

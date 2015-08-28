@@ -88,6 +88,22 @@ body {
 	padding: 25px;
 }
 
+.page_holder .page_width .table_holder {
+	background: #fff;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.content_box {
+	background: #fff;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+	padding: 15px;
+}
+
+.content_box h2 {
+	margin-top: 0px;
+	padding-top: 0px;
+}
+
 /*
  *	Dashboard
  */

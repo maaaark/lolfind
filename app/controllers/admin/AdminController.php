@@ -53,4 +53,87 @@ class AdminController extends BaseController {
     	));
     }
 
+    private function statistics_date_render($date){
+        $date       = date("d.m.Y", strtotime($date));
+        $heute      = date("d.m.Y");
+        $gestern    = date("d.m.Y", time() - 60*60*24);
+        $vorgestern = date("d.m.Y", time() - 60*60*24*2);
+        if($date == $heute){
+            return "Heute";
+        }
+        elseif($date == $gestern){
+            return "Gestern";
+        }
+        elseif($date == $vorgestern){
+            return "Vorgestern";
+        }
+        return $date;
+    }
+
+    public function statistics(){
+        $date = date("Y-m-d H:i:s", time() - 60*60*24*7); // Datum von vor 7 Tagen
+
+        // Invitations-Data
+        $invitations       = array();
+        $invitations_query = DB::select(DB::raw("SELECT COUNT(*) AS count, DATE(created_at) AS date FROM ranked_team_invitations WHERE created_at > :var GROUP BY DATE(ranked_team_invitations.created_at)"), array(
+            "var" => $date
+        ));
+        foreach($invitations_query as $element){
+            if(isset($element->count) && isset($element->date)){
+                $invitations[] = array(
+                    "count" => $element->count,
+                    "date" => $this->statistics_date_render($element->date),
+                );
+            }
+        }
+
+        // Applications-Data
+        $applications       = array();
+        $applications_query = DB::select(DB::raw("SELECT COUNT(*) AS count, DATE(created_at) AS date FROM ranked_team_applications WHERE created_at > :var GROUP BY DATE(ranked_team_applications.created_at)"), array(
+            "var" => $date
+        ));
+        foreach($applications_query as $element){
+            if(isset($element->count) && isset($element->date)){
+                $applications[] = array(
+                    "count" => $element->count,
+                    "date" => $this->statistics_date_render($element->date),
+                );
+            }
+        }
+
+        // Chat-Data
+        $chats       = array();
+        $chats_query = DB::connection('mysql2')->select(DB::raw("SELECT COUNT(*) AS count, DATE(created_at) AS date FROM chats WHERE created_at > :var GROUP BY DATE(chats.created_at)"), array(
+            "var" => $date
+        ));
+        foreach($chats_query as $element){
+            if(isset($element->count) && isset($element->date)){
+                $chats[] = array(
+                    "count" => $element->count,
+                    "date" => $this->statistics_date_render($element->date),
+                );
+            }
+        }
+
+        // Notification-Data
+        $notifications       = array();
+        $notifications_query = DB::connection('mysql2')->select(DB::raw("SELECT COUNT(*) AS count, DATE(created_at) AS date FROM notifications WHERE created_at > :var GROUP BY DATE(notifications.created_at)"), array(
+            "var" => $date
+        ));
+        foreach($notifications_query as $element){
+            if(isset($element->count) && isset($element->date)){
+                $notifications[] = array(
+                    "count" => $element->count,
+                    "date" => $this->statistics_date_render($element->date),
+                );
+            }
+        }
+        return View::make("admin.statistics", array(
+            "invitations"   => $invitations,
+            "applications"  => $applications,
+            "chats"         => $chats,
+            "notifications" => $notifications,
+        ));
+    }
+
 }

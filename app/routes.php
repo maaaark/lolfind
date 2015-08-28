@@ -85,6 +85,7 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function(){
     if(Auth::check() && Auth::user()->hasRole("admin")){
     	Route::get('/', "AdminController@index");
     	Route::get('/network_server', "AdminController@network_server");
+    	Route::get('/statistics', "AdminController@statistics");
 	}
 });
 
