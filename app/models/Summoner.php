@@ -474,7 +474,6 @@ class Summoner extends \Eloquent {
         $region = trim(strtolower($region));
         if(isset($this->allowed_regions[$region]) && isset($this->allowed_regions[$region]["status"]) && $this->allowed_regions[$region]["status"] == true){
             $data = Summoner::where('name', 'LIKE', trim($summoner_name))->where("region","=",$region)->first();
-
             $need_api_request = true;
             if(isset($data["id"]) && $data["id"] > 0){
                 $date1   = date('Y-m-d H:i:s');
@@ -494,9 +493,9 @@ class Summoner extends \Eloquent {
                 $clean_summoner_name = strtolower($clean_summoner_name);
                 $clean_summoner_name = mb_strtolower($clean_summoner_name, 'UTF-8');
 
-                $summoner_in_db = Summoner::where("name","=",$summoner_name)->first();
+                $summoner_in_db = Summoner::where("name","=",$summoner_name)->where("region", "=", $region)->first();
                 if(!$summoner_in_db) {
-                    $api_key 		   = Config::get('api.key');
+                    $api_key           = Config::get('api.key');
                     $summoner_name_url = trim(str_replace(" ", "%20", $region));
                     $summoner_data     = $this->allowed_regions[$region]["api_endpoint"]."/api/lol/".$region."/v1.4/summoner/by-name/".$clean_summoner_name."?api_key=".$api_key;
                     $json = @file_get_contents($summoner_data);
@@ -544,6 +543,7 @@ class Summoner extends \Eloquent {
                                 }
                             }
                             //$summoner = $this->updateRankedData($summoner, $summoner->summoner_id, $region);
+                            $summoner = Summoner::updateRankedData($summoner, $summoner->summoner_id, $region);
                             $summoner->save();
                             Session::put('summoner_id', $summoner->summoner_id);
                             return true;
@@ -560,6 +560,7 @@ class Summoner extends \Eloquent {
             return true;
         } else {
             //echo "gesperrte region";
+            die();
             return false;
         }
     }

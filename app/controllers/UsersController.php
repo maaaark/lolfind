@@ -198,6 +198,8 @@ class UsersController extends \BaseController {
     }
 
     public function step1() {
+        Session::put('region', "");
+        Session::put('summoner_name', "");
         return View::make("users.register.step1");
     }
 
@@ -215,8 +217,6 @@ class UsersController extends \BaseController {
     public function step2() {
         if(Session::get('summoner_id')) {
             $summoner = Summoner::where("summoner_id", "=", Session::get('summoner_id'))->first();
-            Session::put('region', $summoner->region);
-            Session::put('summoner_name', $summoner->name);
 
             return View::make("users.register.step2", compact('summoner'));
         } else {
@@ -231,11 +231,15 @@ class UsersController extends \BaseController {
 
         if ($validation->passes())
         {
-            $check_summoner = Summoner::where("name","=", Input::get('summoner_name'))->where("verify","=", 1)->first();
+            $check_summoner = Summoner::where("name","=", Input::get('summoner_name'))->where("region", "=", Input::get('region'))->where("verify","=", 1)->first();
             if(!$check_summoner) {
                 $summoner = new Summoner();
                 $summoner_found = $summoner->addSummoner(Input::get('region'), Input::get('summoner_name'));
-                if($summoner_found) {
+                $summoner = Summoner::where("summoner_id", "=", Session::get('summoner_id'))->where("region", "=", Input::get('region'))->first();
+                if($summoner_found && $summoner && isset($summoner->id) && $summoner->id > 0) {
+                    Session::put('region', $summoner->region);
+                    Session::put('summoner_name', $summoner->name);
+
                     Session::put('verify_code', str_random(10));
                     return Redirect::to('/register/step2')->with("success", "Please verify your summoner.");
                 } else {
@@ -395,13 +399,13 @@ class UsersController extends \BaseController {
                 $user->password = Hash::make(Input::get('password'));
             }
             $user->save();
-            return Redirect::to('/account/edit/')->with("success", "Eingaben gespeichert!");
+            return Redirect::to('/account/edit/')->with("success", "Input saved!");
         } else {
             $messages = $validation->messages();
             return Redirect::to("/account/edit/")
                 ->withInput()
                 ->withErrors($validation)
-                ->with('error', 'Es sind Fehler aufgetreten!.')->with('input', Input::all());
+                ->with('error', 'An error has occurred!')->with('input', Input::all());
         }
     }
 
@@ -411,14 +415,14 @@ class UsersController extends \BaseController {
         if(Auth::check()) {
             return Redirect::to('/');
         } else {
-            return View::make("layouts.login")->with("error", "Fehler beim einloggen. Username/Passwort falsch.");
+            return View::make("layouts.login");
         }
     }
 
     public function logout()
     {
         Auth::logout();
-        return Redirect::to("/")->with("success", "Du wurdest ausgeloggt");
+        return Redirect::to("/")->with("success", "You have been logged out");
     }
 
     public function doLogin()
@@ -449,7 +453,7 @@ class UsersController extends \BaseController {
                 // redirect them to the secure section or whatever
                 // return Redirect::to('secure');
                 // for now we'll just echo success (even though echoing in a controller is bad)
-                return Redirect::to("/");
+                return Redirect::to("/")->with("success", "You have been logged in.");
 
             } else {
                 // validation not successful, send back to form
@@ -522,6 +526,7 @@ class UsersController extends \BaseController {
                     if(!$summoner) {
                         $summoner = new Summoner;
                     }
+
                     $summoner->summoner_id = $obj[$clean_summoner_name]["id"];
                     $summoner->name = $obj[$clean_summoner_name]["name"];
                     $summoner->profileIconId = $obj[$clean_summoner_name]["profileIconId"];
@@ -529,6 +534,7 @@ class UsersController extends \BaseController {
                     $summoner->revisionDate = $obj[$clean_summoner_name]["revisionDate"];
                     $summoner->region = $region;
                     $summoner->last_update_maindata = date('Y-m-d H:i:s');
+                    $summoner->save();
 
                     $summoner_stats = $this->allowed_regions[$region]["api_endpoint"]."/api/lol/".$region."/v1.3/stats/by-summoner/".$summoner->summoner_id."/summary?season=".$this->current_season."&api_key=".$api_key;
                     $json2 = @file_get_contents($summoner_stats);

@@ -88,3 +88,40 @@
 	font-weight: bold;
 	padding-right: 10px;
 }
+
+/*
+ *	System Messages
+ */
+.errors_container {
+	width: 100%;
+	max-width: 1140px;
+	margin: 0px;
+	margin: auto;
+	padding: 0px;
+}
+
+.system_message {
+	background: #0042FF;
+	color: #fff;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.errors_container .system_message {
+	margin-top: 10px;
+}
+
+.system_message.red {
+	background: #E23314;
+}
+
+.system_message.green {
+	background: #2DC512;
+}
+
+.system_message.orange {
+	background: #EA8313;
+}

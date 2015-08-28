@@ -19,7 +19,7 @@ body {
 }
 
 .page_header .bar {
-	background: #EC891A;
+	background: #7B7B7B;
 	height: 40px;
 	overflow: hidden;
 }
@@ -35,7 +35,7 @@ body {
 .page_header .bar .admin_title_flag {
 	float :left;
 	padding-top: 11px;
-	color: rgba(0,0,0,0.2);
+	color: rgba(255,255,255,0.4);
 	cursor: default;
 }
 
@@ -86,4 +86,45 @@ body {
 
 .page_holder .page_width {
 	padding: 25px;
+}
+
+.page_holder .page_width .table_holder {
+	background: #fff;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.content_box {
+	background: #fff;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+	padding: 15px;
+}
+
+.content_box h2 {
+	margin-top: 0px;
+	padding-top: 0px;
+}
+
+/*
+ *	Dashboard
+ */
+.dashboard_info {
+	margin-top: 15px;
+}
+
+.dashboard_info .dashboard_info_box {
+	background: #fff;
+	text-align: center;
+	font-size: 14px;
+	color: #A5A5A5;
+	padding: 15px;
+	padding-bottom: 25px;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.dashboard_info .dashboard_info_box .val {
+	text-align: center;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	font-size: 28px;
+	color: #555;
 }

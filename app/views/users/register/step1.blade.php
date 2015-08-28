@@ -1,4 +1,4 @@
-@extends('design')
+@extends('design', array('no_page_errors' => true))
 @section('title', "New Account - Step 1")
 @section('content')
     <section id="hero" class="register">
@@ -29,7 +29,7 @@
                 <td>
                     <select name="region" class="form-control">
                         <option value="euw">EU-West</option>
-                        <option value="na">Nordamerika</option>
+                        <option value="na">North America</option>
                     </select>
             </tr>
     </table>
