@@ -34,7 +34,7 @@
             </tr>
     </table>
 
-    {{ Form::submit("Summoner prüfen", array('class' => 'btn_1')) }}
+    {{ Form::submit("Check Summoner", array('class' => 'btn_1')) }}
     {{ Form::close() }}
             </div>
     </div>
