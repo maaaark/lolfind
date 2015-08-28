@@ -3,7 +3,31 @@
 class AdminController extends BaseController {
 
     public function index(){
-        return View::make("admin.index");
+        $info = array(
+            "players_looking_for_team" => Summoner::where("looking_for_team", "=", "1")->get()->count(),
+            "teams_looking_for_player" => RankedTeam::where("looking_for_players", "=", "1")->get()->count(),
+            "applications_send_today"  => RankedTeamApplication::where("created_at", "LIKE", "%".date("Y-m-d")."%")->get()->count(),
+            "invitations_send_today"  => RankedTeamInvitation::where("created_at", "LIKE", "%".date("Y-m-d")."%")->get()->count(),
+        );
+
+        $roles_info = array(
+            "player_looking_for_top" => Summoner::where("looking_for_team", "=", "1")->where("search_top", "=", "1")->get()->count(),
+            "player_looking_for_jungle" => Summoner::where("looking_for_team", "=", "1")->where("search_jungle", "=", "1")->get()->count(),
+            "player_looking_for_mid" => Summoner::where("looking_for_team", "=", "1")->where("search_mid", "=", "1")->get()->count(),
+            "player_looking_for_adc" => Summoner::where("looking_for_team", "=", "1")->where("search_adc", "=", "1")->get()->count(),
+            "player_looking_for_support" => Summoner::where("looking_for_team", "=", "1")->where("search_support", "=", "1")->get()->count(),
+            
+            "teams_looking_for_top" => RankedTeam::where("looking_for_players", "=", "1")->where("looking_for_top", "=", "1")->get()->count(),
+            "teams_looking_for_jungle" => RankedTeam::where("looking_for_players", "=", "1")->where("looking_for_jungle", "=", "1")->get()->count(),
+            "teams_looking_for_mid" => RankedTeam::where("looking_for_players", "=", "1")->where("looking_for_mid", "=", "1")->get()->count(),
+            "teams_looking_for_adc" => RankedTeam::where("looking_for_players", "=", "1")->where("looking_for_adc", "=", "1")->get()->count(),
+            "teams_looking_for_support" => RankedTeam::where("looking_for_players", "=", "1")->where("looking_for_support", "=", "1")->get()->count(),
+        );
+
+        return View::make("admin.index", array(
+            "info"          => $info,
+            "roles_info"    => $roles_info,
+        ));
     }
 
     public function network_server(){
