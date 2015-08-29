@@ -123,4 +123,41 @@ class Helpers {
 
     	return Summoner::where("summoner_id", "=", $summoner_id)->where("region", "=", $region)->first();
     }
+
+	public static function niceLanguage($nice_lang) {
+		if($nice_lang == "DE") {
+			$nice_lang = "German";
+		} elseif($nice_lang == "UK") {
+			$nice_lang = "English";
+		} elseif($nice_lang == "FR") {
+			$nice_lang = "French";
+		} elseif($nice_lang == "ES") {
+			$nice_lang = "Spanish";
+		} elseif($nice_lang == "IT ") {
+			$nice_lang = "Italian";
+		} elseif($nice_lang == "PL") {
+			$nice_lang = "Polish";
+		} elseif($nice_lang == "TR") {
+			$nice_lang = "Turkish";
+		} elseif($nice_lang == "RU") {
+			$nice_lang = "Russian";
+		} elseif($nice_lang == "PT") {
+			$nice_lang = "Portuguese";
+		} elseif($nice_lang == "PT") {
+			$nice_lang = "Portuguese";
+		} elseif($nice_lang == "NL") {
+			$nice_lang = "Dutch";
+		} elseif($nice_lang == "FI") {
+			$nice_lang = "Finnish";
+		} elseif($nice_lang == "SE") {
+			$nice_lang = "Swedish";
+		} elseif($nice_lang == "NW") {
+			$nice_lang = "Norwegian";
+		} elseif($nice_lang == "DK") {
+			$nice_lang = "Dansk";
+		} else {
+			$nice_queueMode = "Other";
+		}
+		return $nice_lang;
+	}
 }

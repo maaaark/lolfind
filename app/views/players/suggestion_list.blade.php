@@ -35,23 +35,23 @@
                             <td class="title">Roles:</td>
                             <td>
                                 @if($player->search_top == 1)
-                                    <img src="/img/roles/tank.jpg" class="img-circle" width="35" />
+                                    <img src="/img/roles/tank.jpg" title="Top-Lane" class="img-circle" width="35" />
                                     <?php $no_roles_open = false; ?>
                                 @endif
                                 @if($player->search_jungle == 1)
-                                    <img src="/img/roles/fighter.jpg" class="img-circle" width="35" />
+                                    <img src="/img/roles/fighter.jpg" title="Jungle" class="img-circle" width="35" />
                                     <?php $no_roles_open = false; ?>
                                 @endif
                                 @if($player->search_mid == 1)
-                                    <img src="/img/roles/mage.jpg" class="img-circle" width="35" />
+                                    <img src="/img/roles/mage.jpg" title="Mid-Lane" class="img-circle" width="35" />
                                     <?php $no_roles_open = false; ?>
                                 @endif
                                 @if($player->search_adc == 1)
-                                    <img src="/img/roles/marksman.jpg" class="img-circle" width="35" />
+                                    <img src="/img/roles/marksman.jpg" title="Marksman" class="img-circle" width="35" />
                                     <?php $no_roles_open = false; ?>
                                 @endif
                                 @if($player->search_support == 1)
-                                    <img src="/img/roles/support.jpg" class="img-circle" width="35" />
+                                    <img src="/img/roles/support.jpg" title="Support" class="img-circle" width="35" />
                                     <?php $no_roles_open = false; ?>
                                 @endif
                             </td>
@@ -61,10 +61,10 @@
                             <td class="title">Languages:</td>
                             <td>
                                 @if($player->main_lang != "0" && $player->main_lang&& $player->main_lang != "none")
-                                    <img src="/img/flags/{{ $player->main_lang }}.png" class="img-circle" width="35" />
+                                    <img src="/img/flags/{{ $player->main_lang }}.png" title="{{Helpers::niceLanguage($player->main_lang)}}" class="img-circle" width="35" />
                                 @endif
                                 @if($player->sec_lang && $player->sec_lang != "0"&& $player->sec_lang != "none")
-                                    <img src="/img/flags/{{ $player->sec_lang }}.png" class="img-circle" width="35" />
+                                    <img src="/img/flags/{{ $player->sec_lang }}.png" title="{{Helpers::niceLanguage($player->sec_lang)}}" class="img-circle" width="35" />
                                 @endif
                             </td>
                         </tr>
@@ -118,23 +118,23 @@
                             <div class="skill_profile col-lg-4 col-md-4 col-sm-4">
                                 <h5>Main Roles:</h5>
                                 @if($player->search_top == 1)
-                                    <img src="/img/roles/tank.jpg" class="img-circle" width="35" />
+                                    <img src="/img/roles/tank.jpg" title="Top-Lane" class="img-circle" width="35" />
                                     <?php $no_roles_open = false; ?>
                                 @endif
                                 @if($player->search_jungle == 1)
-                                    <img src="/img/roles/fighter.jpg" class="img-circle" width="35" />
+                                    <img src="/img/roles/fighter.jpg" title="Jungle" class="img-circle" width="35" />
                                     <?php $no_roles_open = false; ?>
                                 @endif
                                 @if($player->search_mid == 1)
-                                    <img src="/img/roles/mage.jpg" class="img-circle" width="35" />
+                                    <img src="/img/roles/mage.jpg" title="Mid-Lane" class="img-circle" width="35" />
                                     <?php $no_roles_open = false; ?>
                                 @endif
                                 @if($player->search_adc == 1)
-                                    <img src="/img/roles/marksman.jpg" class="img-circle" width="35" />
+                                    <img src="/img/roles/marksman.jpg" title="Marksman" class="img-circle" width="35" />
                                     <?php $no_roles_open = false; ?>
                                 @endif
                                 @if($player->search_support == 1)
-                                    <img src="/img/roles/support.jpg" class="img-circle" width="35" />
+                                    <img src="/img/roles/support.jpg" title="Support" class="img-circle" width="35" />
                                     <?php $no_roles_open = false; ?>
                                 @endif
 
@@ -156,10 +156,10 @@
                                 <h5>Languages:</h5>
                                 @endif
                                     @if($player->main_lang != "0" && $player->main_lang && $player->main_lang != "none")
-                                        <img src="/img/flags/{{ $player->main_lang }}.png" class="img-circle" width="35" />
+                                        <img src="/img/flags/{{ $player->main_lang }}.png" title="{{Helpers::niceLanguage($player->main_lang)}}" class="img-circle" width="35" />
                                     @endif
                                     @if($player->sec_lang && $player->sec_lang != "0" && $player->sec_lang != "none")
-                                        <img src="/img/flags/{{ $player->sec_lang }}.png" class="img-circle" width="35" />
+                                        <img src="/img/flags/{{ $player->sec_lang }}.png" title="{{Helpers::niceLanguage($player->sec_lang)}}" class="img-circle" width="35" />
                                     @endif
                                 <br/>
                                     Region: {{ $player->region }}

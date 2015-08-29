@@ -44,7 +44,23 @@ function dropdown_roles_arr(selected_value, addition){
 }
 
 function dropdown_languages_arr(selected_value, addition){
-	temp = [["Any language", "any"], ["German", "DE"], ["English", "UK"], ["Spanish", "ES"], ["Italian", "IT"], ["Russian", "RU"], ["Polska", "PL"]];
+	temp = [
+		["Any language", "any"],
+		["English", "UK"],
+		["German", "DE"],
+		["French", "FR"],
+		["Spanish", "ES"],
+		["Italian", "IT"],
+		["Russian", "RU"],
+		["Turkish", "TR"],
+		["Polska", "PL"],
+		["Portuguese", "PT"],
+		["Dutch", "NL"],
+		["Finnish", "FI"],
+		["Swedish", "SE"],
+		["Norwegian", "NW"],
+		["Dansk", "DK"]
+	];
 	if(addition){
 		temp.push(addition);
 	}
@@ -52,6 +68,6 @@ function dropdown_languages_arr(selected_value, addition){
 }
 
 function dropdown_region_arr(selected_value){
-	temp = [["Any Region", "any"],["EUW", "euw"], ["NA", "na"]];
+	temp = [["Any Region", "any"],["EUW", "euw"], ["NA", "na"], ["EUNE", "eune"], ["BR", "br"], ["LAS", "las"], ["LAN", "lan"], ["TR", "tr"], ["OCE", "oce"]];
 	return dropdown_build_arr(temp, selected_value);
 }

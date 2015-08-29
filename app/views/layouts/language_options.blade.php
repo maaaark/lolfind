@@ -1,0 +1,14 @@
+<option value="UK">English</option>
+<option value="DE">German</option>
+<option value="FR">French</option>
+<option value="ES">Spanish</option>
+<option value="TR">Turkish</option>
+<option value="PT">Portuguese</option>
+<option value="NL">Dutch</option>
+<option value="IT">Italian</option>
+<option value="PL">Polish</option>
+<option value="RU">Russian</option>
+<option value="FI">Suomi</option>
+<option value="SE">Swedish</option>
+<option value="NW">Norwegian</option>
+<option value="DK">Dansk</option>
