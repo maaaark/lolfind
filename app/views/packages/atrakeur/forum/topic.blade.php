@@ -18,4 +18,4 @@
 	@include('forum::partials.postbutton', array('message' => trans('forum::base.new_reply'), 'url' => $topic->postUrl, 'accessModel' => $topic))
 </div>
 
-{{ $paginationLinks }}
+{{ $messages->links() }}
