@@ -53,7 +53,27 @@
 @section('content')
     <div class="container margin_30">
         <div class="row">
-
+            <div class="col-md-12" id="facebook_teamranked_add" style="display: none;">
+                <div style="float: right;color: #fff;padding-top: 10px;padding-right: 10px;cursor: pointer;">
+                    <i class="icon-cancel" id="facebook_teamranked_add_close"></i>
+                </div>
+                <a href="https://www.facebook.com/teamranked" color="#fff" target="_blank">
+                    <div style="background-image: url(/img/facebook_icon_small.png);background-color: #3a5795;background-size: auto 33px;background-repeat: no-repeat;background-position: left 5px bottom;margin-bottom: 20px;color: #fff;">
+                        <div style="padding: 10px;padding-left: 35px;padding-right: 20px;">
+                            We are on facebook! Hit the like-button and never miss any news and features about teamranked.com
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <script>
+                if(typeof $.cookie('fb_index_add') == "undefined" || $.cookie('fb_index_add') != "true"){
+                    $("#facebook_teamranked_add").show();
+                    $("#facebook_teamranked_add_close").click(function(){
+                        $("#facebook_teamranked_add").hide(0);
+                        $.cookie('fb_index_add', 'true');
+                    });
+                }
+            </script>
             <div class="col-md-4 wow zoomIn" data-wow-delay="0.2s">
                 <div class="feature_home">
                     <h3><span>120+</span> Teams looking for player</h3>
