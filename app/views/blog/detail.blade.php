@@ -19,7 +19,7 @@
 							@endif
 						</div>
 						<div class="post_text">
-							{{ $post->text }}
+							{{ nl2br($post->text) }}
 						</div>
 						<div class="post_info">
 							{{ $post->created_at->diffForHumans() }}
