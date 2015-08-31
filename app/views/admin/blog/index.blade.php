@@ -1,5 +1,6 @@
 @extends('admin.layout.design')
 @section('title', 'Blog - ')
+@section('nav_page', 'blog')
 @section('content')
 	<div class="page_width">
 		<div style="float: right;padding-top: 15px;">

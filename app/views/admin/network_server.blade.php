@@ -1,5 +1,6 @@
 @extends('admin.layout.design')
 @section('title', 'Network Server - ')
+@section('nav_page', 'nw_server')
 @section('content')
 	<div class="page_width">
 		<h1>Network Server - Live Info</h1>

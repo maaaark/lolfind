@@ -1,5 +1,6 @@
 @extends('admin.layout.design')
 @section('title', 'Network Server - ')
+@section('nav_page', 'statistics')
 @section('content')
 	<div class="page_width">
 		<h1>Statistiken</h1>

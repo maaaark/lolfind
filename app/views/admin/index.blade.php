@@ -1,5 +1,6 @@
 @extends('admin.layout.design')
 @section('title', 'Dashboard - ')
+@section('nav_page', 'dashboard')
 @section('content')
 	<div class="page_width">
 		<h1>Dashboard</h1>

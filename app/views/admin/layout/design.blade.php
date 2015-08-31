@@ -7,6 +7,7 @@
 		<link rel="stylesheet" type="text/css" href="/css/admin.css">
 		
 		<script type="text/javascript" src="/js/jquery.min.js"></script>
+		<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="/js/chartjs/Chart.min.js"></script>
 
 		<script>
@@ -16,29 +17,16 @@
 		</script>
 	</head>
 	<body>
-		<div class="page_header" id="page_header">
-			<div class="bar">
-				<a href="/admin"><img src="/img/teamranked_white.png" class="logo"></a>
-				<div class="admin_title_flag">ADMIN</div>
-
-				<a href="/summoner/{{ Auth::user()->summoner->region }}/{{ Auth::user()->summoner->name }}">
-					<div class="auth_box">
-						<img src="http://ddragon.leagueoflegends.com/cdn/{{ Config::get('settings.patch') }}/img/profileicon/{{ Auth::user()->summoner->profileIconId }}.png"class="img-circle" height="30">
-						{{ Auth::user()->summoner->name }}
-					</div>
-				</a>
-			</div>
-			<div class="page_navigation">
-				<a href="/admin"><div class="element">Dashboard</div></a>
-				<a href="/admin/blog"><div class="element">Blog</div></a>
-				<a href="/admin/network_server"><div class="element">Network Server</div></a>
-				<a href="/admin/statistics"><div class="element">Statistiken</div></a>
-				<a href="/logout"><div class="element logout">Logout</div></a>
-			</div>
-		</div>
+		@include('admin.layout.navigation')
 		<div class="page_holder" id="page_holder">
 			<div>@include('admin.layout.errors')</div>
 			@yield('content')
 		</div>
+		<script>
+			var nav_page = '@yield("nav_page")';
+			if(nav_page && nav_page.trim() != ""){
+				$("nav.navbar li[data-nav='"+nav_page+"'").addClass("active");
+			}
+		</script>
 	</body>
 </html>

@@ -1,5 +1,6 @@
 @extends('admin.layout.design')
 @section('title', 'Blog - ')
+@section('nav_page', 'blog')
 @section('content')
 	<div class="page_width">
 		<h1>Blog <span>> Post</span></h1>
