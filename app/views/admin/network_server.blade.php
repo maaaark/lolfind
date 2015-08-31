@@ -49,6 +49,18 @@
 						<td>Connected users</td>
 						<td>{{ $server_info["users"] }}</td>
 					</tr>
+					<tr>
+						<td>Memory usage</td>
+						<td>{{ $server_info["memory_usage"] }} bytes</td>
+					</tr>
+					<tr>
+						<td>Memory usage MB</td>
+						<td>{{ round($server_info["memory_usage"]/1048576,2) }} MB</td>
+					</tr>
+					<tr>
+						<td>PID</td>
+						<td>{{ $server_info["pid"] }}</td>
+					</tr>
 				</table>
 			@else
 				Der Chat-Server scheint momentan <span style="color: red;font-weight: bold;">offline</span> zu sein.
