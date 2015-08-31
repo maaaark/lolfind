@@ -1,5 +1,5 @@
 @extends('design')
-@section('title', "Unknown Summoner")
+@section('title', "Unknown Summoner - ")
 @section('css_addition')
     <link rel="stylesheet" href="/css/teams.css">
 @stop

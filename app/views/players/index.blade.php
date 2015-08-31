@@ -1,5 +1,5 @@
 @extends('design_left_sidebar')
-@section('title', Lang::get("teams.site_title"))
+@section('title', "Players - ")
 @section('css_addition')
     <link rel="stylesheet" href="/css/teams.css">
 @stop

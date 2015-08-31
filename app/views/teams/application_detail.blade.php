@@ -1,5 +1,5 @@
 @extends('design')
-@section('title', $ranked_team->name)
+@section('title', $ranked_team->name." - ")
 @section('css_addition')
    <link rel="stylesheet" href="/css/teams.css">
 @stop

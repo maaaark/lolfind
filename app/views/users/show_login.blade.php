@@ -1,5 +1,5 @@
 @extends('design')
-@section('title', "You need to login")
+@section('title', "You need to login - ")
 @section('css_addition')
     <link rel="stylesheet" href="/css/teams.css">
 @stop

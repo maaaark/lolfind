@@ -1,5 +1,5 @@
 @extends('design')
-@section('title', Lang::get("teams.add.site_title"))
+@section('title', "Add a team - ")
 @section('css_addition')
    <link rel="stylesheet" href="/css/teams.css">
 @stop

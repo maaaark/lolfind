@@ -1,5 +1,5 @@
 @extends('design', array('no_page_errors' => true))
-@section('title', "New Account - Step 3")
+@section('title', "New Account - Step 3 - ")
 @section('content')
     <section id="hero" class="register">
         <div class="container margin_30 register">

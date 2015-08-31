@@ -12,7 +12,7 @@
     <meta name="keywords" content="league of legends, team, player. find, search" />
     <meta name="description" content="Find players or teams for League of Legends">
     <meta name="google-site-verification" content="EcX2_Wu6MfPgQBTpv9RcRgemiG1ImqenDjqMxRCgGq4" />
-    <title>Teamranked.com - Find players or teams for League of Legends</title>
+    <title>@yield('title')Teamranked.com - Find players or teams for League of Legends</title>
 
     <!-- Favicons-->
     <link rel="icon" type="image/ico" href="favicon.ico">

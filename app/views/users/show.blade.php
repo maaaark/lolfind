@@ -1,5 +1,5 @@
 @extends('design')
-@section('title', $user->summoner->name)
+@section('title', $user->summoner->name." - ")
 @section('css_addition')
     <link rel="stylesheet" href="/css/players.css">
     <link rel="stylesheet" href="/css/summoner_matchhistory.css">
