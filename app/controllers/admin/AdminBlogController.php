@@ -72,7 +72,7 @@ class AdminBlogController extends BaseController {
                 }
             }
             $post->delete();
-            return Redirect::to("/admin/blog");
+            return Redirect::to("/admin/blog")->with("success", "Successfully deleted the blog post.");
         }
         return App::abort("404");
     }

@@ -10,11 +10,13 @@ class BlogController extends \BaseController {
 	}
 
 	public function detail($date, $id, $name){
-		$post = BlogPost::where("status", "=", "100")->where("id", "=", $id)->where("created_at", "LIKE", '%'.trim($date).'%')->first();
+		$post = BlogPost::where("id", "=", $id)->where("created_at", "LIKE", '%'.trim($date).'%')->first();
 		if(isset($post->id) && $post->id > 0){
-			return View::make("blog.detail", array(
-				"post" => $post,
-			));
+			if($post->status == 100 || Auth::check() && Auth::user()->hasRole('admin')){
+				return View::make("blog.detail", array(
+					"post" => $post,
+				));
+			}
 		}
 		return App::abort(404);
 	}

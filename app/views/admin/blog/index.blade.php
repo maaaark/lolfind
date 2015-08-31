@@ -15,7 +15,7 @@
 					<th>Title</th>
 					<th>Created-At</th>
 					<th>Status</th>
-					<th>Options</th>
+					<th colspan="3">Options</th>
 				</thead>
 				<tbody>
 					@foreach($blog_posts as $post)
@@ -32,9 +32,14 @@
 									On edit
 								@endif
 							</td>
-							<td>
+							<td style="width: 51px;">
 								<a href="/admin/blog/post/{{ $post->id }}" class="btn btn-info">Edit</a>
+							</td>
+							<td style="width: 70px;">
 								<a href="javascript:void(0);" data-postId="{{ $post->id }}" class="btn btn-danger delete_blog_post_btn">Delete</a>
+							</td>
+							<td style="width: 78px;">
+								<a href="/blog/{{ date('Y-m-d', strtotime($post->created_at)) }}/{{ $post->id }}-{{ trim(Helpers::str_slug($post->title)) }}" class="btn btn-default">Preview</a>
 							</td>
 						</tr>
 					@endforeach
