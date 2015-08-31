@@ -4,7 +4,7 @@
 
 .forum_posts .forum_post {
 	margin-top: 10px;
-	margin-bottom: 10px;
+	margin-bottom: 20px;
 	box-shadow: 0 0 3px 1px rgba(0,0,0,0.3);
 	border-radius: 3px;
 	background: #fff;
@@ -12,7 +12,7 @@
 
 .forum_posts .forum_post table.table.forum_post_table {
 	border: none;
-	margin: none;
+	margin: 0px;
 	width: 100%;
 }
 
@@ -46,6 +46,29 @@
 .forum_posts .forum_post table.table.forum_post_table tr.post_info td.date {
 	border-top: 1px solid rgba(0,0,0,0.05);
 	color: rgb(140, 140, 140);
+}
+
+.forum_posts .forum_post table.table.forum_post_table tr.post_content td.author_message {
+	padding: 25px;
+	position: relative;
+}
+
+/*
+ *	Admin Posts
+ */
+.forum_posts .forum_post.admin_post {
+	border: 1px solid #929292;
+	border-radius: 3px;
+}
+
+.forum_posts .forum_post.admin_post table.table.forum_post_table tr.post_content td.author_message {
+    background: rgba(255, 165, 0, 0.2);
+    color: #3E3E3E;
+    text-shadow: none;
+}
+
+.forum_posts .forum_post.admin_post table.table.forum_post_table tr.post_info td.date {
+	background: rgba(255, 165, 0, 0.05);;
 }
 
 textarea.forum_create_textarea {
@@ -138,7 +161,4 @@ input.forum_create_input {
 	padding-top: 4px;
 	font-size: 12px;
 	color: rgba(0,0,0,0.5);
-}
-.forum_posts .forum_post table.table.forum_post_table tr td.author_message {
-	padding: 25px;
 }
