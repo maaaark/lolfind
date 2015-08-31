@@ -216,6 +216,51 @@
             </div>
         </div>
 	@endforeach
+
+
+    <hr>
+
+
+    <div class="text-center" id="list_pagination_holder">
+        {{ $ranked_teams->links() }}
+        <script>
+        @if(isset($_GET["page"]) AND $_GET["page"] > 0)
+            var current_filter_page = {{ $_GET["page"] }};
+        @else
+            var current_filter_page = 1;
+        @endif
+
+        $("#list_pagination_holder ul.pagination li a").click(function(event){
+            event.preventDefault();
+            if(can_update){
+                if($(this).text().trim() != "" && parseInt($(this).text()) > 0){
+                    next = $(this).text();
+                } else {
+                    if($(this).attr("rel") == "prev"){
+                        next = current_filter_page - 1;
+                    } else {
+                        next = current_filter_page + 1;
+                    }
+                }
+
+                $(window).scrollTop($("#team_list_suggestions").offset().top - 180);
+                $.post('/teams/team_list_suggestions?page='+next, {
+                    region: $('#region_sel input').val(),
+                    league: $('#leagues_sel input').val(),
+                    main_lang: $('#prime_lang_sel input').val(),
+                    sec_lang: $('#sec_lang_sel input').val(),
+                    prime_role: $('#prime_role_sel input').val(),
+                    sec_role: $('#sec_role_sel input').val(),
+                    unranked_search: $('#search_unranked').prop('checked')
+                }).done(function(data){
+                    $("#team_list_update_btn").prop("disabled", false);
+                    can_update = true;
+                    $("#team_list_suggestions").html(data);
+                });
+            }
+        });
+        </script>
+    </div><!-- end pagination-->
 @else
 	<div style="text-align: center;margin-top: 25px;"><img src="/img/sad_amumu.png"></div>
     <div style="padding-top: 25px;font-size: 16px;text-align: center;">No teams found matching the current filters :(</div>

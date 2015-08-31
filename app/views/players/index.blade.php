@@ -25,9 +25,12 @@
     @include('players.filter_sidebar')
 @stop
 @section('content_page')
+    <script>
+        // Update List
+        var can_update = true;
+    </script>
 
     <div class="content">
-
         <div>
             <h2>{{ Lang::get("players.search.player_suggestions") }}</h2>
             <div id="player_list_suggestions">
@@ -38,17 +41,9 @@
                 @endif
             </div>
         </div>
-
-        <hr>
-
-        <div class="text-center">
-            {{ $player_list->links() }}
-        </div><!-- end pagination-->
     </div>
 
     <script>
-        // Update List
-        can_update = true;
         function update_player_list_suggestions(){
             $("#player_list_update_btn").prop("disabled", false);
 

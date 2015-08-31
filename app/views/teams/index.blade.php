@@ -25,6 +25,10 @@
 	@include('teams.filter_sidebar')
 @stop
 @section('content_page')
+    <script>
+        // Update List
+        var can_update = true;
+    </script>
     <div class="content">
         @if(isset($own_teams) AND count($own_teams) > 0 AND is_array($own_teams))
             <h2>Your teams</h2>
@@ -64,18 +68,9 @@
                @endif
             </div>
         </div>
-
-        <hr>
-
-
-        <div class="text-center">
-            {{ $team_list->links() }}
-        </div><!-- end pagination-->
     </div>
     
     <script>
-		// Update List
-		can_update = true;
 		function update_team_list_suggestions(){
 			$("#team_list_update_btn").prop("disabled", false);
 
