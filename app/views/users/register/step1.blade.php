@@ -35,6 +35,7 @@
                         <option value="lan">LAN</option>
                         <option value="las">LAS</option>
                         <option value="br">BR</option>
+                        <option value="oce">OCE</option>
                     </select>
             </tr>
     </table>
