@@ -262,7 +262,6 @@ class UsersController extends \BaseController {
         }
     }
 
-
     public function step3_save() {
         $input = Input::all();
 
@@ -386,6 +385,61 @@ class UsersController extends \BaseController {
                 ->with('error', 'There were validation errors.')->with('input', Input::all())->with('messages', $messages);
         }
 
+    }
+
+    public function register_find_summoner(){
+        return View::make("users.register.find_summoner");    
+    }
+
+    public function register_find_summoner_action(){
+        $out = "error";
+        if(Input::get("summoner_name") && Input::get("region")){
+            $api_key           = Config::get('api.key');
+            $region            = trim(strtolower(Input::get("region")));
+            $summoner_name     = trim(strtolower(Input::get("summoner_name")));
+            $summoner_name_url = trim(str_replace(" ", "%20", $summoner_name));
+            $content = @file_get_contents($this->allowed_regions[$region]["api_endpoint"]."/api/lol/".$region."/v1.4/summoner/by-name/".$summoner_name_url."?api_key=".$api_key);
+            $json = @json_decode($content, true);
+            if($json && is_array($json) && count($json) > 0){
+                $array = array();
+                foreach($json as $summoner){
+                    $array[] = $summoner;
+                }
+
+                if(count($array) > 0 && isset($array[0]) && is_array($array[0])){
+                    $out = json_encode($array);
+                }
+            }
+        }
+        echo $out;
+    }
+
+    public function register_find_summoner_action_save($summoner_id, $region){
+        $check_summoner = Summoner::where("summoner_id","=", $summoner_id)->where("region", "=", $region)->where("verify","=", 1)->first();
+        if(!$check_summoner){
+            $api_key  = Config::get('api.key');
+            $content = @file_get_contents($this->allowed_regions[$region]["api_endpoint"]."/api/lol/".$region."/v1.4/summoner/".$summoner_id."?api_key=".$api_key);
+            $json = @json_decode($content, true);
+            if(isset($json[$summoner_id]) && isset($json[$summoner_id]["name"])){
+                $summoner = new Summoner();
+                $summoner_found = $summoner->addSummoner($region, $json[$summoner_id]["name"], $summoner_id);
+                $summoner = Summoner::where("summoner_id", "=", $summoner_id)->where("region", "=", $region)->first();
+                if($summoner_found && $summoner && isset($summoner->id) && $summoner->id > 0) {
+                    Session::put('region', $summoner->region);
+                    Session::put('summoner_name', $summoner->name);
+
+                    Session::put('verify_code', str_random(10));
+                    return Redirect::to('/register/step2')->with("success", "Please verify your summoner.");
+                } else {
+                    return Redirect::to("/register/find-summoner")
+                        ->with('error', 'The summoner was not found.');
+                }  
+            } else {
+                return Redirect::to('/register/find-summoner')->with("error", "The summoner was not found.");
+            }
+        } else {
+            return Redirect::to('/register/find-summoner')->with("error", "This summoner is already connected to a flashignite-account.");
+        }
     }
 
     public function updateAccount() {

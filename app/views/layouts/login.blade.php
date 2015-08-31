@@ -1,5 +1,5 @@
 @extends('design', array('no_page_errors' => true))
-@section('title', Lang::get("teams.site_title"))
+@section('title', "Login - ")
 @section('content')
     <section id="hero" class="login">
         <div class="container">

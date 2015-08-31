@@ -143,6 +143,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     }
 
     public function addSummoner($region, $summoner_name, $user){
+        $this->allowed_regions = Config::get("api.allowed_regions");
         $region = trim(strtolower($region));
         if(isset($this->allowed_regions[$region]) && isset($this->allowed_regions[$region]["status"]) && $this->allowed_regions[$region]["status"] == true){
             $data = Summoner::where('name', 'LIKE', trim($summoner_name))->where("region","=",$region)->first();

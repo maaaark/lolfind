@@ -41,6 +41,7 @@
     </table>
 
     {{ Form::submit("Check Summoner", array('class' => 'btn_1')) }}
+        <a href="/register/find-summoner">Problems finding your summoner?</a>
     {{ Form::close() }}
             </div>
     </div>

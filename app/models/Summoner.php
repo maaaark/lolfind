@@ -469,7 +469,7 @@ class Summoner extends \Eloquent {
     }
 
 
-    public function addSummoner($region, $summoner_name){
+    public function addSummoner($region, $summoner_name, $summoner_id = false){
         $this->allowed_regions = Config::get('api.allowed_regions');
         $region = trim(strtolower($region));
         if(isset($this->allowed_regions[$region]) && isset($this->allowed_regions[$region]["status"]) && $this->allowed_regions[$region]["status"] == true){
@@ -493,27 +493,44 @@ class Summoner extends \Eloquent {
                 $clean_summoner_name = strtolower($clean_summoner_name);
                 $clean_summoner_name = mb_strtolower($clean_summoner_name, 'UTF-8');
 
-                $summoner_in_db = Summoner::where("name","=",$summoner_name)->where("region", "=", $region)->first();
+                if($summoner_id){
+                    $summoner_in_db = Summoner::where("summoner_id","=",$summoner_id)->where("region", "=", $region)->first();
+                } else {
+                    $summoner_in_db = Summoner::where("name","=",$summoner_name)->where("region", "=", $region)->first();
+                }
+
                 if(!$summoner_in_db) {
                     $api_key           = Config::get('api.key');
                     $summoner_name_url = trim(str_replace(" ", "%20", $region));
-                    $summoner_data     = $this->allowed_regions[$region]["api_endpoint"]."/api/lol/".$region."/v1.4/summoner/by-name/".$clean_summoner_name."?api_key=".$api_key;
+                    if($summoner_id){
+                        $summoner_data = $this->allowed_regions[$region]["api_endpoint"]."/api/lol/".$region."/v1.4/summoner/".$summoner_id."?api_key=".$api_key;
+                    } else {
+                        $summoner_data = $this->allowed_regions[$region]["api_endpoint"]."/api/lol/".$region."/v1.4/summoner/by-name/".$clean_summoner_name."?api_key=".$api_key;
+                    }
                     $json = @file_get_contents($summoner_data);
                     if($json === FALSE) {
                         return false;
                         //return Redirect::to("/")->with("error", "There was an error with the Riot API, please try again later! Code: 005");
                     } else {
                         $obj = json_decode($json, true);
-                        $summoner = Summoner::where("name","=",$obj[$clean_summoner_name]["name"])->where("region","=",$region)->first();
+                        if($summoner_id){
+                            $summoner = Summoner::where("name","=",$obj[$summoner_id]["name"])->where("region","=",$region)->first();
+                        } else {
+                            $summoner = Summoner::where("name","=",$obj[$clean_summoner_name]["name"])->where("region","=",$region)->first();
+                        }
                         if(!$summoner) {
                             $summoner = new Summoner;
                         }
-                        $summoner->summoner_id = $obj[$clean_summoner_name]["id"];
 
-                        $summoner->name = $obj[$clean_summoner_name]["name"];
-                        $summoner->profileIconId = $obj[$clean_summoner_name]["profileIconId"];
-                        $summoner->summonerLevel = $obj[$clean_summoner_name]["summonerLevel"];
-                        $summoner->revisionDate = $obj[$clean_summoner_name]["revisionDate"];
+                        $summoner_arr_tag = $clean_summoner_name;
+                        if($summoner_id){
+                            $summoner_arr_tag = $summoner_id;
+                        }
+                        $summoner->summoner_id = $obj[$summoner_arr_tag]["id"];
+                        $summoner->name = $obj[$summoner_arr_tag]["name"];
+                        $summoner->profileIconId = $obj[$summoner_arr_tag]["profileIconId"];
+                        $summoner->summonerLevel = $obj[$summoner_arr_tag]["summonerLevel"];
+                        $summoner->revisionDate = $obj[$summoner_arr_tag]["revisionDate"];
                         $summoner->region = $region;
                         $summoner->last_update_maindata = date('Y-m-d H:i:s');
 
@@ -560,7 +577,6 @@ class Summoner extends \Eloquent {
             return true;
         } else {
             //echo "gesperrte region";
-            die();
             return false;
         }
     }
