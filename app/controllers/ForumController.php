@@ -36,7 +36,8 @@ class ForumController extends \Atrakeur\Forum\Controllers\AbstractViewForumContr
 
 		$parentCategory = $category->parentCategory;
 		$subCategories  = $category->subCategories;
-		$topics         = $category->topics;
+		//$topics         = $category->topics;
+		$topics         = \Atrakeur\Forum\Models\ForumTopic::where("parent_category", "=", $categoryId)->orderBy("last_reply", "DESC")->paginate(15);
 
 		$this->layout->content = \View::make('forum::category', compact('parentCategory', 'category', 'subCategories', 'topics'));
 

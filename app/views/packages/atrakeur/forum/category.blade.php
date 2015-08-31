@@ -10,34 +10,34 @@
 
 <div class="topics_table_holder">
 	@if ($topics != NULL && count($topics) != 0)
-	<table class="table topics_table">
-		<thead>
-			<tr>
-				<th></th>
-				<th>Subject</th>
-				<th>Replies</th>
-			</tr>
-		</thead>
-		<tbody>
-			@foreach($topics as $topic)
+		<table class="table topics_table">
+			<thead>
 				<tr>
-					<td class="thread_icon">
-						<img src="/img/roles/mage.jpg">
-					</td>
-					<td class="name">
-						<a href={{$topic->url}}>{{{ $topic->title }}}</a>
-						<div class="info">
-							{{ Helpers::diffForHumans($topic->created_at) }}
-							- {{ Helpers::get_summoner(Helpers::getUser($topic->author_id)->summoner_id, Helpers::getUser($topic->author_id)->region)->name }}
-						</div>
-					</td>
-					<td class="replies">
-						{{ $topic->replyCount }}
-					</td>
+					<th></th>
+					<th>Subject</th>
+					<th>Replies</th>
 				</tr>
-			@endforeach
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				@foreach($topics as $topic)
+					<tr>
+						<td class="thread_icon">
+							<img src="/img/roles/mage.jpg">
+						</td>
+						<td class="name">
+							<a href={{$topic->url}}>{{{ $topic->title }}}</a>
+							<div class="info">
+								{{ Helpers::diffForHumans($topic->created_at) }}
+								- {{ Helpers::get_summoner(Helpers::getUser($topic->author_id)->summoner_id, Helpers::getUser($topic->author_id)->region)->name }}
+							</div>
+						</td>
+						<td class="replies">
+							{{ $topic->replyCount }}
+						</td>
+					</tr>
+				@endforeach
+			</tbody>
+		</table>
 	@else
 		<div style="padding: 30px;text-align: center;">	
 			<div style="font-size: 26px;margin-bottom: 18px;">No topics created yet ...</div>
@@ -45,3 +45,6 @@
 		</div>	
 	@endif
 </div>
+@if($topics != NULL && count($topics) != 0)
+	{{ $topics->links() }}
+@endif
