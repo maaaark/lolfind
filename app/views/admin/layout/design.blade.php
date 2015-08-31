@@ -30,12 +30,14 @@
 			</div>
 			<div class="page_navigation">
 				<a href="/admin"><div class="element">Dashboard</div></a>
+				<a href="/admin/blog"><div class="element">Blog</div></a>
 				<a href="/admin/network_server"><div class="element">Network Server</div></a>
 				<a href="/admin/statistics"><div class="element">Statistiken</div></a>
 				<a href="/logout"><div class="element logout">Logout</div></a>
 			</div>
 		</div>
 		<div class="page_holder" id="page_holder">
+			<div>@include('admin.layout.errors')</div>
 			@yield('content')
 		</div>
 	</body>

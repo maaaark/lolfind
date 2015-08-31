@@ -1,0 +1,101 @@
+.blog_body {
+	width: 100%;
+	min-height: 200px;
+	background: url(http://lolfind.localhost/img/cover.jpg);
+	background-position: center top;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	padding-top: 150px;
+}
+
+.blog_body .blog_content {
+	width: 100%;
+	max-width: 1140px;
+	margin: auto;
+	background: #fff;
+	box-sizing: border-box;
+	padding: 25px;
+	margin-bottom: 60px;
+	box-shadow: 0 1px 1px rgba(0,0,0,0.3);
+}
+
+.blog_body .blog_content h1:first-child {
+	margin-top: 0px;
+	padding-top: 0px;
+}
+
+.blog_body .blog_content .blog_posts_list {
+
+}
+
+.blog_body .blog_content .blog_posts_list .blog_post_element {
+	border-top: 1px solid rgba(0,0,0,0.1);
+	margin-top: 25px;
+	padding-top: 25px;
+}
+
+.blog_body .blog_content .blog_posts_list .blog_post_element:first-child {
+	border-top: none;
+	margin-top: 0px;
+}
+
+.blog_body .blog_content .blog_posts_list .blog_post_element table {
+	width: 100%;
+	border: none;
+	border-collapse: collapse;
+}
+
+.blog_body .blog_content .blog_posts_list .blog_post_element table tr td {
+	vertical-align: top;
+}
+
+.blog_body .blog_content .blog_posts_list .blog_post_element table tr td.post_image {
+	width: 30%;
+}
+
+.blog_body .blog_content .blog_posts_list .blog_post_element table tr td.post_image img {
+	width: 100%;
+	border: 1px solid orange;
+	border-radius: 3px;
+}
+
+.blog_body .blog_content .blog_posts_list .blog_post_element table tr td.post_info {
+	padding-left: 15px;
+}
+
+.blog_body .blog_content .blog_posts_list .blog_post_element table tr td.post_info .post_title {
+	font-size: 20px;
+}
+
+.blog_body .blog_content .blog_posts_list .blog_post_element table tr td.post_info .post_teaser {
+	padding-top: 20px;
+}
+
+.blog_body .blog_content .blog_posts_list .blog_post_element table tr td.post_info .post_infos {
+	padding-top: 15px;
+	color: #ADADAD;
+}
+
+.blog_body .blog_content .blog_post {
+
+}
+
+.blog_body .blog_content .blog_post .post_image {
+	width: 100%;
+}
+
+.blog_body .blog_content .blog_post .post_image img {
+	width: 100%;
+	border: 1px solid orange;
+	border-radius: 3px;
+}
+
+.blog_body .blog_content .blog_post .post_text {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.blog_body .blog_content .blog_post .post_info {
+	text-align: right;
+	color: #ADADAD;
+}

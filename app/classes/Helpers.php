@@ -160,4 +160,20 @@ class Helpers {
 		}
 		return $nice_lang;
 	}
+
+	public static function str_slug($str){
+		$out = strtolower(preg_replace('%[^a-z0-9_-]%six','-', Helpers::cleanWhitespace($str)));
+		$out = str_replace("---", "-", $out);
+
+		if(strpos($out, "--") > 0){
+			for($i = 0; $i < 5; $i++){
+				$out = str_replace("--", "-", $out);
+			}
+		}
+		return $out;
+	}
+
+	public static function cleanWhitespace($string){ 
+      return trim(preg_replace('/\s+/', ' ', $string)); 
+    }
 }

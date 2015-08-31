@@ -1,5 +1,5 @@
 @extends('design')
-@section('title', "Startseite")
+@section('title', "Start")
 @section('css_addition')
     <link rel="stylesheet" type="text/css" href="/css/index.css">
     @stop

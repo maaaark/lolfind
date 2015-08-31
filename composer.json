@@ -8,7 +8,8 @@
         "way/generators": "2.*",
         "efficiently/authority-controller": "1.1.*",
         "barryvdh/laravel-ide-helper": "~1.11",
-        "atrakeur/forum": "dev-master"
+        "atrakeur/forum": "dev-master",
+		"intervention/image": "^2.3"
 	},
 	"autoload": {
 		"classmap": [

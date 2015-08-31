@@ -81,11 +81,21 @@ Route::get("/tos", "BaseController@tos");
 Route::get("/legal", "BaseController@legal");
 Route::get("/mail", "BaseController@mail");
 
+// Blog
+Route::get("/blog", "BlogController@index");
+Route::get("/blog/{date}/{id}-{name}", "BlogController@detail");
+
+// Admin Panel
 Route::group(array('prefix' => 'admin', 'before' => 'auth'), function(){
     if(Auth::check() && Auth::user()->hasRole("admin")){
     	Route::get('/', "AdminController@index");
     	Route::get('/network_server', "AdminController@network_server");
     	Route::get('/statistics', "AdminController@statistics");
+
+    	Route::get('/blog', "AdminBlogController@index");
+    	Route::get('/blog/post/{id}', "AdminBlogController@post");
+    	Route::post('/blog/post/{id}/action', "AdminBlogController@post_action");
+    	Route::get('/blog/post/{id}/delete', "AdminBlogController@delete_action");
 	}
 });
 
