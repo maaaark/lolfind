@@ -1,7 +1,8 @@
 .blog_body {
 	width: 100%;
 	min-height: 200px;
-	background: url(http://lolfind.localhost/img/cover.jpg);
+	background: url(../img/cover.jpg);
+	background-position: center top;
 	background-repeat: no-repeat;
 	background-size: 100%;
 	padding-top: 150px;
