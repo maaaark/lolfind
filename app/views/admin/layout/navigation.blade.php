@@ -25,6 +25,7 @@
 						<li><a href="/admin/blog/post/new">Create blog post</a></li>
 					</ul>
 				</li>
+				<li data-nav="nw_server"><a href="/admin/users">Users</a></li>
 				<li data-nav="nw_server"><a href="/admin/network_server">Network Server</a></li>
 				<li data-nav="statistics"><a href="/admin/statistics">Statistics</a></li>
 			</ul>

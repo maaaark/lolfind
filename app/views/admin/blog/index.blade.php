@@ -3,10 +3,10 @@
 @section('nav_page', 'blog')
 @section('content')
 	<div class="page_width">
-		<div style="float: right;padding-top: 15px;">
+		<div style="float: right;padding-top: 25px;">
 			<a href="/admin/blog/post/new" class="btn btn-primary">New blog post</a>
 		</div>
-		<h1>Blog</h1>
+		<h1 class="site_title">Blog</h1>
 
 		<div class="table_holder">
 			<table class="table">

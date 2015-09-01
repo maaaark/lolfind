@@ -4,6 +4,7 @@
 		<title>@yield('title')Admin - Teamranked</title>
 
 		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/css/fontello/css/fontello.css">
 		<link rel="stylesheet" type="text/css" href="/css/admin.css">
 		
 		<script type="text/javascript" src="/js/jquery.min.js"></script>

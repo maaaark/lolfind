@@ -93,7 +93,12 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function(){
     if(Auth::check() && Auth::user()->hasRole("admin")){
     	Route::get('/', "AdminController@index");
     	Route::get('/network_server', "AdminController@network_server");
-    	Route::get('/statistics', "AdminController@statistics");
+        Route::get('/statistics', "AdminController@statistics");
+
+        Route::get('/users', "AdminUsersController@index");
+        Route::get('/users/search', "AdminUsersController@search");
+        Route::get('/users/summoner/{region}/{summoner_id}/', "AdminUsersController@summoner");
+    	Route::get('/users/summoner/{region}/{summoner_id}/verify_reset', "AdminUsersController@summoner_verify_reset");
 
     	Route::get('/blog', "AdminBlogController@index");
     	Route::get('/blog/post/{id}', "AdminBlogController@post");
