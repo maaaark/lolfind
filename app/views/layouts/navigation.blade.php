@@ -34,4 +34,7 @@
     <li>
         <a href="/forum" class="show-submenu text-shadow">Forum</a>
     </li>
+    <li>
+        <a href="/blog" class="show-submenu text-shadow">Blog</a>
+    </li>
 </ul>

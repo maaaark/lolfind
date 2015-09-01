@@ -14,6 +14,7 @@
 					<th><center>ID</center></th>
 					<th>Title</th>
 					<th>Created-At</th>
+					<th>Clicks</th>
 					<th>Status</th>
 					<th colspan="3">Options</th>
 				</thead>
@@ -23,6 +24,9 @@
 							<td><center>{{ $post->id }}</center></td>
 							<td>{{ $post->title }}</td>
 							<td>{{ $post->created_at->diffForHumans() }}</td>
+							<td>
+								{{ $post->klicks }}
+							</td>
 							<td>
 								@if($post->status == 100)
 									<span style="color: green;">Published</span>

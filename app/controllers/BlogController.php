@@ -13,6 +13,10 @@ class BlogController extends \BaseController {
 		$post = BlogPost::where("id", "=", $id)->where("created_at", "LIKE", '%'.trim($date).'%')->first();
 		if(isset($post->id) && $post->id > 0){
 			if($post->status == 100 || Auth::check() && Auth::user()->hasRole('admin')){
+				if($post->status == 100){
+					$post->klicks = $post->klicks + 1;
+					$post->save();
+				}
 				return View::make("blog.detail", array(
 					"post" => $post,
 				));
