@@ -1,5 +1,5 @@
 @extends('design')
-@section('title', trans('forum::base.home_title'))
+@section('title', $__env->yieldContent('forum_title'))
 @section('css_addition')
 	<link rel="stylesheet" type="text/css" href="/css/forum.css">
 @stop

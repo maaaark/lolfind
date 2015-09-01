@@ -1,4 +1,12 @@
-<div class="forum_post">
+<?php
+$user = Helpers::getUser($message->author->id);
+?>
+
+@if($user->hasRole("admin"))
+	<div class="forum_post admin_post">
+@else
+	<div class="forum_post">
+@endif
 	<table class="table forum_post_table">
 		<tr class="post_content">
 			<td class="author_info border_right">
@@ -10,16 +18,16 @@
 				<a href="/summoner/{{ $message->author->region }}/{{{ Helpers::get_summoner($message->author->summoner_id, $message->author->region)->name }}}">
 					{{{ Helpers::get_summoner($message->author->summoner_id, $message->author->region)->name }}}
 				</a><br/>
-				<?php
-				$user = Helpers::getUser($message->author->id);
-				?>
 				@if($user->hasRole("admin"))
 					<i>Administrator</i>
 				@endif
 
 			</td>
 			<td class="author_message">
-				{{ nl2br(e($message->data)) }}
+				<div style="position: relative;z-index: 10;">{{ nl2br(e($message->data)) }}</div>
+				@if($user->hasRole("admin"))
+					<img src="/img/teamranked_black.png" style="position: absolute;z-index: 8;opacity: 0.2;bottom: 10px;right: 10px;height: 30px;">
+				@endif
 			</td>
 		</tr>
 		<tr class="post_info">
