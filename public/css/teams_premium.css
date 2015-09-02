@@ -17,3 +17,34 @@
 .teams_premium_permission_table tbody tr td.td_checkbox {
 	text-align: center;
 }
+
+/*
+ *	Calendar
+ */
+.team_calendar .calendar_days {
+	padding-left: 1px;
+	padding-top: 1px;
+}
+
+.team_calendar .calendar_days .day {
+	border: 1px solid #555;
+	box-sizing: border-box;
+	width: 14.285714286%;
+	height: 130px;
+	float: left;
+	margin-top: -1px;
+	margin-left: -1px;
+}
+
+.team_calendar .calendar_days .day.last_month {
+	opacity: 0.5;
+}
+
+.team_calendar .calendar_days .day .title {
+	padding: 3px;
+	background-color: rgba(0,0,0,0.1);
+}
+
+.team_calendar .calendar_days .day .day_content {
+	padding: 25px;
+}

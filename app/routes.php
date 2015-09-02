@@ -66,6 +66,8 @@ Route::post("/teams/invite/delete", "TeamsController@invite_lightbox_delete");
 // Teams-Premium
 Route::get("/teams/{region}/{tag}/settings/config-rights", "TeamsPremiumController@config_rights");
 Route::post("/teams/{region}/{tag}/settings/config-rights/action", "TeamsPremiumController@config_rights_action");
+Route::get("/teams/{region}/{tag}/calendar", "TeamsPremiumController@calendar");
+Route::get("/teams/{region}/{tag}/calendar/ajax/{month}/{year}", "TeamsPremiumController@calendar_ajax");
 
 
 // Players

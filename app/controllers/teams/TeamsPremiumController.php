@@ -64,4 +64,28 @@ class TeamsPremiumController extends \BaseController {
 		return App::abort("404");
 	}
 
+	public function calendar($region, $tag){
+		$team = RankedTeam::where("region", "=", $region)->where("tag", "=", $tag)->first();
+		if(isset($team->id) && $team->id > 0 && Auth::check() && TeamPremiumCheck::hasPremium($team) && TeamPremiumCheck::user_is_in_team(Auth::user()->id, $team)){
+			return View::make("teams.premium_features.calendar", array(
+				"ranked_team" => $team,
+			));
+		}
+		return App::abort("404");
+	}
+
+	public function calendar_ajax($region, $tag, $month, $year){
+		$team = RankedTeam::where("region", "=", $region)->where("tag", "=", $tag)->first();
+		if(isset($team->id) && $team->id > 0 && Auth::check() && TeamPremiumCheck::hasPremium($team) && TeamPremiumCheck::user_is_in_team(Auth::user()->id, $team)){
+			$days_count = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+            echo View::make("teams.premium_features.calendar_ajax", array(
+            	"days_count" 	=> $days_count,
+            	"month"			=> $month,
+            	"year"			=> $year,
+        	))->render();
+		} else {
+			echo "error";
+		}
+	}
+
 }

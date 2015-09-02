@@ -124,6 +124,10 @@
     						<div class="team_navi_el" id="team_navi_link_premium_config">Customize permissions</div>
 						</a>
     				@endif
+
+    				<a href="/teams/{{ trim($ranked_team->region) }}/{{ trim($ranked_team->tag) }}/calendar">
+    				<div class="team_navi_el" id="team_navi_link_calendar">Calendar</div>
+    				</a>
     			@endif
     		</div>
         </div>

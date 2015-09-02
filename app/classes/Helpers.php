@@ -181,6 +181,71 @@ class Helpers {
 		return $nice_lang;
 	}
 
+	public static function niceMonth($month){
+		if($month == 1){
+			return "January";
+		}
+		elseif($month == 2){
+			return "February";
+		}
+		elseif($month == 3){
+			return "March";
+		}
+		elseif($month == 4){
+			return "April";
+		}
+		elseif($month == 5){
+			return "May";
+		}
+		elseif($month == 6){
+			return "June";
+		}
+		elseif($month == 7){
+			return "July";
+		}
+		elseif($month == 8){
+			return "August";
+		}
+		elseif($month == 9){
+			return "September";
+		}
+		elseif($month == 10){
+			return "October";
+		}
+		elseif($month == 11){
+			return "November";
+		}
+		elseif($month == 12){
+			return "December";
+		}
+		return $month;
+	}
+
+	public static function dayNumberToName($day, $short = false){
+		$array = array(
+			1 => "Monday",
+			2 => "Tuesday",
+			3 => "Wednesday",
+			4 => "Thursday",
+			5 => "Friday",
+			6 => "Saturday",
+			7 => "Sunday",
+		);
+		$array_short = array(
+			1 => "Mon.",
+			2 => "Tue.",
+			3 => "Wed.",
+			4 => "Thu.",
+			5 => "Fri.",
+			6 => "Sat.",
+			7 => "Sun.",
+		);
+		if($short){
+			return $array_short[$day];
+		}
+		return $array[$day];
+	}
+
 	public static function str_slug($str){
 		$out = strtolower(preg_replace('%[^a-z0-9_-]%six','-', Helpers::cleanWhitespace($str)));
 		$out = str_replace("---", "-", $out);
