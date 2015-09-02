@@ -124,6 +124,26 @@ class Helpers {
     	return Summoner::where("summoner_id", "=", $summoner_id)->where("region", "=", $region)->first();
     }
 
+    public static function get_summoner_by_userid($user_id){
+    	$user = User::where("id", "=", $user_id)->first();
+    	if(isset($user->id) && $user->id > 0 && isset($user->summoner_id) && $user->summoner_id > 0 && isset($user->region) && trim($user->region) != ""){
+    		$summoner = Summoner::where("summoner_id", "=", $user->summoner_id)->where("region", "=", $user->region)->first();
+    		if(isset($summoner->id) && $summoner->id > 0){
+    			return $summoner;
+    		}
+    	}
+    	return false;
+    }
+
+    public static function get_userid_by_summoner($summoner_id, $region){
+    	$summoner = Summoner::where("summoner_id", "=", $summoner_id)->where("region", "=", $region)->where("verify", "=", "1")->first();
+    	$user     = User::where("summoner_id", "=", $summoner_id)->where("region", "=", $region)->first();
+    	if(isset($summoner->id) && $summoner->id > 0 && isset($user->id) && $user->id > 0){
+    		return $user->id;
+    	}
+    	return false;
+    }
+
 	public static function niceLanguage($nice_lang) {
 		if($nice_lang == "DE") {
 			$nice_lang = "German";

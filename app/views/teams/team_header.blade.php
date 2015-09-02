@@ -117,6 +117,14 @@
 						</a>
     				@endif
     			@endif
+
+    			@if(TeamPremiumCheck::hasPremium($ranked_team) AND Auth::check() AND TeamPremiumCheck::user_is_in_team(Auth::user()->id, $ranked_team))
+    				@if(TeamPremiumCheck::can_change_config_rights(Auth::user()->id, $ranked_team))
+    					<a href="/teams/{{ trim($ranked_team->region) }}/{{ trim($ranked_team->tag) }}/settings/config-rights">
+    						<div class="team_navi_el" id="team_navi_link_premium_config">Customize permissions</div>
+						</a>
+    				@endif
+    			@endif
     		</div>
         </div>
     </div>
