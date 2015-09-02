@@ -82,10 +82,35 @@ class TeamsPremiumController extends \BaseController {
             	"days_count" 	=> $days_count,
             	"month"			=> $month,
             	"year"			=> $year,
+            	"ranked_team"	=> $team,
         	))->render();
 		} else {
 			echo "error";
 		}
 	}
 
+	public function calendar_day_lightbox($region, $tag){
+		$team = RankedTeam::where("region", "=", $region)->where("tag", "=", $tag)->first();
+		if(isset($team->id) && $team->id > 0 && Auth::check() && TeamPremiumCheck::hasPremium($team) && TeamPremiumCheck::user_is_in_team(Auth::user()->id, $team) && Input::get("date")){
+			echo View::make("teams.premium_features.lightbox_day", array(
+				"date"			=> Input::get("date"),
+				"ranked_team"	=> $team,
+        	))->render();
+		} else {
+			echo "error";
+		}
+	}
+
+	public function calendar_day_lightbox_add($region, $tag){
+		$team = RankedTeam::where("region", "=", $region)->where("tag", "=", $tag)->first();
+		if(isset($team->id) && $team->id > 0 && Auth::check() && TeamPremiumCheck::hasPremium($team) && TeamPremiumCheck::user_is_in_team(Auth::user()->id, $team) && Input::get("date")){
+			if(Input::get("date") && Input::get("name") && Input::get("type")){
+				echo "success";
+			} else {
+				echo "error";
+			}
+		} else {
+			echo "error";
+		}
+	}
 }

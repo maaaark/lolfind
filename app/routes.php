@@ -68,6 +68,8 @@ Route::get("/teams/{region}/{tag}/settings/config-rights", "TeamsPremiumControll
 Route::post("/teams/{region}/{tag}/settings/config-rights/action", "TeamsPremiumController@config_rights_action");
 Route::get("/teams/{region}/{tag}/calendar", "TeamsPremiumController@calendar");
 Route::get("/teams/{region}/{tag}/calendar/ajax/{month}/{year}", "TeamsPremiumController@calendar_ajax");
+Route::get("/teams/{region}/{tag}/calendar/lightbox", "TeamsPremiumController@calendar_day_lightbox");
+Route::post("/teams/{region}/{tag}/calendar/lightbox/add", "TeamsPremiumController@calendar_day_lightbox_add");
 
 
 // Players
