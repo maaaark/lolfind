@@ -107,19 +107,21 @@ class MatchhistoryView {
 			if(trim(str_replace(",", "", $summoner_ids)) != ""){
 				$summoner_data_api = @file_get_contents($this->allowed_regions[$this->region]["api_endpoint"]."/api/lol/euw/v1.4/summoner/".trim($summoner_ids)."?api_key=".$api_key);
 				$summoner_data_api = json_decode($summoner_data_api, true);
-				foreach($summoner_data_api as $summoner_id => $summoner_player){
-					//print_r($summoner_player);
-					$temp = $summoner_player;
-					$summoner_data[$summoner_player["id"]] = $temp;
+				if(isset($summoner_data_api) && $summoner_data_api && is_array($summoner_data_api)){
+					foreach($summoner_data_api as $summoner_id => $summoner_player){
+						//print_r($summoner_player);
+						$temp = $summoner_player;
+						$summoner_data[$summoner_player["id"]] = $temp;
 
-					$new_summoner 					= new Summoner;
-					$new_summoner->region 			= $this->region;
-					$new_summoner->summoner_id 		= $summoner_player["id"];
-					$new_summoner->name 			= $summoner_player["name"];
-					$new_summoner->profileIconId 	= $summoner_player["profileIconId"];
-					$new_summoner->summonerLevel 	= $summoner_player["summonerLevel"];
-					$new_summoner->revisionDate 	= $summoner_player["revisionDate"];
-					$new_summoner->save();
+						$new_summoner 					= new Summoner;
+						$new_summoner->region 			= $this->region;
+						$new_summoner->summoner_id 		= $summoner_player["id"];
+						$new_summoner->name 			= $summoner_player["name"];
+						$new_summoner->profileIconId 	= $summoner_player["profileIconId"];
+						$new_summoner->summonerLevel 	= $summoner_player["summonerLevel"];
+						$new_summoner->revisionDate 	= $summoner_player["revisionDate"];
+						$new_summoner->save();
+					}
 				}
 			}
 
