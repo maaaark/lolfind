@@ -27,8 +27,13 @@
 						<td class="name">
 							<a href={{$topic->url}}>{{{ $topic->title }}}</a>
 							<div class="info">
-								{{ Helpers::diffForHumans($topic->created_at) }}
-								- {{ Helpers::get_summoner(Helpers::getUser($topic->author_id)->summoner_id, Helpers::getUser($topic->author_id)->region)->name }}
+								by {{ Helpers::get_summoner(Helpers::getUser($topic->author_id)->summoner_id, Helpers::getUser($topic->author_id)->region)->name }}
+
+								@if($topic->last_reply AND $topic->last_reply != "0000-00-00 00:00:00")
+									- Last reply: {{ Helpers::diffForHumans($topic->last_reply) }}
+								@else
+									- created: {{ Helpers::diffForHumans($topic->created_at) }}
+								@endif
 							</div>
 						</td>
 						<td class="replies">
