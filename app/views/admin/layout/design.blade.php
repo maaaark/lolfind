@@ -2,7 +2,8 @@
 <html>
 	<head>
 		<title>@yield('title')Admin - Teamranked</title>
-
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
 		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="/css/fontello/css/fontello.css">
 		<link rel="stylesheet" type="text/css" href="/css/admin.css">
