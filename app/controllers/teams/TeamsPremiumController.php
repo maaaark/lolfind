@@ -108,6 +108,7 @@ class TeamsPremiumController extends \BaseController {
 		$team = RankedTeam::where("region", "=", $region)->where("tag", "=", $tag)->first();
 		if(isset($team->id) && $team->id > 0 && Auth::check() && TeamPremiumCheck::hasPremium($team) && TeamPremiumCheck::user_is_in_team(Auth::user()->id, $team) && Input::get("date")){
 			if(Input::get("date") && Input::get("name") && Input::get("type")){
+				$set_notification = false;
 				if(Input::get("update") && trim(Input::get("update")) == "true" && Input::get("event") && Input::get("event") > 0){
 					$event = RankedTeamCalendarEvent::where("id", "=", Input::get("event"))->first();
 					if(!isset($event->id) || $event->id < 1 || $team->id != $event->team){
@@ -116,6 +117,7 @@ class TeamsPremiumController extends \BaseController {
 					}
 				} else {
 					$event = new RankedTeamCalendarEvent;
+					$set_notification = true;
 				}
 				$event->date 		= trim(Input::get("date"));
 				$event->team 		= $team->id;
@@ -128,6 +130,22 @@ class TeamsPremiumController extends \BaseController {
 					$event->description = trim(Input::get("description"));
 				}
 				$event->save();
+
+				if($set_notification){
+					$players = RankedTeamPlayer::where("team", "=", $team->id)->get();
+					foreach($players as $player){
+						if($player->summoner_id != $team->leader_summoner_id){
+							$user = User::where("region", "=", $team->region)->where("summoner_id", "=", $player->summoner_id)->first();
+							if(isset($user->id) && $user->id > 0){
+			                    try {
+			                        FIServer::add_notification($user->id, "team_calender_event_created", Auth::user()->id, $event->id, $team->id);
+			                    } catch(Exception $e){
+			                        // nichts machen
+			                    }
+		                    }
+	                }
+                	}
+            	}
 				echo "success";
 			} else {
 				echo "error";

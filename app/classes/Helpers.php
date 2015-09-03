@@ -116,6 +116,14 @@ class Helpers {
     	return false;
     }
 
+    public static function getTeamCalenderEvent($id){
+    	$event = RankedTeamCalendarEvent::where("id", "=", $id)->first();
+    	if(isset($event->id) && $event->id > 0){
+    		return $event;
+    	}
+    	return false;
+    }
+
     public static function get_summoner($summoner_id, $region = false){
     	if($region == false || trim($region) == ""){
     		$region = "euw";

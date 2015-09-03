@@ -61,6 +61,23 @@
        </div>
     @endif
 
+@elseif($notification->type == "team_calender_event_created")
+	<?php
+		$team_temp  = Helpers::getRankedTeam($notification->value3);
+		$event_temp = Helpers::getTeamCalenderEvent($notification->value2);
+		$user_temp  = Helpers::getUser($notification->value1);
+	?>
+	@if(isset($team_temp->id) AND $team_temp->id > 0 AND isset($event_temp->id) AND $event_temp->id > 0 AND isset($user_temp->id) AND $user_temp->id > 0)
+		<div class="notification_linked_element no_click">
+			<img src="/img/notifications/notification_invite_to_team.jpg" class="notification_summoner_icon">
+			{{ $user_temp->summoner->name }} created a calender event for <b>{{ $team_temp->name }}</b>
+
+			<div>
+                <button class="btn_1" onclick="alert('Coming soon');">Show details</button>
+            </div>
+		</div>
+	@endif
+
 @elseif($notification->type == "normal_text")
    <div class="notification_linked_element no_click">
       {{ trim($notification->value1) }}
