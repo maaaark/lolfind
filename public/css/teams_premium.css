@@ -77,3 +77,11 @@
 	margin-top: 5px;
 	padding: 10px;
 }
+
+.team_calendar_event_row {
+	background: rgba(0,0,0,0.1);
+	broder-radius: 5px;
+	padding: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}

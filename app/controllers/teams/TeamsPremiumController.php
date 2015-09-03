@@ -116,8 +116,28 @@ class TeamsPremiumController extends \BaseController {
 				$event->event_type 	= trim(Input::get("type"));
 				$event->begin       = date("Y-m-d H:i:s", strtotime(Input::get("date")." ".Input::get("begin_hour").":".Input::get("begin_minute")));
 				$event->end         = date("Y-m-d H:i:s", strtotime(Input::get("date")." ".Input::get("end_hour").":".Input::get("end_minute")));
+				if(Input::get("description")){
+					$event->description = trim(Input::get("description"));
+				}
 				$event->save();
 				echo "success";
+			} else {
+				echo "error";
+			}
+		} else {
+			echo "error";
+		}
+	}
+
+	public function calendar_day_lightbox_event($region, $tag){
+		$team = RankedTeam::where("region", "=", $region)->where("tag", "=", $tag)->first();
+		if(isset($team->id) && $team->id > 0 && Auth::check() && TeamPremiumCheck::hasPremium($team) && TeamPremiumCheck::user_is_in_team(Auth::user()->id, $team) && Input::get("event")){
+			$event = RankedTeamCalendarEvent::where("id", "=", Input::get("event"))->first();
+			if(isset($event->id) && $event->id > 0 && $team->id == $event->team){
+				echo View::make("teams.premium_features.lightbox_event", array(
+					"ranked_team" => $team,
+					"event"		  => $event,
+				))->render();
 			} else {
 				echo "error";
 			}

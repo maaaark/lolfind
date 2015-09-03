@@ -42,12 +42,14 @@
             $.get("/teams/{{ $ranked_team->region }}/{{ $ranked_team->tag }}/calendar/ajax/"+current_month+"/"+current_year, {"post_data": "none"}).done(function(data){
                 $("#calendar_holder").html(data);
                 $("#calendar_holder .day").click(function(){
-                    var date_clicked = $(this).attr("data-date");
-                    showLightbox("<div style='padding: 25px;text-align: center;'>Loading ...</div>", function(lightbox_content){
-                        $.get("/teams/{{ $ranked_team->region }}/{{ $ranked_team->tag }}/calendar/lightbox", {"date": date_clicked}).done(function(data){
-                            lightbox_content.html(data);
+                    if(!$(this).hasClass("other_month")){
+                        var date_clicked = $(this).attr("data-date");
+                        showLightbox("<div style='padding: 25px;text-align: center;'>Loading ...</div>", function(lightbox_content){
+                            $.get("/teams/{{ $ranked_team->region }}/{{ $ranked_team->tag }}/calendar/lightbox", {"date": date_clicked}).done(function(data){
+                                lightbox_content.html(data);
+                            });
                         });
-                    });
+                    }
                 });
             });
         }
