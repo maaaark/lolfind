@@ -79,9 +79,15 @@
 }
 
 .team_calendar_event_row {
-	background: rgba(0,0,0,0.1);
+	background: #E6E6E6;
+	border: 1px solid #E6E6E6;
 	broder-radius: 5px;
 	padding: 10px;
 	margin-top: 10px;
 	margin-bottom: 10px;
+	cursor: pointer;
+}
+
+.team_calendar_event_row:hover {
+	background: rgba(0,0,0,0.05);
 }

@@ -66,11 +66,14 @@ Route::post("/teams/invite/delete", "TeamsController@invite_lightbox_delete");
 // Teams-Premium
 Route::get("/teams/{region}/{tag}/settings/config-rights", "TeamsPremiumController@config_rights");
 Route::post("/teams/{region}/{tag}/settings/config-rights/action", "TeamsPremiumController@config_rights_action");
+
+// Teams-Kalender
 Route::get("/teams/{region}/{tag}/calendar", "TeamsPremiumController@calendar");
 Route::get("/teams/{region}/{tag}/calendar/ajax/{month}/{year}", "TeamsPremiumController@calendar_ajax");
 Route::get("/teams/{region}/{tag}/calendar/lightbox", "TeamsPremiumController@calendar_day_lightbox");
 Route::post("/teams/{region}/{tag}/calendar/lightbox/add", "TeamsPremiumController@calendar_day_lightbox_add");
 Route::post("/teams/{region}/{tag}/calendar/lightbox/event", "TeamsPremiumController@calendar_day_lightbox_event");
+Route::post("/teams/{region}/{tag}/calendar/lightbox/edit", "TeamsPremiumController@calendar_day_lightbox_edit");
 
 
 // Players

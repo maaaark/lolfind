@@ -7,6 +7,7 @@
 	<div id="panel_add_event" style="padding: 15px;background: rgba(0,0,0,0.1);border: 1px solid rgba(0,0,0,0.15);border-radius: 10px;margin-top: 15px;display: none;">
 		@include('teams.premium_features.lightbox_day_add')
 	</div>
+	<div id="panel_edit_event" style="padding: 15px;background: rgba(0,0,0,0.1);border: 1px solid rgba(0,0,0,0.15);border-radius: 10px;margin-top: 15px;display: none;"></div>
 	<div id="panel_add_event_saving" style="display: none;">
 		<div style="padding: 25px;text-align: center;font-size: 16px;">
 			Saving the event ... This takes a few seconds
@@ -33,7 +34,7 @@
 					</div>
 					<div style="padding-top: 3px;">
 						Starts: {{ date("H:i", strtotime($event->begin)) }} | 
-						Ends: {{ date("H:i", strtotime($event->begin)) }}
+						Ends: {{ date("H:i", strtotime($event->end)) }}
 					</div>
 				</div>
 			@endforeach
