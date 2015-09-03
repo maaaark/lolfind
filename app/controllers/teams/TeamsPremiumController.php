@@ -92,9 +92,12 @@ class TeamsPremiumController extends \BaseController {
 	public function calendar_day_lightbox($region, $tag){
 		$team = RankedTeam::where("region", "=", $region)->where("tag", "=", $tag)->first();
 		if(isset($team->id) && $team->id > 0 && Auth::check() && TeamPremiumCheck::hasPremium($team) && TeamPremiumCheck::user_is_in_team(Auth::user()->id, $team) && Input::get("date")){
+			$events = RankedTeamCalendarEvent::where("team", "=", $team->id)->where("date", "=", trim(Input::get("date")))->orderBy("begin", "ASC")->get();
+
 			echo View::make("teams.premium_features.lightbox_day", array(
 				"date"			=> Input::get("date"),
 				"ranked_team"	=> $team,
+        		"events" 		=> $events,
         	))->render();
 		} else {
 			echo "error";
@@ -105,6 +108,15 @@ class TeamsPremiumController extends \BaseController {
 		$team = RankedTeam::where("region", "=", $region)->where("tag", "=", $tag)->first();
 		if(isset($team->id) && $team->id > 0 && Auth::check() && TeamPremiumCheck::hasPremium($team) && TeamPremiumCheck::user_is_in_team(Auth::user()->id, $team) && Input::get("date")){
 			if(Input::get("date") && Input::get("name") && Input::get("type")){
+				$event = new RankedTeamCalendarEvent;
+				$event->date 		= trim(Input::get("date"));
+				$event->team 		= $team->id;
+				$event->user 		= Auth::user()->id;
+				$event->name 		= trim(Input::get("name"));
+				$event->event_type 	= trim(Input::get("type"));
+				$event->begin       = date("Y-m-d H:i:s", strtotime(Input::get("date")." ".Input::get("begin_hour").":".Input::get("begin_minute")));
+				$event->end         = date("Y-m-d H:i:s", strtotime(Input::get("date")." ".Input::get("end_hour").":".Input::get("end_minute")));
+				$event->save();
 				echo "success";
 			} else {
 				echo "error";

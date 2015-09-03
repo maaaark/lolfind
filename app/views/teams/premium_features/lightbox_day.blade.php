@@ -23,6 +23,20 @@
 	
 	<div id="events" style="margin-top: 15px;">
 		@if(isset($events) AND count($events) > 0)
+			@foreach($events as $event)
+				<div style="background: rgba(0,0,0,0.1);broder-radius: 5px;padding: 10px;margin-top: 10px;margin-bottom: 10px;">
+					<div style="font-weight: bold;font-size: 16px;">
+						@if($event->event_type == "match")
+							<span style="opacity: 0.6;">[MATCH]</span>
+						@endif
+						{{{ $event->name }}}
+					</div>
+					<div style="padding-top: 3px;">
+						Starts: {{ date("H:i", strtotime($event->begin)) }} | 
+						Ends: {{ date("H:i", strtotime($event->begin)) }}
+					</div>
+				</div>
+			@endforeach
 		@else
 			<div id="no_calendar_events">
 				<div style="padding: 25px;color: #555;text-align: center;">

@@ -19,8 +19,16 @@
 					{{ Helpers::dayNumberToName(date("N", strtotime($i.".".$month.".".$year)), true) }}
 					- {{ date("d.m.Y", strtotime($i.".".$month.".".$year)) }}
 				</div>
-				<div class="day_content">
-					@if(false)
+				<div class="day_content"> 
+					@if(TeamPremiumCheck::get_team_calender_events_count_by_date($ranked_team->id, date("d.m.Y", strtotime($i.".".$month.".".$year))))
+						<div class="events_count">
+							<span>{{ TeamPremiumCheck::get_team_calender_events_count_by_date($ranked_team->id, date("d.m.Y", strtotime($i.".".$month.".".$year))) }}</span>
+							@if(TeamPremiumCheck::get_team_calender_events_count_by_date($ranked_team->id, date("d.m.Y", strtotime($i.".".$month.".".$year))) > 1)
+								events
+							@else
+								event
+							@endif
+						</div>
 					@else
 						<div class="no_events">No events planned</div>
 					@endif

@@ -100,4 +100,12 @@ class TeamPremiumCheck {
 		}
 		return false;
 	}
+
+	public static function get_team_calender_events_count_by_date($team_id, $date){
+		$events = RankedTeamCalendarEvent::where("team", "=", $team_id)->where("date", "=", trim($date))->get()->count();
+		if($events && $events > 0){
+			return $events;
+		}
+		return false;
+	}
 }

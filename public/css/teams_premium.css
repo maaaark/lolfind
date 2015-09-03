@@ -68,3 +68,12 @@
 	margin-top: 5px;
 	padding: 10px;
 }
+
+.team_calendar .calendar_days .day .day_content .events_count {
+	background: rgba(251, 123, 4, 0.75);
+	border-radius: 4px;
+	color: #fff;
+	text-align: center;
+	margin-top: 5px;
+	padding: 10px;
+}
