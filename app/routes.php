@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'IndexController@index');
+Route::get('/email_check/do_it/', 'IndexController@email_check');
 
 // User
 Route::post('/dologin', 'UsersController@doLogin');

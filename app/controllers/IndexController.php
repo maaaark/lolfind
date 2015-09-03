@@ -7,4 +7,11 @@ class IndexController extends \BaseController {
 		$last_players = Summoner::orderBy("updated_at", "DESC")->where("looking_for_team", "=", "1")->limit(5)->get();
 		return View::make("index", compact('last_players', 'last_teams'));
 	}
+
+	public function email_check(){
+		Mail::send('emails.test_email', array('variable' => "Variable"), function($message)
+        {
+            $message->to("benedict.romp@googlemail.com", "Benedict Romp")->subject('Test-Email');
+        });
+	}
 }
