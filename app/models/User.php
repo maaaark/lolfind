@@ -260,7 +260,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     }
 
     public function check_email_settings($type = "general"){
-        return false;
         $check = UserEmail::where("network_page", "=", "teamranked")->where("user", "=", $this->id)->where("type", "=", trim($type))->first();
         if(isset($check->id) && $check->id > 0 && $check->value < 1){
             return false;
