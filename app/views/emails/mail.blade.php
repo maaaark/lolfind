@@ -131,7 +131,7 @@
                                     <table width="160" align="left" cellspacing="0" cellpadding="0" border="0" class="full-width">
                                         <tbody>
                                         <tr>
-                                            <td height="34" valign="middle" align="center" class="center-stack" ><a href="http://teamranked.com"><img src="http://teamranked.com/img/teamranked_black.png" height="40" alt="Idroponica" /></a></td>
+                                            <td height="34" valign="middle" align="center" class="center-stack" ><a href="http://teamranked.com"><img src="http://teamranked.com/img/teamranked_black.png" height="40" /></a></td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -142,9 +142,9 @@
                                         <tbody>
                                         <tr>
                                             <td height="34" valign="bottom" align="right" class="center">
-                                                <a style="text-decoration: none; border:0;" href="http://facebook.com/teamranked"><img src="http://teamranked.com/img/fb_bt.jpg" width="27" height="27" alt="Facebook" /></a>
+                                                <a style="text-decoration: none; border:0;" href="http://facebook.com/teamranked"><img src="http://teamranked.com/img/fb_bt.jpg" width="27" height="27" /></a>
                                                 &nbsp;
-                                                <a style="text-decoration: none; border:0" href="http://twitter.com/teamranked"><img src="http://teamranked.com/img/twitter_bt.jpg" width="27" height="27" alt="Youtube" /></a>
+                                                <a style="text-decoration: none; border:0" href="http://twitter.com/teamranked"><img src="http://teamranked.com/img/twitter_bt.jpg" width="27" height="27" /></a>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -170,7 +170,7 @@
                         <table bgcolor="#ffffff" width="100%" cellspacing="0" cellpadding="0" border="0" class="full-width">
                             <tbody>
                             <tr>
-                                <td valign="top" align="left"><a href="http://teamranked.com"><img src="http://teamranked.com/img/cover.jpg" class="emailImage" alt="Main banner" border="0" width="600" /></a></td>
+                                <td valign="top" align="left"><a href="http://teamranked.com"><img src="http://teamranked.com/img/cover.jpg" class="emailImage" border="0" width="600" /></a></td>
                             </tr>
                             </tbody>
                         </table>
