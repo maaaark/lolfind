@@ -54,6 +54,8 @@
 .team_calendar .calendar_days .day .title {
 	padding: 3px;
 	background-color: rgba(0,0,0,0.1);
+	color: #696969;
+	text-align: center;
 }
 
 .team_calendar .calendar_days .day .day_content {

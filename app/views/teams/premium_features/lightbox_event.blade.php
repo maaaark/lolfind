@@ -1,6 +1,7 @@
 <div style="float: right;">
 	@if(TeamPremiumCheck::can_edit_calendar(Auth::user()->id, $ranked_team))
-		<button class="btn_1" id="btn_edit_from_lightbox_event">Edit</button>	
+		<button class="btn_1" id="btn_delete_from_lightbox_event"><i class="icon-trash-2"></i> Delete</button>	
+		<button class="btn_1" id="btn_edit_from_lightbox_event"><i class="icon-pencil-2"></i> Edit</button>	
 	@endif
 	<button class="btn_1" id="btn_back_from_lightbox_event">Back</button>
 </div>
@@ -53,6 +54,26 @@ $("#btn_back_from_lightbox_event").click(function(){
 		$.post("/teams/{{ $ranked_team->region }}/{{ $ranked_team->tag }}/calendar/lightbox/edit", {"event": "{{ $event->id }}"}).done(function(data){
 			$("#panel_edit_event").html(data);
 		});
+	});
+
+	$("#btn_delete_from_lightbox_event").click(function(){
+		if(confirm("Really delete this event?")){
+			$("#panel_lightbox_event").html("<div style='padding: 25px;text-align:center;'>Loading ...</div>");
+			$("#panel_lightbox_event").show();
+			$("#panel_lightbox_start").hide();
+
+			lightboxCloseBtn(false);
+	    	allowLightboxCloseBG(false);
+			$.post("/teams/{{ $ranked_team->region }}/{{ $ranked_team->tag }}/calendar/lightbox/delete", {"event": "{{ $event->id }}"}).done(function(data){
+				load_calendar_month();
+		    	
+		    	$.get("/teams/{{ $ranked_team->region }}/{{ $ranked_team->tag }}/calendar/lightbox", {"date": '{{ date("d.m.Y", strtotime($event->date)) }}'}).done(function(data){
+                    $("#fi_lightbox .content").html(data);
+					lightboxCloseBtn(true);
+			    	allowLightboxCloseBG(true);
+                });
+			});
+		}
 	});
 @endif
 </script>

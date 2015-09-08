@@ -189,4 +189,19 @@ class TeamsPremiumController extends \BaseController {
 			echo "error";
 		}
 	}
+
+	public function calendar_day_lightbox_delete($region, $tag){
+		$team = RankedTeam::where("region", "=", $region)->where("tag", "=", $tag)->first();
+		if(isset($team->id) && $team->id > 0 && Auth::check() && TeamPremiumCheck::hasPremium($team) && TeamPremiumCheck::user_is_in_team(Auth::user()->id, $team) && Input::get("event")){
+			$event = RankedTeamCalendarEvent::where("id", "=", Input::get("event"))->first();
+			if(isset($event->id) && $event->id > 0 && $team->id == $event->team){
+				$event->delete();
+				echo "success";
+			} else {
+				echo "error";
+			}
+		} else {
+			echo "error";
+		}
+	}
 }

@@ -75,6 +75,7 @@ Route::get("/teams/{region}/{tag}/calendar/lightbox", "TeamsPremiumController@ca
 Route::post("/teams/{region}/{tag}/calendar/lightbox/add", "TeamsPremiumController@calendar_day_lightbox_add");
 Route::post("/teams/{region}/{tag}/calendar/lightbox/event", "TeamsPremiumController@calendar_day_lightbox_event");
 Route::post("/teams/{region}/{tag}/calendar/lightbox/edit", "TeamsPremiumController@calendar_day_lightbox_edit");
+Route::post("/teams/{region}/{tag}/calendar/lightbox/delete", "TeamsPremiumController@calendar_day_lightbox_delete");
 
 
 // Players
