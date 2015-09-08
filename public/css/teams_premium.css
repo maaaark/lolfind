@@ -38,6 +38,15 @@
 	background: #fff;
 }
 
+.team_calendar .calendar_days .day.today {
+	
+}
+
+.team_calendar .calendar_days .day.today .title {
+	color: #fff;
+	background: #E69500;
+}
+
 .team_calendar .calendar_days .day:hover {
 	background: rgba(0,0,0,0.05);
 }

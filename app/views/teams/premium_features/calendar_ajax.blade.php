@@ -14,7 +14,11 @@
 					</div>
 				@endfor
 			@endif
+			@if(date("d.m.Y", strtotime($i.".".$month.".".$year)) == date("d.m.Y"))
+			<div class="day today" data-date="{{ date("d.m.Y", strtotime($i.".".$month.".".$year)) }}">
+			@else
 			<div class="day" data-date="{{ date("d.m.Y", strtotime($i.".".$month.".".$year)) }}">
+			@endif
 				<div class="title">
 					{{ Helpers::dayNumberToName(date("N", strtotime($i.".".$month.".".$year)), true) }}
 					- {{ date("d.m.Y", strtotime($i.".".$month.".".$year)) }}
