@@ -27,7 +27,7 @@ if(isset($message->author->summoner_id) && $message->author->summoner_id > 0 && 
 						<i>Administrator</i>
 					@endif
 				@else
-					<div style="text-align: center;color: rgba(0,0,0,0.6);">
+					<div style="text-align: center;color: rgba(0,0,0,0.6);padding-top: 25px;">
 						Unknown summoner
 					</div>
 				@endif
