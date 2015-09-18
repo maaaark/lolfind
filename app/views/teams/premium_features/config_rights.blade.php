@@ -31,7 +31,7 @@
                     <thead>
                         <th></th>
                         <th>Customize permissions</th>
-                        <th>Manage forums</th>
+                        <th style="display: none;">Manage forums</th>
                         <th>Edit calendar</th>
                     </thead>
                     <tbody>
@@ -53,7 +53,7 @@
                                             <input type="checkbox" name="user_{{ $player->summoner->id }}-permissions">
                                         @endif
                                     </td>
-                                    <td class="td_checkbox">
+                                    <td class="td_checkbox" style="display: none;">
                                         @if(TeamPremiumCheck::can_manage_forums(Helpers::get_userid_by_summoner($player->summoner->summoner_id, $ranked_team->region), $ranked_team))
                                             <input type="checkbox" name="user_{{ $player->summoner->id }}-forums" checked>
                                         @else

@@ -37,6 +37,7 @@
     <link rel="stylesheet" href="/css/tooltipster.css">
     <link rel="stylesheet" href="/js/icheck/orange.css">
     <link rel="stylesheet" href="/css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" href="/css/teams_premium.css">
     @yield('css_addition')
     
     <!--[if lt IE 9]>

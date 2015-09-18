@@ -206,7 +206,9 @@ function save_calendar_event(edit_mode){
 		$.post("/teams/{{ $ranked_team->region }}/{{ $ranked_team->tag }}/calendar/lightbox/add", object).done(function(data){
 			console.log(data);
 			if(data.trim() == "success"){
-				load_calendar_month();
+				if(typeof load_calendar_month != "undefined"){
+					load_calendar_month();
+				}
 		    	
 		    	$.get("/teams/{{ $ranked_team->region }}/{{ $ranked_team->tag }}/calendar/lightbox", {"date": '{{ date("d.m.Y", strtotime($date)) }}'}).done(function(data){
                     $("#fi_lightbox .content").html(data);

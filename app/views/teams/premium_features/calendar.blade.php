@@ -2,7 +2,6 @@
 @section('title', $ranked_team->name." - Settings - ")
 @section('css_addition')
    <link rel="stylesheet" href="/css/teams.css">
-   <link rel="stylesheet" href="/css/teams_premium.css">
 @stop
 @section('header')
     <section class="parallax-window" data-parallax="scroll" data-image-src="/img/player_background.jpg" data-natural-width="1400" data-natural-height="470">

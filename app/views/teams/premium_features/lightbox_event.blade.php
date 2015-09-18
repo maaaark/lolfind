@@ -65,7 +65,9 @@ $("#btn_back_from_lightbox_event").click(function(){
 			lightboxCloseBtn(false);
 	    	allowLightboxCloseBG(false);
 			$.post("/teams/{{ $ranked_team->region }}/{{ $ranked_team->tag }}/calendar/lightbox/delete", {"event": "{{ $event->id }}"}).done(function(data){
-				load_calendar_month();
+				if(typeof load_calendar_month != "undefined"){
+					load_calendar_month();
+				}
 		    	
 		    	$.get("/teams/{{ $ranked_team->region }}/{{ $ranked_team->tag }}/calendar/lightbox", {"date": '{{ date("d.m.Y", strtotime($event->date)) }}'}).done(function(data){
                     $("#fi_lightbox .content").html(data);

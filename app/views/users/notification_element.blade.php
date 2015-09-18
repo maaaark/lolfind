@@ -73,9 +73,23 @@
 			{{ $user_temp->summoner->name }} created a calender event for <b>{{ $team_temp->name }}</b>
 
 			<div>
-                <button class="btn_1" onclick="alert('Coming soon');">Show details</button>
+                <button class="btn_1 notification_calendar_evennt_btn" data-region="{{ $team_temp->region }}" data-teamTag="{{ $team_temp->tag }}" data-event="{{ $event_temp->date }}">Show details</button>
             </div>
 		</div>
+
+		<script>
+		$(".notification_calendar_evennt_btn").click(function(){
+			cal_evnt_temp = $(this).attr("data-event");
+			region_cal_evnt_temp = $(this).attr("data-region");
+			tag_cal_evnt_temp = $(this).attr("data-teamTag");
+            showLightbox("<div style='padding: 25px;text-align: center;'>Loading ...</div>", function(lightbox_content){
+            	console.log(region_cal_evnt_temp);
+                $.get("/teams/"+region_cal_evnt_temp+"/"+tag_cal_evnt_temp+"/calendar/lightbox", {"date": cal_evnt_temp }).done(function(data){
+                    lightbox_content.html(data);
+                });
+            });
+		});
+		</script>
 	@endif
 
 @elseif($notification->type == "normal_text")
