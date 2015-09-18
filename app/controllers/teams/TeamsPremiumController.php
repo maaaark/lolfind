@@ -147,12 +147,13 @@ class TeamsPremiumController extends \BaseController {
 		                    	try {
 		                            Mail::send('emails.mail_new_calendar_event', array('ranked_team' => $team, 'user' => $Auth::user()), function($message) use($user)
 		                            {
-		                                $message->to($user["email"], $user->summoner->name)->subject('New team calendar event');
+		                                $message->to($user->email, $user->summoner->name)->subject('New team calendar event');
 		                            });
 	                            } catch(Exception $e){
-	                            	print_r($e);
+	                            	//print_r($e);
 	                            }
 	                        }
+	                        echo "bla bla bla";
 	                    }
                 	}
             	}
