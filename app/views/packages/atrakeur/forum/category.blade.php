@@ -27,7 +27,18 @@
 						<td class="name">
 							<a href={{$topic->url}}>{{{ $topic->title }}}</a>
 							<div class="info">
-								by {{ Helpers::get_summoner(Helpers::getUser($topic->author_id)->summoner_id, Helpers::getUser($topic->author_id)->region)->name }}
+								<?php
+									$summoner_temp  = false;
+									$user_temp 		= Helpers::getUser($topic->author_id);
+									if($user_temp && isset($user_temp->id) && $user_temp->id > 0){
+										$summoner_temp = Helpers::get_summoner($user_temp->summoner_id, $user_temp->region);
+									}
+								?>
+								@if($summoner_temp AND isset($summoner_temp->id) AND $summoner_temp->id > 0)
+									by {{ $summoner_temp->name }}
+								@else
+									by unknown summoner
+								@endif
 
 								@if($topic->last_reply AND $topic->last_reply != "0000-00-00 00:00:00")
 									- Last reply: {{ Helpers::diffForHumans($topic->last_reply) }}
