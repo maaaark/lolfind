@@ -134,16 +134,14 @@ class TeamsPremiumController extends \BaseController {
 				if($set_notification){
 					$players = RankedTeamPlayer::where("team", "=", $team->id)->get();
 					foreach($players as $player){
-						if($player->summoner_id != $team->leader_summoner_id){
-							$user = User::where("region", "=", $team->region)->where("summoner_id", "=", $player->summoner_id)->first();
-							if(isset($user->id) && $user->id > 0){
-			                    try {
-			                        FIServer::add_notification($user->id, "team_calender_event_created", Auth::user()->id, $event->id, $team->id);
-			                    } catch(Exception $e){
-			                        // nichts machen
-			                    }
+						$user = User::where("region", "=", $team->region)->where("summoner_id", "=", $player->summoner_id)->first();
+						if(isset($user->id) && $user->id > 0 && $user->id != Auth::user()->id){
+		                    try {
+		                        FIServer::add_notification($user->id, "team_calender_event_created", Auth::user()->id, $event->id, $team->id);
+		                    } catch(Exception $e){
+		                        // nichts machen
 		                    }
-	                }
+	                    }
                 	}
             	}
 				echo "success";
