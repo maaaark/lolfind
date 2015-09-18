@@ -23,13 +23,13 @@ class TeamPremiumCheck {
 	}
 
 	public static function hasPremium($team){
-		$user = User::where("id", "=", Helpers::get_userid_by_summoner($team->leader_summoner_id, $team->region))->first();
+		/*$user = User::where("id", "=", Helpers::get_userid_by_summoner($team->leader_summoner_id, $team->region))->first();
 		if(isset($user->id) && $user->id > 0){
 			if($user->hasRole("admin")){
 				return true;
 			}
-		}
-		return false;
+		}*/
+		return true;
 	}
 
 	public static function can_change_config_rights($user_id, $team){
