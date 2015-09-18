@@ -150,10 +150,9 @@ class TeamsPremiumController extends \BaseController {
 		                                $message->to($user->email, $user->summoner->name)->subject('New team calendar event');
 		                            });
 	                            } catch(Exception $e){
-	                            	//print_r($e);
+	                            	echo "error";
 	                            }
 	                        }
-	                        echo "bla bla bla";
 	                    }
                 	}
             	}
