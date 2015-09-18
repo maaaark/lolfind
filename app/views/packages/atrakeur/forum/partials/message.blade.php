@@ -1,5 +1,9 @@
 <?php
-$user = Helpers::getUser($message->author->id);
+$summoner_temp 	= false;
+$user 			= Helpers::getUser($message->author->id);
+if(isset($message->author->summoner_id) && $message->author->summoner_id > 0 && isset($message->author->region)){
+	$summoner_temp = Helpers::get_summoner($message->author->summoner_id, $message->author->region);
+}
 ?>
 
 @if($user->hasRole("admin"))
@@ -10,16 +14,20 @@ $user = Helpers::getUser($message->author->id);
 	<table class="table forum_post_table">
 		<tr class="post_content">
 			<td class="author_info border_right">
-				<div class="profile_icon">
-					<a href="/summoner/{{ $message->author->region }}/{{{ Helpers::get_summoner($message->author->summoner_id, $message->author->region)->name }}}">
-						<img src="http://ddragon.leagueoflegends.com/cdn/{{ Config::get('settings.patch') }}/img/profileicon/{{ Helpers::get_summoner($message->author->summoner_id, $message->author->region)->profileIconId }}.png">
-					</a>
-				</div>
-				<a href="/summoner/{{ $message->author->region }}/{{{ Helpers::get_summoner($message->author->summoner_id, $message->author->region)->name }}}">
-					{{{ Helpers::get_summoner($message->author->summoner_id, $message->author->region)->name }}}
-				</a><br/>
-				@if($user->hasRole("admin"))
-					<i>Administrator</i>
+				@if($summoner_temp AND isset($summoner_temp->id) AND $summoner_temp->id > 0)
+					<div class="profile_icon">
+						<a href="/summoner/{{ $message->author->region }}/{{{ $summoner_temp->name }}}">
+							<img src="http://ddragon.leagueoflegends.com/cdn/{{ Config::get('settings.patch') }}/img/profileicon/{{ $summoner_temp->profileIconId }}.png">
+						</a>
+					</div>
+					<a href="/summoner/{{ $message->author->region }}/{{ $summoner_temp->name }}}">
+						{{{ $summoner_temp->name }}}
+					</a><br/>
+					@if($user->hasRole("admin"))
+						<i>Administrator</i>
+					@endif
+				@else
+
 				@endif
 
 			</td>
