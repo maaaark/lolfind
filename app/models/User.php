@@ -266,4 +266,16 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         }
         return true;
     }
+
+    public function ranked_teams(){
+        $out = array();
+        $players_rows = RankedTeamPlayer::where("summoner_id", "=", $this->summoner_id)->get();
+        foreach($players_rows as $row){
+            $temp = RankedTeam::where("id", "=", $row->team)->where("region", "=", $this->region)->first();
+            if(isset($temp->id) && $temp->id > 0){
+                $out[] = $temp;
+            }
+        }
+        return $out;
+    }
 }

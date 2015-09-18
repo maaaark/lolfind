@@ -7,7 +7,23 @@
         <a href="/teams" class="text-shadow show-submenu">Search Team <i class="icon-down-open-mini"></i></a>
         <ul>
             @if(Auth::check())
-                <li style="text-align: center;"><a href="/applications">Your applications</a></li>
+                <li><a href="javascript:void(0)" class="show-submenu">My teams <i class="icon-right-open-mini" style="float: right;"></i></a>
+                    <ul>
+                        @foreach(Auth::user()->ranked_teams() as $team)
+                            <?php $temp_set_ranked_team_nav = true; ?>
+                            <li><a href="/teams/{{ $team->region }}/{{ $team->tag }}">{{ $team->name }}</a></li>
+                        @endforeach
+
+                        @if(!isset($temp_set_ranked_team_nav) || $temp_set_ranked_team_nav == false)
+                            <li style="text-align: center;">
+                                <a href="javascript:void(0)" style="cursor: default;color: rgba(0,0,0,0.3);">
+                                    No teams ...
+                                </a>
+                            </li>
+                        @endif
+                    </ul>
+                </li>
+                <li style="text-align: left;"><a href="/applications">Your applications</a></li>
             @endif
             <li><a href="/teams/league/bronze"><img src="/img/leagues/bronze_1.png" height="23"> Bronze</a></li>
             <li><a href="/teams/league/silver"><img src="/img/leagues/silver_1.png" height="23"> Silver</a></li>
