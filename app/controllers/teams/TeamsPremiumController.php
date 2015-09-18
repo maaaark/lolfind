@@ -144,14 +144,14 @@ class TeamsPremiumController extends \BaseController {
 
 		                    if($user->check_email_settings("team_calendar")){
 		                    	echo "Send-Mail:";
-		                    	try {
+		                    	//try {
 		                            Mail::send('emails.mail_new_calendar_event', array('ranked_team' => $team, 'user' => $Auth::user()), function($message) use($user)
 		                            {
 		                                $message->to($user->email, $user->summoner->name)->subject('New team calendar event');
 		                            });
-	                            } catch(Exception $e){
+	                            /*} catch(Exception $e){
 	                            	echo "error";
-	                            }
+	                            }*/
 	                        }
 	                    }
                 	}
