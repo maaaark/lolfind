@@ -203,6 +203,7 @@ function save_calendar_event(edit_mode){
 		$("#panel_add_event_saving").show();
 		$("#panel_add_event").hide();
 
+		console.log("add post:");
 		$.post("/teams/{{ $ranked_team->region }}/{{ $ranked_team->tag }}/calendar/lightbox/add", object).done(function(data){
 			console.log(data);
 			if(data.trim() == "success"){
