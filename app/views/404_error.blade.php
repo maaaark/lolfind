@@ -5,7 +5,7 @@
         <div class="small-parallax-content">
             <h1>Page not found</h1>
         </div>
-    </section><!-- End section -->
+    </section>
     <div id="position">
         <div class="container">
             <ul>
@@ -13,7 +13,7 @@
                 <li>Page not found</li>
             </ul>
         </div>
-    </div><!-- Position -->
+    </div>
 @stop
 @section('content')
 	<div class="container margin_30">
